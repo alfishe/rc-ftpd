@@ -1,0 +1,13 @@
+Commands, register command (via tagitem)
+Command function gets called with Command as a MAKE_ID() ulong in d0 etc
+Command function returns TRUE if command dealt with, or FALSE if not
+All commands passed on to all plugins (only deal with those you know)
+FEAT response needs raw output, normal response sends command (id) output
+
+FTPD_Function() = plugin
+ftpd_function() = main
+
+struct TagItem		*FTPD_Setup		( REG(a0,struct ftpd_functable *ftx) );
+void					 FTPD_Cleanup	( REG(a0,struct ftpd_functable *ftx) );
+BOOL					 FTPD_Command	( REG(a0,struct ftpd_functable *ftx), REG(d0,ULONG command), REG(a1,struct ftp_control *ftp) );
+BOOL					 FTPD_Data		( REG(a0,struct ftpd_functable *ftx), REG(d0,ULONG id), REG(a1,struct ftp_control *ftp), REG(a2,struct ftp_data *data) )

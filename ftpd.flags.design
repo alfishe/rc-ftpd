@@ -1,0 +1,14 @@
+c = dir  - STOR+RNTO allowed. Always on with F or W
+
+a = file - APPE allowed			"Append"
+d = all  - RMD allowed			"Delete Dirs"
+f = all  - RNFR+RNTO allowed	"Rename"
+m = dir  - MKD allowed			"Make Dirs"
+p = dir  - DELE allowed			"Delete Files"
+r = file - RETR allowed			"Retrieve Files"
+w = file - STOR allowed			"Store Files"
+
+e = dir  - CWD allowed			!"Hide"				! Should be on by default
+l = dir  - LIST allowed			!"No List"			! Should be on by default
+
+    dir  - subdirs				"SubDirs"			! Should be on by default

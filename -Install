@@ -1,0 +1,1782 @@
+;$VER: Boing Bag 3.9-2 Install 45.13 (20.3.2002)
+
+(effect "center" "radial" $FF0077 $AA8800)
+
+(set #language (getenv "Language"))
+
+(complete 0)
+
+;=============================================================================
+; English strings
+
+(set #msg-product "Boing Bag 2 for AmigaOS 3.9")
+
+(set #msg-which-language
+(cat "\nWhich languages should be installed?"
+))
+
+(set #msg-which-language-help
+(cat "\nThe Amiga can be operated in many different "
+     "languages. Several files must be copied to your "
+     "hard drive for each supported language.\n\n"
+     "To reduce the amount of space consumed by the "
+     "language files, you can select only the "
+     "files of specific languages to be copied.\n\n"
+     "Check the boxes of the languages you wish "
+     "to have available on your system.\n\n"
+     @askoptions-help
+))
+
+(set #msg-mainwelcome (cat "Welcome to the " #msg-product " installation.\n"))
+
+(set #msg-bad-3.9
+(cat "\n\nThis update requires AmigaOS 3.9. Please install it first!\n\n"
+     "This update is not intended for AmigaOS 3.5!\n"
+))
+
+(set #msg-bad-revision
+  (cat
+    "\n\nYou intend to install Boing Bag 3.9-2 but did not yet install "
+    "the first AmigaOS 3.9 Update Boing Bag 3.9-1. Please install Boing Bag 3.9-1 "
+    "before installing this second AmigaOS update."
+  )
+)
+
+(set #msg-introduction
+(cat "\n\nThis program lets you install " #msg-product
+     " on your hard drive.\n\nIt can be used to update Version 3.9 of AmigaOS."
+))
+
+(set #msg-which-disk
+(cat "On which partition should " #msg-product " be installed?"
+))
+
+(set #msg-which-disk-help
+(cat "\nThis section lets you select on which hard drive partition the "
+     "update files will be installed. These should normally go "
+     "to the same directory you installed AmigaOS 3.9 to.\n\n"
+     @askdir-help
+))
+
+(set #msg-confirm-target
+(cat "\n\nVERY IMPORTANT!!!\n\nThis program installs " #msg-product " on your hard disk. "
+     "\n\nOlder files will be overwritten."
+     "\n\nDo you want to install the update on partition \"%s\"? "
+))
+
+(set #msg-confirm-target-help
+(cat "Later in the installation process "
+     "some of the files on this partition will be replaced with newer "
+     "files.\n\n"
+))
+
+
+(set #msg-insert-cdrom "\n\nPlease insert AmigaOS 3.9 or AmigaOS XL CD!")
+(set #msg-insert-cdrom-help
+    (cat "\nThis Update installation only works if you insert an original"
+         " AmigaOS 3.9 or AmigaOS XL CD."
+    )
+)
+
+(set #msg-update-failed
+    (cat "\nUpdate failed. Please check whether your AmigaOS 3.9 or "
+         " your AmigaOS XL CD is inserted in your CD-ROM drive"
+         " and whether the download of the update archive worked correctly."
+         "\n\nThen try again. If it still doesn't work contact our support."
+    )
+)
+
+(set #msg-install-xad-update
+  "\nDo you like to install XAD version 10 that comes with this update?"
+)
+
+(set #msg-install-xad-update-help
+  (cat
+    "\nThis update includes version 10 of the flexible unarchiving system XAD "
+    "that is bundled with AmigaOS 3.9. Previous versions of AmigaOS 3.9 included "
+    "XAD version 9. If you already use a registered copy of XAD version "
+    "10 or 11 you should not install this XAD update."
+  )
+)
+
+(set #msg-install-xad-update-yes
+  "Install XAD 10"
+)
+
+(set #msg-install-xad-update-no
+  "Do not install XAD 10"
+)
+
+(set #msg-install-romupdate-general
+  (cat
+    "\nBoingBag 3.9-2 contains a new AmigaOS ROM Update. Although it "
+    "has been tested thoroughly it may fail on some hardware configurations. Do you "
+    "wish to install it?"
+    "\n\nIMPORTANT: Please REALLY read the help text. "
+    "ROM Update is provided with only limited "
+    "warranty and support! "
+    "Neither Amiga Inc. nor HAAGE&PARTNER are obliged to make sure that "
+    "it will work on your system. Please also read the Readme file."
+  )
+)
+
+(set #msg-install-romupdate-yes
+  "Install ROM Update"
+)
+
+(set #msg-install-romupdate-no
+  "Do NOT install ROM Update"
+)
+
+(set #msg-install-romupdate-help
+  (cat
+    "\nPlease read the following information carefully if you plan to use "
+    "the new ROM Update:"
+
+    "\n\nYour old AmigaOS ROM Update will be renamed to "
+    "\"AmigaOS ROM Update.old\". "
+    "If you are unsure, skip installing the update! You can "
+    "try it out later. Just rename \"AmigaOS ROM Update.BB39-2\" to "
+    "\"AmigaOS ROM Update\" in your \"Devs\" drawer."
+
+    "\n\nIMPORTANT: You should make sure that you have a working Emergency "
+    "disk before installing the new AmigaOS ROM Update. It is unlikely, but "
+    "it may happen that your system will not boot with the new ROM update. "
+    "Then you can use the Emergency disk to put back the old AmigaOS ROM Update "
+    "by copying the file \"Devs/AmigaOS ROM Update.old\" to \"Devs/AmigaOS ROM Update\"."
+
+    "\n\nGenerally the new ROM Update should be safe to use if you've already "
+    "used the ROM Update from AmigaOS 3.9. If you disabled the ROM Update for some "
+    "reason then it might be wise to keep it that way."
+    "\n\nYou should not use the ROM Update on a system with IDE-Fix driver "
+    "software unless you specifically tell SetPatch to skip updating "
+    "\"scsi.device\"."
+
+    "\n\nIf you are using CyberGraphX V3/V4 software, you should update "
+    "it to the latest revision. Older releases check specifically for "
+    "exec V40 while the new ROM Update contains exec V45. Older releases "
+    "of CyberGraphX will fail to list screenmodes in screenmode requesters "
+    "if the new ROM Update is installed."
+
+    "\n\nGenerally it is not necessary to install a ROM Update if you use "
+    "AmigaOS XL, WinUAE, Linux UAE or some other Amiga emulation environment. "
+    "AMIthlon can use the new ROM Update, but AmigaXL will not boot if you "
+    "use it."
+
+    "\n\nTo make a long story short: If unsure, skip it, and try it out later "
+    "if you want. But it should work on most Amiga systems."
+  )
+)
+
+(set #msg-install-romupdate-inst
+  (cat
+    "\n\nThe AmigaOS ROM Update is installed on your system. "
+    "So generally, it should be safe for you to update it."
+  )
+)
+
+(set #msg-install-romupdate-notinst
+  (cat
+    "\n\nNo AmigaOS ROM Update has been installed on your system. It might be "
+    "wise to keep it that way."
+  )
+)
+
+(set #msg-installing-romupdate
+  "Installing AmigaOS ROM Update ..."
+)
+
+(set #msg-warpup-update "Installing WarpUP 5.1 Update")
+
+(set #msg-warpup-update-help "This will update your installed WarpUP PowerPC software.")
+
+(set #msg-installing
+(cat "\n\nInstalling the update..."
+))
+
+(set #msg-reboot
+  (cat "\nThe installation of " #msg-product " is now complete.\n\n"
+       "To enable the Update you should reboot your Amiga. "
+       "We recommend that you do this now.\n\n"
+       "Please save all yet unsaved data, "
+       "remove all disks from all drives and reboot your Amiga."
+  )
+)
+
+;=============================================================================
+; German strings
+
+(if (= #language "deutsch")
+  (
+    (set #msg-product "Boing Bag 2 für AmigaOS 3.9")
+
+    (set #msg-which-language
+    (cat "\nWelche Sprachen sollen installiert werden?"
+    ))
+
+    (set #msg-which-language-help
+    (cat "\nDer Amiga kann in vielen verschiedenen Sprachen betrieben werden. "
+         "Für jede verwendete Sprache müssen mehrere Dateien auf Ihre "
+         "Festplatte kopiert werden.\n\n"
+         "Um den Platz in Grenzen zu halten, den die Sprachentreiberdateien "
+         "einnehmen, können Sie wählen, nur die Treiber für bestimmte "
+         "Sprachen zu installieren.\n\n"
+         "Klicken Sie einfach die Felder derjenigen Sprachen an, die Sie in "
+         "Ihrem System verfügbar haben wollen, so daß diese Sprachen mit "
+         "einem Häkchen markiert sind.\n\n"
+         @askoptions-help
+    ))
+
+    (set #msg-mainwelcome (cat "Willkommen zur Installation vom " #msg-product " \n"))
+
+    (set #msg-bad-3.9
+    (cat "\n\n\nDieses Update benötigt AmigaOS 3.9. Bitte installieren Sie es zuerst!\n\n"
+         "Dieses Update ist nicht für AmigaOS 3.5 gedacht!\n"
+    ))
+
+    (set #msg-bad-revision
+      (cat
+        "\n\nSie möchten Boing Bag 3.9-2 installieren, haben jedoch noch nicht "
+        "das erste AmigaOS 3.9 Update Boing Bag 3.9-1 installiert. Bitte installieren "
+        "Sie Boing Bag 3.9-1 zuerst."
+      )
+    )
+
+    (set #msg-introduction
+    (cat "\n\nHiermit können Sie " #msg-product " auf Ihrer "
+         "Festplatte installieren.\n\nSie können damit die Version 3.9 von AmigaOS "
+         "aktualisieren."
+    ))
+
+    (set #msg-confirm-target
+    (cat "\n\nBITTE BEACHTEN!!!\n\nDieses Programm installiert " #msg-product " auf Ihrer Festplatte."
+         "\n\nBisherige Dateien werden überschrieben.\n\n"
+         " Wollen Sie das Update auf der Partition \"%s\" installiert "
+         " bekommen?"
+    ))
+
+    (set #msg-confirm-target-help
+    (cat "Bei der weiteren Installation "
+         "werden die meisten Dateien in dieser Partition durch neuere Dateien "
+         "ersetzt.\n\n"
+    ))
+
+    (set #msg-which-disk
+    (cat "Auf welcher Partition soll " #msg-product " installiert werden?"
+    ))
+
+    (set #msg-which-disk-help
+    (cat "\nHier können Sie wählen, auf welcher Festplattenpartition "
+         "die Dateien vom Update installiert werden sollen. "
+         "Sie sollten normalerweise an dieselbe Stelle installiert werden, "
+         "wie die bisherigen Dateien von AmigaOS 3.9.\n\n"
+         @askdir-help
+    ))
+
+    (set #msg-insert-cdrom "\n\nBitte legen Sie ihre AmigaOS 3.9 oder ihre AmigaOS XL CD in ihr CD-ROM-Laufwerk!")
+    (set #msg-insert-cdrom-help
+        (cat "\nDiese Update-Installation funktioniert nur, wenn Sie eine"
+             " originale AmigaOS 3.9 oder AmigaOS XL CD einlegen."
+        )
+    )
+
+    (set #msg-update-failed
+        (cat "\nUpdate fehlgeschlagen. Bitte prüfen Sie, ob die AmigaOS 3.9 CD-ROM"
+             " in ihr CD-ROM-Laufwerk eingelegt ist und ob der Download des Update-Archives"
+             " einwandfrei geklappt hat.\n\nDann versuchen Sie es erneut. Wenn auch daraufhin"
+             " noch nicht klappt, kontaktieren Sie unseren Support."
+        )
+    )
+
+    (set #msg-install-xad-update
+      "\nMöchten Sie XAD Version 10 installieren, das in diesem Update enthalten ist?"
+    )
+
+    (set #msg-install-xad-update-help
+      (cat
+        "\nDieses Update enthält Version 10 des flexiblen Entpack-Systems XAD, "
+        "welches in AmigaOS 3.9 enthalten ist. Frühere Versionen von AmigaOS 3.9 "
+        "enthielten XAD Version 9. Wenn Sie bereits eine registrierte XAD Version "
+        "10 oder 11 verwenden, sollten Sie dieses XAD-Update nicht installieren."
+      )
+    )
+
+    (set #msg-install-xad-update-yes
+      "XAD 10 installieren"
+    )
+
+    (set #msg-install-xad-update-no
+      "XAD 10 nicht installieren"
+    )
+
+    (set #msg-install-romupdate-general
+      (cat
+        "\nBoingBag 3.9-2 enthält ein neues AmigaOS ROM Update. Obwohl "
+        "das Update sorgfältig getestet wurde, kann es zu Problemen kommen. "
+        "Wollen Sie es installieren?"
+
+        "\n\nWICHTIG: Bitte lesen Sie UNBEDINGT den Hilfetext! "
+        "Für das ROM Update gilt eingeschränkte Gewährleistung und eingeschränkter Support. "
+        "Weder Amiga Inc. noch HAAGE&PARTNER sind verpflichtet, sicherzustellen, dass es auf ihrem System läuft. Bitte "
+        "lesen Sie auch die Liesmich-Datei."
+      )
+    )
+
+    (set #msg-install-romupdate-yes
+      "ROM Update installieren"
+    )
+
+    (set #msg-install-romupdate-no
+      "ROM Update NICHT installieren"
+    )
+
+    (set #msg-install-romupdate-help
+      (cat
+        "\nBitte lesen Sie die folgenden Informationen durch, wenn Sie planen, "
+        "das neue ROM Update einzusetzen:"
+
+        "\n\nIhr altes AmigaOS ROM Update wird umbenannt in \"AmigaOS ROM Update.old\". "
+        "Wenn Sie unsicher sind, dann überspringen Sie die Installation des Updates! "
+        "Sie können es später ausprobieren. Dazu benennen Sie einfach die Datei "
+        "\"Devs/AmigaOS ROM Update.BB39-2\" in \"Devs/AmigaOS ROM Update\" um."
+
+        "\n\nWICHTIG: Bitte stellen Sie sicher, dass ihre Notfall-Diskette einwandfrei "
+        "funktioniert, bevor Sie das AmigaOS ROM Update installieren. Es ist unwahrscheinlich, "
+        "aber es kann passieren, dass ihr Amiga mit dem neuen ROM Update nicht mehr bootet. "
+        "In diesem Fall können Sie ihre Notfall-Diskette nutzen, um das alte AmigaOS ROM Update "
+        "wieder zu verwenden, indem Sie die Datei \"Devs/AmigaOS ROM Update.old\" nach "
+        "\"Devs/AmigaOS ROM Update\" kopieren."
+
+        "\n\nDas neue ROM Update zu installieren, sollte sicher sein, wenn Sie "
+        "bereits das ROM Update von AmigaOS 3.9 verwenden. Wenn Sie dieses jedoch "
+        "aus irgendeinem Grund ausgeschaltet haben, dann kann es sinnvoll sein, "
+        "dies beizubehalten."
+
+        "\n\nSie sollten das ROM Update nicht zusammen mit der IDE-Fix Treiber-Software "
+        "verwenden, solange Sie SetPatch nicht mitteilen, das Aktualisieren des Treibers "
+        "\"scsi.device\" auszulassen."
+
+        "\n\nWenn Sie CyberGraphX V3/V4 verwenden, sollten Sie diese Grafikkarten-Software "
+        "erst auf die neueste Revision aktualisieren. Ältere Versionen prüfen speziell "
+        "ob Exec V40 existiert, das neue ROM Update enthält jedoch Exec V45. Ältere "
+        "Versionen von CyberGraphX können für Bildschirmmodus-Dialogfenster keine "
+        "Liste der verfügbaren Bildschirmmodi erstellen, wenn das neue ROM Update "
+        "aktiv ist."
+
+        "\n\nEs ist nicht nötig, das ROM Update zu installieren, wenn Sie AmigaOS XL, "
+        "WinUAE, Linux UAE oder eine andere Amiga Emulationsumgebung verwenden. "
+        "AMIthlon kann das neue ROM Update verwenden. AmigaXL jedoch bricht beim Booten "
+        "ab, wenn Sie es verwenden."
+
+        "\n\nUm eine lange Geschichte kurz zu machen: Wenn Sie unsicher sind, überspringen "
+        "Sie die Installation. Sie können es immer noch später ausprobieren. Es sollte "
+        "jedoch auf den meisten Systemem funktionieren."
+      )
+    )
+
+    (set #msg-install-romupdate-inst
+      (cat
+        "\n\nAuf ihrem System ist AmigaOS ROM Update installiert. "
+        "Im Allgemeinen sollte es sicher sein, wenn Sie es aktualisieren."
+      )
+    )
+
+    (set #msg-install-romupdate-notinst
+      (cat
+        "\n\nAuf ihrem System ist kein AmigaOS ROM Update installiert. "
+        "Es kann sinnvoll sein, das beizuhalten."
+      )
+    )
+
+    (set #msg-installing-romupdate
+      "Installiere AmigaOS ROM Update ..."
+    )
+
+    (set #msg-warpup-update "Installiere WarpUP 5.1 Update")
+
+    (set #msg-warpup-update-help "Hiermit wird ihre installierte WarpUP-PowerPC-Software erneuert.")
+
+
+    (set #msg-installing
+    (cat "\n\nInstalliere das Update..."
+    ))
+
+    (set #msg-reboot
+      (cat
+        "\nDie Installation des Updates ist nun abgeschlossen.\n\n"
+        "Um das Update zu aktivieren, müssen Sie Ihren Amiga neu "
+        "starten. Wir empfehlen dies gleich zu tun.\n\n"
+        "Bitte speichern Sie alle noch ungespeicherten Daten, "
+        "entfernen die Disketten aus allen Laufwerken und starten Sie ihren Amiga neu."
+      )
+    )
+  )
+)
+
+
+;=============================================================================
+; Danish strings ... thanks to Niels Bache and team!
+
+(if (= #language "dansk")
+(
+    (set #msg-product "Boing Bag 2 for AmigaOS 3.9")
+
+    (set #msg-which-language
+    (cat "\nHvilke sprog skal der installeres?"
+    ))
+
+    (set #msg-which-language-help
+    (cat "\nAmigaen kan anvendes med mange forskellige sprog. "
+         "For hvert sprog skal der kopieres nogle filer til "
+         "din harddisk.\n\n"
+         "For at begrænse den diskplads som sprogfilerne optager på "
+         "harddisken, kan du vælge kun at installere filerne for "
+         "nogle bestemte sprog.\n\n"
+         "Du skal blot klikke på knapperne for de sprog som du gerne vil "
+         "have til rådighed i systemet, så disse sprog bliver markeret "
+         "med et hak.\n\n"
+         @askoptions-help
+    ))
+
+    (set #msg-mainwelcome (cat "Velkommen til installeringen af " #msg-product " \n"))
+
+    (set #msg-bad-3.9
+    (cat "\n\n\nDenne opdatering kræver AmigaOS 3.9. Installér først denne.\n\n"
+         "Denne opdatering er ikke beregnet til AmigaOS 3.5.\n"
+    ))
+
+    (set #msg-bad-revision
+      (cat
+        "\n\nDu er ved at installere Boing Bag 3.9-2 uden først at have installeret "
+        "den første AmigaOS 3.9-opdatering, Boing Bag 3.9-1. Du skal installere Boing Bag 3.9-1 "
+        "før du installerer denne anden AmigaOS-opdatering."
+      )
+    )
+
+    (set #msg-introduction
+    (cat "\n\nMed dette program kan du installere " #msg-product " på din "
+         "harddisk.\n\nDermed kan du opdatere version 3.9 af AmigaOS."
+    ))
+
+    (set #msg-which-disk
+    (cat "I hvilket diskafsnit skal " #msg-product " installeres?"
+    ))
+
+    (set #msg-which-disk-help
+    (cat "\nHer kan du vælge i hvilket diskafsnit (partition) "
+         "opdateringens filer skal installeres. "
+         "De skal normalt installeres samme sted som de eksisterende "
+         "filer fra AmigaOS 3.9.\n\n"
+         @askdir-help
+    ))
+
+    (set #msg-confirm-target
+    (cat "\n\nBEMÆRK!!!\n\nDette program installerer " #msg-product " på din harddisk."
+         "\n\nEksisterende filer vil blive overskrevet.\n\n"
+         " Vil du have opdateringen installeret i diskafsnittet \"%s\"?"
+    ))
+
+    (set #msg-confirm-target-help
+    (cat "Senere i installeringsforløbet "
+         "vil en del filer i dette diskafsnit blive udskiftet med nyere "
+         "versioner.\n\n"
+    ))
+
+    (set #msg-insert-cdrom "\n\nLæg cd'en med AmigaOS 3.9 eller AmigaOS XL i cd-drevet.")
+    (set #msg-insert-cdrom-help
+        (cat "\nInstalleringen af denne opdatering virker kun hvis man lægger"
+             " en original AmigaOS 3.9- eller AmigaOS XL-cd i drevet."
+        )
+    )
+
+    (set #msg-update-failed
+        (cat "\nOpdateringen lykkedes ikke. Tjek om cd'en med AmigaOS 3.9"
+             " er lagt i cd-drevet og om hentningen  af opdateringsarkivet er gennemført"
+             " uden problemer.\n\nPrøv derefter installeringen igen. Hvis den stadig"
+             " ikke lykkes, så kontakt vores support."
+        )
+    )
+
+    (set #msg-install-xad-update
+      "\nVil du installere XAD version 10 som følger med denne opdatering?"
+    )
+
+    (set #msg-install-xad-update-help
+      (cat
+        "\nDenne opdatering indeholder version 10 af det fleksible arkiv-udpakningssystem XAD "
+        "som følger med AmigaOS 3.9. Tidligere versioner af AmigaOS 3.9 indeholdt "
+        "XAD version 9. Hvis du allerede bruger et registreret eksemplar af XAD version "
+        "10 eller 11, skal du ikke installere denne XAD-opdatering."
+      )
+    )
+
+    (set #msg-install-xad-update-yes
+      "Installere XAD 10"
+    )
+
+    (set #msg-install-xad-update-no
+      "Undlade installering af XAD 10"
+    )
+
+    (set #msg-install-romupdate-general
+      (cat
+        "\nBoingBag 3.9-2 indeholder en ny AmigaOS-romopdatering. Selv om den "
+        "er blevet grundigt testet, kan den tænkes ikke at virke på visse hardware-konfigurationer. "
+        "Vil du installere den?"
+        "\n\nVIGTIGT: Læs hjælpeteksten OMHYGGELIGT. "
+        "Romopdateringen dækkes kun af en begrænset "
+        "garanti og support! "
+        "Hverken Amiga Inc. eller HAAGE&PARTNER er forpligtet til at sikre at "
+        "den virker på dit system. Læs desuden filen LæsMig."
+      )
+    )
+
+    (set #msg-install-romupdate-yes
+      "Installere romopdateringen"
+    )
+
+    (set #msg-install-romupdate-no
+      "Undlade installering af romopdateringen"
+    )
+
+    (set #msg-install-romupdate-help
+      (cat
+        "\nLæs de følgende oplysninger omhyggeligt hvis du har til hensigt at bruge "
+        "den nye romopdatering:"
+
+        "\n\nDin gamle \"AmigaOS ROM Update\" vil blive omdøbt til "
+        "\"AmigaOS ROM Update.old\". "
+        "Hvis du ikke føler dig sikker, så undlad opdateringen. Du kan altid "
+        "prøve den senere. Omdøb blot \"AmigaOS ROM Update.BB39-2\" til "
+        "\"AmigaOS ROM Update\" i \"Devs\"-skuffen."
+
+
+        "\n\nVIGTIGT: Sørg for at sikre dig at du har en fungerende nødstartsdiskette "
+        "før du installerer den nye AmigaOS-romopdatering. Det er ikke sandsynligt, men "
+        "det kan ske at systemet ikke kan starte med den nye romopdatering. "
+        "I så fald kan man bruge nødstartsdisketten til at geninstallere den gamle AmigaOS-romopdatering "
+        "ved at kopiere filen \"Devs/AmigaOS ROM Update.old\" til \"Devs/AmigaOS ROM Update\"."
+
+        "\n\nNormalt vil den nye romopdatering være sikker at bruge hvis man allerede "
+        "bruger romopdateringen fra AmigaOS 3.9. Hvis du har slået romopdateringen fra "
+        "af én eller anden grund, er det sikkert klogt at fortsætte på den måde."
+        "\n\nMan skal ikke bruge romopdateringen på et system med driver-pakken IDE-Fix "
+        "medmindre man eksplicit beder SetPatch om at undlade at opdatere "
+        "\"scsi.device\" (med parameteret \"SKIPROMUPDATES scsi.device\")."
+
+        "\n\nHvis man bruger CyberGraphX-systemet V3/V4, skal man opdatere "
+        "det til seneste udgave. Tidligere udgaver tjekker eksplicit for "
+        "exec V40, og den nye romopdatering indeholder exec V45. I tidligere udgaver "
+        "viser CyberGraphX ikke sine skærmmodusser i dialogbokse til valg "
+        "af skærmmodus hvis den nye romopdatering er installeret."
+
+        "\n\nNormalt er det ikke nødvendigt at installere en romopdatering hvis man bruger "
+        "AmigaOS XL, WinUAE, Linux UAE eller et andet Amiga-emuleringsmiljø. "
+        "AMIthlon kan benytte den nye romopdatering, men AmigaXL vil ikke starte hvis man "
+        "bruger den."
+
+        "\n\nFor at gøre en lang historie kort: Hvis man ikke er sikker, skal man "
+        "undlade at installere den og evt. prøve den senere i stedet. Men den skulle virke på de fleste Amiga-systemer."
+      )
+    )
+
+    (set #msg-install-romupdate-inst
+      (cat
+        "\n\nAmigaOS-romopdateringen er installeret på dit system. "
+        "Så normalt vil det være sikkert for dig at opdatere den."
+      )
+    )
+
+    (set #msg-install-romupdate-notinst
+      (cat
+        "\n\nDer er ikke installeret nogen AmigaOS-romopdatering på dit system. Det kan være "
+        "det er klogest at lade det forblive sådan."
+      )
+    )
+
+    (set #msg-installing-romupdate
+      "Installerer AmigaOS-romopdateringen ..."
+    )
+
+    (set #msg-warpup-update "Installerer WarpUP 5.1-opdateringen")
+
+    (set #msg-warpup-update-help "Herved opdateres den installerede WarpUp-PowerPC-software.")
+
+    (set #msg-installing
+    (cat "\n\nInstallerer opdateringen..."
+    ))
+
+    (set #msg-reboot
+      (cat "Installeringen af opdateringen er nu gennemført.\n\n"
+           "For at aktivere de opdaterede filer bør du genstarte din "
+           "Amiga. Vi anbefaler at du gør dette nu.\n\n"
+           "Sørg for at alle data er gemt, "
+           "tag eventuelle diske ud af drevene og "
+           "genstart Amigaen nu."
+      )
+    )
+  )
+)
+
+
+;=============================================================================
+; French strings - Chaînes françaises - (10 mars 2002).
+; Thanks Herve Ch. Dupont & Pascal Rullier!
+
+(if (= #language "français")
+ (
+  (set #msg-product "Boing Bag 2 pour AmigaOS 3.9")
+
+  (set #msg-which-language
+  (cat "\nQuel langage voulez-vous installer ?"
+  ))
+
+  (set #msg-which-language-help
+  (cat "\nL'Amiga peut être utilisé dans différentes "
+       "langues. Plusieurs fichiers devront être copiés "
+       "sur votre disque dur, pour chaque langue supportée.\n\n"
+       "Pour réduire la place occupée par les fichiers des "
+       "différentes langues, vous pouvez choisir les fichiers "
+       "des langues concernées pour la copie.\n\n"
+       "Cochez les cases des langues que vous souhaitez "
+       "installer sur votre système.\n\n"
+       @askoptions-help
+  ))
+
+  (set #msg-mainwelcome (cat "Bienvenue dans le script d'installation de " #msg-product ".\n"))
+
+  (set #msg-bad-3.9
+  (cat "\n\nCette mise à jour nécessite le système AmigaOS 3.9. Veuillez l'installer au préalable !\n\n"
+       "Cette mise à jour ne s'applique pas au système AmigaOS 3.5 !\n"
+  ))
+
+  (set #msg-bad-revision
+    (cat
+      "\n\nVous tentez d'installer le Boing Bag 3.9-2 mais vous n'avez encore "
+      "installé la première mise à jour Boing Bag 3.9-1 pour AmigaOS 3.9. Veuillez installer Boing Bag 3.9-1 "
+      "avant d'installer cette deuxième mise à jour du système."
+    )
+  )
+
+  (set #msg-introduction
+  (cat "\n\nCe programme vous propose d'installer le " #msg-product
+       " sur votre disque dur.\n\nIl peut être utilisé pour mettre à jour la version 3.9 d'AmigaOS."
+  ))
+
+  (set #msg-which-disk
+  (cat "Sur quelle partition le " #msg-product " doit-il être installé ?"
+  ))
+
+  (set #msg-which-disk-help
+  (cat "\nCette partie vous donne le choix de la partition de votre disque dur "
+       "où installer les fichiers de mise à jour. Cela devrait normalement être "
+       "le même répertoire où vous avez déjà installé AmigaOS 3.9.\n\n"
+       @askdir-help
+  ))
+
+  (set #msg-confirm-target
+  (cat "\n\nTRÈS IMPORTANT !!!\n\nCe programme installe le " #msg-product " sur votre disque dur. "
+       "\n\nLes fichiers plus anciens seront remplacés."
+       "\n\nVoulez-vous installer la mise à jour sur la partition « %s » ? "
+  ))
+
+  (set #msg-confirm-target-help
+  (cat "Dans la suite de l'installation, "
+       "certains fichiers de cette partition seront remplacés par des "
+       "fichiers plus récents.\n\n"
+  ))
+
+
+  (set #msg-insert-cdrom "\n\nVeuillez insérer le CD-ROM AmigaOS 3.9 ou d'AmigaOS XL !")
+  (set #msg-insert-cdrom-help
+      (cat "\nCette mise à jour ne fonctionnera que si vous insérez le CD-ROM original"
+           " d'AmigaOS 3.9."
+      )
+  )
+
+  (set #msg-update-failed
+      (cat "\nLa mise à jour a échoué. Vérifiez la présence du CD-ROM d'AmigaOS 3.9 "
+           " ou d'AmigaOS XL dans le lecteur de CD-ROM"
+           " et vérifiez que le chargement de l'archive s'effectue correctement."
+           "\n\nPuis essayez de nouveau. Si cela ne fonctionne toujours pas, prennez contact avec notre support."
+      )
+  )
+
+  (set #msg-install-xad-update
+    "\nVoulez-vous installer XAD version 10 fourni dans cette mise à jour ?"
+  )
+
+  (set #msg-install-xad-update-help
+    (cat
+      "\nCette mise à jour contient la version 10 de XAD, un système flexible de désarchivage "
+      "imbriqué dans cette archive d'AmigaOS 3.9. Les versions précédentes du système AmigaOS 3.9 incluent "
+      "la version 9 de XAD. Si vous utilisez déjà une version enregistrée de XAD, version "
+      "10 ou 11, vous ne devez pas installer cette mise à jour de XAD."
+    )
+  )
+
+  (set #msg-install-xad-update-yes
+    "Installer XAD 10"
+  )
+
+  (set #msg-install-xad-update-no
+    "Ne pas installer XAD 10"
+  )
+
+  (set #msg-install-romupdate-general
+    (cat
+      "BoingBag 3.9-2 contient une nouvelle version de la ROM. Bien que "
+      "celle-ci ait été testée soigneusement, elle peut ne pas fonctionner "
+      "correctement sur certaines configurations matériels."
+      "\nSouhaitez-vous l'installer ?"
+      "\nIMPORTANT : VEUILLEZ lire le texte d'aide associé, ainsi que le "
+      "fichier « readme ». "
+      "Ni Amiga Inc., ni HAAGE&PARTNER ne peuvent garantir "
+      "son fonctionnement sur votre système (garanties et support limités)."
+    )
+  )
+
+  (set #msg-install-romupdate-yes
+    "Installer la ROM"
+  )
+
+  (set #msg-install-romupdate-no
+    "Ne pas installer la ROM"
+  )
+
+
+  (set #msg-install-romupdate-help
+    (cat
+      "\nVeuillez lire avec attention les informations suivantes si vous "
+      "décidez d'utiliser la mise à jour de la ROM :"
+
+      "\n\nVotre ancien module « AmigaOS ROM Update » sera renommé en "
+      "« AmigaOS ROM Update.old ». "
+      "Si vous avez des doutes, n'installez pas ce module ! Vous pourrez "
+      "l'essayer plus tard. Renommez simplement « AmigaOS ROM Update.BB39-2 » en "
+      "« AmigaOS ROM Update » et copiez-le dans le répertoire « Devs »."
+
+      "\n\nNormalement, les nouvelles mises à jour de la ROM devraient être sûres si vous utilisez déjà "
+      "un fichier de la ROM pour AmigaOS 3.9. Si vous aviez désactivé la ROM pour "
+      "quelque raison que ce soit, il semble sage de poursuivre dans ce sens."
+      "\n\nVous ne devriez pas utiliser la mise à jour de la ROM sur un système qui utilise le pilote IDE-Fix "
+      "à moins de spécifier à la commande SetPatch d'ignorer la mise à jour "
+      "du « scsi.device »."
+
+      "\n\nSi vous utilisez le logiciel CyberGraphX V3/V4, vous devrez effectuer "
+      "la mise à jour vers la dernière révision. Les anciennes versions vérifient la "
+      "présence de « exec V40 » alors que la mise à jour de la ROM contient « exec V45 ». "
+      "Les anciennes versions de CyberGraphX n'afficheront pas la liste des modes d'écran "
+      "dans les fenêtres de requêtes, si la mise à jour de la ROM n'est pas installée."
+
+      "\n\nGénéralement il n'est pas nécessaire d'installer la ROM si vous utilisez "
+      "AmigaOS XL, WinUAE, Linux UAE ou un autre environnement avec un émulateur Amiga. "
+      "AMIthlon peut utiliser la nouvelle mise à jour de la ROM, mais Amiga XL "
+      "ne démarrera pas si vous l'utilisez."
+
+      "\n\nPour que l'histoire soit courte : si vous avez un doute, passez cette partie, "
+      "puis essayez de l'installer plus tard, si vous le souhaitez. "
+      "Mais elle devrait fonctionner sur la plupart des systèmes Amiga."
+    )
+  )
+
+  (set #msg-install-romupdate-inst
+    (cat
+      "\n\nUne ancienne ROM est déjà installée sur votre système. "
+      "Par conséquent, sa mise à jour ne devrait poser aucun problème."
+    )
+  )
+
+  (set #msg-install-romupdate-notinst
+    (cat
+      "\n\nIl n'y a pas de mise à jour de la ROM installée sur votre "
+      "système. Il serait sage de continuer comme ceci."
+    )
+  )
+
+  (set #msg-installing-romupdate
+    "Installation de « AmigaOS ROM Update » ..."
+  )
+
+  (set #msg-warpup-update "Installation de la mise à jour de WarpUP 5.1")
+
+  (set #msg-warpup-update-help "Ceci mettra à jour votre logiciel WarpUP pour PowerPC.")
+
+  (set #msg-installing
+  (cat "\n\nInstallation de la mise à jour..."
+  ))
+
+  (set #msg-reboot
+  (cat "\nL'installation du " #msg-product " est maintenant terminée.\n\n"
+       "Pour que la mise à jour des fichiers soit prise en compte, vous devez redémarrer votre Amiga.\n\n"
+       "Retirer toutes les disquettes des lecteurs et redémarrez votre "
+       "Amiga maintenant. \n\nPour vraiment être sûr que la nouvelle ROM soit utilisée "
+       "nous vous recommandons d'éteindre votre ordinateur, d'attendre 10 secondes et "
+       "de l'allumer de nouveau."
+  ))
+))
+
+
+;=============================================================================
+; Spanish strings ... thanks to David Rey and team!
+
+(if (= #language "español")
+(
+    (set #msg-product "Boing Bag 2 para AmigaOS 3.9")
+
+    (set #msg-which-language
+    (cat "\n¿Qué idiomas desea instalar?"
+    ))
+
+    (set #msg-which-language-help
+    (cat "\nEl Amiga puede utilizarse en muchos idiomas diferentes. "
+         "Deberán copiarse varios ficheros a su disco duro para "
+         "cada idioma que se desee soportar.\n\n"
+         "Para reducir la cantidad de espacio ocupado por los "
+         "ficheros correspondientes, puede elegir sólo aquéllos "
+         "específicos de los idiomas que le interesen.\n\n"
+         "Marque las casillas de los idiomas que desee "
+         "poder utilizar en su sistema.\n\n"
+         @askoptions-help
+    ))
+
+    (set #msg-mainwelcome (cat "Bienvenido a la instalación del " #msg-product ".\n"))
+
+    (set #msg-bad-3.9
+    (cat "\n\n\nEsta actualización necesita el AmigaOS 3.9. ¡Por favor, instálelo primero!\n\n"
+         "¡Esta actualización NO ES para el AmigaOS 3.5!\n"
+    ))
+
+    (set #msg-introduction
+    (cat "\n\nEste programa le permite instalar el " #msg-product
+         " en su disco duro.\n\nPuede utilizarse para actualizar la versión 3.9 del AmigaOS."
+    ))
+
+    (set #msg-which-disk
+    (cat "¿En qué partición desea instalar el " #msg-product "?"
+    ))
+
+    (set #msg-which-disk-help
+    (cat "\nEsta sección le permite elegir la partición de disco duro en la "
+         "que se instalará la actualización. Normalmente debería hacerlo en "
+         "el mismo directorio donde tiene ya instalado el AmigaOS 3.9.\n\n"
+         @askdir-help
+    ))
+
+    (set #msg-confirm-target
+    (cat "\n\n¡¡¡MUY IMPORTANTE!!!\n\nEste programa instala el " #msg-product " en su disco duro. "
+         "\n\nLos ficheros antiguos se sobreescribirán."
+         "\n\n¿Desea instalar la actualización en la partición \"%s\"? "
+    ))
+
+    (set #msg-confirm-target-help
+    (cat "Más adelante, algunos de los ficheros de esta partición "
+         "serán sustituidos por otros más recientes.\n\n"
+    ))
+
+
+    (set #msg-insert-cdrom "\n\nPor favor, inserte el CD-ROM del AmigaOS 3.9.")
+    (set #msg-insert-cdrom-help
+        (cat "\nEsta instalación sólo funcionará una vez que inserte el CD-ROM"
+             " original del AmigaOS 3.9."
+        )
+    )
+
+    (set #msg-warpup-update "Instalando actualización de WarpUP 5.1")
+
+    (set #msg-warpup-update-help "Esta parte actualizará su versión instalada de WarpUP.")
+
+    (set #msg-update-failed
+        (cat "\nLa actualización ha fracasado. Por favor, compruebe que tiene"
+             " su CD-ROM del AmigaOS 3.9 insertado en su lector de CD-ROM y"
+             " que ha descargado correctamente el archivo con la actualización."
+             "\n\nEntonces inténtelo de nuevo. Si todavía no funciona, póngase"
+             " en contacto con nuestro soporte técnico."
+        )
+    )
+
+    (set #msg-installing
+    (cat "\n\nInstalando la actualización..."
+    ))
+
+    (set #msg-reboot
+    (cat "\nLa instalación del " #msg-product " ha concluido con éxito.\n\n"
+         "Para que el nuevo software entre en funcionamiento, deberá reiniciar su Amiga.\n\n"
+         "Extraiga cualquier disquete insertado en una disquetera y "
+         "entonces reinicie su sistema."
+    ))
+))
+
+
+; =============================================================================
+; Italian strings ... thanks to Stefano Guidetti and team!
+
+(if (= #language "italiano")
+(
+    (set #msg-product "Boing Bag 2 per AmigaOS 3.9")
+
+    (set #msg-which-language
+    (cat "\nQuali lingue devono essere installate?"
+    ))
+
+    (set #msg-which-language-help
+    (cat "\nAmiga può operare in molte lingue differenti. "
+         "Diversi file devono essere copiati sul tuo disco "
+         "rigido per ogni lingua scelta.\n\n"
+         "Per ridurre l'ammontare di spazio richiesto dai "
+         "file relativi alle lingue, puoi selezionare "
+         "quali lingue installare.\n\n"
+         "Seleziona le caselle relative alle lingue che "
+         "vuoi avere a disposizione nel tuo sistema.\n\n"
+         @askoptions-help
+    ))
+
+    (set #msg-mainwelcome (cat "Benvenuti all'installazione di " #msg-product " \n"))
+
+    (set #msg-bad-3.9
+    (cat "\n\n\nQuesto aggiornamento necessita di AmigaOS 3.9. Per favore installalo prima di effettuare l'aggiornamento!\n\n"
+         "Questo aggiornamento non è destinato ad AmigaOS 3.5\n"
+    ))
+
+    (set #msg-bad-revision
+      (cat
+        "\n\nHai deciso di installare il Boing Bag 3.9-2 ma non hai "
+        "ancora installato il Boing Bag 3.9-1. Per favore installalo prima di procedere "
+        "con questo secondo aggiornamento."
+      )
+    )
+
+    (set #msg-introduction
+    (cat "\n\nQuesto programma ti permette di installare " #msg-product " sul tuo disco rigido.\n\n"
+         "Può essere usato solo per aggiornare la versione 3.9 di AmigaOS."
+    ))
+
+    (set #msg-confirm-target
+    (cat "\n\nIMPORTANTE!!!\n\nQuesto programma installa " #msg-product " sul tuo disco rigido."
+         "\n\nI vecchi file verranno sovrascritti.\n\n"
+         " Vuoi veramente installare l'aggiornamento nella partizione \"%s\"?"
+    ))
+
+    (set #msg-confirm-target-help
+    (cat "Nel corso dell'installazione "
+         "alcuni file di questa partizione saranno sostituiti con una versione più recente.\n\n"
+    ))
+
+    (set #msg-which-disk
+    (cat "In quale partizione vuoi che " #msg-product " sia installato?"
+    ))
+
+    (set #msg-which-disk-help
+    (cat "\nQuesta sezione ti permette di scegliere in quale partizione del disco rigido "
+         "vuoi installare i file dell'aggiornamento. Normalmente questa dovrebbe essere "
+         "la stessa partizione in cui hai installato AmigaOS 3.9.\n\n"
+         @askdir-help
+    ))
+
+    (set #msg-insert-cdrom "\n\nPer favore inserisci il CD-ROM di AmigaOS 3.9 o AmigaOS XL!")
+    (set #msg-insert-cdrom-help
+        (cat "\nQuesto aggiornamento funziona solo se inserisci il CD originale di AmigaOS 3.9 o AmigaOS XL."
+        )
+    )
+
+    (set #msg-update-failed
+        (cat "\nAggiornamento fallito. Per favore controlla che il CD originale di AmigaOS3.9 "
+             "o AmigaOS XL sia inserito nel lettore CD-ROM e che l'archivio dell'aggiornamento sia "
+             "stato scaricato correttamente, quindi riprova. Se ancora non funziona, contatta il "
+             "servizio di supporto "
+        )
+    )
+
+    (set #msg-installing
+    (cat "\n\nAggiornamento in corso..."
+    ))
+
+    (set #msg-install-xad-update
+    "\nVuoi installare la version 10 di XAD inclusa nell'aggiornamento?"
+    )
+
+    (set #msg-install-xad-update-help
+    (cat
+    "\nQuesto aggiornamento include la versione 10 di XAD, un flessibile sistema di "
+    "decompressione che è incluso in AmigaOS 3.9. Le versioni precedenti di AmigaOS 3.9 includevano "
+    "la versione 9 di XAD. Se possiedi già una copia registrata della versione 10 o 11 di XAD"
+    "dovresti evitare di installare la versione che ti forniamo con l'aggiornamento."
+    )
+    )
+
+    (set #msg-install-xad-update-yes
+    "Installa la versione 10 di XAD"
+    )
+
+    (set #msg-install-xad-update-no
+    "Non installare la versione 10 di XAD"
+    )
+
+    (set #msg-install-romupdate-general
+    (cat
+    "\nBoingBag 3.9-2 contiene un nuovo aggiornamento per la ROM. Nonostante sia stato "
+    "testato in modo approfondito, potrebbe causare problemi con alcune configurazioni. "
+    "Desideri installarlo?"
+    "\n\nIMPORTANTE: per favore leggi ATTENTAMENTE il testo di aiuto. "
+    "L'aggiornamento per la ROM è fornito con una garanzia "
+    "e un supporto limitato! Amiga Inc. e HAAGE&PARTNER non possono assicurare che esso "
+    "funzionerà correttamente sul tuo sistema. Per favore leggi anche il file \"Leggimi\"!"
+    )
+    )
+
+    (set #msg-install-romupdate-yes
+    "Installa l'aggiornamento della ROM"
+    )
+
+    (set #msg-install-romupdate-no
+    "Non installare l'aggiornamento della ROM"
+    )
+
+
+    (set #msg-install-romupdate-help
+    (cat
+    "\nPer favore leggi con attenzione le seguenti informazioni se decidi di "
+    "usare il nuovo aggiornamento della ROM:"
+
+    "\n\nIl vecchio file di aggiornamento della ROM verrà rinominato in "
+    "\"AmigaOS ROM Update.old\". "
+    "Se non sei sicuro di quello che fai, salta l'aggiornamento della ROM! Puoi "
+    "sempre provarlo più tardi. Dovrai solo rinominare \"AmigaOS ROM Update.BB39-2\" in "
+    "\"AmigaOS ROM Update\" nel tuo cassetto \"Devs\"."
+
+    "\n\nIMPORTANTE: assicurati di avere un dischetto di emergenza funzionante "
+    "prima di installare il nuovo aggiornamento della ROM. E' improbabile ma può "
+    "accadere che il tuo sistema non riesca più a riavviarsi con il nuovo aggiornamento della ROM. "
+    "In questo caso potrai utilizzare il disco di emergenza per ripristinare il vecchio aggiornamento della ROM "
+    "copiando il file \"Devs/AmigaOS ROM Update.old\" in \"Devs/AmigaOS ROM Update\"."
+
+    "\n\nNormalmente non dovrebbero esserci problemi con il nuovo aggiornamento della ROM "
+    "se anche con le versioni precedenti di AmigaOS 3.9 l'avevi usato. Se invece l'avevi disabilitato "
+    "per una qualche ragione, sarebbe saggio mantenerlo disabilitato."
+    "\n\nNon dovresti usare il nuovo aggiornamento della ROM su un sistema in cui è "
+    "installato IDE-Fix, a meno di disabilitare solo l'aggiornamento dello \"scsi.device\" "
+    "tramite il comando \"SetPatch\"."
+
+    "\n\nSe stai usando CyberGraphX V3/V4, dovresti aggiornarlo all'ultima "
+    "revisione. Le vecchie versioni cercano la version 40 di exec mentre il "
+    "nuovo aggiornamento della ROM contiene exec V45. Le vecchie versioni di "
+    "CyberGrapX hanno problemi a mostrare l'elenco dei modi video se è installato "
+    "il nuovo aggiornamento della ROM."
+
+    "\n\nNormalmente non è necessario installare l'aggiornamento della ROM se usi "
+    "AmigaOS XL, WinUAE, Linux UAE o altri ambienti di emulazione Amiga. "
+    "AMIthlon può usare il nuovo aggiornamento della ROM, ma AmigaXL non riuscirà ad "
+    "avviarsi se lo installi."
+
+    "\n\nPer farla breve: se non sei sicuro, saltalo e, se vuoi, provalo successivamente. "
+    "Comunque, dovrebbe funzionare sulla maggior parte dei sistemi Amiga."
+    )
+    )
+
+    (set #msg-install-romupdate-inst
+    (cat
+    "\n\nUn aggiornamento della ROM è già installato sul tuo sistema. "
+    "Non dovrebbero esserci problemi ad aggiornarlo."
+    )
+    )
+
+    (set #msg-install-romupdate-notinst
+    (cat
+    "\n\nNessun aggiornamento precedente della ROM è installato sul tuo "
+    "sistema. E' consigliabile non installare l'aggiornamento."
+
+    )
+    )
+
+    (set #msg-installing-romupdate
+    "Installazione aggiornamento ROM in corso..."
+    )
+
+    (set #msg-warpup-update "Installazione aggiornamento di WarpUP 5.1")
+    (set #msg-warpup-update-help "La tua installazione di WarpUP verrà aggiornata.")
+
+    (set #msg-reboot
+    (cat "\nL'installazione di " #msg-product " è stata completata.\n\n"
+     "Per attivare l'aggiornamento è necessario riavviare il tuo Amiga. "
+     "Ti raccomandiamo di farlo adesso.\n\n"
+     "Salva tutti i file aperti, rimuovi tutti i dischetti dai lettori di floppy e riavvia il tuo Amiga."
+    ))
+
+))
+
+
+;=============================================================================
+; Polish strings, thanks a lot to Pawel Goldyn and Mariusz Danilewicz!
+
+(if (= #language "polski")
+        (
+        (set #msg-product "Boing Bag 2 dla AmigaOS 3.9")
+
+        (set #msg-which-language
+        (cat
+                 "\nJakie wersje jëzykowe powinny zostaê zainstalowane?"
+        ))
+
+        (set #msg-which-language-help
+        (cat
+                 "\nAmiga moûe komunikowaê sië z uûytkownikiem w wielu "
+                 "jëzykach. W tym celu wiele plików dla kaûdego z jëzyków "
+                 "musi zostaê skopiowanych na Twój dysk twardy.\n\n"
+                 "Aby ograniczyê iloôê zajmowanego przez te pliki "
+                 "miejsca, moûesz skopiowaê tylko pliki "
+                 "do wybranych przez Ciebie jëzyków.\n\n"
+                 "Zaznacz pola obok jëzyków które majâ byê "
+                 "dostëpne w Twoim systemie.\n\n"
+                 @askoptions-help
+        ))
+
+        (set #msg-mainwelcome (cat "Witamy w skrypcie instalacyjnym " #msg-product ".\n"))
+
+        (set #msg-bad-3.9
+        (cat
+                 "\n\n\nTo uaktualnienie wymaga systemu AmigaOS 3.9. Proszë najpierw zainstalowaê AmigaOS 3.9!\n\n"
+                 "To uaktualnienie nie jest przeznaczone dla systemu AmigaOS 3.5!\n"
+        ))
+
+        (set #msg-bad-revision
+        (cat
+                 "\n\nZamierzasz zainstalowaê Boing Bag 3.9-2 ale jeszcze nie zainstalowaîeô "
+                 "pierwszego uaktualnienia systemu 3.9 - Boing Bag 3.9-1. Proszë zainstalowaê Boing Bag 3.9-1 "
+                 "przed instalacjâ drugiego uaktualnienia systemu."
+        ))
+
+        (set #msg-introduction
+        (cat
+                 "\n\nTen program pozwala Ci na zainstalowanie " #msg-product
+                 " na Twoim dysku twardym.\n\nMoûe zostaê wykorzystany do uaktualnienia wersji 3.9 systemu AmigaOS."
+        ))
+
+        (set #msg-which-disk
+        (cat "Na której partycji powinien zostaê zainstalowany " #msg-product "?"
+        ))
+
+        (set #msg-which-disk-help
+        (cat
+                 "\nTa sekcja pozwala Ci wybraê na której partycji zostanâ "
+                 "zaisntalowane uaktualnione pliki. Powinna to byê "
+                 "ta sama partycja na której zainstalowaîeô system AmigaOS3.9.\n\n"
+                 @askdir-help
+        ))
+
+        (set #msg-confirm-target
+        (cat
+                 "\n\nBARDZO WAÛNE!!!\n\nTen program instaluje " #msg-product " na Twoim dysku twardym. "
+                 "\n\nStarsze pliki zostanâ zastâpione."
+                 "\n\nCzy chcesz zainstalowaê uaktualnienie na partycji \"%s\"? "
+        ))
+
+        (set #msg-confirm-target-help
+        (cat
+                 "Podczas instalacji niektóre pliki na tej partycji zostanâ zastâpione nowszymi plikami.\n\n"
+        ))
+
+        (set #msg-insert-cdrom "\n\nProszë wîoûyê pîytë CD z AmigaOS 3.9 lub AmigaOS XL!")
+
+        (set #msg-insert-cdrom-help
+        (cat
+                 "\nTo uaktualnienie zostanie zainstalowane wyîâcznie "
+                 "po wîoûeniu oryginalnej pîyty CD z systemem "
+                 "AmigaOS 3.9 lub z AmigaOS XL."
+        ))
+
+        (set #msg-update-failed
+        (cat
+                 "\nUaktualnienie nie powiodîo sië. Proszë upewnij sië, ûe pîyta z AmigaOS 3.9 lub "
+                 " AmigaOS XL jest umieszczona w Twoim napëdzie CD"
+                 " oraz czy pobranie archiwum z uaktualnieniem przebiegîo poprawnie."
+                 "\n\nNastëpnie proszë spróbowaê ponownie. Jeôli nadal nie uda Ci "
+                 "sië uaktualniê systemu, skontaktuj sië z dziaîem pomocy."
+        ))
+
+        (set #msg-install-xad-update "\nCzy chcesz zainstalowaê system XAD w wersji 10 dostarczony z tym uaktualnieniem?")
+
+        (set #msg-install-xad-update-help
+        (cat
+                 "\nTo uaktualnienie zawiera wersjë 10 systemu dearchiwizacji danych XAD "
+                 "wchodzâcego w skîad systemu AmigaOS 3.9. Wczeôniejsza wersja systemu 3.9 zawieraîa "
+                 "system XAD w wersji 9. Jeôli juû posiadasz zarejestrowanâ wersjë systemu XAD "
+                 "10 lub 11 nie powinieneô instalowaê uaktualnienia systemu XAD."
+        ))
+
+        (set #msg-install-xad-update-yes "Zainstaluj XAD v10")
+
+        (set #msg-install-xad-update-no "Nie instaluj XAD v10")
+
+        (set #msg-install-romupdate-general
+        (cat
+                 "\nBoingBag 3.9-2 zawiera nowe uaktualnienie pliku \"AmigaOS ROM Update\". Poniewaû "
+                 "nie jest on do koïca przetestowany moûe powodowaê problemy na niektórych konfiguracjach. "
+                 "Czy chcesz go zainstalowaê?"
+                 "\n\nWAÛNE: Proszë przeczytaê tekst pomocy. "
+                 "Plik uaktualnienia ROM Update jest dostarczany z ograniczonâ "
+                 "gwarancjâ i ograniczonym wsparciem! "
+                 "Ani Amiga Inc. ani HAAGE&PARTNER nie sâ zobowiâzane do sprawdzenia czy "
+                 "uaktualnienie to bëdzie dziaîaîo na Twoim systemie. Proszë przeczytaê takûe plik CzytajTo."
+        ))
+
+        (set #msg-install-romupdate-help
+        (cat
+                 "\nJeôli zamierzasz uûywaê nowego uaktualnienia ROM Update, przeczytaj "
+                 "uwaûnie poniûsze informacje:"
+
+                 "\n\nNazwa Twojego starego pliku AmigaOS ROM Update zostanie zmieniona "
+                 "na \"AmigaOS ROM Update.old\". "
+                 "Jeôli nie jesteô pewien, pomiï instalowanie uaktualnienia! Bëdziesz mógî "
+                 "zainstalowaê i wypróbowaê je póúniej. "
+                 "Wystarczy zmieniê nazwë pliku \"AmigaOS ROM Update.BB39-2\" na "
+                 "\"AmigaOS ROM Update\" z katalogu \"Devs\"."
+
+                 "\n\nWAÛNE: Przed przystâpieniem do instalacji uaktualnienia AmigaOS "
+                 "ROM Update powinieneô upewniê sië, iû posiadasz dziaîajâcâ dyskietkë "
+                 "ratunkowâ. Jest to maîo prawdopodobne, ale moûe sië zdarzyê, iû Twój "
+                 "system nie uruchomi sië z nowym uaktualnieniem ROM Update. "
+                 "W takim wypadku bëdziesz mógî uûyê duskietki ratunkowej aby "
+                 "przywróciê poprzednio uûywane uaktualnienie ROM Update "
+                 "poprzez przekopiowanie pliku \"Devs/AmigaOS ROM Update.old\" "
+                 "do \"Devs/AmigaOS ROM Update\"."
+
+                 "\nOgólnie nowe uaktualnienie ROM powinno byê bezpieczne w uûyciu na systemach "
+                 "juû uûywajâcych uaktualnienia ROM z systemu AmigaOS 3.9. Jeôli wyîâczyîeô uaktualnienie ROM z jakichô "
+                 "powodów, mâdrze bëdzie nie zmieniaê tego stanu."
+                 "\n\nNie powinieneô uûywaê uaktualnienia ROM na systemach ze sterownikiem IDE-Fix "
+                 "dopóki nie nakaûesz poleceniu SetPatch opuôciê uaktualnianie "
+                 "\"scsi.device\"."
+
+                 "\n\nJeôli uûywasz oprogramowania CyberGraphX V3/V4 powinieneô uaktualniê je "
+                 "do ostatniej dostëpnej wersji. Starsze wydania sprawdzaîy czy w komputerze znajduje sië "
+                 "exec V40 podczas gdy nowe uaktualnienie ROM zawiera exec V45. Starsze wydania "
+                 "CyberGraphX nie bëdâ wyôwietlaîy listy trybów ekranu w oknach wyboru trybu ekranu "
+                 "przy zainstalowanym nowym uaktualnieniu ROM."
+
+                 "\n\nOgólnie instalacja uaktualnienia ROM nie jest wymagana gdy uûywasz "
+                 "AmigaOS XL, WinUAE, Linux UAE lub innego ôrodowiska emulujâcego Amigë. "
+                 "AMIthlon moûe uûywaê nowego uaktualnienia ROM, ale AmigaXL nie uruchomi sië gdy "
+                 "bëdziesz go uûywaî."
+
+                 "\n\nAby skróciê dîugâ opowieôê: Jeôli nie masz pewnoôci, pomiï instalacjë, i wypróbuj póúniej "
+                 "jeôli zechcesz. Uaktualnienie powinno dziaîaê na wiëkszoôci Amig."
+        ))
+
+        (set #msg-install-romupdate-inst
+        (cat
+                 "\n\nW Twoim systemie jest zainstalowane uaktualnienie AmigaOS ROM Update. W zwiâzku z tym "
+                 "uûycie uaktualnienia powinno byê bezpieczne."
+        ))
+
+        (set #msg-install-romupdate-notinst
+        (cat
+                 "\n\nW Twoim systemie nie jest zainstalowane uaktualnienie AmigaOS ROM Update. Mâdrym bëdzie "
+                 "zachowanie takiego stanu rzeczy."
+        ))
+
+        (set #msg-install-romupdate-yes "Zainstaluj uaktualnienie")
+
+        (set #msg-install-romupdate-no "NIE instaluj uaktualnienia")
+
+        (set #msg-installing-romupdate "Instalujë uaktualnienie AmigaOS ROM Update ...")
+
+        (set #msg-warpup-update "Instalujë uaktualnienie do WarpUP 5.1")
+
+        (set #msg-warpup-update-help "To uaktualni oprogramowanie WarpUP obsîugujâce procesory PowerPC.")
+
+
+        (set #msg-installing
+        (cat
+                 "\n\nInstalujë uaktualnienie..."
+        ))
+
+        (set #msg-reboot
+        (cat
+                 "\nInstalacja " #msg-product " zostaîa zakoïczona.\n\n"
+                 "Aby skorzystaê z uaktualnionych plików musisz ponownie uruchomiê swój komputer. "
+                 "Zalecamy wykonaê to teraz.\n\n"
+                 "Zapisz wszystkie niezapisane dane, wyjmij wszystkie dyskietki "
+                 "i uruchom ponownie komputer."
+        ))
+))
+
+
+;=============================================================================
+; Turkish strings ... thanks to Sinan Gürkan and team!
+
+(if (= #language "türkçe")
+(
+    (set #msg-product "AmigaOS 3.9 Ýçin Boing Bag 2")
+
+    (set #msg-which-language
+    (cat "\nHangi dil desteði kurulsun ?"
+    ))
+
+    (set #msg-which-language-help
+    (cat "\nAmiga birçok farklý dilde kullanýlabilinir "
+         "Her desteklenen dil için birkaç dosyanýn sabit  "
+         "diskinize kopyalanmasý gerekmektedir.\n\n"
+         "Dil dosyalarý tarafýndan kaplanan alaný azaltmak"
+         "için, sadece belli dilleri seçebilirsiniz.\n\n"
+         "Sisteminizde olmasýný istediðiniz dil(ler)in"
+         "yanýndaki kutucuklara týklayýnýz.\n\n"
+         @askoptions-help
+    ))
+
+    (set #msg-mainwelcome (cat "Hoþgeldiniz " #msg-product " Kurulumuna.\n"))
+
+    (set #msg-bad-3.9
+    (cat "\n\n\nBu güncelleme AmigaOS 3.9 Gerektirir. Lütfen ilk önce onu kurun!!\n\n"
+         "Bu güncelleme AmigaOS 3.5 için deðildir !.\n"
+    ))
+
+    (set #msg-introduction
+    (cat "\n\nBu program sabit diskinize " #msg-product
+         " yazýlýmýný kuracaktýr .\n\nAmigaOS 3.9`un sürümünü yükseltmek için kullanýlýr."
+    ))
+
+    (set #msg-which-disk
+    (cat "Hangi sabit disk partisyonuna " #msg-product " kurulsun?"
+    ))
+
+    (set #msg-which-disk-help
+    (cat "\nBu bölüm hangi sabit disk partisyonu üzerine güncelleme"
+         "dosyalarýnýn kurulacaðýný belirlemek içindir. Normal olarak"
+         "bu AmigaOS 3.9`u kurduðunuz dizindir.\n\n"
+         @askdir-help
+    ))
+
+    (set #msg-confirm-target
+    (cat "\n\nÇOK ÖNEMLÝ!!!\n\nBu program sabit diskinize " #msg-product " kuracaktýr. "
+         "\n\nEski dosyalar silinecektir."
+         "\n\nGüncellemeyi kurmak istiyormusunuz? Partisyon: \"%s\"? "
+    ))
+
+    (set #msg-confirm-target-help
+    (cat "Kurulum iþleminin ileri safhalarýnda "
+         "bu partisyondaki bazý dosyalarý yenileri ile yer "
+         "deðiþtirecektir.\n\n"
+    ))
+
+
+    (set #msg-insert-cdrom "\n\nLütfen AmigaOS 3.9 CD-ROM`unu Takýnýz!")
+    (set #msg-insert-cdrom-help
+        (cat "\nBu güncelleme sadece orjinal AmigaOS3.9 CD-ROM taktýðýnýzda"
+             " çalýþmaya baþlayacaktýr."
+        )
+    )
+
+    (set #msg-warpup-update "WarpUP 5.1 Güncelleme Yükleniyor")
+    (set #msg-warpup-update-help "Bu WarpUP PowerPC yazýlýmýný güncelleyecektir.")
+
+    (set #msg-update-failed
+        (cat "\nGüncelleme baþarýsýz. Lütfen AmigaOS 3.9 CD-ROM sürücünüze"
+             " takýlý olduðundan emin olun"
+             " ve güncelleme arþivinin bozuk olmadýðýndan emin olun."
+             "\n\nSonra tekrar deneyin. Sorun devam ederse bizi arayýn."
+        )
+    )
+
+    (set #msg-installing
+    (cat "\n\nGüncelleme Kuruluyor..."
+    ))
+
+    (set #msg-reboot
+    (cat "\n " #msg-product " kurulumu tamamlandý.\n\n"
+         "Güncellemeyi aktif hale getirmek için Amiga`yý tekrar baþlatýn.\n\n"
+         "Bütün disketleri sürücünüzden çýkarýn ve "
+         "Amiga`yý tekrar baþlatýn."
+    ))
+))
+
+;=============================================================================
+; rename procedure ...
+
+(procedure ren #oldname #newname
+    (
+        (if (exists #oldname)
+            (
+                (if (= (exists #newname) false)
+                    (
+                        (rename #oldname #newname)
+                    )
+                )
+            )
+        )
+    )
+)
+
+;=============================================================================
+; do a bit of set up...
+
+(set #sourcePath (expandpath (pathonly @icon)))
+(set #internetPath (tackon #sourcePath "Internet"))
+
+(set #old_wb "SYS:")
+(set #old_wb (expandpath #old_wb))
+
+(set #w (querydisplay "screen" "width"))
+(set #h (querydisplay "screen" "height"))
+(set #d (querydisplay "screen" "depth"))
+(set #c (querydisplay "screen" "colors"))
+
+(set #hires 0)
+
+(if (> #c 32)
+    (
+       (if (> #h 590)
+          (
+            (set #hires 2)
+            (showmedia 'logo' "Installer/HiRes/BB39-2-logo.jpg" 'upper_left' 'none' 0)
+          )
+          (
+            (set #hires 1)
+            (showmedia 'logo' "Installer/LoRes/BB39-2-logo.i24" 'upper_left' 'none' 0)
+          )
+       )
+    )
+)
+
+;=============================================================================
+; what do you want to do?
+
+(set #wbverrev 0)
+(set #wbverrev (getversion "Libs:version.library"))
+(set #wbversion (/ #wbverrev 65536) )
+(set #wbrevision (- #wbverrev (* #wbversion 65536)))
+
+(if (<> #wbversion 45)
+    (
+        (message #msg-bad-3.9) ; No OS3.9 installed
+        (exit (quiet))
+    )
+    (
+        ;******************************************************************
+        ;***************** Boing BAG Installation *************************
+        ;******************************************************************
+        (complete 1)
+
+        (message #msg-introduction)
+
+        (complete 5)
+
+        (welcome #msg-mainwelcome)
+
+        (trace)
+        (complete 10)
+
+        (set #target
+          (askdir
+            (prompt #msg-which-disk)
+            (help #msg-which-disk-help)
+            (default #old_wb)
+            (disk)
+          )
+        )
+
+        (trace)
+        (complete 15)
+
+        (message (#msg-confirm-target #target) (back (retrace)))
+
+        (set @default-dest #target)
+
+        (trace)
+        (complete 20)
+
+        (set #wbverrev 0)
+        (set #wbverrev (getversion (tackon #target "Libs/version.library")))
+        (set #wbversion (/ #wbverrev 65536) )
+        (set #wbrevision (- #wbverrev (* #wbversion 65536)))
+        
+        (if (<> #wbversion 45)
+          (
+            (message #msg-bad-3.9) ; No OS3.9 installed
+            (exit (quiet))
+          )
+        )
+
+        (if (< #wbrevision 2)
+          (
+            (message #msg-bad-revision)  ; No BoingBag 3.9-1 installed
+            (exit (quiet))
+          )
+        )
+
+        ;=============================================================================
+        ; install XAD update?
+
+        ; (getversion) malfunctions here
+        (set #xadrc
+          (run
+            (cat
+              "C/Version \""
+              (tackon #target "Libs/xadmaster.library")
+              "\" FILE VERSION 10"
+            )
+          )
+        )
+
+        ; found version 10 of XAD?
+        (if (> #xadrc 0)
+          ( ; no, install XAD update
+            (set #install-xad-update 1)
+          )
+          ( ; yes, do not install XAD update
+            (set #install-xad-update 0)
+          )
+        )
+
+        ; ask experts only
+        (if (= @user-level 2)
+          (set #install-xad-update
+            (askbool
+              (prompt #msg-install-xad-update)
+              (help #msg-install-xad-update-help)
+              (choices #msg-install-xad-update-yes #msg-install-xad-update-no)
+              (default #install-xad-update)
+              (back (retrace))
+            )
+          )
+        )
+
+        ;=============================================================================
+        ; install new ROM update?
+
+        (if (exists (tackon #target "Devs/AmigaOS ROM Update"))
+          (
+            (set #msg-install-romupdate
+              (cat #msg-install-romupdate-general #msg-install-romupdate-inst)
+            )
+          )
+          (
+            (set #msg-install-romupdate
+              (cat #msg-install-romupdate-general #msg-install-romupdate-notinst)
+            )
+          )
+        )
+
+        (set #dont-install-romupdate
+          (askbool
+            (help #msg-install-romupdate-help)
+            (prompt #msg-install-romupdate)
+            (choices #msg-install-romupdate-no #msg-install-romupdate-yes)
+            (default 1)
+            (back (retrace))
+          )
+        )
+
+        (set #install-romupdate (- 1 #dont-install-romupdate))
+
+        (trace)
+        (complete 35)
+
+        ;=============================================================================
+        ; ask to insert the AmigaOS 3.9 or AmigaOS XL CD
+
+        (until (= #disk-there 1)
+          (
+            (set #disk-there 0)
+            (if (exists "AmigaOS3.9:" (noreq))
+              (
+                (set #disk-there 1)
+              )
+            )
+            (if (exists "AmigaOS XL:" (noreq))
+              (
+                (set #disk-there 1)
+              )
+            )
+
+            (if (= #disk-there 0)
+              (
+                (message #msg-insert-cdrom (all) (back (retrace)))
+              )
+            )
+          )
+        )
+
+        ;to bad this does not work
+        ;(askdisk
+        ;  (prompt #msg-insert-cdrom)
+        ;  (help #msg-insert-cdrom-help)
+        ;  (dest "(AmigaOS XL|AmigaOS3.9)")
+        ;  (back (retrace))
+        ;)
+
+        (complete 40)
+
+        ;=============================================================================
+        ; now copy the Workbench disk
+
+        (working #msg-installing)
+
+        (set #updaterror 20)
+        (set #updateerror (run (cat "C/Updater AmigaOS-Update \"" #target "\"")))
+        (if (not @pretend)
+          (if (> #updateerror 0)
+            (
+              (abort #msg-update-failed)
+            )
+          )
+        )
+
+        (complete 50)
+
+        ;=============================================================================
+        ; install XAD update
+
+        (if (= #install-xad-update 1)
+          (
+            (set #updaterror 20)
+            (set #updateerror (run (cat "C/Updater XAD-Update \"" #target "\"")))
+            (if (not @pretend)
+              (if (> #updateerror 0)
+                (
+                  (abort #msg-update-failed)
+                )
+              )
+            )
+          )
+        )
+
+        ;=============================================================================
+        ; handle ROM update
+
+        (if (= #install-romupdate 1)
+          (
+            (set #bakname "AmigaOS ROM Update.old")
+            (set #dest (tackon #target "Devs"))
+            (set #i 1)
+
+            (if (exists (tackon #dest #bakname))
+              (
+                (set #bakname "AmigaOS ROM Update.old2")
+              )
+            )
+
+            (if (exists (tackon #dest #bakname))
+              (
+                (set #bakname "AmigaOS ROM Update.old3")
+              )
+            )
+
+            (if (exists (tackon #dest #bakname))
+              (
+                (set #bakname "AmigaOS ROM Update.old4")
+              )
+            )
+
+            (if (exists (tackon #target "Devs/AmigaOS ROM Update"))
+              (
+                (copyfiles
+                  (source (tackon #target "Devs/AmigaOS ROM Update"))
+                  (dest (tackon #target "Devs"))
+                  (newname #bakname)
+                  (optional "nofail" "force" "askuser")
+                )
+              )
+            )
+            (if (exists (tackon #target "Devs/AmigaOS ROM Update.BB39-2"))
+              (
+                (copyfiles
+                  (prompt #msg-installing-romupdate)
+                  (help #msg-install-romupdate-help)
+                  (source (tackon #target "Devs/AmigaOS ROM Update.BB39-2"))
+                  (dest (tackon #target "Devs"))
+                  (newname "AmigaOS ROM Update")
+                  (optional "nofail" "force" "askuser")
+                  (confirm)
+                )
+              )
+            )
+          )
+        )
+
+        ;=============================================================================
+        ; Fix that "Can't find C:Installer" support inquiries
+        ; This is for all those who write "C:Installer" in their installer script
+        ; tooltypes, "Installer" is enough if paths are properly set
+
+        (copyfiles
+          (source "C/Installer")
+          (dest (tackon #target "C"))
+          (optional "nofail" "force" "askuser")
+        )
+
+        ; Copy it to default location SYS:Utilities as well, just to make sure it is there
+
+        (copyfiles
+          (source "C/Installer")
+          (dest (tackon #target "Utilities"))
+          (optional "nofail" "force" "askuser")
+        )
+
+        (complete 80)
+
+        ;=============================================================================
+        ; install WarpUP 5.1
+
+        ;(if (exists "PowerPC/powerpc.library")
+        ;  (
+        ;    (if (exists (tackon #target "Libs/powerpc.library"))
+        ;      (
+        ;        (copylib (prompt #msg-warpup-update)
+        ;                 (help #msg-warpup-update-help)
+        ;                 (source "PowerPC/powerpc.library")
+        ;                 (dest (tackon #target "Libs"))
+        ;                 (optional nofail force)
+        ;        )
+        ;      )
+        ;    )
+        ;  )
+        ;)
+        ;
+        ;(if (exists "PowerPC/warp.library")
+        ;  (
+        ;    (if (exists (tackon #target "Libs/warp.library"))
+        ;      (
+        ;        (copylib (prompt #msg-warpup-update)
+        ;                 (help #msg-warpup-update-help)
+        ;                 (source "PowerPC/warp.library")
+        ;                 (dest (tackon #target "Libs"))
+        ;                 (optional nofail force)
+        ;        )
+        ;      )
+        ;    )
+        ;  )
+        ;)
+        ;
+        ;(complete 90)
+
+        ;=============================================================================
+        ; AmigaMail
+
+        (if (exists (tackon #target "Internet/AmigaMail"))
+          (
+            (copyfiles
+              (source #internetPath)
+              (dest (tackon #target "Internet"))
+              (all)
+              (optional "nofail" "force" "askuser")
+            )
+          )
+        )
+
+        (complete 100)
+
+        ;=============================================================================
+        ; "Say goodnight Gracy."
+
+        ; get rid of old ROM update on next reboot
+        (if (= #install-romupdate 1)
+          (
+            (run "C/RemoveResident")
+          )
+        )
+
+        (message #msg-reboot)
+        (closemedia logo)
+        (exit)
+    )
+)

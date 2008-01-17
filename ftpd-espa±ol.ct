@@ -1,0 +1,440 @@
+## version $VER: ftpd.catalog 1.0 (20.02.02)
+## codeset 0
+## language español
+;
+MSG_ERROR
+RC-FTPd: Error
+; RC-FTPD Error
+;
+MSG_OK
+Aceptar
+; Ok
+;
+MSG_SAVE
+Guardar
+; Save
+;
+MSG_USE
+Usar
+; Use
+;
+MSG_CANCEL
+Cancelar
+; Cancel
+;
+MSG_KICK
+Expulsar
+; Kick
+;
+MSG_ABORT
+Abortar
+; Abort
+;
+MSG_ADD
+Añadir
+; Add
+;
+MSG_REMOVE
+Borrar
+; Remove
+;
+MSG_SORT
+Ordenar
+; Sort
+;
+MSG_BAD_CONFIG
+Formato del fichero de\najustes desconocido.
+; Unrecognised config file format
+;
+MSG_STARTUP_MUI
+No puedo abrir 'muimaster.library' V18+
+; Unable to open muimaster.library 18+
+;
+MSG_STARTUP_UTILITY
+No puedo abrir 'utility.library' V36+
+; Unable to open utility.library 36+
+;
+MSG_STARTUP_SOCKET
+No puedo abrir 'bsdsocket.library' V4+\n\
+Inicie antes un programa de conexión\n\
+TCP/IP como AmiTCP o Miami.
+; Unable to open bsdsocket.library 4+\n\nPlease start your TCP/IP stack first...
+;
+MSG_STARTUP_MEMORY
+No puedo asignar memoria. Salga de\notras aplicaciones o reinicie.
+; Unable to create memory pool\n\nQuit one or more applications or reboot
+;
+MSG_STARTUP_APP
+Fallo al crear aplicación.
+; Failed to create application\n\nPossibly a lack of memory or missing classes\n(more detail in later version)
+;
+MSG_SOCKET_OPEN
+No puedo abrir socket. Posible\ncausa: socket no soportado.
+; Unable to open socket\nUnknown cause - possibly unsuported socket\n\n(email me so I can trace it)
+;
+MSG_SOCKET_OPTIONS
+No puedo establecer opciones del socket.\nPosible causa: socket no soportado.
+; Unable to set socket options\nUnknown cause - possibly unsuported socket
+;
+MSG_SOCKET_BIND
+No puedo adjudicar puerto.\nPuede que esté ya ocupado.
+; Unable to bind port\nProbably trying to start twice
+;
+MSG_SOCKET_LISTEN
+No puedo atender puerto. Posible\ncausa: socket no soportado.
+; Unable to listen on port\nUnknown cause - possibly unsuported socket
+;
+MSG_SAVE_CONFIG
+No puedo guardar los ajustes.
+; Unable to save config
+;
+MSG_LIST_STATUS
+Estado
+; Status
+;
+MSG_LIST_IP
+\033cIP
+; IP
+;
+MSG_LIST_USER
+\033cUsuario
+; User
+;
+MSG_LIST_CMD
+\033cCMD
+; CMD
+;
+MSG_LIST_ARGS
+Argumentos
+; Args
+;
+MSG_LIST_ONLINE
+\033c%ld/%ld Usuarios conectados
+; \ec%ld/%ld Users online
+;
+MSG_MUI_ABOUT
+El mejor servidor FTP para Amiga.
+; The best ftp daemon for Amiga
+;
+MSG_MUI_MUI
+MUI
+;
+MSG_MUI_PREFS
+Ajustes
+; Prefs
+;
+MSG_SHORT_KICKABORT
+\033bExpulsar:\033n desconecta a usuarios elegidos y\nsus transferencias.\n\
+\033bAbortar:\033n cancela solo sus transferencias.
+; \ebKick\en will disconnect the selected\nuser and any transfers they are doing\n\ebAbort\en will just cancel their transfer
+;
+MSG_SHORT_MESSAGE
+Escriba un pequeño mensaje aquí y\nserá enviado al usuario elegido.
+; Type a short message in here and it\nwill be sent to the selected user
+;
+MSG_SHORT_OPEN
+Estado general del servidor.
+; This is the general status of your server\nCan people connect (\ebOpen\en) or not (\ebClosed\en)
+;
+MSG_UNLIMITED
+sin límite
+; unlimited
+;
+MSG_CONTROL_CODES
+Puede usar los siguientes códigos de control:\n$u = Usuarios actuales\n$m = Usuarios máximos\n$c = CPS máximo\n$s = CPS máximo/Usuarios actuales
+; You can use the following control codes:\n$u = Current users\n$m = Max users\n$c = Max CPS\n$s = MaxCPS/Current users
+;
+MSG_UPLOAD
+\033l\033bUSUARIO:\033n %s [%s]\n\033bEN:\033n %s (%s)\n\033bDESCARGANDO:\033n %s (%lu/%lu bytes, %lu cps)
+; %s [%s]\n%s\n%s\n%s (%lu/%lu bytes, %lu cps)
+;
+MSG_DOWNLOAD
+\033l\033bUSUARIO:\033n %s [%s]\n\033bEN:\033n %s (%s)\n\033bENVIANDO:\033n %s (%lu bytes, %lu cps)
+; %s [%s]\n%s\n%s\n%s (%lu bytes, %lu cps)
+;
+MSG_NOLOAD
+\033l\033bUSUARIO:\033n %s [%s]\n\033bEN:\033n %s (%s)\n
+; %s [%s]\n%s\n%s\n
+;
+MSG_LOGIN
+\eblogin
+;
+MSG_LOG_NONE
+No
+; No log
+;
+MSG_LOG_KNOWN
+Mínimo
+; Log known
+;
+MSG_LOG_COMMANDS
+Comandos
+; Log commands
+;
+MSG_LOG_ALL
+Todo
+; Log all
+;
+MSG_ONLINE_LIMIT
+\033c%ld/%ld Usuarios conectados
+; \ec%ld/%ld Users online
+;
+MSG_ONLINE_NOLIMIT
+\033c%ld Usuarios conectados
+; \ec%ld Users online
+;
+MSG_FTP_CLOSED
+RC-FTPd desactivado
+; FTP Closed
+;
+MSG_FTP_OPEN
+RC-FTPd activado
+; FTP Open
+;
+MSG_FTP_GUIDE
+ftpd.Guide
+;
+MSG_PREF_WINDOW
+Ajustes de RC-FTPd
+; RC-FTPd Preferences
+;
+MSG_PREF_PORT
+\033rPuerto
+; Port:
+;
+MSG_PREF_PORT_HELP
+Puerto a donde los usuarios han de\n\
+conectarse, si lo cambia deberá\n\
+reiniciar RC-FTPd.\n\n\Por defecto: \033b21
+; This is the port people must connect to,\ntakes effect on restart.\n\nDefault: 21
+;
+MSG_PREF_LIST
+\033rPatrón:
+; List pattern:
+;
+MSG_PREF_LIST_HELP
+Lista de ficheros/directorios que\n\
+no verá el usuario, pero \033bno\033n evita\n\
+que sean descargados.\n\n\
+Por defecto: \033b~(.#?|#?.info)
+; This is the pattern used to list files/dirs,\nit does not stop download, just visibility.\n\nDefault: \"~(.#?|#?.info)\"
+;
+MSG_PREF_ANON
+\033rAnónimo
+; Anon:
+;
+MSG_PREF_ANON_HELP
+Permite conectarse a usuarios \033bsin\033n clave.\n\n\
+Por defecto: \033bdesactivado\033n.\n\
+\033iNota: El campo clave ha de estar vacío.
+; Do you allow people to log on \ebwithout\en passwords?\n\nDefault: NO\nNote: they must have a blank password on the Users page.
+;
+MSG_PREF_MAXUSERS
+\033rUsuarios máx.
+; Max Users:
+;
+MSG_PREF_MAXUSERS_HELP
+Número máximo de conexiones, algunos clientes\n\
+de FTP crean más de una conexión, también\n\
+podría especificar un tiempo límite.\n\n\
+Por defecto: \033b0\033n (sin límite).\n\
+\033i(versión sin registrar: 1÷3)
+; The maximum number of control connections,\nsome clients make more than one\nconnection, so you should also set a Timeout.\n\nDefault: 0 (no limit) (\ebUnregistered 1 - 3\en)
+;
+MSG_PREF_MAXCPS
+\033rCPS máximo
+; Max CPS:
+;
+MSG_PREF_MAXCPS_HELP
+Velocidad de transferencia máxima de los\n\
+archivos, útil se conecta con modem y no\n\
+desea ocupar todo su ancho de banda.\n\n\
+Por defecto: \033b0\033n (sin límite).\n\
+\033i(versión sin registrar: 1÷3072)
+; The maximum transfer speed for files,\nuseful if you are on a modem and\ndon't want the server stealing\nall your bandwidth.\n\nDefault: 0 (no limit) (\ebUnregistered 1 - 3072\en)
+;
+MSG_PREF_TIMEOUT
+\033rTiempo límite
+; Timeout:
+;
+MSG_PREF_TIMEOUT_HELP
+Si el usuario no hace nada en\n\
+estos minutos será expulsado.\n\n\
+Por defecto: \033b0\033n (sin límite).
+; After this many minutes of doing nothing\npeople are kicked off.\n\nDefault: 0 (no timeout)
+;
+MSG_PREF_NOOP
+\033rNOOP
+; Noop:
+;
+MSG_PREF_NOOP_HELP
+Activándolo, permite a los usuarios el uso\n\
+del comando NOOP (NO OPeration), que\n\
+evita que sean expulsados.\n\n\
+Por defecto: \033bdesactivado\033n.
+; If this is allowed then people can\nuse the NOOP command (NO OPeration) to\nprevent themselves being kicked off.\n\nDefault: OFF
+;
+MSG_PREF_NOPASV
+\033rSin PASV
+; NoPASV:
+;
+MSG_PREF_NOPASV_HELP
+Activándolo, los usuarios solo se pueden\n\
+conectarse por medio del comando PORT.\n\
+Es más seguro y recomendado para\n\
+usuarios con cortafuegos.
+; If this is checked then people can\nonly connect via the PORT command.\nThis is more secure,\nand recommended for people behind firewalls.
+;
+MSG_PREF_AUTOMESSAGE
+\033rMensaje
+; Auto-Message:
+;
+MSG_PREF_AUTOMESSAGE_HELP
+Si alguien cambia su directorio, esto\n\
+mostrará el mensaje '.message' como\n\
+parte de la respuesta que obtenga.\n\n\
+Por defecto: \033bactivado\033n.\n\
+\033i(solo versión registrada)
+; Whenever someone changes their directory\nthis will type a file called \".message\"\nas part of the reply they get.\n\nDefault: ON (\ebRegistered only\en)
+;
+MSG_PREF_AUTOCOMMENT
+\033rComentario
+; Auto-Comment:
+;
+MSG_PREF_AUTOCOMMENT_HELP
+Si le envían un archivo se pondrá\n\
+como comentario \033busuario@ip\033n.\n\n\
+\033i(solo versión registrada)
+; Whenever someone sends you a file this\nwill set the file comment to \"user@ip\".\n\nDefault: ON (\ebRegistered only\en)
+;
+MSG_PREF_LOGFILE
+\033rGuardar histórico
+; Use-Logfile:
+;
+MSG_PREF_LOGFILE_SEPERATE
+Por cada usuario
+; Seperate:
+;
+MSG_PREF_LOGFILE_HELP
+Guarda el histórico en un solo\nfichero o en uno por usuario.
+; Logs everything you chose (as in Snoop)\nto either a single logfile, or one\nlogfile per user.
+;
+MSG_PAGE_INFO
+Acerca de...
+; Info
+;
+MSG_PAGE_USERS
+Usuarios
+; Users
+;
+MSG_PAGE_GROUPS
+Grupos
+; Groups
+;
+MSG_PAGE_GENERAL
+Generales
+; General
+;
+MSG_PAGE_CLOSED
+\0333Desactivado
+; \e3Closed
+;
+MSG_PAGE_GREETING
+\0333Por 1ª vez
+; \e3Greeting
+;
+MSG_PAGE_WELCOME
+\0333Bienvenida
+; \e3Welcome
+;
+MSG_PAGE_GOODBYE
+\0333Despedida
+; \e3Goodbye
+;
+MSG_SNOOP_TITLE
+Histórico de RC-FTPd
+; RC-FTPd Snoop
+;
+MSG_SNOOP_CLEAR
+Limpiar
+; Clear
+;
+MSG_USER_LIST_USERNAME
+\033cUsuario
+; Username
+;
+MSG_USER_LIST_PASSWORD
+\033cClave
+; Password
+;
+MSG_USER_LIST_MAX
+Máx.
+; Max
+;
+MSG_USER_LIST_LOG
+Histórico
+; Log
+;
+MSG_USER_LIST_NONAME
+\033c-
+; \ebunset
+;
+MSG_USER_LIST_PASS
+(oculta)
+; (hidden)
+;
+MSG_USER_LIST_NOPASS
+\ebanon
+;
+MSG_USER_USER
+Usuario:
+; User:
+;
+MSG_USER_PASS
+ Clave:
+; Pass:
+;
+MSG_USER_MAX
+ Máx.
+; Max:
+;
+MSG_PATH_LIST_ALIAS
+\033cAlias
+;Alias
+;
+MSG_PATH_LIST_PATH
+Ubicación
+; Path
+;
+MSG_PATH_NOALIAS
+\033c-
+; \ebnone
+;
+MSG_PATH_NOPATH
+\033b<falsa>
+; \ebfake
+;
+MSG_PATH_READ
+\033rLectura 
+; Read:
+;
+MSG_PATH_WRITE
+\033rEscritura 
+; Write:
+;
+MSG_PATH_DELETE
+\033rBorrar 
+; Delete:
+;
+MSG_PATH_SUBDIRS
+\033rSubDirs. 
+; SubDirs:
+;
+MSG_PATH_ALIAS
+Alias:
+;  Alias:
+;
+MSG_PATH_PATH
+ Ubicación:
+; Path:
+;

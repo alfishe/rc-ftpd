@@ -1,0 +1,310 @@
+## version $VER: romanesc.catalog 1.00 (05.11.01)
+## codeset 0
+## language romana
+;
+MSG_ERROR
+RC-FTPD Greseala
+;
+MSG_OK
+Ok
+;
+MSG_SAVE
+Inregistreaza
+;
+MSG_USE
+Foloseste
+;
+MSG_CANCEL
+Anuleaza
+;
+MSG_KICK
+Scoate
+;
+MSG_ABORT
+Intrerupe
+;
+MSG_ADD
+Adauga
+;
+MSG_REMOVE
+Sterge
+;
+MSG_SORT
+Sorteaza
+;
+MSG_BAD_CONFIG
+format necunoscut file config
+;
+MSG_STARTUP_MUI
+Nu pot deschide muimaster.library 18+
+;
+MSG_STARTUP_UTILITY
+Nu pot deschide utility.library 36+
+;
+MSG_STARTUP_SOCKET
+Nu pot deschide bsdsocket.library 4+\n\nVa rog porniti TCP/IP stack inainte...
+;
+MSG_STARTUP_MEMORY
+Nu gasesc suficienta memorie\n\nintrerupetiuna sau mai multe aplicati\nsau porniti din nou
+;
+MSG_STARTUP_APP
+Nu pot sa pornesc aplicatia\n\Posibil insuficienta memorie sau clase (classes)\n(mai multe informatiin versiunile care urmeaza)
+;
+MSG_SOCKET_OPEN
+Nu pot sa deschid socket\nCauza necunoscuta - socket necunoscut\n\n(trimitemi e-mail sal gasesc)
+;
+MSG_SOCKET_OPTIONS
+Nu pot sa pun optiuni socket\nCauza necunoscuta - posibil socket necunoscut
+;
+MSG_SOCKET_BIND
+Nu pot sa deschid portul\nPosibil portul folosit
+;
+MSG_SOCKET_LISTEN
+Nu pot sa 'ascult' portul\nCauza necunoscuta - posibil socket necunoscut
+;
+MSG_SAVE_CONFIG
+Nu pot sa salvez setarile
+;
+MSG_LIST_STATUS
+Status
+;
+MSG_LIST_IP
+IP
+;
+MSG_LIST_USER
+Utilizator
+;
+MSG_LIST_CMD
+CMD
+;
+MSG_LIST_ARGS
+Argumentele
+;
+MSG_LIST_ONLINE
+\ec%ld/%ld utilizator online
+;
+MSG_MUI_ABOUT
+Cel mai BUN ftp daemon pentru Amiga
+;
+MSG_MUI_MUI
+MUI
+;
+MSG_MUI_PREFS
+Prefs
+;
+MSG_SHORT_KICKABORT
+\ebScoatere\en intrerupe pe cel ales\nutilizator si eventualele trimiteri\n\ebIntrerupere\en vaintrerupe trimiterile
+;
+MSG_SHORT_MESSAGE
+Scrie un scurt mesaj aici si va fi\ntrimisa utilizatorului ales
+;
+MSG_SHORT_OPEN
+Aceasta este forma generala a serverului vostru\nSe pot cupla utilizatori (\ebDeschis\en) sau nu (\ebInchis\en)
+;
+MSG_UNLIMITED
+nelimitat
+;
+MSG_CONTROL_CODES
+Puteti sa folositi urmatoarele coduri de control:\n$u = utilizatori temporari\n$m = Max utilizatori\n$c = Max CPS\n$s = MaxCPS/utilizatori temporari
+;
+MSG_UPLOAD
+%s [%s]\n%s\n%s\n%s (%lu/%lu bytes, %lu cps)
+;
+MSG_DOWNLOAD
+%s [%s]\n%s\n%s\n%s (%lu bytes, %lu cps)
+;
+MSG_NOLOAD
+%s [%s]\n%s\n%s\n
+;
+MSG_LOGIN
+\eblogin
+;
+MSG_LOG_NONE
+Fara log
+;
+MSG_LOG_KNOWN
+Logheaza pe cei cunoscuti
+;
+MSG_LOG_COMMANDS
+Comenzi pt. log
+;
+MSG_LOG_ALL
+Logheaza pe toti
+;
+MSG_ONLINE_LIMIT
+\ec%ld/%ld utilizatori online
+;
+MSG_ONLINE_NOLIMIT
+\ec%ld Utilizatori online
+;
+MSG_FTP_CLOSED
+FTP Inchis
+;
+MSG_FTP_OPEN
+FTP Deschis
+;
+MSG_FTP_GUIDE
+ftpd.Guide
+;
+MSG_PREF_WINDOW
+RC-FTPd Aranjare
+;
+MSG_PREF_PORT
+Port:
+;
+MSG_PREF_PORT_HELP
+Acesta este portul la care se leaga utilizatori\nsa schimba la startul urnator.\n\nStandard: 21
+;
+MSG_PREF_LIST
+Arata preferintele:
+;
+MSG_PREF_LIST_HELP
+Preferinte folosite pt. prezentarea filelor/dirs,\nnu intrerupe dawnloadul numai vizionarea.\n\nStandard: \"~(.#?|#?.info)\"
+;
+MSG_PREF_ANON
+Anon:
+;
+MSG_PREF_ANON_HELP
+Dai prioritate la utilizatori \ebfara\en lozinka?\n\nStandard: NO\nNotita: Trebuie sa aiba o lozinka goala la pagina utilizatori.
+;
+MSG_PREF_MAXUSERS
+Max Utilizatori:
+;
+MSG_PREF_MAXUSERS_HELP
+Numarul maxim de conecsiuni controlate, \nuni clienti folosesc mai mult decit una\nconecsiuni, asa ca trebuie sa puneti Timeout.\n\Standard: 0 (nelimitat) (\ebNeinregistrat 1 - 3\en)
+;
+MSG_PREF_MAXCPS
+Max CPS:
+;
+MSG_PREF_MAXCPS_HELP
+Viteza maxima de trimitere fisierelor,\neste folositordaca sunteti ce un modem si gasiti\nca serverul preia toata datele.\n\nStandard: 0 (nelimitat) (\ebNeiregistrat 1 - 3072\en)
+;
+MSG_PREF_TIMEOUT
+Timeout:
+;
+MSG_PREF_TIMEOUT_HELP
+Dupa multe minute de inactivitate utilizatorul\nva fi scos.\n\nStandard: 0 (fara timeout)
+;
+MSG_PREF_NOOP
+Noop:
+;
+MSG_PREF_NOOP_HELP
+Daca aceasta e permis utilizatori pot\nfolosi comanda NOOP (NO OPeration) sa\ninpienice intreruperea legaturi (timeout).\n\nStandard: conectat
+;
+MSG_PREF_NOPASV
+NoPASV:
+;
+MSG_PREF_NOPASV_HELP
+Daca aceasta este activat utilizatori se\npot numai conecta cu comanda PORT.\nAceasta e mai sigur si\neste indicat pt.utilizatori de firewall.
+;
+MSG_PREF_AUTOMESSAGE
+Auto-Mesaj:
+;
+MSG_PREF_AUTOMESSAGE_HELP
+La schimbarea directorului utilizatorului acesta\nva  'scrie' file numita \".message\"\nca o parte a raspunsului pe care il vor primi.\n\nStandard: Conectat (\ebNumai versiunea inregistrata\en)
+;
+MSG_PREF_AUTOCOMMENT
+Auto-Comentariu:
+;
+MSG_PREF_AUTOCOMMENT_HELP
+Cind cineva va trimite file aceasta va \nfipus ca si comentariu \"user@ip\".\n\nStandard: Conectat (\ebNumai pentru utilizatori inregistrati\en)
+;
+MSG_PREF_LOGFILE
+Foloseste-Logfile:
+;
+MSG_PREF_LOGFILE_SEPERATE
+Separat:
+;
+MSG_PREF_LOGFILE_HELP
+Face logul la tot ce ati ales (ca si Snoop)\nsau intr-un  logfile, sau un\nlogfile pentru fiecare utilizator
+;
+MSG_PAGE_INFO
+Info
+;
+MSG_PAGE_USERS
+Utilizatori
+;
+MSG_PAGE_GROUPS
+Grupe
+;
+MSG_PAGE_GENERAL
+General
+;
+MSG_PAGE_CLOSED
+\e3Inchidere
+;
+MSG_PAGE_GREETING
+\e3Salut
+;
+MSG_PAGE_WELCOME
+\e3BineAtiVenit
+;
+MSG_PAGE_GOODBYE
+\e3LaRevedere
+;
+MSG_SNOOP_TITLE
+RC-FTPd Snoop
+;
+MSG_SNOOP_CLEAR
+Curata
+;
+MSG_USER_LIST_USERNAME
+Utilizator
+;
+MSG_USER_LIST_PASSWORD
+Parola
+;
+MSG_USER_LIST_MAX
+Max
+;
+MSG_USER_LIST_LOG
+Log
+;
+MSG_USER_LIST_NONAME
+\ebnearanjat
+;
+MSG_USER_LIST_PASS
+(Ascuns)
+;
+MSG_USER_LIST_NOPASS
+\ebanon
+;
+MSG_USER_USER
+Utilizator:
+;
+MSG_USER_PASS
+Parola:
+;
+MSG_USER_MAX
+Max:
+;
+MSG_PATH_LIST_ALIAS
+Alias
+;
+MSG_PATH_LIST_PATH
+Path
+;
+MSG_PATH_NOALIAS
+\ebFara
+;
+MSG_PATH_NOPATH
+\ebfals
+;
+MSG_PATH_READ
+Citeste:
+;
+MSG_PATH_WRITE
+Scrie:
+;
+MSG_PATH_DELETE
+Sterge:
+;
+MSG_PATH_SUBDIRS
+SubDirs:
+;
+MSG_PATH_ALIAS
+Alias:
+;
+MSG_PATH_PATH
+Path:
+;

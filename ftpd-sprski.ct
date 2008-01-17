@@ -1,0 +1,310 @@
+## version $VER: srpski.catalog 1.00 (05.11.01)
+## codeset 0
+## language srpski
+;
+MSG_ERROR
+RC-FTPD Greska
+;
+MSG_OK
+Ok
+;
+MSG_SAVE
+Snimi
+;
+MSG_USE
+Koristi
+;
+MSG_CANCEL
+Ponisti
+;
+MSG_KICK
+Izbaci
+;
+MSG_ABORT
+Prekini
+;
+MSG_ADD
+Dodaj
+;
+MSG_REMOVE
+Ukloni
+;
+MSG_SORT
+Sortiraj
+;
+MSG_BAD_CONFIG
+Neprepoznatljiv format config fajla
+;
+MSG_STARTUP_MUI
+Nemogu otvoriti muimaster.library 18+
+;
+MSG_STARTUP_UTILITY
+Nemogu otvoriti utility.library 36+
+;
+MSG_STARTUP_SOCKET
+Nemogu otvoriti bsdsocket.library 4+\n\nMolim vas pokrenite TCP/IP stack prvo...
+;
+MSG_STARTUP_MEMORY
+Nemogu da nadjem dovoljno memorije\n\nPrekinite jednu ili vise aplikacija\nili dignite system ponovo
+;
+MSG_STARTUP_APP
+Nemogu da stvorim aplikaciju\n\Moguc nedostatak memorije ili klase (classes)\n(vise informacija u sledecim verzijama
+;
+MSG_SOCKET_OPEN
+emogu da otvorim socket\nNepoznat razlog - moguc nepodrzan socket\n\n(posalji mi e-mail da ga nadjem)
+;
+MSG_SOCKET_OPTIONS
+Nemogu da postavim socket opcije\nNepoznat razlog - moguc nepodrzan socket
+;
+MSG_SOCKET_BIND
+Nemogu da otvorim port\nVjerovatno port iskoriscen
+;
+MSG_SOCKET_LISTEN
+Nemogu da 'slusam' na portu\nNepoznat razlog - moguc nepodrzan socket
+;
+MSG_SAVE_CONFIG
+Nemogu da snimim podesavanja
+;
+MSG_LIST_STATUS
+Status
+;
+MSG_LIST_IP
+IP
+;
+MSG_LIST_USER
+Korisnik
+;
+MSG_LIST_CMD
+CMD
+;
+MSG_LIST_ARGS
+Argumenti
+;
+MSG_LIST_ONLINE
+\ec%ld/%ld Korisnika online
+;
+MSG_MUI_ABOUT
+Najbolji ftp daemon za Amigu
+;
+MSG_MUI_MUI
+MUI
+;
+MSG_MUI_PREFS
+Prefs
+;
+MSG_SHORT_KICKABORT
+\ebIzbacivanje\en prekinuce odabranog\nkorisnika i eventualne posiljke\n\ebPrekid\en ce samo da prekine posiljke
+;
+MSG_SHORT_MESSAGE
+Napisi kratku poruku ovde i bice\nposlana odabranom korisniku
+;
+MSG_SHORT_OPEN
+Ovo je generalni status vaseg servera\nMogu li se korisnici priljuciti (\ebOtvoren\en) ili ne (\ebZatvoren\en)
+;
+MSG_UNLIMITED
+neograniceno
+;
+MSG_CONTROL_CODES
+Mozete koristiti sledece kontrolne kode:\n$u = Trenutni korisnici\n$m = Max korisnika\n$c = Max CPS\n$s = MaxCPS/Trenutni korisnici
+;
+MSG_UPLOAD
+%s [%s]\n%s\n%s\n%s (%lu/%lu bytes, %lu cps)
+;
+MSG_DOWNLOAD
+%s [%s]\n%s\n%s\n%s (%lu bytes, %lu cps)
+;
+MSG_NOLOAD
+%s [%s]\n%s\n%s\n
+;
+MSG_LOGIN
+\eblogin
+;
+MSG_LOG_NONE
+Bez log-a
+;
+MSG_LOG_KNOWN
+Loguj poznate
+;
+MSG_LOG_COMMANDS
+Loguj komande
+;
+MSG_LOG_ALL
+Loguj sve
+;
+MSG_ONLINE_LIMIT
+\ec%ld/%ld Korisnika online
+;
+MSG_ONLINE_NOLIMIT
+\ec%ld Korisnika online
+;
+MSG_FTP_CLOSED
+FTP Zatvoren
+;
+MSG_FTP_OPEN
+FTP Otvoren
+;
+MSG_FTP_GUIDE
+ftpd.Guide
+;
+MSG_PREF_WINDOW
+RC-FTPd Podesavanja
+;
+MSG_PREF_PORT
+Port:
+;
+MSG_PREF_PORT_HELP
+Ovo je port na koji se korisnici povezuju\nmenja se pri ponovnom startu.\n\nStandardni: 21
+;
+MSG_PREF_LIST
+Pokazi patron:
+;
+MSG_PREF_LIST_HELP
+Ovo je patron koristen za prikazivanje fajlova/dirs,\nnezaustavlja download samo vidljivost.\n\nStandardno: \"~(.#?|#?.info)\"
+;
+MSG_PREF_ANON
+Anon:
+;
+MSG_PREF_ANON_HELP
+Dali primate korisnike \ebbez\en lozinke?\n\nStandardno: NO\nNoticija: moraju imati praznu lozinku na Korisnickoj stranici.
+;
+MSG_PREF_MAXUSERS
+Max Korisnika:
+;
+MSG_PREF_MAXUSERS_HELP
+Maksimalni broj kontrolnih konekcija, \nneki klijenti uspostavljaju vise od jedne\nkonekcije, tako da bi trebali postaviti Timeout.\n\Standardno: 0 (neograniceno) (\ebNeregistrovano 1 - 3\en)
+;
+MSG_PREF_MAXCPS
+Max CPS:
+;
+MSG_PREF_MAXCPS_HELP
+Maksimalna brzina prenosa za fajlove,\nkorisno ako ste na modemu i nezelite\nda server uzima sav protok podataka.\n\nStandardno: 0 (neogrniceno) (\ebNeregistrovano 1 - 3072\en)
+;
+MSG_PREF_TIMEOUT
+Timeout:
+;
+MSG_PREF_TIMEOUT_HELP
+Poslije ovoliko minuta neaktivnosti korisnik\nce biti izbacen.\n\nStandardno: 0 (bez timeout-a)
+;
+MSG_PREF_NOOP
+Noop:
+;
+MSG_PREF_NOOP_HELP
+Ako je ovo dopusteno korisnici mogu\nkoristiti NOOP konadu (NO OPeration) da\nsprece prekidanje veze (timeout).\n\nStandardno: Iskljuceno
+;
+MSG_PREF_NOPASV
+NoPASV:
+;
+MSG_PREF_NOPASV_HELP
+Ako je ovo ukljuceno korisnici se\nsamo mogu prikljuciti sa PORT komandom.\nOvo je sigurnije i\npreporucljivo za korisnike iza firewall-a.
+;
+MSG_PREF_AUTOMESSAGE
+Auto-Poruka:
+;
+MSG_PREF_AUTOMESSAGE_HELP
+Pri menanju direktorijuma korisnika ovo\nce da 'istipka' file nazvan \".message\"\nkao dio dio odgovora koji ce da dobiju.\n\nStandardno: Ukljuceno (\ebSamo registrovana verzija\en)
+;
+MSG_PREF_AUTOCOMMENT
+Auto-Komentar:
+;
+MSG_PREF_AUTOCOMMENT_HELP
+Kada vam neko posalje file ovo ce da\nbude postavljeno kao komentar \"user@ip\".\n\nStandardno: Ukljuceno (\ebSamo registrovana verzija\en)
+;
+MSG_PREF_LOGFILE
+Koristi-Logfile:
+;
+MSG_PREF_LOGFILE_SEPERATE
+Posebno:
+;
+MSG_PREF_LOGFILE_HELP
+Loguje sve sto ste izabrali (kao u Snoop)\nili u jedan logfile, ili jedan\nlogfile po korisniku.
+;
+MSG_PAGE_INFO
+Info
+;
+MSG_PAGE_USERS
+Korisnici
+;
+MSG_PAGE_GROUPS
+Grupe
+;
+MSG_PAGE_GENERAL
+Generalno
+;
+MSG_PAGE_CLOSED
+\e3Zatvaranje
+;
+MSG_PAGE_GREETING
+\e3Pozdrav
+;
+MSG_PAGE_WELCOME
+\e3Dobrodoslica
+;
+MSG_PAGE_GOODBYE
+\e3Dovidjenja
+;
+MSG_SNOOP_TITLE
+RC-FTPd Snoop
+;
+MSG_SNOOP_CLEAR
+Pocisti
+;
+MSG_USER_LIST_USERNAME
+Korisnik
+;
+MSG_USER_LIST_PASSWORD
+Lozinka
+;
+MSG_USER_LIST_MAX
+Max
+;
+MSG_USER_LIST_LOG
+Log
+;
+MSG_USER_LIST_NONAME
+\ebnepodeseno
+;
+MSG_USER_LIST_PASS
+(skriveno)
+;
+MSG_USER_LIST_NOPASS
+\ebanon
+;
+MSG_USER_USER
+Korisnik:
+;
+MSG_USER_PASS
+Lozinka:
+;
+MSG_USER_MAX
+Max:
+;
+MSG_PATH_LIST_ALIAS
+Alias
+;
+MSG_PATH_LIST_PATH
+Path
+;
+MSG_PATH_NOALIAS
+\ebbez
+;
+MSG_PATH_NOPATH
+\eblazno
+;
+MSG_PATH_READ
+Citaj:
+;
+MSG_PATH_WRITE
+Pisi:
+;
+MSG_PATH_DELETE
+Brisi:
+;
+MSG_PATH_SUBDIRS
+SubDirs:
+;
+MSG_PATH_ALIAS
+Alias:
+;
+MSG_PATH_PATH
+Path:
+;

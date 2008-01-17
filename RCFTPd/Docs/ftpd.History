@@ -1,0 +1,412 @@
++ Added       - Removed      ! Changed      * Bugfix
+
+New at bottom
+
+0.x
+---
+
++ First versions, I finally got fed up with crap servers out there.
+
+1.x
+---
+
+! This was fully working, and had the MUI gui added.
+
+2.x
+---
+
+! This is where it went shareware, also lots more features added.
+
+2.15 (23.7.2000)
+----------------
+
++ If you tick "Messages:" in the General page then it will look for a
+  file called ".message" (case unimportant) and send that, nothing will
+  be sent if not found.
+
+! The keyfile can be kept in any of 3 locations now - PROGDIR: S: and
+  $KEYFILES, it will look in that order.
+
++ If anyone sends their password starting with a "-" character (minus)
+  then it will strip that and will not send any multi-line responses.
+
+! The prefs file has moved to ENVARC/ENV, if you are upgrading from an
+  earlier version then move it from the old PROGDIR:
+
+* Fixed a recent bug where I tried to cut down the size of the LIST
+  response - this broke some clients.
+
+2.16 (25.7.2000)
+----------------
+
++ Added Auto-Comment, so now you can see who sent you those files...
+
++ Started to add the Help system, for now it'll only open the guide
+  but sometime in the future it will send you to the right node.
+
+2.17 (28.7.2000)
+----------------
+
+* Changed all multi-line replies to start "###-" instead of just the
+  first line.
+
++ Added some bubble-help lines to the prefs, most will have to wait
+  for the prefs to be split off into another program though.
+
+2.18 (8.8.2000)
+---------------
+
+! Changed some internals, should make it quite a bit easier to change
+  all the other replies later. I'll probably make it use locale for
+  user-specified replies, it's not important though ;-)
+
+* Finally got NOOP to be ignored properly (didn't realise it wasn't -
+  doh!)
+
+* Forgotten exactly which version, but the timing routines should
+  be a lot more accurate now - CPS is worked out for the last couple
+  of seconds (email me if you think it's too long/short, or should be
+  customisable) and the timeout will work right now to :-)
+
+2.19 (13.8.2000)
+----------------
+
+- Removed the preferences "Systen type" setting.
+
++ Added support for Identify.library to find your system type. It only
+  opens the library when needed (but most clients ask for SYST anyway)
+
+- Removed the preferences "DefPath" setting.
+
++ Made it automatically find the default path.
+
+2.20 (21.8.2000)
+----------------
+
++ Started to add the locale support. Will make it easy to improve the
+  replies later.
+
+2.21 (31.8.2000)
+----------------
+
+* Doh! pirate check forgot to check if it was registered - so unreg
+  suddenly became pirates (as there's already a pirate key out there
+  I see this as a necessary thing unfortunately) :-(
+
+! Changed a lot of stuff in the LIST/NLST stuff, now it should show
+  dirs that point somewhere else as links (I might make that prefs
+  if people ask) - this means no more fake dirs ;-P
+
+* Stupidly had "Save" and "Use" mixed up in the code, so they did each
+  others jobs - oops ;-P
+
+2.22 (2.9.2000)
+---------------
+
+- Removed link stuff - it breaks too many clients :-(
+
+* Fixed the locale stuff and rewrote the error reporting a little.
+
+- Removed the identify.library from SYST - it wasn't needed as the
+  official spec only recognises "AmigaOS" as being needed...
+
++ Added proper support for some more commands (so they return the
+  correct responses to different things, even if they do nothing...)
+
+* Changed a lot of stuff in *all* the commands so logging can go in.
+
++ Added EPLF format (LIST), client needs to support it though (I'm
+  relying on the fact that if a client supports the CLNT command
+  then it does - probably wrong though)
+
++ Added FEAT command, but not OPTS *bad boy* ;-P
+
+2.23 (28.10.2001)
+-----------------
+
+* Fixed a long-standing bug in closing the prefs page (Save/Use/Cancel).
+
+* Changed the LIST output slightly - should work with more clients.
+
+2.24 (28.10.2001)
+-----------------
+
+* Fixed 3 enforcer hits that could happen by accident - non serious.
+
++ Added a new AppIcon, now shows the number of users online. (3.5+)
+
++ Added NoPASV option - disables the PASV command, useful for firewalls.
+
+2.25 (29.10.2001)
+-----------------
+
+* Changed the LIST output slightly again - should be even more compatable.
+
+2.26 (29.10.2001)
+-----------------
+
++ Added the ability to give some extra info in all messages, currently
+  max_cps, max_users and current_users.
+
+2.27 (31.10.2001)
+-----------------
+
++ Log to file. Either all to "PROGDIR:ftpd.log" or seperately to
+  "PROGDIR:logs/<user>.log"
+
+2.28 (03.11.2001)
+-----------------
+
+* Now forces unix style of ftp.
+
++ Doesn't show requester for non-existant drives (removeable etc)
+
+* Fixed output of a few commands - hope there aren't any left to fix.
+
++ Totally localised, just need translations now.
+
+* Fixed Group prefs page to disable string gadgets on startup.
+
+2.29 (04.11.2001)
+-----------------
+
+* Fixed a security bug that's been there since the start - hard to find
+  which is why nobody reported it before now.
+
++ Now removes trailing "/" in all alias+paths.
+
+* Minor speedups in various bits of code.
+
+* Fixed installer - no longer overwrites your real keyfile (if you're
+  registered)... I hope... ;-)
+
+* Finally updated the guide and added screenshots ;-)
+
+* Fixed a couple of Help nodes in the MUI stuff. (pointing to guide)
+
+2.31 (07.11.2001)
+-----------------
+
+* Fixed a bug in the log to file stuff.
+
++ First translation (Sprski... whatever that is, thanks Djole ;-)
+
+* Some small bugfixes, optomisations.
+
+2.32 (08.11.2001)
+-----------------
+
+* Fixed a possible security bug in it, to handle MUI.
+
+2.33 (01.12.2001)
+-----------------
+
+* Improved transfer speed dramatically... now over twice as fast for less CPU.
+
+2.34 (02.12.2001)
+-----------------
+
+* Fixed the message options ($.)
+
+2.35 (02.12.2001)
+-----------------
+
+* Fixed a bug in the ABORt handling.
+
+* Fixed bugs in STOR and RECV with file permissions.
+
+* Fixed a bug in the fast transfer code.
+
+2.36 & 2.37 (23.12.2001)
+------------------------
+
+* Minor bugfixes
+
++ Portuguese catalog
+
+2.38 (05.02.2002)
+-----------------
+
+* Finally fixed a long standing freezing bug.
+
+2.39 (06.02.2002)
+-----------------
+
+* Improved the network speed somewhat, optomised for 16k tcp buffers (most
+  systems) - seems to give a 60% speedup for some ppl, feedback please ;-)
+
++ Now anon users are limited to "Max Users" PER IP!! - This means if someone
+  logs in under more than one anon username they get the Max of the one
+  they are attempting to log on under, not min/max calculations...
+
+2.40 (12.02.2002)
+-----------------
+
++ Now uses internal async file access for transfers - should use less cpu
+  and may even be slightly faster ;-)
+
++ Internal SFV support - a form of CRC32 checking, if you get a *.sfv file
+  *before* the main file, then it will check the file on completion, and
+  set the comment to "OK ..." or "BAD ..." depending on if it matches ;-)
+
+
+2.41 (27.02.2002)
+-----------------
+
++ Now uses async connect() - so deals with stealth firewalls better ;-)
+
++ Can use ENV:IP for PASV - so if you are behind a router it should help.
+
+2.42 (27.02.2002)
+-----------------
+
+* Improved LAN detection, now LAN + localhost get no speed restrictions.
+
+2.43 (03.03.2002)
+-----------------
+
+* Fixed a bug dealing with "/." pc-style paths... bloody crap clients...
+
+2.44 (31.03.2002)
+-----------------
+
+* Changed the CPS calculations, should be more accurate now...
+
++ Added a hidden option (only in the config file) "ListPath", normally
+  points to "T:", maximum of 63 characters - useful if T: doesn't support
+  async file access...
+
+* Fixed the text-messaging, did cause CPU intensive looping, and was also
+  not working right.
+
+* Should have finally fixed all text output so there are no "bad" lines.
+
++ Added menus to the main window, so got rid of the prefs buttons ;-)
+
+2.45 (07.04.2002)
+-----------------
+
++ Added ATO translations (thanks guys)
+
++ Added a Statistics window, and put back the main prefs button.
+
+2.46 (07.04.2002)
+-----------------
+
+* Doh, 2 mistakes in the stats stuff, fixed now ;-P
+
+2.47 (07.04.2002)
+-----------------
+
++ Added the option of having Async (instead of *always* async, which was
+  causing problems) - if you had no problems with it, go back into the
+  prefs and turn it back on, if you've not used previous versions, async
+  is faster, but some ppl had problems.
+
+2.48 (10.04.2002)
+-----------------
+
+* Changed the internal LIST stuff, now uses Match*() from dos, instead
+  of ExAll - should be better.
+
+* Fixed a couple of display bugs introduced when async became an option.
+
+2.49 (11.04.2002)
+-----------------
+
+* Finally fixed it for broken clients to get files that didn't understand
+  125 reply, using 150 reply all the time now (not proper rfc, but all
+  decent clients will understand it...)
+
+2.50 (11.04.2002)
+-----------------
+
++ Added stack checking code - should prevent reported crashes... (I always
+  run a 64k stack, so never thought of this...)
+
+2.51 (13.04.2002)
+-----------------
+
+* Changed the logfile slightly, now strips out the \r - some text readers
+  complain about that char ;-)
+
+* Changed the Stats window, the stats now use TextBack, instead of GroupBack.
+
+* Now only needs one anonymous user - "anonymous", you can delete the other
+  two.
+
++ If the stats window is open when you Save/Use, then it will reopen when
+  you next start the program :-)
+
+* In the prefs, changed it to show "-" instead of "0" for Max Users.
+
+2.52 (04.05.2002)
+-----------------
+
+* Fixed the menu enable/disable to actually change the state ;-)
+
++ Added the ATO.readme
+
+* Fixed the CPS limiter to use less CPU when the limit is reached ;-)
+
+2.53 (05.05.2002)
+-----------------
+
+* Changed the CPS Limit gadget in the prefs to a string gadget, should make
+  life simpler.
+
+* Fixed CPS=0 bug, accidentaly forgot o tell it that was unlimited ;-P
+
+2.54 (05.05.2002)
+-----------------
+
+* Changed how the APPEnd function did some stuff, should be slightly better
+  now ;-)
+
+2.55 (15.05.2002)
+-----------------
+
+* Changed the stats to now show with commas for easier reading, and added them
+  to the arexx port...
+
+* changed the LIST output *slightly*...
+
+2.56 (23.05.2002)
+-----------------
+
++ Added another arexx command - STATUS, can get/set the online status.
+
+2.57 (13.07.2002)
+-----------------
+
+* Now I've got a linux box, tweaked the LIST output some more, though the code
+  is still pretty messy...
+* Hopefully fixed a problem with ENV:IP support (remember, it's for people
+  behind a firewall etc, *without* IP-NAT fixing the IP)...
++ Now shows/logs unknown commands too - stupid thing...
+
+2.58 (13.07.2002)
+-----------------
+
++ Now uses the Locale.library loc_GroupSeparator for stats.
+
+2.59 (15.07.2002)
+-----------------
+
++ Refuses PORT commands with LAN IP's
+
+* Recieving a file (to the server) now sends 226 (success) instead of 446
+  (failure) when the thing finishes.
+
+* Improved the logging slightly.
+
+2.60 (21.07.2002)
+-----------------
+
+* Updated the FTPD.amirx script (arexx script for AmIRC)
+
+* Changed the look of it, and some of the internals, so it'd be more useful.
+
++ Added another 2 stats pages, so you can have daily, weekly, and total stats.
+
+* Moved the stats into the main window.

@@ -1,0 +1,602 @@
+@database ftpd.guide
+@version $VER: ftpd.guide 2.56 (23.5.2002) ©2000-2002 Robin Cloutman
+
+@node MAIN "FTPd.guide"
+
+@{b}RC-FTPd 2.x Guide - Table of Contents@{ub}
+@{b}-------------------------------------@{ub}
+
+Welcome to @{i}rc-ftpd@{ui}, the best AmigaOS FTP server.
+
+Hopefully this manual will help you get the most of this program, if
+you have any problems understanding it, or how to do things within the
+program itself do not hesitate to email me and I'll try to improve it
+in future.
+
+ @{" About RC-FTPd " Link ABOU}            What is this program all about?
+ @{" Requirements " Link REQU}             What is needed to run RC-FTPd?
+ @{" Usage " Link USAG}                    How do I run RC-FTPd?
+ @{" MUI " Link MUI}                      This program uses MUI!
+
+ @{" Editing Users " Link USER}            How do I edit users?
+ @{" Editing Groups " Link GROU}           How do I edit groups?
+ @{" Editing General " Link GENE}          How do I edit general settings?
+ @{" Messages " Link MESS}                 Different message types?
+
+ @{" ARexx " Link AREX}                    The AREXX port (registered)
+
+ @{" Bugs " Link BUGS}                     Known bugs (in clients also)
+ @{" History " Link ftpd.History/Main}                  What has gone before
+ @{" Future " Link FUTU}                   What I'm wanting to do
+
+ @{" Thanks " Link THAN}                   Who helped?
+ @{" Contact " Link CONT}                  How can I contact the coder?
+ @{" Registration " Link REGI}             How do I register?
+
+@{i}This guide is a work in progress and will have a lot added...@{ui}
+
+@endnode
+
+@node ABOU "FTPd.guide/About RC-FTPd"
+
+@{b}What is this program all about?@{ub}
+@{b}-------------------------------@{ub}
+
+FTP stands for @{i}File Transfer Protocol@{ui}. Basically it is a way
+for users to access files on your hard drive, but with your permission
+only. ;-)
+
+This program originally came about because of the lack of decent ftp
+servers on the amiga, on the one hand you had difficult to configure
+unix convertions, and on the other you had unsupported and somewhat
+lacking (also norally unstable) amiga based clients (that often seem
+to contain a lot of unix code ;-P)
+
+I decided to write my own after hearing the thousandth complaint about
+the competition.
+
+This is entirely written from scratch, with no code taken from any
+other program on the amiga or any other platform.
+@endnode
+
+@node REQU "FTPd.guide/Requirements"
+
+@{b}What is needed to run RC-FTPd?@{ub}
+@{b}------------------------------@{ub}
+
+Hardware
+--------
+
+Should be able to run on practically any Amiga computer.
+
+Software
+--------
+
+Workbench 2.1 or later.
+(AppIcon requires 3.5 or later)
+
+MUI 3.8 or later.
+NList.mcc
+Lamp.mcc
+Textinput.mcc
+
+Miami and Genesis have both been reported to work properly, and it *should*
+work on any other TCP/IP stack.
+
+2 megabytes of RAM (more recommended)
+
+@endnode
+@node USAG "FTPd.Guide/Usage"
+
+@{b}How do I run RC-FTPd?@{ub}
+@{b}---------------------@{ub}
+
+RC-FTPd is designed as a stand-alone program, this means that you should
+run it from the shell/workbench. Although it may be possible to start it
+from your TCP/IP stack, that is not recommended, and I won't say here how
+to do it - do so at your own risk, and only if you are sure of what you
+are doing.
+
+There are currently no Tooltypes/Arguments, however I will get round to
+adding some soon, not least for choosing different Prefs...
+
+The config file is currently saved to both ENV and ENVARC, and is only
+loaded from ENV - so using something like HappyENV might be a good idea.
+
+@endnode
+@node MUI "FTPd.guide/MUI"
+
+                          This application uses
+
+
+                        MUI - MagicUserInterface
+
+                (c) Copyright 1992-97 by Stefan Stuntz
+
+
+MUI is a system to generate and maintain graphical user interfaces. With
+the  aid  of  a  preferences program, the user of an application has the
+ability to customize the outfit according to his personal taste.
+
+MUI is distributed as shareware. To obtain a complete package containing
+lots of examples and more information about registration please look for
+a  file  called  "muiXXusr.lha"  (XX means the latest version number) on
+your local bulletin boards or on public domain disks.
+
+          If you want to register directly, feel free to send
+
+
+                         DM 30.-  or  US$ 20.-
+
+                                  to
+
+                             Stefan Stuntz
+                        Eduard-Spranger-Straße 7
+                             80935 München
+                                GERMANY
+
+
+
+             Support and online registration is available at
+
+                          http://www.sasg.com/
+@endnode
+@node USER "FTPd.guide/Editing Users"
+
+@{b}How do I edit users?@{ub}
+@{b}--------------------@{ub}
+
+The first 16 columns are the groups this user has access to, doubleclick
+on them to toggle On/Off.
+
+Next comees the USERname and PASSword, both used during the login process.
+If you leave the password blank then the user is treated as being anonymous
+and doesn't need a password to login (although they are still asked for
+one).
+
+In order to Remove a user you need to clear the Username, and to use a
+random password you need to clear the password.
+
+You can also set the Maximum number of people allowed to use this account
+at one time. (the small buttons are ±1)
+
+Finally you can set the log level once they have finished logging on.
+NOTE: The log level is used for both snoop display and logfiles.
+
+@{b}Example@{ub}
+@{b}-------@{ub}
+
+@{"Screenshot" LINK ftpd_Users.iff/main}
+
+@{fg fill}0 1 2 3 4 5 6 7 8 9 A B C D E F Username  Password Max Log@{fg text}
+x x x x x x x x x x x x x x x x RobinC    (hidden) 0   No log
+x                               anonymous   @{b}anon@{ub}   3   Log all
+
+This allows me (RobinC) full access to everything I setup on my ftp, with
+no logging and no limit on how many times I can be on. All anonymous users
+are all logged fully, and have a limit of 3 connections.
+
+NOTE: All anon users share a single pool of users, if one has it set as 3,
+and another as 2, then the limit is 3 total anon if the user logs in under
+the first name, and 2 if they log in under the second...
+
+@endnode
+@node GROU "FTPd.guide/Editing Groups"
+
+@{b}How do I edit groups?@{ub}
+@{b}---------------------@{ub}
+
+The first 16 columns indicate what access this path provides, whether it
+is Read, Write or Delete (r for read, w for write, x for read/write and
+uppercase for delete)
+
+Different groups can get different Read/Write/Delete/+(subdir) access to
+the same path. The + (with other flags they go bold) means you can access
+all subdirs for that path providing they don't have their own access.
+Display -
+r = R    R = RD   @{b}r@{ub} = R+   @{b}R@{ub} = RD+
+w = W    W = WD   @{b}w@{ub} = W+   @{b}W@{ub} = WD+
+x = RW   X = RWD  @{b}x@{ub} = RW+  @{b}X@{ub} = RWD+
++ = S    D = D    @{b}D@{ub} = D+
+
+The next two are the alias and the path. If an alias has no path then it
+will make a list from the aliases under it. This currently means you
+cannot have any file aliases. (Though it is possible to hide files with it)
+
+@{b}Example@{ub}
+@{b}-------@{ub}
+
+@{"Screenshot" LINK ftpd_Groups.iff/main}
+
+@{fg fill}0 1 2 3 4 5 6 7 8 9 A B C D E F Alias       Path@{fg text}
+r @{b}r r r                       @{b}X@{ub} /           Internet:HTTP
+@{b}r                             @{b}X@{ub} /-Software- Internet:HTTP/-Software-
+  @{b}r                           X@{ub} /cd0        cd0:
+                                /downloads  @{b}fake@{ub}
+    @{b}r                         X@{ub} /muds       Unix:muds
+    @{b}r                         X@{ub} /muds/mud+  Unix:mud+
+      @{b}x                       X@{ub} /upload     Internet:HTTP/Upload
+
+Ok, root (/) only has subdir access for people *not* in group 0 - ie
+ not anon users.
+The only dir anon ppl get access to is "/-Software-", where they can find
+ this server strangely enough...
+My cd drive is there in case I want ppl to be able to access it. If there's
+ no disk in the drive then it won't complain if anyone does try to access
+ it.
+Next up is my /downloads dir - usually full of stuff I haven't cleared up,
+ since I've downloaded it from the net, I don't want ppl grabbing over
+ my slow modem ;-)
+The next two are due to me coding muds - sometimes I want people to grab
+ my source code. This way seems the easiest to me.
+Finally is my /upload dir - this is for anyone sending me stuff, but as
+ I don't use it very often I don't want people to send stuff unless I
+ specifically allow it.
+
+For all of these I keep group F with all flags - for me to remotely
+ access and play ;-)
+
+@{b}Important Notes@{ub}
+@{b}---------------@{ub}
+All the access flags will be changing some time in the near(?) future
+to comply with the latest ftp protocols, this should not effect your
+current settings, but will allow a *lot* more configuration in the
+future :-)
+
+@endnode
+@node MESS "FTPd.guide/Messages"
+
+@{b}Different message types?@{ub}
+@{b}------------------------@{ub}
+
+There are three types of messages:
+
+1. Banners
+On the prefs window these are shown in the @{fg shine}shine@{fg text} pen.
+They can contain certain control codes, so the user can get automatic
+information about the state of the server.
+@{fg shine}Closed@{fg text} - sent when someone tries to connect and they can't, either due
+ to the server being full, or you having closed it.
+@{fg shine}Greeting@{fg text} - sent when someone first connects - bad practice to use it
+but some ppl may want to.
+@{fg shine}Welcome@{fg text} - sent as soon as they are recognised after a valid USER/PASS.
+@{fg shine}Goodbye@{fg text} - sent after they issue a QUIT command... not often seen ;-)
+
+2. Console messages
+The second type of messages are sent by the server on your command. To
+use these just highlight the user who is connected, type something into
+the string gadget, and next time they perform any command they will be
+sent the text. Please note that not all ftp clients allow the user to
+see the messages though.
+
+3. ".message" files
+The third type of message is only available to registered users. With
+this you can have a file called ".message" in *every* directory they can
+CWD/CDUP into, which will be sent automatically whenever they do so. It
+is advisable to keep these to only a few lines. They are most useful in
+explaining what a directory is used for.
+
+@{b}Advanced@{ub}
+@{b}--------@{ub}
+
+As said earlier not every client allows you to see the messages. There
+is also another way to hide messages if you want to (and you know your
+client doesn't show them) which you could mention in the Welcome banner.
+Instead of sending a normal password, they send the password with a "-"
+as the first character, so -
+
+...
+PASS blah
+230-This is the banner...
+230-...
+230 User logged in, proceed
+...
+
+...
+PASS -blah
+230 User logged in, proceed
+...
+
+
+@endnode
+@node GENE "FTPd.guide/Editing General"
+
+@{b}How do I edit general settings?@{ub}
+@{b}-------------------------------@{ub}
+
+Hopefully these are pretty self-explanitory, but use the bubble help if
+you are unsure of anything.
+
+@{"Screenshot" LINK ftpd_General.iff/main}
+
+@{b}Port@{ub} is the port the ftpd sits on - 21 is the standard port, if
+you change this you need to restart the server for it to take effect.
+
+@{b}List pattern@{ub} is the names of files to @{u}show@{uu}, by default it
+will show everything except files starting with a dot, and icons.
+
+@{b}Anon@{ub} allows people to log in with no password, otherwise any @{"Users" Link USER}
+without a password set will not be able to log in.
+
+@{b}Max Users@{ub} is the total maximum number of users allowed to log in at
+any time.
+
+@{b}Max CPS@{ub} is a throttle on transfers, this affects everything except
+.message files, so keep those short.
+
+@{b}Timeout@{ub} is the number of minutes someone can idle before being
+automatically kicked off the server.
+
+@{b}NOOP@{ub} is a command used o keep a connection awake, even when someone
+is idling - this command allows it to be disabled so they still get kicked
+off after Timeout minutes.
+
+@{b}NoPASV@{ub} - there are two ways to transfer files, the user connects
+to you, or you connect to the user - enabling this @{b}disables@{ub} the ability
+of the user to connect to you, which can be useful as a security feature.
+
+@{b}Auto-Message@{ub} allows the server to type a ".message" file whenever
+someone changes directory.
+
+@{b}Auto-Comment@{ub} allows the server to set the file comment of new files to
+the User@IP of the person who uploaded it.
+
+@{b}Use-Logfile@{ub} writes the Snoop output to a logfile (PROGDIR:ftpd.log)
+
+- @{b}Seperate@{ub} writes a seperate file for every User (PROGDIR:Logs/user.log)
+
+@endnode
+@node AREX "FTPd.guide/ARexx"
+
+@{b}The AREXX port@{ub}
+@{b}--------------@{ub}
+
+The AREXX port is only available in the registered version.
+
+A quick note, there are 3 types of @{i}handle@{ui}, FTP, USER and ACCESS.
+The program checks that the handle you supply is valid, so you cannot
+cause a crash or anything by using the wrong type, however you will also
+not get a result. use the corrent type of handle for each command and
+you should have no problems.
+
+Results can be either a string <""> or a number <>.
+
+AREXX commands -
+
+@{b}VERSION@{ub}
+RESULT       = <ver>.<rev>
+
+@{b}FTP QUERY ALL@{ub}
+RESULT       = [<handle> ...]
+
+@{b}FTP QUERY ALL STEM stem@{ub}
+stem.COUNT   = <total>
+stem.0       = <handle>
+...
+stem.total   = <handle>
+
+@{b}FTP QUERY @{i}handle@{ui} STEM stem@{ub}
+stem.IP      = <"0.0.0.0">
+stem.ALIAS   = <"alias">
+stem.PATH    = <"path">
+stem.USER    = <user handle>
+stem.ACCESS  = <access handle>
+stem.LOG     = <current loglevel>
+stem.FILE    = <"filename">
+stem.CPS     = <cps>
+stem.SIZE    = <size for SEND only>
+stem.CURRENT = <current amount transfered>
+
+@{b}FTP KICK @{i}handle@{ui}@{ub}
+
+@{b}FTP ABORT @{i}handle@{ui}@{ub}
+
+@{b}FTP LOG @{i}handle@{ui} [1-4]@{ub}
+RESULT       = <loglevel>
+
+@{b}FTP MESSAGE @{i}handle@{ui} message@{ub}
+
+@{b}USER QUERY ALL@{ub}
+RESULT       = [<handle> ...]
+
+@{b}USER QUERY ALL STEM stem@{ub}
+stem.COUNT   = <total>
+stem.0       = <handle>
+...
+stem.total   = <handle>
+
+@{b}USER QUERY @{i}handle@{ui} STEM stem@{ub}
+stem.NAME    = <"name">
+stem.PASS    = <"pass">
+stem.ACCESS  = <access groups>
+stem.MAX     = <max sessions>
+stem.LOG     = <default loglevel>
+
+@{b}ACCESS QUERY ALL@{ub}
+RESULT       = [<handle> ...]
+
+@{b}ACCESS QUERY ALL STEM stem@{ub}
+stem.COUNT   = <total>
+stem.0       = <handle>
+...
+stem.total   = <handle>
+
+@{b}ACCESS QUERY @{i}handle@{ui} STEM stem@{ub}
+stem.ALIAS   = <"alias">
+stem.PATH    = <"path">
+stem.READ    = <read groups>
+stem.WRITE   = <write groups>
+stem.DELETE  = <delete groups>
+stem.SUBDIRS = <subdirs groups>
+
+@{b}STATS STEM stem@{ub}
+(as in the stats window)
+stem.DATASENT
+stem.DATARECV
+stem.DATATOTAL
+stem.FILESENT
+stem.FILERECV
+stem.FILETOTAL
+stem.CPSSENT
+stem.CPSRECV
+stem.CPSTOTAL
+stem.USERACCOUNT
+stem.USERANON
+stem.USERTOTAL
+
+@{b}STATUS open/closed@{ub}
+RESULT = "OPEN" / "CLOSED"
+@endnode
+
+
+
+@node BUGS "FTPd.guide/Bugs"
+
+@{b}Known bugs@{ub}
+@{b}----------@{ub}
+
+Any bugs in rc-ftpd that are reported are fixed within 24 hours. (Hopefully)
+
+@{b}Clients@{ub}
+@{b}-------@{ub}
+
+Quite a few other clients have bugss which are not mentioned here because
+either I have coded around them, they are not serious enough to matter, or
+they also do the right things if they can't do the wrong things.
+
+@{b}DopusFTP@{ub}
+
+This client (although my use by choice) has a couple of minor bugs, mainly
+that you cannot abort a transfer from it properly, it just closes the link
+entirely. An annoyance only.
+
+@{b}AmiFTP@{ub}
+
+No bugs known. One strange thing is that immediately after starting a xfer
+it often sends a NOOP, I'm not sure if this is to test wether the server
+supports ABOR or not (any server that replies immediately probably does).
+If so then good on the coder, if not then "erm...?" ;-)
+
+@{b}Voyager@{ub}
+
+This one is a pain - it doesn't seem to know even the most basic fact -
+you CWD to a dir, and RETR a file... Not very clever as that is not
+something that *any* of the RFC's allow...
+
+@{b}mFTP@{ub}
+
+This one doesn't know the CDUP command, and seems to think that every
+server understands "CWD .." as being the parent - something that is not
+guaranteed, in fact, I had to specifically code that in... :-/
+A little note here - CDUP shouldn't be used too much because of symbolic
+links - where there is eg - "/@{i}current@{ui}/" = "/pub/01012000/" where
+the server changes the path automatically for you, instead you should use
+the absolute path (unix style) of the parent that *you* as a client
+believe you have...
+
+@{b}Internet Explod@{bg shadow}@{fg shine}<@{fg text}@{bg back}rer@{ub}
+
+Erm... Probably so many bugs it'd take a ten meg guide ;-P
+
+@endnode
+@node FUTU "FTPd.guide/Future"
+
+@{b}What I'm wanting to do@{ub}
+@{b}----------------------@{ub}
+
+Banlist
+Individual accounts able to override MaxCPS
+Rewrite the reply messages to be more informative
+Give more multi-line replies, like "Full", "Banned" etc
+Make little pictures for the prefs pages ;-)
+Seperate the prefs and main program
+Write a "Bitfield.mcc"
+Rewrite the network stuff to reduce the CPU load (about 3% on my 060)
+Get all the ftpd stuff into an external library
+Make the relevent sliders use "Unlimited"/"None" instead of "0"
+Allow commands to be turned on/off individually
+Change port in prefs to take effect immediately
+Make ANON connections automatic
+Put more possible things to watch in the main window, but let client choose what to show
+Possibly make prefs use seperate windows for editing each user/group
+Notify needed to get done soon (per command?)
+Helpfile in printable form (ps?)
+
+@endnode
+@node THAN "FTPd.guide/Thanks"
+
+@{b}Who helped?@{ub}
+@{b}-----------@{ub}
+
+Firstly I'd like to thank Stefan Stuntz for his *excellent* MUI, without
+which this program wouldn't be, well, here. Yeah, thats right, without a
+decent GUI this wouldn't have been coded, and I'm not going back to the
+old gadtools, or the even worse "Artist Formalarly Known As ClassAct".
+
+And the betatesters and other people who helped find literally thousands
+of bugs for me to fix... (Thanking them? After all the work they gave me
+to do?? ;-)
+ SnorsleX
+ Purple
+ g0d00d
+ dUn3cHiLd
+ Crab
+ spr0g
+ Djole
+ Fred
+ Songonco
+
+@endnode
+@node CONT "FTPd.guide/Contact"
+
+@{b}How can I contact the coder?@{ub}
+@{b}----------------------------@{ub}
+
+Email: Robin Cloutman <rycochet@rycochet.demon.co.uk>
+ICQ:   13463163 (Rycochet) - rarely checked
+IRC:   RobinC on uk1.arcnet.vapor.com #AmiHelp
+Phone: (+44) [0]1865 310106 - my only phone, so usually engaged on net ;-)
+Post:  Robin Cloutman
+       5, Meadow View
+       Water Eaton Road
+       Summertown
+       Oxford
+       ENGLAND
+       OX2 7QS
+
+
+Please note - ChaoZer is now my co-coder for 3.x - but can't help with
+anything in 2.x, so keep contacting me ;-)
+
+@endnode
+@node REGI "FTPd.guide/Registration"
+
+@{b}What are the unregistered limits?@{ub}
+@{b}---------------------------------@{ub}
+
+Some of these - most are getting removed, and anyway, there's a free keyfile
+in the archive for the 2.x series...
+
+Limit of three connections at any time.
+MaxCPS is always at 3k cps.
+AREXX interface disabled.
+Auto send ".message" files disabled.
+Auto-comment disabled.
+
+@{b}How do I register?@{ub}
+@{b}------------------@{ub}
+
+Registration costs $20 (USD) - this will increase when 3.x is released!
+
+Please use Reg.net
+ https://secure.reg.net/product.asp?ID=10092
+for credit card orders, or send me a cheque for £20 (UKP) - as I hate
+handling them ;-).
+
+When you register you will be sent a keyfile, this will contain your name,
+email, and full postal address (they are under instructions not to accept
+registrations without all three). This means your keyfile will be
+traceable back to you, so do not spread it unless you wish to spend time
+visiting your local prison...
+
+@endnode

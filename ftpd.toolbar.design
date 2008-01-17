@@ -1,0 +1,24 @@
+MAIN
+
+Open			\			Door open
+Close			/			Door closed
+---
+Snoop						Magnifying glass
+Abort						<Stop> sign (english road)
+Kick						Boot
+---
+Prefs						Question mark
+MUI						MUI logo (small)
+
+
+SNOOP
+
+Abort						<Stop> sign
+Kick						Boot
+---
+Log Off		\			Felled tree?
+Known			<			Pine tree
+Commands		<			Axe + tree
+All			/			Forest
+To File					Floppy disk
+Clear Buffer			.

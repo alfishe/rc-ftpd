@@ -1,0 +1,58 @@
+Short:    The best ftp server for Amiga (main)
+Author:   Robin Cloutman <rycochet@rycochet.demon.co.uk>
+Type:     comm/tcp
+Requires: TCP/IP stack, MUI, Lamp.mcc, NList.mcc, Textinput.mcc
+
+This is an ongoing work in progress, you run it at your own risk.
+These 2.x releases are more bugfixes and minor additions - the 3.x series
+will be hugely improved (I hope) ;-)
+
+IMPORTANT: This can use a lot of stack, I know MUI programs say use a higher
+ value, but I'm reiterating that. If you don't have at least 32k stack for
+ the program it probably will crash at some point!
+
+Currently known ftp commands (though a few are unsupported/unneeded) -
+    USER    PASS    ACCT    REIN    QUIT
+    PORT    PASV    TYPE    STRU    MODE
+    RETR    STOR    APPE    ALLO    REST
+    RNFR    RNTO    ABOR    DELE    CWD
+    LIST    NLST   (SITE)  (STAT)   HELP
+    NOOP    CDUP    MDTM    MKD     PWD
+    RMD     SYST    XCUP    XCWD    XMKD
+    XPWD    XRMD
+
+Commands I have the info for which will appear in version 3 -
+    FEAT    MLST    MLSD    OPTS    AUTH
+    ADAT    PROT    PBSZ    CCC     MIC
+    CONF    ENC
+
+Commands I need more info on so I can add them -
+    CLNT
+
+Some of these, especially the security extensions, will rely on the number
+of people registering, If enough people don't register then don't expect me
+to do more than bugfix or add minor features, those that require a large
+amount of coding need me to *want* to do them, and I won't want to do them
+without having enough feedback... Also, the security extensions will only
+work on the registered version anyway ;-P
+
+Shareware
+---------
+
+Included is a keyfile that works with the 2.x series - you still need to
+register for free upgrades to 3.x which is due later this year.
+
+Registration is via Reg.net -
+https://secure.reg.net/product.asp?ID=10092
+
+For a limited time, registration is only $20, this will increase to $50 when
+version three is released... Just warning you ;-)
+
+Latest News
+-----------
+
+rc-ftpd version 3 is now in production, so any more changes on here will be
+bugixes and/or testing stuff for rc-ftpd3. As the new version is a totally
+different internal design, this one would be slower (xfer), user more CPU,
+and user more memory than the same stuff in version 3... So register and you
+will get a new keyfile with the new system ;-)

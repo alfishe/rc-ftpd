@@ -1,0 +1,57 @@
+                                    RC-FTPd
+                            Version 3, Draft Design
+
+                            Coders: RobinC, ChaoZer
+
+The program (compared to earlier versions) will be split up into a main
+program, and various modules for unrequired parts of the server.
+
+"rc-ftpd"
+...is the main program, it will do the following -
+1. If started from CLI or Wb, it will launch a main "ftpd" process that
+   will listen for connections, these will then be ReleaseSocket() to
+2. A number of "ftpd_handler" processes. These ObtainSocket(), and perform
+   all operations on the specific sockets.
+3. Every *user connection* has a single data structure:
+   struct ftp_connection
+   {
+      struct MinNode  fc_Node;
+      struct TagList  fc_Tags; /* from upcoming dynamic tag library */
+   };
+   This will contain all user related information, in a future proof format.
+4. Internal prefs are also handled by the same structure, there are various
+   lists -
+   a. General prefs, single TagList.
+      > struct TagList  prefs_User;
+   	struct MinList  prefs_General;
+   b. Group prefs, one list, every group has a struct, these override general
+      prefs
+      > struct ftp_group
+      > {
+      >    struct MinNode  fg_Node;
+      >    struct TagList  fg_Tags;
+      > };
+      > struct MinList  prefs_Group;
+   c. User prefs, one list, every user has a struct, these override general
+      and group prefs. *Can* be a member of a group, but may not be required
+      > struct ftp_user
+      > {
+      >    struct MinNode  fu_Node;
+      >    struct TagList  fu_Tags;
+      > };
+      > struct MinList  prefs_User;
+   d. Path prefs, this is a tree-like structure (everynode also contains a
+      MinList header). Every node can contain a usre and a group, whose
+      prefs override the Guest, User's and Group's prefs.
+      > struct ftp_path
+      > {
+      >    struct MinNode  fp_Node;
+      >    struct TagList  fp_Tags;
+      >    struct MinList  fp_Children;
+      > };
+      > struct MinList  prefs_Path;
+5. The prefs (and all data structures) are kept in a Semaphore protected
+   structure, unless absolutely necessary, access must be by shared.
+6. The API between modules will use standard amiga signals, *** should they
+   pass a copy of the taglist of the calling user, or give access to the
+   semaphore list?

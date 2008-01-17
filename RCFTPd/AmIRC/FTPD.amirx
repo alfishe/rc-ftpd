@@ -1,0 +1,186 @@
+/*
+ * AmIRC script to show who is on rc-ftpd
+ * $VER: FTPD.amirx 2.6 (27.07.2002) ©2002 Robin Cloutman
+ *
+ * /RX FTPD.amirx [SAY|TELL nick] [HELP|VERSION|STATUS|INFO]
+ *
+ * SAY will output to the channel,
+ * TELL will /NOTICE it to a user (sort of - unlike a *real* /NOTICE you won't
+ * see it...)
+ *
+ * If Netinfo.AmIPlug (by yours truly) is loaded then it'll try to RESOLVE
+ * the IP first...
+ *
+ * If you're using this as a template for your own scripts then leave the
+ * Private stuff alone.
+ */
+
+/* if host is blank then it'll use your current host */
+
+prefix  = "RC-FTPd"
+trigger = "!FTPD"
+host    = ""
+stats.1 = "Total:"
+stats.2 = ""
+stats.3 = ""
+
+/****************** START PRIVATE ******************/
+SIGNAL ON SYNTAX
+OPTIONS RESULTS
+PARSE ARG args
+myport = ADDRESS()
+args = PreOutput(args)
+/******************* END PRIVATE *******************/
+
+UPPER args
+
+IF args~='' & FIND('HELP VERSION STATUS STATS',args)==0 THEN args = 'HELP'
+
+IF FIND(args,'HELP')>0 THEN DO
+	IF output=='' THEN Output('/RX FTPD [SAY|TELL nick] [HELP|VERSION|STATUS|STATS]')
+	ELSE Output(trigger '[SAY|TELL nick] [HELP|VERSION|STATUS|STATS]')
+	EXIT
+END
+
+IF host=='' THEN DO
+	'GETMYNICK'
+	'USERHOST 'RESULT
+	PARSE VAR RESULT . '@' host
+END
+
+IF SHOW('p','RC-FTPD.1') THEN DO
+	IF FIND(args,'STATUS')>0 THEN DO
+		ADDRESS 'RC-FTPD.1' 'STATUS'
+		IF RESULT=='OPEN' THEN EXIT Output('My ftp is open - ftp://'host)
+		EXIT Output('My ftp is closed')
+	END
+END
+ELSE DO
+	IF args~='' & FIND('STATUS VERSION INFO',args)>0 THEN Output('My ftp is closed')
+	EXIT
+END
+
+IF FIND(args,'VERSION')>0 THEN DO
+	ADDRESS 'RC-FTPD.1' 'INFO VERSION'
+	Output( 'ftp://'host 'is running' SUBWORD(RESULT,2,3) )
+	EXIT
+END
+
+IF FIND(args,'STATS')>0 THEN DO
+	Output('ftp://'host' has transferred:')
+	DO i = 1 TO 3
+		IF stats.i~='' THEN DO
+			ADDRESS 'RC-FTPD.1' 'STATS 'i' STEM 'stats.
+			Output(stats.i stats.DATATOTAL' bytes in 'stats.FILETOTAL' files, at an average speed of 'stats.CPSTOTAL' cps.')
+		END
+	END
+	EXIT
+END
+
+ADDRESS 'RC-FTPD.1' 'FTP QUERY ALL STEM 'ftp.
+
+IF ftp.COUNT==0 THEN IF output=='' THEN Output('No users connected')
+ELSE EXIT Output('No users connected to ftp://'host)
+DO i = 0 TO ftp.COUNT-1
+	ADDRESS 'RC-FTPD.1' 'FTP QUERY 'ftp.i' STEM 'ftp.i.
+	ADDRESS 'RC-FTPD.1' 'USER QUERY 'ftp.i.USER' STEM 'user.
+	line = i': 'user.NAME' (' || FindUsers(ftp.i.IP) || ')'
+	IF ftp.i.FILE~="" THEN DO
+		IF ftp.i.SIZE>0 THEN line = line 'Leeching 'ftp.i.FILE' ('ftp.i.CURRENT'/'ftp.i.SIZE')'
+		ELSE                 line = line 'Sending  'ftp.i.FILE' ('ftp.i.SIZE')'
+		line = line' @ 'ftp.i.CPS' cps'
+	END
+	Output(line)
+END
+IF output=='' THEN Output('End of /FTPD list.')
+ELSE Output('End of user list for ftp://'host)
+
+EXIT
+
+FindUsers: PROCEDURE EXPOSE prefix output myport
+	hostname = ARG(1)
+	ADDRESS COMMAND 'Version NetInfo.AmIPlug VERSION 3 >NIL:'
+	IF RC==0 THEN DO
+		'Resolve 'ARG(1)
+		IF RC==0 THEN hostname = RESULT
+	END
+	ports = SHOW('P')
+	DO WHILE ports~=''
+		i = POS('AMIRC.',ports)
+		IF i==0 THEN LEAVE
+		PARSE VAR ports =i port ports
+		ADDRESS VALUE port
+		'Channels'
+		chans = RESULT
+		DROP user.
+		user.COUNT = 0
+		DO WHILE chans~=''
+			PARSE VAR chans chan chans
+			'GetUsers CHANNEL='chan
+			ppl = RESULT
+			DO WHILE ppl~=''
+				PARSE VAR ppl pers ppl
+				if LEFT(pers,1)=='@' | LEFT(pers,1)=='+' THEN pers = SUBSTR(pers,2)
+				'UserHost 'pers
+				PARSE VAR RESULT . '@' uh .
+				IF FIND(hostname,uh)>0 THEN DO
+					found=0
+					DO i = 1 TO user.COUNT
+						IF FIND(user.i.NAME,pers) THEN DO
+							user.i.CHANNEL = user.i.CHANNEL chan
+							found=1
+							LEAVE i
+						END
+						ELSE IF FIND(user.i.CHANNEL,chan) THEN DO
+							user.i.NAME = user.i.NAME pers
+							found=1
+							LEAVE i
+						END
+					END
+					IF found==0 THEN DO
+						i = user.COUNT + 1
+						user.COUNT = i
+						user.i.NAME = pers
+						user.i.CHANNEL = chan
+					END
+				END
+			END
+		END
+		IF user.COUNT~=0 THEN DO
+			line2 = line3 = ''
+			IF port~=myport THEN line2 = port' - '
+			ELSE line2 = ''
+			DO i = 1 TO user.COUNT
+				IF SYMBOL(line3)=='LIT' THEN line3 = SPACE(user.i.NAME,1,',')' on 'SPACE(user.i.CHANNEL,1,',')
+				ELSE line3 = line3' & 'SPACE(user.i.NAME,1,',')' on 'SPACE(user.i.CHANNEL,1,',')
+			END
+			IF SYMBOL(line)=='LIT' THEN line = line2 || line3
+			ELSE line = line', 'line2 || line3
+		END
+	END
+	IF SYMBOL(line)=='LIT' THEN line = WORD(hostname,1)
+	ADDRESS VALUE myport
+RETURN line
+
+/****************** START PRIVATE ******************/
+
+PreOutput: PROCEDURE EXPOSE prefix output
+	PARSE ARG args
+	IF UPPER(WORD(args,1))=='SAY' THEN DO;output = '#';PARSE VAR args . args;END
+	ELSE IF UPPER(WORD(args,1))=='TELL' THEN DO;PARSE VAR args . output args;END
+	ELSE output = ''
+	IF SYMBOL(prefix)=='LIT' THEN prefix = "ARexx"
+RETURN STRIP(args)
+
+Output: PROCEDURE EXPOSE prefix output
+	IF output=='#' THEN 'SAY 'ARG(1)
+	ELSE IF output~='' THEN 'RAW NOTICE 'output' :'ARG(1)
+	ELSE 'ECHO P='D2C(27)'b«'prefix'» TEXT='ARG(1)
+RETURN 1
+
+SYNTAX:
+	ADDRESS VALUE myport
+	'ECHO P='D2C(27)'b«Error» TEXT='ERRORTEXT(RC)' on line 'SIGL
+EXIT
+
+/******************* END PRIVATE *******************/

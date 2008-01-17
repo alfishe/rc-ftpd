@@ -1,0 +1,343 @@
+
+// AddHead
+// AddTail
+// Remove
+// CreateMsgPort
+// DeleteMsgPort
+
+struct FtpdBase
+{
+	struct MinList		 fb_Servers;
+	struct MinList		 fb_Users;			// Prefs
+	struct MinList		 fb_Paths;			// Prefs
+	u_long				 fb_Flags;			// Prefs
+	u_long				 fb_MaxUsers;		// Prefs
+	u_long				 fb_MaxCPS;			// Prefs
+	u_long				 fb_Timeout;		// Prefs
+	char					*fb_List;			// Prefs
+};
+
+#define	FTPD_NO_ACCEPT		(1<<0)		// Is server open?
+#define	FTPD_IGNORE_NOOP	(1<<1)		// Can we idle?
+#define	FTPD_MESSAGE		(1<<2)		// Auto-type .message files on CWD.
+#define	FTPD_COMMENT		(1<<3)		// Auto-set the comment of all uploaded files.
+
+struct FtpdServer
+{
+	struct MinNode		 fs_Node;
+	struct MinList		 fs_Connections;
+	struct Library		*fs_SocketBase;
+	struct Library		*fs_FTPdBase;
+	struct MsgPort		*fs_Port;
+	u_char				 fs_Count;
+	u_char				 fs_Flags;
+};
+
+struct FtpdConnection
+{
+	struct MinNode		 fc_Node;
+	long					 fc_FD;
+	u_long				 fc_Flags;
+	u_long				 fc_Port;
+	char					*fc_User;
+	char					*fc_Path;
+	char					*fc_Host;
+	char					*fc_Inbuf;
+	char					*fc_Outbuf;
+	struct sockaddr_in fc_Data;
+};
+
+struct FtpdUser
+{
+	struct MinNode		 fu_Node;
+	char					*fu_Name;			// Prefs
+	char					*fu_Password;		// Prefs
+	char					*fu_Group;			// Prefs
+	u_long				 fu_Flags;			// Prefs
+	u_short				 fu_MaxUsers;		// Prefs
+	u_short				 fu_NowUsers;
+	long					 fu_Xfer;			// Prefs	±(X * fu_Ratio)
+	long					 fu_Ratio;			// Prefs 0 = Not used
+};
+
+struct FtpdPath
+{
+	struct MinNode		 fa_Node;
+	char					*fa_Owner;			// Prefs, ie. "root"
+	char					*fa_Group;			// Prefs, ie. "admin"
+	char					*fa_Path;			// Prefs, ie. "Internet:HTTP/" (relative to virtual parent)
+	char					*fa_Virtual;		// Prefs, ie. "/"
+	u_short				 fa_OwnerAccess;	// Prefs
+	u_short				 fa_GroupAccess;	// Prefs
+	u_short				 fa_GuestAccess;	// Prefs
+	u_short				 fa_Flags;			// Prefs
+};
+
+#define	FTPD_PATH_NEW			(1<<0)	// STOR + RNTO
+#define	FTPD_PATH_APPEND		(1<<1)	// APPE
+#define	FTPD_PATH_REMDIR		(1<<2)	// RMD
+#define	FTPD_PATH_RENAME		(1<<3)	// RNFR + RNTO
+#define	FTPD_PATH_MAKEDIR		(1<<4)	// MKD
+#define	FTPD_PATH_DELETE		(1<<5)	// DELE
+#define	FTPD_PATH_READ			(1<<6)	// RETR
+#define	FTPD_PATH_WRITE		(1<<7)	// STOR + APPE
+#define	FTPD_PATH_CD			(1<<8)	// CWD
+#define	FTPD_PATH_LIST			(1<<9)	// LIST
+
+#define	FTPD_FLAG_SUBDIRS		(1<<0)	// Default ON, allows access to subdirs
+#define	FTPD_FLAG_OVERRIDE	(1<<1)	// Default OFF, override AmigaOS flags
+
+struct FtpdCommand
+{
+	struct MinNode		 fc_Node;
+	char					*fc_Name;
+	BOOL				  (*fc_Command)(struct FtpdConnection*);
+	u_long				 fc_Flags;
+	char					*fc_Notify;
+	char					*fc_Sound;
+};
+
+#define	FTPD_CMD_NOLOG			(1<<0)	// Don't log me - ie. HELP
+#define	FTPD_CMD_SECRET		(1<<1)	// Hide args in log - ie. PASS
+
+
+
+TABLE OF CONTENTS
+
+ftpd.library/--background--
+ftpd.library/AbortFTP
+ftpd.library/AddEventHook
+ftpd.library/AddSnoopHook
+ftpd.library/AllocFTP
+ftpd.library/FreeFTP
+ftpd.library/HandleFTP
+ftpd.library/RemoveSnoopHook
+
+
+ftpd.library/--background--                       ftpd.library/--background--
+
+	I was writing my ftp server and came accross a number of problems, this
+	is hopefully the best way for me to solve them. Among other things it is
+	intended for it to be able to handle as many connections as the system
+	is able to take, unlike the current limit of around 64 per process.
+
+	The library also implements ways for the connections to be snooped, and an
+	overall picture of the connections to be seen, without hard-coding any GUI
+	engine into the server.
+
+
+ftpd.library/LoadPrefs                                 ftpd.library/LoadPrefs
+  NAME
+	LoadPrefs - Load the prefs for the server.
+
+  SYNOPSIS
+	success = LoadPrefs( prefsname );
+	                        A0
+
+	BOOL LoadPrefs( char *prefsname );
+
+  FUNCTION
+	This will load the specified prefs file. Note that the prefs only deal
+	with user/access, the daemon process(es) must reside in InetD, and they
+	specify the ports used.
+
+
+ftpd.library/ObtainFTPd                               ftpd.library/ObtainFTPd
+  NAME
+	ObtainFTPd - Create a new ftp server.
+
+  SYNOPSIS
+	ObtainFTPd( id );
+	            D0
+
+	void ObtainFTPd( long id );
+
+  FUNCTION
+	Pass this the result of ReleaseSocket() and it will take over full running
+	of the socket to act as the FTP server. If there are no servers free then
+	it will spawn a new one. There are a maximum of 32 connections per server,
+	and it will automatically quit any server that has none (if specified by
+	the settings).
+
+	Each server goes under the name "ftpd_server" and handles both control and
+	data sockets.
+
+  SIGNALS
+	CTRL_C - Close *all* servers and all connections.
+	CTRL_D - Close this server and all its connections.
+	CTRL_E - Close this server and pass all connections to another.
+	CTRL_F - Close all data connections on this server.
+
+
+
+
+ftpd.library/AbortFTP                                   ftpd.library/AbortFTP
+  NAME
+	AbortFTP - abort any xfer in progress.
+
+  SYNOPSIS
+	AbortFTP( ftp );
+	          A0
+
+	void AbortFTP( struct FTPData *ftp );
+
+  FUNCTION
+	This function closes and cleans up any file transfers currently in progress
+	by this connection.
+
+  INPUTS
+	ftp - connection to remove file transfers from
+
+
+ftpd.library/AddEventHook                             ftpd.library/AddEventHook
+  NAME
+	AddEventHook - add an event monitoring hook.
+
+  SYNOPSIS
+	return = AddEventHook( hook, taglist );
+	  D0                    A0     A1
+
+	ULONG AddEventHook( struct Hook *hook, struct TagItem *taglist );
+
+  FUNCTION
+	This function lets you add a hook to monitor all events that happen. These
+	can be general events (Open/Close), ftp events, file events, or even
+	specific commands.
+
+	'hook' is a standard Amiga callback hook. The hook will be called with a
+	struct FTPData in A2 (if this is in relation to a connection), and the
+	type of event that triggered it in A1. Do not assume the contents of A2.
+
+	'taglist' is a pointer to a list of TagItems. Currently defined tags are
+	(contents of A2 in brackets) -
+	FTP_EVENT_OPEN (NULL)
+	 Server opened. will be called on start if the server is open by default.
+	 Result ignored.
+	FTP_EVENT_CLOSE (NULL)
+	 Server closed, will be called on quit if the server is still open.
+	 Result ignored.
+	FTP_EVENT_ACCEPT (struct FTPData *)
+	 Accepting a control connection. Result is TRUE/FALSE, Accept/Deny.
+	 Note: on Deny no message is sent, so best queue some reason.
+	FTP_EVENT_SENDFILE (struct FTPData *)
+	 Starting to send a file. Result is TRUE/FALSE, Send/Don't.
+	FTP_EVENT_SENDFILE2 (struct FTPData *)
+	 After a file has been sent. Result is ignored.
+	FTP_EVENT_RECVFILE (struct FTPData *)
+	 Starting to receive a file. Result is TRUE/FALSE, Receive/Don't.
+	FTP_EVENT_RECVFILE2 (struct FTPData *)
+	 After receiving a file. Result is ignored.
+
+
+ftpd.library/AddSnoopHook                             ftpd.library/AddSnoopHook
+  NAME
+	AddSnoopHook - add an input/output monitoring hook.
+
+  SYNOPSIS
+	handle = AddSnoopHook( hook, ftp, userdata, flags );
+	  D0                    A0   A1      A2      D0
+
+	struct FTPSnoop *AddSnoopHook( struct Hook *hook, struct FTPData *ftp, APTR userdata, ULONG flags );
+
+  FUNCTION
+	This function adds a callback hook to monitor all input/output to an ftp
+	control connection. You can add as many hooks as you wish to each
+	connection, and every hook is seperate, so in order to watch two seperate
+	connections, you need to AddSnoopHook to each.
+
+	'hook' is a standard Amiga callback hook. The hook will be called with
+	a struct FTPData in A2 and the text to be sent in a1. If A1 is NULL then
+	it has just recieved a line and you can access this from ftp->command and
+	ftp->arguments. (You can also use ftp->input, but as this might need
+	telnet sequences removed and passwords scrambled this is not advised...)
+
+	'ftp' must be a properly initialised, and connected, FTPData.
+
+	'userdata' is for your own use.
+
+	'flags' are currently unused - but will be in future.
+
+  INPUTS
+	hook - callback hook
+
+	ftp - connection to be monitored
+
+	userdata - whatever you want
+
+	flags - currently NULL
+
+  RESULT
+	handle - an FTPSnoop handle, or NULL for failure
+
+  NOTE
+	If you try to setup a duplicate hook (same Hook and FTPData) then the
+	current FTPSnoop will be changed (userdata/flags) and returned again.
+
+	It is advisable NOT to call anything that might block as this is holding
+	up the process used for this connection (and probably others).
+
+
+ftpd.library/AllocFTP                                     ftpd.library/AllocFTP
+  NAME
+	AllocFTP - create a new FTPData struct. (PRIVATE)
+
+  SYNOPSIS
+   ftp = AllocFTP( );
+	 D0
+
+	struct FTPData *AllocFTP( void );
+
+  FUNCTION
+	Allocates a struct FTPData - the size might change.
+
+  RESULT
+	ftp - a blank FTPData structure
+
+
+ftpd.library/FreeFTP                                     ftpd.library/FreeFTP
+  NAME
+	FreeFTP - free a FTPData struct. (PRIVATE)
+
+  SYNOPSIS
+	FreeFTP( ftp );
+	         A0
+
+	void FreeFTP( struct FTPData *ftp );
+
+  FUNCTION
+	Frees a struct FTPData - the size might change.
+
+  INPUTS
+	ftp - a FTPData structure
+
+
+ftpd.library/HandleFTP                                  ftpd.library/HandleFTP
+  NAME
+	HandleFTP - process input, buffer output, perform operations.
+
+  SYNOPSIS
+	HandleFTP( ftp );
+	           A0
+
+	void HandleFTP( struct FTPData *ftp );
+
+
+ftpd.library/RemoveSnoopHook                       ftpd.library/RemoveSnoopHook
+  NAME
+	RemoveSnoopHook - remove an input/output monitoring hook.
+
+  SYNOPSIS
+	RemoveSnoopHook( hook, ftp );
+	                  A0   A1
+
+	void RemoveSnoopHook( struct Hook *hook, struct FTPData *ftp );
+
+  FUNCTION
+	This removes a previously added snoop hook. It is permissable to call it
+	with ftp being NULL - in this case this hook is removed from every ftp
+	that is using it.
+
+  INPUTS
+	hook - callback hook
+
+	ftp - connection remove hook from

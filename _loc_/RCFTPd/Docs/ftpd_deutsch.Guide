@@ -1,0 +1,811 @@
+@database ftpd.guide
+@version $VER: ftpd.guide 2.41 (27.2.2002) ©2000-2002 Robin Cloutman
+
+@node MAIN "FTPd.guide"
+
+@{b}RC-FTPd 2.x Guide - Inhaltsverzeichnis@{ub}
+@{b}-------------------------------------@{ub}
+
+Willkommen bei @{i}rc-ftpd@{ui}, dem besten AmigaOS FTP-Server.
+
+Hoffentlich hilft Ihnen diese Anleitung, das Programm zu verstehen und
+Probleme aller Art zu lösen. Falls doch Probleme auftauchen sollten,
+zögern Sie nicht, mich zu verständigen, ich werde mich um eine Behebung
+bemühen.
+
+ @{" Über RC-FTPd  " Link ABOU}            Wozu dient dieses Programm?
+ @{" Anforderungen " Link REQU}            Was benötigt man zum Starten?
+ @{" Benutzung     " Link USAG}            Wie starte ich RC-FTPd?
+ @{" MUI           " Link MUI}             Dieses Programm nutzt MUI!
+
+ @{" Benutzerbearbeitung    " Link USER}   Wie bearbeite ich Benutzer?
+ @{" Gruppenbearbeitung     " Link GROU}   Wie bearbeite ich Gruppen?
+ @{" Allgemeine Bearbeitung " Link GENE}   Wie ändere ich die allgemeinen Einstellungen?
+ @{" Nachrichten            " Link MESS}   Diverse Nachrichtentypen?
+
+ @{" ARexx " Link AREX}                    Der AREXX-Port (registrierte Version)
+
+ @{" Fehler      " Link BUGS}              Bekannte Fehler (auch in Clients)
+ @{" Geschichte  " Link HIST}              Was geschah bisher
+ @{" Zukünftiges " Link FUTU}              Was möchte ich noch tun
+
+ @{" Danksagungen  " Link THAN}            Wer half?
+ @{" Kontakt       " Link CONT}            Wie kontaktiere ich den Autor?
+ @{" Registrierung " Link REGI}            Wie registriere ich mich?
+
+@{i}Diese Anleitung ist in ständiger Bearbeitung und wird noch stark erweitert...@{ui}
+
+@endnode
+
+@node ABOU "FTPd.guide/Über RC-FTPd"
+
+@{b}Wozu dient dieses Programm?@{ub}
+@{b}---------------------------@{ub}
+
+FTP steht für @{i}File Transfer Protocol@{ui}. Hauptsächlich erlaubt
+es anderen, Dateien auf Ihrer Festplatte zu nutzen, jedoch nur mit
+Ihrer Erlaubnis. ;-)
+
+Dieses Programm entstand aus dem Umstand heraus, dass auf dem Amiga
+ein Mangel an vernünftigen FTP-Servern herrscht, einerseits musste
+man schwierige UNIX-Umsetzungen konfigurieren und andererseits gibt
+es nicht unterstützte und mangelhafte (unstabile) Amiga-Clients (die
+offensichtlich jede Menge UNIX-Quelltext besitzen ;-P)
+
+Daraufhin entschied ich, selber einen Server zu entwickeln.
+
+Es ist alles Eigenentwicklung ohne Nutzung von Quelltexten aus 
+anderen Produkten.
+@endnode
+
+@node REQU "FTPd.guide/Anforderungen"
+
+@{b}Was wird benötigt für RC-FTPd?@{ub}
+@{b}------------------------------@{ub}
+
+Hardware
+--------
+
+Sollte auf praktisch jedem Amiga laufen.
+
+Software
+--------
+
+Workbench 2.1 oder höher.
+(AppIcon benötigt 3.5 oder höher)
+
+MUI 3.8 oder höher.
+NList.mcc
+Lamp.mcc
+Textinput.mcc
+
+Miami (getestet) oder jeder andere TCP/IP Stack (nicht getestet ;-)
+
+2 Megabyte RAM (mehr wird empfohlen)
+
+@endnode
+@node USAG "FTPd.Guide/Benutzung"
+
+@{b}Wie benutzt man RC-FTPd?@{ub}
+@{b}------------------------@{ub}
+
+RC-FTPd kann von Workbench oder Shell gestartet werden. Obwohl ein Start
+vom TCP/IP-Stack möglich ist, wird dies nicht empfohlen. Ich werde hier 
+auch nicht erläutern, wie dies getan werden kann - dies geschieht dann
+auf eigenes Risiko.
+
+Derzeit werden keine Tooltypes/Argumente unterstützt, vielleicht später
+eventuell für verschiedene Einstellungen...
+
+Die Einstellungsdatei wird derzeit in ENV und ENVARC gesichert, jedoch 
+nur von ENV geladen - so ist die Benutzung von HappyENV o.ä. vielleicht
+eine gute Idee.
+
+@endnode
+@node MUI "FTPd.guide/MUI"
+
+                         Diese Anwendung nutzt
+
+
+                     @{b}MUI - MagicUserInterface@{ub}
+
+                 (c) Copyright 1993/97 bei Stefan Stuntz
+
+
+ MUI ist ein System zum Erstellen und Verwalten grafischer Benutzerober-
+ flächen. Mit der Hilfe eines Einstellungsprogramms kann der Nutzer die
+ Anwendung an seine persönlichen Wünsche anpassen.
+
+ MUI wird als Shareware vertrieben. Um ein komplettes Paket mit vielen
+ Beispielen und weiteren Informationen über die Registrierung zu erhalten,
+ suche nach einer Datei "muiXXusr.lha" (XX steht für die neueste Version)
+ auf den örtlichen Mailboxen oder Public Domain Disketten.
+
+         Wenn du dich direkt registrieren möchtest, sende
+
+
+                        DM 30.-  oder  US$ 20.-
+
+                                 an
+
+                            Stefan Stuntz
+                       Eduard-Spranger-Straße 7
+                            80935 München
+                               GERMANY
+
+
+
+             Unterstützung und Online-Registration unter
+
+                          http://www.sasg.com/
+@endnode
+@node USER "FTPd.guide/Benutzer bearbeiten"
+
+@{b}Wie bearbeite ich Benutzer?@{ub}
+@{b}---------------------------@{ub}
+
+Die ersten 16 Spalten stellen die Gruppen dar, auf welche der Benutzer 
+Zugriff hat. Mit Doppelklick stellt man diese an oder aus.
+
+Das nächste sind BENUTZERname und PASSwort, welche während des Anmelde-
+prozesses benötigt werden. Wenn kein Passwort eingegeben wird, gilt der
+Benutzer als anonym und benötigt keines (auch wenn er danach gefragt wird).
+
+Um einen Benutzer zu entfernen, muss man den Benutzernamen löschen, und um
+ein zufälliges Passwort einzuführen, muss das alte gelöscht werden.
+
+Man kann ebenso die maximale Anzahl an Benutzern für den gleichzeitigen
+Zugriff einstellen. (die kleinen Knöpfe bedeuten ±1)
+
+Letztendlich kann noch die Art der Notizen angegeben werden, welche über 
+angemeldete Benutzer geführt werden sollen.
+HINWEIS: Diese Einstellung dient nur der Anzeige, "schnüffeln" wäre ein
+besseres Wort, aber in späteren Versionen werden diese Notizen vielleicht
+in eine Datei geschrieben (nur registrierte Version).
+
+@{b}Beispiel@{ub}
+@{b}--------@{ub}
+
+@{"Screenshot" LINK pic_Users.iff/main}
+
+@{fg fill}0 1 2 3 4 5 6 7 8 9 A B C D E F Benutzername  Passwort    Max Notizen@{fg text}
+x x x x x x x x x x x x x x x x RobinC       (versteckt) 0   Keine Notizen
+x                               anonym       @{b}anonym@{ub}   3   Alles notieren
+x                               anonymous    @{b}anonym@{ub}   3   Alles notieren
+x                               ftp          @{b}anonym@{ub}   3   Alles notieren
+
+Dies gestattet mir (RobinC) vollen Zugriff auf alles auf meinem ftp,
+ohne Notizen und Zeitbegrenzung. Bei den drei anonymen Benutzern
+(alle von verschiedenen Clients genutzt) wird vollständig mitnotiert, 
+und *jeder* darf höchstens 3 Verbindungen aufbauen. In einer späteren
+Version werden die Beschränkungen für anonyme Benutzer in einer
+eigenen Gruppe definiert werden können.
+
+@endnode
+@node GROU "FTPd.guide/Gruppen bearbeiten"
+
+@{b}Wie bearbeite ich Gruppen?@{ub}
+@{b}--------------------------@{ub}
+
+Die ersten 16 Spalten geben an, welche Zugriffe dieser Pfad unterstützt,
+ob gelesen, geschrieben oder gelöscht werden darf (r für Lesen, w für
+Schreiben, x für Lesen/Schreiben und groß geschrieben für Löschen)
+
+Verschiedene Gruppen können verschiedene Zugriffsberechtigungen für 
+denselben Pfad erhalten. Ein + (mit anderen Schutzbits zusammen) 
+bedeutet, dass die Zugriffsberechtigungen auch für alle Unterver-
+zeichnisse gelten, die ansonsten eigene Berechtigungen hätten.
+Anzeige -
+r = R    R = RD   @{b}r@{ub} = R+   @{b}R@{ub} = RD+
+w = W    W = WD   @{b}w@{ub} = W+   @{b}W@{ub} = WD+
+x = RW   X = RWD  @{b}x@{ub} = RW+  @{b}X@{ub} = RWD+
++ = S    D = D    @{b}D@{ub} = D+
+
+Die beiden nächsten sind Alias und Pfad. Falls ein Alias keinen Pfad
+besitzt, wird eine Liste der untergeordneten Aliase gezeigt. Dies
+bedeutet, es sind derzeit keine Datei-Aliase zulässig. (Aber man kann
+Dateien damit verstecken)
+
+@{b}Beispiel@{ub}
+@{b}--------@{ub}
+
+@{"Screenshot" LINK pic_Groups.iff/main}
+
+@{fg fill}0 1 2 3 4 5 6 7 8 9 A B C D E F Alias       Pfad@{fg text}
+r @{b}r r r                       @{b}X@{ub} /           Internet:HTTP
+@{b}r                             @{b}X@{ub} /-Software- Internet:HTTP/-Software-
+      @{b}r                       X@{ub} /cd0        cd0:
+                                /downloads  @{b}vorgetäuscht@{ub}
+    @{b}r                         X@{ub} /muds       Unix:muds
+    @{b}r                         X@{ub} /muds/mud+  Unix:mud+
+      @{b}x                       X@{ub} /upload     Internet:HTTP/Upload
+
+Ok, Root (/) hat nur Zugriff auf Unterverzeichnisse für Leute *außer* in
+Gruppe 0 - z.B. keine anonymen Benutzer.
+Das einzige Verzeichnis, auf das anonyme Benutzer Zugriff haben, ist
+"/-Software-"...
+Mein CD-Laufwerk ist für den Fall eingebunden, dass ich Leuten Zugriff
+darauf geben möchte. Wenn keine CD eingelegt ist, geht es natürlich nicht.
+Das nächste ist mein /downloads Verzeichnis - wo gewöhnlich all das Zeug
+liegt, was ich gerade aus dem Netz gezogen und noch nicht durchgesehen habe.
+Ich möchte nicht, das jemand über mein langsames Modem darauf zugreift ;-)
+Die nächsten beiden enthalten meine Programmiersachen - manchmal möchte
+ich Leuten Zugriff darauf geben. Dieser Weg ist der einfachste.
+Zuletzt mein /upload Verzeichnis - hier kann jedermann etwas schicken,
+aber da ich nicht sehr oft nachsehe, möchte ich dies nur, wenn ich es 
+ausdrücklich erlaube.
+
+Für alle diese habe ich die Gruppe F mit allen Berechtigungen - für mich
+zum Steuern und Probieren ;-)
+
+@{b}Wichtige Hinweise@{ub}
+@{b}-----------------@{ub}
+Alle Schutzbits werden in naher(?) Zukunft geändert, um mit den neuesten
+ftp Protokollen übereinzustimmen. Dies sollte derzeitige Einstellungen
+nicht beeinträchtigen, wird jedoch in Zukunft weitere Einstellmöglichkeiten
+gewährleisten :-)
+
+@endnode
+@node MESS "FTPd.guide/Nachrichten"
+
+@{b}Verschiedene Nachrichtentypen?@{ub}
+@{b}------------------------------@{ub}
+
+Es gibt drei Nachrichtentypen:
+
+1. Banner
+Im Einstellungsfenster werden diese mit der @{fg shine}shine@{fg text} Farbe gezeigt.
+Diese enthalten diverse Steuerzeichen, so dass der Benutzer automatisch Informationen
+über den Zustand des Servers bekommen kann.
+@{fg shine}Getrennt@{fg text} - bekommt jemand, der versucht, sich anzumelden, wenn
+der Server voll oder nicht aktiv ist.
+@{fg shine}Grüße@{fg text} - bekommt jemand beim ersten Anmelden - schlechte Angewohnheit,
+aber einige Leute bestehen drauf.
+@{fg shine}Willkommen@{fg text} - bekommt jemand nach erfolgreicher Anmeldung.
+@{fg shine}Tschüß@{fg text} - bekommt jemand nach einem QUIT Befehl... nicht oft ;-)
+
+2. Konsolenanzeigen
+Die zweite Art Nachrichten werden durch den Server auf Ihren Befehl versandt.
+Wählen Sie den betreffenden Benutzer aus und tragen Sie etwas in das Textfeld
+ein und bei der nächsten Befehlseingabe bekommt er den eingegebenen Text
+präsentiert. Nicht alle ftp Clients zeigen dem Benutzer diese Nachrichten
+wirklich.
+
+3. ".message" Dateien
+Dieser Typ ist nur für registrierte Benutzer verfügbar. Hiermit kann in
+jedem Verzeichnis eine Datei namens ".message" existieren, die dem Nutzer
+angezeigt wird, sobald er das Verzeichnis mit CWD/CDUP erreicht. Es ist
+sinnvoll, hier nur ein paar Zeilen einzutragen, die eine kurze Erläuterung
+über den Verzeichnisinhalt hergeben.
+
+@{b}Erweitert@{ub}
+@{b}---------@{ub}
+
+Wie schon erwähnt, gestattet nicht jeder Client das Anzeigen von
+Nachrichten. Es gibt einen weiteren Weg, Nachrichten zu unterdrücken.
+Falls dies gewünscht ist (und der Client diese nicht zeigt) können Sie
+darauf im Willkommen-Banner aufmerksam machen. Anstatt eines normalen
+Passwortes, kann man ein "-" als erstes Zeichen voranstellen, so -
+
+...
+PASS blah
+230-Dies ist das Banner...
+230-...
+230 Benutzer angemeldet, weiter
+...
+
+...
+PASS -blah
+230 Benutzer angemeldet, weiter
+...
+
+
+@endnode
+@node GENE "FTPd.guide/Allgemeine Bearbeitung"
+
+@{b}Wie bearbeite ich die allgemeinen Einstellungen?@{ub}
+@{b}------------------------------------------------@{ub}
+
+Hoffentlich ist dies selbsterklärend, aber bei Unsicherheiten
+benutzen Sie bitte die Onlinehilfe.
+
+@{"Screenshot" LINK pic_General.iff/main}
+
+(Tschuldigung, aber hier ändert sich soviel und das Programm
+enthält immer die neueste Hilfe.)
+
+@endnode
+@node AREX "FTPd.guide/ARexx"
+
+@{b}Der AREXX Port@{ub}
+@{b}--------------@{ub}
+
+Den AREXX Port gibt es nur in der registrierten Version.
+
+Es gibt drei verfügbare Typen von @{i}Referenzen@{ui} FTP, USER
+und ACCESS. Das Programm prüft den verwendeten Typ ab, so dass
+kein Absturz oder anderes durch Verwendung eines falschen Typs
+verursacht werden kann, aber man würde dann auch kein Ergebnis
+bekommen. Benutzen Sie den korrekten Typ, und Sie werden keine
+Probleme bekommen.
+
+Resultate können entweder Text <""> oder eine Nummer <> sein.
+
+AREXX Befehle -
+
+@{b}VERSION@{ub}
+RESULT       = <ver>.<rev>
+
+@{b}FTP QUERY ALL@{ub}
+RESULT       = [<Referenz> ...]
+
+@{b}FTP QUERY ALL STEM stem@{ub}
+stem.COUNT   = <Gesamt>
+stem.0       = <Referenz>
+...
+stem.total   = <Referenz>
+
+@{b}FTP QUERY @{i}Referenz@{ui} STEM stem@{ub}
+stem.IP      = <"0.0.0.0">
+stem.ALIAS   = <"Alias">
+stem.PATH    = <"Pfad">
+stem.USER    = <Benutzer>
+stem.ACCESS  = <Zugriffe>
+stem.LOG     = <aktuelle Notizeinstellung>
+stem.FILE    = <"Dateiname">
+stem.CPS     = <cps>
+stem.SIZE    = <Größe für nur SEND>
+stem.CURRENT = <aktuell übertragener Wert>
+
+@{b}FTP KICK @{i}Referenz@{ui}@{ub}
+
+@{b}FTP ABORT @{i}Referenz@{ui}@{ub}
+
+@{b}FTP LOG @{i}Referenz@{ui} [1-4]@{ub}
+RESULT       = <Notizeinstellung>
+
+@{b}FTP MESSAGE @{i}Referenz@{ui} Nachricht@{ub}
+
+@{b}USER QUERY ALL@{ub}
+RESULT       = [<Referenz> ...]
+
+@{b}USER QUERY ALL STEM stem@{ub}
+stem.COUNT   = <Gesamt>
+stem.0       = <Referenz>
+...
+stem.total   = <Referenz>
+
+@{b}USER QUERY @{i}Referenz@{ui} STEM stem@{ub}
+stem.NAME    = <"Name">
+stem.PASS    = <"Passwort">
+stem.ACCESS  = <Zugriff Gruppen>
+stem.MAX     = <maximale Sitzungen>
+stem.LOG     = <Standard Nachrichteneinstellung>
+
+@{b}ACCESS QUERY ALL@{ub}
+RESULT       = [<Referenz> ...]
+
+@{b}ACCESS QUERY ALL STEM stem@{ub}
+stem.COUNT   = <Gesamt>
+stem.0       = <Referenz>
+...
+stem.total   = <Referenz>
+
+@{b}ACCESS QUERY @{i}Referenz@{ui} STEM stem@{ub}
+stem.ALIAS   = <"Alias">
+stem.PATH    = <"Pfad">
+stem.READ    = <Lesen Gruppen>
+stem.WRITE   = <Schreiben Gruppen>
+stem.DELETE  = <Löschen Gruppen>
+stem.SUBDIRS = <Unterverzeichnisse Gruppen>
+
+@endnode
+
+
+
+@node BUGS "FTPd.guide/Fehler"
+
+@{b}Bekannte Fehler@{ub}
+@{b}---------------@{ub}
+
+Alle gemeldeten Fehler in rc-ftpd werden innerhalb 24 Stunden behoben. (Hoffentlich)
+
+@{b}Clients@{ub}
+@{b}-------@{ub}
+
+Einige Clients weisen Fehler auf, welche aber nicht stören, da ich sie 
+umgangen habe, sie nicht schwerwiegend sind oder letztendlich doch das
+Richtige ausgeführt wird, wenn das Falsche nicht geht.
+
+@{b}DopusFTP@{ub}
+
+Dieser Client (obwohl meine erste Wahl) hat jede Menge kleiner Fehler, 
+hauptsächlich kann man keine Übertragung abbrechen, er beendet gleich
+ganz. Nur eine Ärgerlichkeit.
+
+@{b}AmiFTP@{ub}
+
+Keine Fehler bekannt. Nur eine Sache, nach Aufbau einer Übertragung 
+sendet es oft ein NOOP, ich bin mir nicht sicher ob es damit nur den
+Server auf ABOR testen will (jeder Server, der sofort antwortet, tut
+es).
+
+@{b}ATC@{ub}
+
+Dieser Client hat die *sehr* schlechte Angewohnheit, manchmal Ports 
+außerhalb des Servicebereichs anzufragen (es ist bereits gemeldet und
+sollte bald/bereits behoben sein). Der Servicebereich ist 1024-5000,
+und viele Ports außerhalb dieses Bereichs sind oft blockiert. Ich
+*könnte* eine Prüfung einbauen, die verhindert, dass solche Ports 
+akzeptiert werden, aber dann geht ATC in eine Endlosschleife oder
+schreit einfach los. Die derzeitige Lösung besteht darin, dass der
+Benutzer die Verbindung beendet und mittels PASV wiederverbindet 
+(Ich glaube, es ist ein Menüpunkt).
+
+@{b}Voyager@{ub}
+
+Dieser ist eine Katastrophe - er scheint die einfachsten Dinge nicht
+zu kennen - man CWD in ein Verzeichnis und RETR eine Datei... Nicht
+sehr sinnvoll, da RFC *derartiges* nicht gestattet...
+
+@{b}mFTP@{ub}
+
+Dieser kennt den Befehl CDUP nicht und denkt, dass jeder Server "CWD .."
+versteht - das ist jedoch nicht garantiert, ich musste dies extra in
+das Programm aufnehmen... :-/
+
+@{b}Internet Explod@{bg shadow}@{fg shine}<@{fg text}@{bg back}rer@{ub}
+
+Erm... So viele Fehler, dass ich wahrscheinlich 10 Minuten darüber
+debatieren könnte ;-P
+
+@endnode
+@node HIST "FTPd.Guide/Geschichte"
+
+@{b}Was geschah bisher@{ub}
+@{b}--------------------@{ub}
+
++ Hinzugefügt
+- Entfernt
+! Verändert
+* Fehler behoben
+
+0.x
+---
+
++ Erste Versionen, zum Probieren.
+
+1.x
+---
+
+! Vollständig funktionsfähig und mit MUI-Oberfläche.
+
+2.x
+---
+
+! Ab jetzt Shareware und jede Menge neue Eigenschaften.
+
+2.15 (23.7.2000)
+----------------
+
++ Wenn "Messages:" auf der allgemeinen Seite eingegeben wird, wird eine
+  Datei namens ".message" gesucht und gesendet.
+
+! Das Keyfile kann jetzt an 3 verschiedenen Stellen sein - PROGDIR: S:
+  und $KEYFILES, in dieser Reihenfolge.
+
++ Wenn jemand sein Passwort beginnend mit "-" sendet, nimmt es das
+  heraus und unterdrückt mehrzeilige Antworten.
+
+! Die Einstellungsdatei liegt nun in ENVARC/ENV, wenn von einer früheren
+  Version upgedatet wird, dann muss man sie von PROGDIR: verschieben.
+
+* Fehler beim Abschneiden der LIST Antwort behoben - einige Clients brachen
+  ab.
+
+2.16 (25.7.2000)
+----------------
+
++ Neu: Automatischer Kommentar, so kann man jetzt den Sender der Dateien sehen...
+
++ Neu: Hilfesystem, vorerst öffnet es nur das Guide, aber in Zukunft wird es
+  eine echte Online-Hilfe sein.
+
+2.17 (28.7.2000)
+----------------
+
+* Alle mehrzeiligen Antworten beginnen mit "###-", statt nur die erste
+  Zeile.
+
++ Einige Online-Hilfe Texte bei den Einstellungen.
+
+2.18 (8.8.2000)
+---------------
+
+! Einige interne Änderungen die Antworten betreffend.
+
+* Endlich kann NOOP erfolgreich ignoriert werden.
+
+* Timing-Routinen sollten jetzt genauer sein
+
+2.19 (13.8.2000)
+----------------
+
+- Einstellung "Systemtyp" entfernt.
+
++ Unterstützung für die Identify.library, um das verwendete
+  System zu prüfen. Die Bibliothek wird nur bei Bedarf geöffnet.
+
+- Einstellung "DefPath" entfernt.
+
++ Der Vorgabepfad wird automatisch gefunden.
+
+2.20 (21.8.2000)
+----------------
+
++ Lokalisierungsunterstützung.
+
+2.21 (31.8.2000)
+----------------
+
+* Boh! Die Piraterieprüfung prüfte nicht auf Registrierung - so wurden
+  unregistrierte zu Piraten (da es schon ein Piratenkeyfile gibt, ist
+  diese Prüfung leider notwendig) :-(
+
+! Vieles in LIST/NLST geändert, jetzt werden verlinkte Verzeichnisse
+  als solche gezeigt - keine vorgetäuschten Verzeichnisse mehr ;-P
+
+* Dummerweise "Speichern" und "Benutzen" vertauscht - oops ;-P
+
+2.22 (2.9.2000)
+---------------
+
+- Linkzeug entfernt - zu viele Clients gestört :-(
+
+* Lokalisierung verbessert und die Fehlermeldungen überarbeitet.
+
+- identify.library aus SYST entfernt - nicht notwendig...
+
++ Unterstützung für weitere Befehle...
+
+* Viele Dinge bei *allen* Befehlen geändert.
+
++ Neu: EPLF Format (LIST)
+
++ Neuer Befehl FEAT, aber nicht OPTS *böser Junge* ;-P
+
+2.23 (28.10.2001)
+-----------------
+
+* Fehler beim Schließen der Einstellungsseite behoben.
+
+* LIST Ausgabe leicht geändert - mehr Clients unterstützt.
+
+2.24 (28.10.2001)
+-----------------
+
+* 3 Enforcerhits entfernt - nichts Ernstes.
+
++ Neues AppIcon, zeigt jetzt die Anzahl der verbundenen Benutzer. (3.5+)
+
++ Neue Option KeinPASV - deaktiviert den Befehl PASV, nützlich für Firewalls.
+
+2.25 (29.10.2001)
+-----------------
+
+* LIST Ausgabe erneut leicht verändert - noch kompatibler.
+
+2.26 (29.10.2001)
+-----------------
+
++ Extrainfos in den Nachrichten möglich, derzeit max_cps, max_users und
+  current_users.
+
+2.27 (31.10.2001)
+-----------------
+
++ Notizen in Datei. Entweder "PROGDIR:ftpd.log" oder separat
+  "PROGDIR:logs/<Benutzer>.log"
+
+2.28 (03.11.2001)
+-----------------
+
+* Jetzt Unix-Stil forciert.
+
++ Abfragen für nicht existierende Laufwerke werden unterlassen (z.B. CD-LW).
+
+* Ausgabe einiger Befehle verbessert - hoffentlich alle notwendigen.
+
++ Vollständig lokalisiert, jetzt brauche ich Übersetzungen.
+
+* Einstellungsseite für Gruppen verbessert.
+
+2.29 (04.11.2001)
+-----------------
+
+* Sicherheitsfehler beim Start behoben - schwer zu finden.
+
++ "/" in allen Alias+Pfad entfernt.
+
+* Geringe Geschwindigkeitssteigerungen.
+
+* Installer verbessert - das echte Keyfile wird nicht mehr überschrieben
+  (falls man registriert ist)... hoffe Ich... ;-)
+
+* Anleitung aktualisiert und Screenshots dazu ;-)
+
+* Online-Hilfe verbessert.
+
+2.31 (07.11.2001)
+-----------------
+
+* Fehler bei Notizen behoben.
+
++ Erste Übersetzungen (Serbisch..., danke Djole ;-)
+
+* Einige kleine Fehler behoben, Optimierungen.
+
+2.32 (08.11.2001)
+-----------------
+
+* Wahrscheinlicher Sicherheitsfehler behoben.
+
+2.33 (01.12.2001)
+-----------------
+
+* Übertragungsgeschwindigkeit massiv erhöht... doppelt so schnell.
+
+2.34 (02.12.2001)
+-----------------
+
+* Optionen für Nachrichten verbessert.
+
+2.35 (02.12.2001)
+-----------------
+
+* Fehler bei ABORt behoben.
+
+* Fehler in STOR und RECV mit Zugriffsrechten behoben.
+
+* Fehler im schnellen Übertragungscode behoben.
+
+2.36 & 2.37 (23.12.2001)
+------------------------
+
+* Kleinere Fehler behoben
+
++ Portugiesischer Katalog
+
+2.38 (05.02.2002)
+-----------------
+
+* Endlich Fehler behoben, der zum Einfrieren führte.
+
+2.39 (06.02.2002)
+-----------------
+
+* Netzwerkgeschwindigkeit erhöht, optimiert für 16k TCP-Puffer (auf den
+  meisten Systemen) - scheint 60% Zuwachs zu geben, erbitte Rückmeldungen ;-)
+
++ Anonyme Benutzer jetzt auf "Max Benutzer" PRO IP beschränkt!! - Das
+  bedeutet, wenn jemand sich mehrmals anonym anmeldet, zählen alle 
+  Anmeldungen für ein und dieselbe Person...
+
+2.40 (12.02.2002)
+-----------------
+
++ Der interne asynchrone Dateizugriff wird jetzt für Übertragungen verwendet -
+  beansprucht weniger CPU und vielleicht etwas schneller ;-)
+
++ Interne SFV Unterstützung - eine Art CRC32 Prüfung, falls man eine *.sfv
+  Datei vor der Hauptdatei bekommt, wird die Datei nach Empfang geprüft und
+  mit "OK ..." oder "BAD ..." kommentiert ;-)
+
+
+2.41 (27.02.2002)
+-----------------
+
++ Jetzt asynchrone Verbindung() - bessere Kompatiblität mit Firewalls ;-)
+
++ ENV:IP für PASV - sollte hinter einem Router helfen.
+
+@endnode
+@node FUTU "FTPd.guide/Zukünftiges"
+
+@{b}Was möchte ich noch tun@{ub}
+@{b}-----------------------@{ub}
+
+Bannliste
+Individuelle Zugriffe zum Überblenden von MaxCPS
+Umschreiben der Antworten für mehr Informationsgehalt
+Mehr mehrzeilige Antworten, wie "Voll", "Verbannt" usw.
+Kleine Bilder für die Einstellungsseiten ;-)
+Einstellungen und Hauptprogramm trennen
+"Bitfield.mcc" entwerfen
+Netzwerkzeug überarbeiten um CPU-Benutzung zu reduzieren (etwa 3% auf meinem 060)
+Alles ftpd Zeug in eine externe Bibliothek
+Bessere Schalter für "Unbegrenzt"/"Keine" statt "0"
+Befehle zum selbständigen an- und abschalten
+Ändern des Ports in den Einstellungen mit sofortiger Wirkung
+Automatische ANON Verbindungen
+Mehr Möglichkeiten im Hauptfenster, aber wählbar
+Separate Fenster in den Einstellungen für verschiedene Gruppen/Benutzer
+Benachrichtigungen (über Befehle?)
+Hilfedatei in druckbarer Form (ps?)
+
+@endnode
+@node THAN "FTPd.guide/Danksagungen"
+
+@{b}Wer half?@{ub}
+@{b}---------@{ub}
+
+Zuallererst möchte ich Stefan Stuntz für sein *exzellentes* MUI danken,
+ohne welches dieses Programm gar nicht wäre. Ja, ohne eine vernünftige
+Oberfläche hätte ich es nicht geschrieben, ich kehre nicht zu den alten
+gadtools zurück oder etwa zu ClassAct.
+
+Und den Betatestern und anderen Leuten, die halfen, tausende von Fehlern
+zu finden und zu beheben... (Ihnen danken? Nach all der Arbeit, die sie mir
+machten?? ;-)
+ SnorsleX
+ Purple
+ g0d00d
+ dUn3cHiLd
+ Crab
+ spr0g
+ Djole
+ Fred
+ Songonco
+
+@endnode
+@node CONT "FTPd.guide/Kontakt"
+
+@{b}Wie kann man mich erreichen?@{ub}
+@{b}----------------------------@{ub}
+
+E-Mail:  Robin Cloutman <rycochet2@yahoo.com>
+ICQ:     13463163 (Rycochet) - selten erreichbar
+IRC:     RobinC unter uk1.arcnet.vapor.com #diehard
+Telefon: (+44) [0]1865 310106 - mein einziges Telefon, gewöhnlich für's Netz
+                                gebraucht ;-)
+Post:    Robin Cloutman
+         5, Meadow View
+         Water Eaton Road
+         Summertown
+         Oxford
+         ENGLAND
+         OX2 7QS
+
+
+Bitte beachten - ChaoZer ist mein Co-Autor ab 3.x - aber er kann für 2.x
+nicht weiterhelfen, so fragen sie mich ;-)
+
+@endnode
+@node REGI "FTPd.guide/Registrierung"
+
+@{b}Welche Beschränkungen hat die unregistrierte Version?@{ub}
+@{b}-----------------------------------------------------@{ub}
+
+Beschränkt auf 3 Verbindungen jederzeit.
+MaxCPS ist immer 3k cps.
+AREXX-Schnittstelle deaktiviert.
+Automatisch ".message" Datei senden funktioniert nicht.
+Automatischer Kommentar deaktiviert.
+
+@{b}Wie registriere ich?@{ub}
+@{b}--------------------@{ub}
+
+Registrierkosten $20 (USD) - dies wird ab 3.x erhöht!
+
+Bitte benutzen Sie Reg.net
+ https://secure.reg.net/product.asp?ID=10092
+für Kreditkartenbestellungen oder schicken Sie mir einen Scheck über £20 (UKP) - 
+aber ich benutze so etwas nicht gern ;-).
+
+Nach der Registrierung bekommen Sie ein Keyfile, welches ihren Namen, ihre
+E-Mail Adresse und die vollständige Postanschrift enthält (ohne diese drei
+Angaben kann ich eine Registrierung nicht akzeptieren). Das bedeutet, dass
+dieses Keyfile rückverfolgabr ist, also geben Sie es nicht weiter, sonst
+müssten Sie die Konsequenzen tragen...
+
+@endnode

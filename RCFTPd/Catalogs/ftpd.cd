@@ -1,0 +1,377 @@
+; *************************************************
+; Catalog description file for rc-ftpd
+; $VER: ftpd.cd 2.28 (3.11.2001) ©1999-2001 Robin Cloutman
+; *************************************************
+;
+MSG_ERROR (1000//128)
+RC-FTPD Error
+;
+MSG_OK (//64)
+Ok
+;
+MSG_SAVE (//64)
+Save
+;
+MSG_USE (//64)
+Use
+;
+MSG_CANCEL (//64)
+Cancel
+;
+MSG_KICK (//64)
+Kick
+;
+MSG_ABORT (//64)
+Abort
+;
+MSG_ADD (//64)
+Add
+;
+MSG_REMOVE (//64)
+Remove
+;
+MSG_SORT (//64)
+Sort
+;
+MSG_BAD_CONFIG (//128)
+Unrecognised config file format
+;
+MSG_STARTUP_MUI (//128)
+Unable to open muimaster.library 18+
+;
+MSG_STARTUP_UTILITY (//128)
+Unable to open utility.library 36+
+;
+MSG_STARTUP_SOCKET (//128)
+Unable to open bsdsocket.library 4+\n\nPlease start your TCP/IP stack first...
+;
+MSG_STARTUP_MEMORY (//128)
+Unable to create memory pool\n\nQuit one or more applications or reboot
+;
+MSG_STARTUP_APP (//128)
+Failed to create application\n\nPossibly a lack of memory or missing classes\n(more detail in later version)
+;
+MSG_SOCKET_OPEN (//128)
+Unable to open socket\nUnknown cause - possibly unsuported socket\n\n(email me so I can trace it)
+;
+MSG_SOCKET_OPTIONS (//128)
+Unable to set socket options\nUnknown cause - possibly unsuported socket
+;
+MSG_SOCKET_BIND (//128)
+Unable to bind port\nProbably trying to start twice
+;
+MSG_SOCKET_LISTEN (//128)
+Unable to listen on port\nUnknown cause - possibly unsuported socket
+;
+MSG_SAVE_CONFIG (//128)
+Unable to save config
+;
+MSG_LIST_STATUS (//64)
+Status
+;
+MSG_LIST_IP (//64)
+IP
+;
+MSG_LIST_USER (//64)
+User
+;
+MSG_LIST_CMD (//64)
+CMD
+;
+MSG_LIST_ARGS (//64)
+Args
+;
+MSG_LIST_ONLINE (//128)
+\ec%ld/%ld Users online
+;
+MSG_MUI_ABOUT (1200//128)
+The best ftp daemon for Amiga
+;
+MSG_MUI_MUI (//128)
+MUI...
+;
+MSG_MUI_PREFS (//128)
+Prefs...
+;
+MSG_SHORT_KICKABORT (//256)
+\ebKick\en will disconnect the selected\nuser and any transfers they are doing\n\ebAbort\en will just cancel their transfer
+;
+MSG_SHORT_MESSAGE (//256)
+Type a short message in here and it\nwill be sent to the selected user
+;
+MSG_SHORT_OPEN (//256)
+This is the general status of your server\nCan people connect (\ebOpen\en) or not (\ebClosed\en)
+;
+MSG_UNLIMITED (//64)
+unlimited
+;
+MSG_CONTROL_CODES (//256)
+You can use the following control codes:\n$u = Current users\n$m = Max users\n$c = Max CPS\n$s = MaxCPS/Current users
+;
+MSG_UPLOAD (//128)
+%s [%s]\n%s\n%s\n%s (%ld/%ld bytes, %lu cps)
+;
+MSG_DOWNLOAD (//128)
+%s [%s]\n%s\n%s\n%s (%ld bytes, %lu cps)
+;
+MSG_NOLOAD (//128)
+%s [%s]\n%s\n%s\n
+;
+MSG_LOGIN (//64)
+\eblogin
+;
+MSG_LOG_NONE (//64)
+No log
+;
+MSG_LOG_KNOWN (//64)
+Log known
+;
+MSG_LOG_COMMANDS (//64)
+Log commands
+;
+MSG_LOG_ALL (//64)
+Log all
+;
+MSG_ONLINE_LIMIT (//128)
+\ec%ld/%ld Users online
+;
+MSG_ONLINE_NOLIMIT (//128)
+\ec%ld Users online
+;
+MSG_FTP_CLOSED (//64)
+FTP Closed
+;
+MSG_FTP_OPEN (//64)
+FTP Open
+;
+MSG_FTP_GUIDE (//64)
+ftpd.Guide
+;
+MSG_PREF_WINDOW (//64)
+RC-FTPd Preferences
+;
+MSG_PREF_PORT (//128)
+Port:
+;
+MSG_PREF_PORT_HELP (//256)
+This is the port people must connect to,\ntakes effect on restart.\n\nDefault: 21
+;
+MSG_PREF_LIST (//256)
+List pattern:
+;
+MSG_PREF_LIST_HELP (//256)
+This is the pattern used to list files/dirs,\nit does not stop download, just visibility.\n\nDefault: \"~(.#?|#?.info)\"
+;
+MSG_PREF_ANON (//256)
+Anon:
+;
+MSG_PREF_ANON_HELP (//256)
+Do you allow people to log on \ebwithout\en passwords?\n\nDefault: NO\nNote: they must have a blank password on the Users page.
+;
+MSG_PREF_MAXUSERS (//256)
+Max Users:
+;
+MSG_PREF_MAXUSERS_HELP (//256)
+The maximum number of control connections,\nsome clients make more than one\nconnection, so you should also set a Timeout.\n\nDefault: 0 (no limit) (\ebUnregistered 1 - 3\en)
+;
+MSG_PREF_MAXCPS (//256)
+Max CPS:
+;
+MSG_PREF_MAXCPS_HELP (//256)
+The maximum transfer speed for files,\nuseful if you are on a modem and\ndon't want the server stealing\nall your bandwidth.\n\nDefault: 0 (no limit) (\ebUnregistered 1 - 3072\en)
+;
+MSG_PREF_TIMEOUT (//256)
+Timeout:
+;
+MSG_PREF_TIMEOUT_HELP (//256)
+After this many minutes of doing nothing\npeople are kicked off.\n\nDefault: 0 (no timeout)
+;
+MSG_PREF_NOOP (//256)
+Noop:
+;
+MSG_PREF_NOOP_HELP (//256)
+If this is allowed then people can\nuse the NOOP command (NO OPeration) to\nprevent themselves being kicked off.\n\nDefault: OFF
+;
+MSG_PREF_NOPASV (//256)
+NoPASV:
+;
+MSG_PREF_NOPASV_HELP (//256)
+If this is checked then people can\nonly connect via the PORT command.\nThis is more secure,\nand recommended for people behind firewalls.
+;
+MSG_PREF_AUTOMESSAGE (//256)
+Auto-Message:
+;
+MSG_PREF_AUTOMESSAGE_HELP (//256)
+Whenever someone changes their directory\nthis will type a file called \".message\"\nas part of the reply they get.\n\nDefault: ON (\ebRegistered only\en)
+;
+MSG_PREF_AUTOCOMMENT (//256)
+Auto-Comment:
+;
+MSG_PREF_AUTOCOMMENT_HELP (//256)
+Whenever someone sends you a file this\nwill set the file comment to \"user@ip\".\n\nDefault: ON (\ebRegistered only\en)
+;
+MSG_PREF_LOGFILE (//256)
+Use-Logfile:
+;
+MSG_PREF_LOGFILE_SEPERATE (//256)
+Seperate:
+;
+MSG_PREF_LOGFILE_HELP (//256)
+Logs everything you chose (as in Snoop)\nto either a single logfile, or one\nlogfile per user.
+;
+MSG_PAGE_INFO (//64)
+Info
+;
+MSG_PAGE_USERS (//64)
+Users
+;
+MSG_PAGE_GROUPS (//64)
+Groups
+;
+MSG_PAGE_GENERAL (//64)
+General
+;
+MSG_PAGE_CLOSED (//64)
+\e3Closed
+;
+MSG_PAGE_GREETING (//64)
+\e3Greeting
+;
+MSG_PAGE_WELCOME (//64)
+\e3Welcome
+;
+MSG_PAGE_GOODBYE (//64)
+\e3Goodbye
+;
+MSG_SNOOP_TITLE (//64)
+RC-FTPd Snoop
+;
+MSG_SNOOP_CLEAR (//64)
+Clear
+;
+MSG_USER_LIST_USERNAME (//64)
+Username
+;
+MSG_USER_LIST_PASSWORD (//64)
+Password
+;
+MSG_USER_LIST_MAX (//64)
+Max
+;
+MSG_USER_LIST_LOG (//64)
+Log
+;
+MSG_USER_LIST_NONAME (//64)
+\ebunset
+;
+MSG_USER_LIST_PASS (//64)
+(hidden)
+;
+MSG_USER_LIST_NOPASS (//64)
+\ebanon
+;
+MSG_USER_USER (//64)
+User:
+;
+MSG_USER_PASS (//64)
+Pass:
+;
+MSG_USER_MAX (//64)
+Max:
+;
+MSG_PATH_LIST_ALIAS (//64)
+Alias
+;
+MSG_PATH_LIST_PATH (//64)
+Path
+;
+MSG_PATH_NOALIAS (//64)
+\ebnone
+;
+MSG_PATH_NOPATH (//64)
+\ebfake
+;
+MSG_PATH_READ (//64)
+Read:
+;
+MSG_PATH_WRITE (//64)
+Write:
+;
+MSG_PATH_DELETE (//64)
+Delete:
+;
+MSG_PATH_SUBDIRS (//64)
+SubDirs:
+;
+MSG_PATH_ALIAS (//64)
+Alias:
+;
+MSG_PATH_PATH (//64)
+Path:
+;
+MSG_MENU_PROJECT (//64)
+Project
+;
+MSG_MENU_ENABLED (//64)
+Enabled
+;
+MSG_MENU_SETTINGS (//64)
+Settings...
+;
+MSG_MENU_MUISETTINGS (//64)
+MUI Settings...
+;
+MSG_MENU_QUIT (//64)
+Quit
+;
+MSG_MUI_STATS (//64)
+Stats
+;
+MSG_STATS_TITLE (//64)
+RC-FTPd Stats
+;
+MSG_STATS_DATA (//64)
+Data Transferred
+;
+MSG_STATS_DATA_BYTES (//64)
+%s bytes
+;
+MSG_STATS_FILES (//64)
+Files Transferred
+;
+MSG_STATS_FILES_FILES (//64)
+%s file(s)
+;
+MSG_STATS_CPS (//64)
+Average CPS
+;
+MSG_STATS_CPS_CPS (//64)
+%s cps
+;
+MSG_STATS_SENT (//64)
+Sent:
+;
+MSG_STATS_RECIEVED (//64)
+Recieved:
+;
+MSG_STATS_TOTAL (//64)
+Total:
+;
+MSG_STATS_USERS (//64)
+Users
+;
+MSG_STATS_USERS_ACCOUNT (//64)
+Account:
+;
+MSG_STATS_USERS_ANON (//64)
+Anon:
+;
+MSG_STATS_RESET (//64)
+Reset Stats
+;
+MSG_PREF_ASYNC (//64)
+Async
+;
+MSG_PREF_ASYNC_HELP (//256)
+With this enabled file transfer is faster and uses less CPU...\nHowever it has been reported to crash some people's\nmachines - you have been warned\n\nDefault: OFF
+;

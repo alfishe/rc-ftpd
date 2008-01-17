@@ -1,0 +1,51 @@
+/*
+** Get general information on rc-ftpd, also
+** get names of everyone accessing it right now
+*/
+
+OPTIONS RESULTS
+
+ADDRESS 'RC-FTPD.1'
+'INFO TITLE'
+title = RESULT
+'INFO AUTHOR'
+author = RESULT
+'INFO COPYRIGHT'
+copyright = RESULT
+'INFO DESCRIPTION'
+description = RESULT
+'INFO VERSION'
+version = RESULT
+'INFO BASE'
+base = RESULT
+'INFO SCREEN'
+screen = RESULT
+SAY "Title......: "title
+SAY "Author.....: "author
+SAY "Copyright..: "copyright
+SAY "Description: "description
+SAY "Version....: "version
+SAY "Basename...: "base
+SAY "Screen.....: "screen
+
+'FTP QUERY ALL STEM 'ftp.
+out = "Connected..:"
+IF ftp.COUNT==0 THEN out = out "---"
+ELSE DO i = 0 TO ftp.COUNT - 1
+	'FTP QUERY 'ftp.i' STEM 'ftp.
+	'USER QUERY 'ftp.USER' STEM 'user.
+	IF RC==0 THEN out = out user.NAME
+END
+SAY out
+
+'USER QUERY ALL STEM 'user.
+out = "Users......:"
+IF user.COUNT==0 THEN out = out "---"
+ELSE DO i = 0 TO user.COUNT - 1
+	'USER QUERY 'user.i' STEM 'user.
+	IF RC==0 THEN out = out user.NAME
+END
+SAY out
+
+'ACCESS QUERY ALL STEM 'access.
+SAY "Paths......: "access.COUNT

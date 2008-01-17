@@ -1,0 +1,783 @@
+;$VER: rc-ftpd Install 2.0 (27.3.2002) ©1999-2002 Robin Cloutman
+
+(set #language (getenv "Language"))
+
+(complete 0)
+
+;=============================================================================
+; START English strings
+(set #msg-abort
+(cat "ERROR - Cannot find the executable!!!\n"
+     "\n"
+     "Please ensure you extracted the archive\n"
+     "correctly!"
+))
+
+(set #msg-setup
+(cat "Checking system and application..."
+))
+
+(set #msg-dest
+(cat "Where do you want to install RC-FTPd?\n"
+     "(A new drawer will NOT be created)"
+))
+
+(set #msg-dest-help
+(cat "It doesn't matter where you put this,\n"
+     "although I strongly suggest you\n"
+     "don't hide it 30 levels down..."
+))
+
+(set #msg-cpu
+(cat "Which CPU do you have?"
+))
+
+(set #msg-cpu-help
+(cat "Unless you have some reason to choose\n"
+     "a different version, best leave\n"
+     "this to the default version.\n"
+     "\n"
+     "This will use the best available version,\n"
+     "so if you haven't downloaded the ftpd_cpu\n"
+     "archive, then the best you can get is the\n"
+     "plain 68000 version.\n"
+     "\n"
+     "The 68000 version is safe for all cpu's"
+     "\n"
+     @askchoice-help
+))
+
+(set #msg-install
+(cat "Installing main RC-FTPd executable..."
+))
+
+(set #msg-install-help
+(cat "It's pretty useless without this..."
+     "\n"
+     @copyfiles-help
+))
+
+(set #msg-help
+(cat "Installing the Guide..."
+))
+
+(set #msg-help-help
+(cat "This one isn't updated every time the main\n"
+     "program is, however whenever it\n"
+     "is I bump the version to match the server."
+     "\n"
+     @copyfiles-help
+))
+
+(set #msg-screenshot
+(cat "Installing the Screenshots...\n"
+     "Please choose the main location as the guide."
+))
+
+(set #msg-screenshot-help
+(cat "These files are linked from the guide,\n"
+     "if you know what you're doing then they're\n"
+     "not needed.\n"
+     "\n"
+     "They must be installed in the same location\n"
+     "as the guide for the links to work correctly."
+     "\n"
+     @copyfiles-help
+))
+
+(set #msg-icon
+(cat "Installing the default icon..."
+))
+
+(set #msg-icon-help
+(cat "Eye candy for Workbench 3.5+ users,\n"
+     "you'll need to be running HappyEnv or env-handler\n"
+     "to be able to use this right off,\n"
+     "otherwise copy the icon from ENVARC: to ENV:..."
+))
+
+(set #msg-locale
+(cat "Copying other languages...\n"
+     "(English built in)"
+))
+
+(set #msg-locale-help
+(cat "Just choose the languages you wish installed..."
+))
+
+(set #msg-key
+(cat "Installing the RC-FTPd keyfile..."
+))
+
+(set #msg-key-help
+(cat "Well, why don't you want to install it,\n"
+     "it's not as if you really want to use\n"
+     "all the features anyway..."
+))
+
+(set #msg-exit
+(cat "Installation complete\n"
+     "\n"
+     "RC-FTPd has been installed in "
+))
+; END English strings
+;-----------------------------------------------------------------------------
+; START Greek strings
+(if (= @language "greek")
+(
+
+	(set #msg-abort
+	(cat "ÓÖÁËÌÁ - Äåí ìðïñþ íá âñù ôï åêôåëÝóéìï áñ÷åßï!!!"
+	))
+
+	(set #msg-setup
+	(cat "`Åëåã÷ïò óõóôÞìáôïò êáé ðñïãñÜììáôïò..."
+	))
+
+	(set #msg-dest
+	(cat "Ðïõ èÝëåôå íá åãêáôáóôÞóåôå ôï RC-FTPd;\n"
+	     "(Äåí èá äçìéïõñãçèåß íÝï óõñôÜñé)"
+	))
+
+	(set #msg-dest-help
+	(cat "Äåí Ý÷åé óçìáóßá ðïõ èá ôï ôïðïèåôÞóåôå,\n"
+	     "áí êáé äåí èá óõìâïýëåõá\níá ôï êñýøåôå êÜðïõ..."
+	))
+
+	(set #msg-cpu
+	(cat "ÐïéÜ Ýêäïóç ôïõ RC-FTPd èÝëåôå íá åãêáôáóôÞóåôå;"
+	))
+
+	(set #msg-cpu-help
+	(cat "Áí äåí Ý÷åôå êÜðïéï ëüãï íá åðéëÝîåôå Üëëç Ýêäïóç,\n"
+	     "êáëýôåñá áöÞóôå ôçí åðéëïãÞ óôçí\n"
+	     "ðñïåðéëåãìÝíç Ýêäïóç.\n"
+	     "(Ç Ýêäïóç ãéá 68000 åßíáé áóöáëÞò ãéá üëïõò ôïõò åðåîåñãáóôÝò)"
+	))
+
+	(set #msg-install
+	(cat "ÅãêáôÜóôáóç RC-FTPd..."
+	))
+
+	(set #msg-install-help
+	(cat "Äåí ãßíåôáé ôßðïôá ÷ùñßò áõôü..."
+	))
+
+	(set #msg-help
+	(cat "ÅãêáôÜóôáóç ôïõ Guide..."
+	))
+
+	(set #msg-help-help
+	(cat "Ïé ïäçãßåò ôïõ ðñïãñÜììáôïò äåí áíáíåþíïíôáé êÜèå öïñÜ ðïõ\n"
+	     "êõêëïöïñåß íÝá Ýêäïóç, ðÜíôùò áíáíåþíù ôçí Ýêäïóç\n"
+	     "ãéá íá ôáéñéÜæåé ìå ôïí\nôïí äéáêïìéóôÞ..."
+	))
+
+	(set #msg-screenshot
+	(cat "ÅãêáôÜóôáóç ôùí Screenshots..."
+	))
+
+	(set #msg-screenshot-help
+	(cat "ÁõôÜ ôá áñ÷åßá óõíäÝïíôáé ìå ôï guide,\n"
+	     "áí îÝñåôå ôé êÜíåôå ôüôå äåí ôá\n÷ñåéÜæåóôå..."
+	))
+
+	(set #msg-icon
+	(cat "ÅãêáôÜóôáóç ôïõ ðñïåðéëåãìÝíïõ åéêïíéäßïõ..."
+	))
+
+	(set #msg-icon-help
+	(cat "Ãéá ôïõò ÷ñÞóôåò Workbench 3.5+,\n"
+	     "÷ñåéÜæåôå íá ôñÝ÷åôå ôï HappyEnv Þ ôï env-handler\n"
+	     "ãéá íá ôï ÷ñçóéìïðïéÞóåôå áìÝóùò,\n"
+	     "áëëéþò áíôéãñÜøôå ôï åéêïíßäéï áðü ôï ENVARC: óôï ENV:..."
+	))
+
+	(set #msg-locale
+	(cat "ÁíôéãñáöÞ Üëëùí ãëùóóþí...\n"
+	     "(Ôá áããëéêÜ åßíáé åãêáôåóôçìÝíá óôï ðñüãñáììá)"
+	))
+
+	(set #msg-locale-help
+	(cat "ÄéáëÝîôå ôéò Üëëåò ãëþóóåò ðïõ èÝëåôå íá åãêáôáóôÞóåôå..."
+	))
+
+	(set #msg-key
+	(cat "ÅãêáôÜóôáóç ôïõ êëåéäéïý ôïõ RC-FTPd..."
+	))
+
+	(set #msg-key-help
+	(cat "Äåí öáíôÜæïìáé íá ìçí èÝëåôå íá ôï åãêáôáóôÞóåôå,\n"
+	     "ìå áõôü èá ìðïñåßôå íá ÷ñçóéìïðïéåßôå\n"
+	     "üëåò ôéò åðéëïãÝò ôïõ ðñïãñÜììáôïò..."
+	))
+
+	(set #msg-exit
+	(cat "Ç åãêáôÜóôáóç ïëïêëçñþèçêå\n"
+	     "\n"
+	     "Ôï RC-FTPd Ý÷åé åãêáôáóôáèåß óôï "
+	))
+))
+; END Greek strings
+;-----------------------------------------------------------------------------
+; German strings
+(if (= @language "deutsch")
+(
+;	(set #msg-abort
+;	(cat
+;	))
+
+	(set #msg-setup
+	(cat "Prüfe System und Anwendung..."
+	))
+
+	(set #msg-dest
+	(cat "Wo soll RC-FTPd installiert werden?\n"
+	     "(Es wird KEINE neue Schublade erzeugt)"
+	))
+
+	(set #msg-dest-help
+	(cat "Es spielt keine Rolle, wo man es installiert,\n"
+	     "obwohl ich empfehlen würde,\n"
+	     "es nicht zu sehr zu verstecken..."
+	))
+
+	(set #msg-cpu
+	(cat "Welche Version von RC-FTPd möchten Sie installieren?"
+	))
+
+	(set #msg-cpu-help
+	(cat "Wenn Sie keine Veranlassung sehen, eine spezielle Version\n"
+	     "zu installieren, nehmen Sie\n"
+	     "einfache die normale.\n"
+	     "(Die 68000 Version funktioniert mit allen Prozessoren)"
+	))
+
+	(set #msg-install
+	(cat "Installiere RC-FTPd..."
+	))
+
+	(set #msg-install-help
+	(cat "Was sonst..."
+	))
+
+	(set #msg-help
+	(cat "Installiere die Anleitung..."
+	))
+
+	(set #msg-help-help
+	(cat "Diese Anleitung wird nicht ständig aktualisiert,\n"
+	     "obwohl die Versionsnummer von mir\nstets angeglichen wird..."
+	))
+
+	(set #msg-screenshot
+	(cat "Installiere die Screenshots..."
+	))
+
+	(set #msg-screenshot-help
+	(cat "Diese Dateien werden von der Anleitung verwendet,\n"
+	     "sind jedoch nicht dringend notwendig..."
+	))
+
+	(set #msg-icon
+	(cat "Installiere das Vorgabepiktogramm..."
+	))
+
+	(set #msg-icon-help
+	(cat "Für Nutzer der Workbench 3.5+,\n"
+	     "man benötigt HappyEnv oder env-handler dafür,\n"
+	     "anderenfalls kopiert das Piktogramm von ENVARC: nach ENV:..."
+	))
+
+	(set #msg-locale
+	(cat "Kopiere andere Sprachen...\n"
+	     "(Englisch ist eingebaut)"
+	))
+
+	(set #msg-locale-help
+	(cat "Wählen Sie die bevorzugte Sprache..."
+	))
+
+	(set #msg-key
+	(cat "Installiere das RC-FTPd Keyfile..."
+	))
+
+	(set #msg-key-help
+	(cat "Wird benötigt, um alle Eigenschaften des Programms zu nutzen..."
+	))
+
+;	(set #msg-exit
+;	(cat
+;	))
+))
+; END German strings
+;-----------------------------------------------------------------------------
+; START Russian strings by Michael Malyshev (Ami1251) Revision 1
+(if (= @language "russian")
+(
+	(set #msg-abort
+	(cat "ÎØÈÁÊÀ - Îñíîâíîé ôàéë íå íàéäåí!!!"
+	))
+
+	(set #msg-setup
+	(cat "Ïðîâåðÿþ ñèñòåìó è ïðîãðàììû..."
+	))
+
+	(set #msg-dest
+	(cat "Êóäà Âû õîòèòå óñòàíîâèòü RC-FTPd?\n"
+	     "(Íîâûé êàòàëîã ÍÅ ñîçäà¸òñÿ)"
+	))
+
+	(set #msg-dest-help
+	(cat "Ïðèíöèïèàëüíîé ðàçíèöû îò ìåñòà óñòàíîâêè íåò,\n"
+	     "íî íå ðåêîìåíäóþ Âàì ïðÿòàòü ïðîãðàììó\n"
+	     "ãëóáîêî íà 30 óðîâíåé..."
+	))
+
+	(set #msg-cpu
+	(cat "Êàêóþ âåðñèþ RC-FTPd Âû õîòèòå óñòàíîâèòü?"
+	))
+
+	(set #msg-cpu-help
+	(cat "Åñëè ó Âàñ íåò ïðè÷èí äëÿ âûáîðà\n"
+	     "äðóãîé âåðñèè, ëó÷øå îñòàâèòü âñ¸\n"
+	     "êàê åñòü ñ áàçîâîé âåðñèåé.\n"
+	     "(Âåðñèÿ ïîä 68000 áåçîïàñíà äëÿ âñåõ ïðîöåññîðîâ)"
+	))
+
+	(set #msg-install
+	(cat "Óñòàíîâêà RC-FTPd..."
+	))
+
+	(set #msg-install-help
+	(cat "Áåç ýòîãî íèêóäà..."
+	))
+
+	(set #msg-help
+	(cat "Óñòàíîâêà äîêóìåíòàöèè..."
+	))
+
+	(set #msg-help-help
+	(cat "Òóò îáíîâëåíèÿ âåñüìà ðåäêèå\n"
+	     "ïî ñðàâíåíèþ ñ ñàìîé ïðîãðàììîé, íî åñëè\n"
+	     "ïðîèñõîäÿò èçìåíåíèÿ, òî âåðñèÿ äîêóìåíòàöèè\n"
+	     "ñîîòâåòñòâóåò âåðñèè ñåðâåðà..."
+	))
+
+	(set #msg-screenshot
+	(cat "Óñòàíîâêà êàðòèíîê..."
+	))
+
+	(set #msg-screenshot-help
+	(cat "Íà íèõ åñòü ññûëêè èç äîêóìåíòàöèè,\n"
+	     "åñëè Âû â êóðñå ÷åãî äåëàòü, òî îíè Âàì\n"
+	     "íåîáÿçàòåëüíû..."
+	))
+
+	(set #msg-icon
+	(cat "Óñòàíîâêà èêîíêè..."
+	))
+
+	(set #msg-icon-help
+	(cat "Êðàñîòèùà äëÿ ïîëüçîâàòåëåé Workbench 3.5+,\n"
+	     "ïðè íàëè÷èè HappyEnv èëè env-handler âñ¸ ãîòîâî\n"
+	     "ê ðàáîòå ñðàçó ïîñëå óñòàíîâêè,\n"
+	     "èíà÷å íàäî ñêîïèðîâàòü èêîíêó èç ENVARC: â ENV:..."
+	))
+
+	(set #msg-locale
+	(cat "Êîïèðóþ äðóãèå ÿçûêè...\n"
+	     "(Àíãëèéñêèé âñòðîåí)"
+	))
+
+	(set #msg-locale-help
+	(cat "Âûáåðèòå èíòåðåñóþùèå Âàñ ÿçûêè äëÿ óñòàíîâêè..."
+	))
+
+	(set #msg-key
+	(cat "Óñòàíîâêà êëþ÷à ðåãèñòðàöèè RC-FTPd..."
+	))
+
+	(set #msg-key-help
+	(cat "Âû ÷åãî? Ïî÷åìó Âû íå õîòèòå óñòàíîâèòü\n"
+	     "êëþ÷ è èñïîëüçîâàòü ïðîãðàììó áåç îãðàíè÷åíèé..."
+	))
+
+	(set #msg-exit
+	(cat "Óñòàíîâêà çàâåðøåíà óñïåøíà.\n"
+	     "\n"
+	     "RC-FTPd áûë óñòàíîâëåí â êàòàëîã"
+	))
+))
+; END Russian strings
+;-----------------------------------------------------------------------------
+; START Polish strings
+(if (= @language "polski")
+(
+    (set #msg-abort
+    (cat "BÎÂD - Nie mogë znaleúê domyôlnego\n"
+         "pliku wykonywalnego!!!\n"
+         "\n"
+         "Proszë upewniê sië iû archiwum\n"
+         "zostaîo rozpakowane poprawnie!"
+    ))
+
+    (set #msg-setup
+    (cat "Sprawdzam system i aplikacjë..."
+    ))
+
+    (set #msg-dest
+    (cat "Gdzie mam zainstalowaê RC-FTPd?\n"
+         "(Nowy katalog NIE zostanie utworzony)"
+    ))
+
+    (set #msg-dest-help
+    (cat "Nieistotne jest gdzie umieôcisz program,\n"
+         "jednak sugerujë abyô nie umieszczaî go zbyt gîëdoko\n"
+         "w strukturze katalogów..."
+    ))
+
+    (set #msg-cpu
+    (cat "Wybierz posiadany procesor"
+    ))
+
+    (set #msg-cpu-help
+    (cat "Jeôli nie masz ûadnych powodów aby\n"
+         "wybieraê innâ wersjë, najlepiej nic\n"
+         "tutaj nie zmieniaj.\n"
+         "\n"
+         "Zostanie wybrana najlepsza dostëpna wersja,\n"
+         "wiëc jeôli nie pobraleô archiwum ftpd_cpu,\n"
+         "najlepszym rozwiâzaniem jest wybranie wersji\n"
+         "dla procesora 68000.\n"
+         "\n"
+         "Wersja 68000 bëdzie dziaîaê poprawnie\n"
+         "na wszystkich procesorach.\n"
+         @askchoice-help
+    ))
+
+    (set #msg-install
+    (cat "Instalujë RC-FTPd..."
+    ))
+
+    (set #msg-install-help
+    (cat "Program bez tego pliku jest bezuûyteczny..."
+          @copyfiles-help
+    ))
+
+    (set #msg-help
+    (cat "Instalujë dokumentacjë..."
+    ))
+
+    (set #msg-help-help
+    (cat "Dokumetacja nie jest uaktualniana tak czësto\n"
+         "jak program gîówny, jednak przy kaûdym uaktualnieniu\n"
+         "programu zmieniam takûe wersjë dokumentacji\n"
+         "aby odpowiadaîa wersji serwera...\n"
+         @copyfiles-help
+    ))
+
+    (set #msg-screenshot
+    (cat "Instalacja zrzutów ekranu...\n"
+         "Proszë wybraê tâ samâ lokacjë co dla dokumenatcji."
+    ))
+
+    (set #msg-screenshot-help
+    (cat "Te pliki sâ powiâzane z dokumentacjâ,\n"
+         "jeôli wiesz co robisz, nie bëdâ Ci one potrzebne...\n"
+         "\n"
+         "Aby odsylacze dzialaîy poprawnie zrzuty ekranów\n"
+         "byê umieszczone w tym samym katalogu co dokumentacja."
+         "\n"
+         @copyfiles-help
+    ))
+
+    (set #msg-icon
+    (cat "Instalujë ikonkë domyôlnâ..."
+    ))
+
+    (set #msg-icon-help
+    (cat "Oczko w gîowie uûytkowników Workbencha 3.5+,\n"
+         "bëdziesz potrzebowaî programiku HappyEnv lub env-handler\n"
+         "aby uûywaê tej ikonki,\n"
+         "w przeciwnym wypadku skopiuj ikonkë z ENVARC: do ENV:..."
+    ))
+
+    (set #msg-locale
+    (cat "Kopiowanie pozostaîych jëzyków...\n"
+         "(angielski jest wbudowany)"
+    ))
+
+    (set #msg-locale-help
+    (cat "Po prostu wybierz jëzyki które chcesz zainstalowaê..."
+    ))
+
+    (set #msg-key
+    (cat "Instalujë plik-klucz RC-FTPd..."
+    ))
+
+    (set #msg-key-help
+    (cat "Dlaczego miaîbyô nie zainstalowaê tego pliku,\n"
+         "skoro chcesz korzystaê ze wszystkich\n"
+         "opcji programu..."
+    ))
+
+    (set #msg_exit
+    (cat "Instalacja zakoïczona\n"
+         "\n"
+         "Program RC-FTPd zostaî zainstalowany w "
+    ))
+))
+; END Polish strings
+;-----------------------------------------------------------------------------
+; START Slovenian strings
+(if (= @language "slovensko")
+(
+	(set #msg-setup
+	(cat "Preverjam sistem in aplikacijo..."
+	))
+
+	(set #msg-dest
+	(cat "Kam ¾elite namestiti RC-FTPd?\n"
+	     "(Nov predal NE bo ustvarjen.)"
+	))
+
+	(set #msg-dest-help
+	(cat "Ne va¾no kam ga namestite,\n"
+	     "èeprav vam zelo priporoèam,\n"
+	     "da ga ne skrijete 30 nivojev globoko..."
+	))
+
+	(set #msg-cpu
+	(cat "Katero razlièico RC-FTPd hoèete namestiti?"
+	))
+
+	(set #msg-cpu-help
+	(cat "Èe nimate res kakega posebnega razloga za izbor\n"
+	     "druge razlièice, je najbolje, da ohranite\n"
+	     "kar privzeto razlièico.\n"
+	     "(Razlièica za 68000 deluje na vseh procesorjih.)"
+	))
+
+	(set #msg-install
+	(cat "Name¹èam RC-FTPd..."
+	))
+
+	(set #msg-install-help
+	(cat "Vse skupaj je precej neuporabno brez tega..."
+	))
+
+	(set #msg-help
+	(cat "Name¹èam priroènik..."
+	))
+
+	(set #msg-help-help
+	(cat "Ta ni posodobljen vedno, ko je\n"
+	     "posodobljen glavni program. A kadarkoli ga posodobim,\n"
+	     "uskladim razlièico s\nstre¾nikom..."
+	))
+
+	(set #msg-screenshot
+	(cat "Name¹èam posnetke zaslona..."
+	))
+
+	(set #msg-screenshot-help
+	(cat "Te datoteke so povezane s priroènikom.\n"
+	     "Èe ve¹, kaj dela¹, potem\n"
+	     "niso potrebne..."
+	))
+
+	(set #msg-icon
+	(cat "Name¹èam privzeto ikono..."
+	))
+
+	(set #msg-icon-help
+	(cat "Lepotni dodatki za uporabnike sistema Workbench 3.5+,\n"
+	     "Pognan morate imeti HappyEnv ali env-handler,\n"
+	     "da bi jih lahko takoj uporabljali.\n"
+	     "V nasprotnem primeru prekopirajte ikono iz ENVARC: v ENV:..."
+	))
+
+	(set #msg-locale
+	(cat "Kopiram ostale jezike...\n"
+	     "(Angle¹ki je vgrajen.)"
+	))
+
+	(set #msg-locale-help
+	(cat "Izberite jezike, ki jih ¾elite namestiti..."
+	))
+
+	(set #msg-key
+	(cat "Name¹èam kljuè za RC-FTPd..."
+	))
+
+	(set #msg-key-help
+	(cat "No, zakaj ga ne bi namestili.\n"
+	     "Saj ne, da bi ¾eleli res uporabljati\nvse funkcije..."
+	))
+
+	(set #msg-exit
+	(cat "Namestitev je dokonèana.\n"
+	     "\n"
+	     "RC-FTPd je bil name¹èen v imenik "
+	))
+))
+; END Slovenian strings
+;=============================================================================
+
+(procedure p_file arg1 arg2 arg3
+	(if (= (exists arg1) true)
+		(if (>= arg2 arg3)
+			(
+				(set #file arg1)
+				true
+			)
+			false
+		)
+		false
+	)
+)
+
+;=============================================================================
+
+(set @default-dest "C:")
+
+(complete 0)
+
+(working #msg-setup)
+
+(if (= (exists "ftpd") false)
+	(if (= (exists "ftpd_020") false)
+		(if (= (exists "ftpd_040") false)
+			(if (= (exists "ftpd_060") false)
+				(abort #msg-abort)
+			)
+		)
+	)
+)
+
+(if (= (database "cpu") "68060")(set #version 4)
+	(if (= (database "cpu") "68040")(set #version 3)
+		(if (= (database "cpu") "68030")(set #version 2)
+			(if (= (database "cpu") "68020")(set #version 1)
+				(set #database 0)
+			)
+		)
+	)
+)
+
+(welcome)
+
+(if (>= @user-level 1)
+	(set #version
+		(askchoice
+			(prompt #msg-cpu)
+			(help #msg-cpu-help)
+			(choices "68000" "68020" "68030" "68040" "68060")
+			(default #version)
+		)
+	)
+)
+
+(if (= (p_file "ftpd_060" #version 4) false)
+	(if (= (p_file "ftpd_040" #version 3) false)
+		(if (= (p_file "ftpd_020" #version 1) false)
+			(if (= (set #file "ftpd") false)
+				(abort #msg-abort)
+			)
+		)
+	)
+)
+
+(complete 12)
+
+(if (>= @user-level 1)
+	(set @default-dest
+		(askdir
+			(prompt #msg-dest)
+			(help #msg-dest-help)
+			(default @default-dest)
+		)
+	)
+)
+
+(complete 24)
+
+(copylib
+	(prompt #msg-install)
+	(help #msg-install-help)
+	(source #file)
+	(dest @default-dest)
+	(newname "ftpd")
+	(infos)
+	(noposition)
+	(if (>= @user-level 2)(confirm))
+)
+
+(complete 36)
+
+(copyfiles
+	(prompt #msg-help)
+	(help #msg-help-help)
+	(source "Docs/")
+	(pattern "ftpd#?.(guide|history)")
+	(dest @default-dest)
+	(optional nofail)
+	(if (>= @user-level 1)(confirm))
+)
+
+(complete 48)
+
+(copyfiles
+	(prompt #msg-screenshot)
+	(help #msg-screenshot-help)
+	(source "Docs/")
+	(pattern "ftpd_#?.iff")
+	(dest @default-dest)
+	(optional nofail)
+	(if (>= @user-level 1)(confirm))
+)
+
+(complete 60)
+
+(if (= (exists "ENVARC/Sys/def_rc-ftpd.info") false)
+	(copyfiles
+		(prompt #msg-icon)
+		(help #msg-icon-help)
+		(source "ENVARC/Sys/def_rc-ftpd.info")
+		(dest "ENVARC:Sys/")
+		(optional nofail)
+		(if (>= @user-level 2)(confirm))
+	)
+)
+
+(complete 72)
+
+(copyfiles
+	(prompt #msg-locale)
+	(help #msg-locale-help)
+	(source "Catalogs")
+	(pattern "~(ftpd.c?)")
+	(dest "Locale:Catalogs/")
+	(optional nofail)
+	(if (>= @user-level 1)(confirm))
+)
+
+(complete 84)
+
+(if (= (exists (tackon @default-dest "ftpd.key")) false)
+	(if (= (exists "ftpd.key") true)
+		(copyfiles
+			(prompt #msg-key)
+			(help #msg-key-help)
+			(source "ftpd.key")
+			(dest @default-dest)
+			(optional nofail)
+			(if (>= @user-level 2)(confirm))
+		)
+	)
+)
+
+(complete 100)
+
+(exit #msg-exit @default-dest (quiet))

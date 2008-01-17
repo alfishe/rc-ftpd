@@ -1,0 +1,499 @@
+## chunk AUTH Dirk Neubauer, Horst Schumann [ATO]
+## language deutsch
+## version $VER: FTPd.ct 2.28 (21.4.2)
+MSG_ERROR
+RC-FTPD Fehler
+;#DEF RC-FTPD Error
+;#SET (1000//128)
+MSG_OK
+Ok
+;#DEF Ok
+;#SET (//64)
+MSG_SAVE
+Speichern
+;#DEF Save
+;#SET (//64)
+MSG_USE
+Benutzen
+;#DEF Use
+;#SET (//64)
+MSG_CANCEL
+Abbruch
+;#DEF Cancel
+;#SET (//64)
+MSG_KICK
+Entfernen
+;#DEF Kick
+;#SET (//64)
+MSG_ABORT
+Abbrechen
+;#DEF Abort
+;#SET (//64)
+MSG_ADD
+Hinzufügen
+;#DEF Add
+;#SET (//64)
+MSG_REMOVE
+Entfernen
+;#DEF Remove
+;#SET (//64)
+MSG_SORT
+Sortieren
+;#DEF Sort
+;#SET (//64)
+MSG_BAD_CONFIG
+Unbekanntes Format der Einstellungsdatei
+;#DEF Unrecognised config file format
+;#SET (//128)
+MSG_STARTUP_MUI
+Fehler beim Öffnen der muimaster.library 18+
+;#DEF Unable to open muimaster.library 18+
+;#SET (//128)
+MSG_STARTUP_UTILITY
+Fehler beim Öffnen der utility.library 36+
+;#DEF Unable to open utility.library 36+
+;#SET (//128)
+MSG_STARTUP_SOCKET
+Fehler beim Öffnen der bsdsocket.library 4+\n\nBitte starten Sie zuerst ihren TCP/IP-Stack...
+;#DEF Unable to open bsdsocket.library 4+\n\nPlease start your TCP/IP stack first...
+;#SET (//128)
+MSG_STARTUP_MEMORY
+Fehler beim Anlegen des Speicherpools\n\nBeenden Sie eine oder mehrere Anwendungen oder starten Sie neu
+;#DEF Unable to create memory pool\n\nQuit one or more applications or reboot
+;#SET (//128)
+MSG_STARTUP_APP
+Fehler beim Starten der Anwendung\n\nWomöglich Speichermangel oder fehlende\nKlassen (mehr Infos in späteren Versionen)
+;#DEF Failed to create application\n\nPossibly a lack of memory or missing classes\n(more detail in later version)
+;#SET (//128)
+MSG_SOCKET_OPEN
+Fehler beim Öffnen des Socket\nUnbekannte Ursache - eventuell Socket nicht unterstützt\n\n(bitte mailen, so dass ich helfen kann)
+;#DEF Unable to open socket\nUnknown cause - possibly unsuported socket\n\n(email me so I can trace it)
+;#SET (//128)
+MSG_SOCKET_OPTIONS
+Fehler beim Setzen der Socket-Optionen\nUnbekannte Ursache - eventuell Socket nicht unterstützt
+;#DEF Unable to set socket options\nUnknown cause - possibly unsuported socket
+;#SET (//128)
+MSG_SOCKET_BIND
+Fehler beim Einbinden des Port\nEventuell zweimal gestartet
+;#DEF Unable to bind port\nProbably trying to start twice
+;#SET (//128)
+MSG_SOCKET_LISTEN
+Fehler beim Suchen des Port\nUnbekannte Ursache - eventuell Socket nicht unterstützt
+;#DEF Unable to listen on port\nUnknown cause - possibly unsuported socket
+;#SET (//128)
+MSG_SAVE_CONFIG
+Fehler beim Speichern der Einstellungen
+;#DEF Unable to save config
+;#SET (//128)
+MSG_LIST_STATUS
+Status
+;#DEF Status
+;#SET (//64)
+MSG_LIST_IP
+IP
+;#DEF IP
+;#SET (//64)
+MSG_LIST_USER
+Benutzer
+;#DEF User
+;#SET (//64)
+MSG_LIST_CMD
+Befehl
+;#DEF CMD
+;#SET (//64)
+MSG_LIST_ARGS
+Argumente
+;#DEF Args
+;#SET (//64)
+MSG_LIST_ONLINE
+\ec%ld/%ld Benutzer online
+;#DEF \ec%ld/%ld Users online
+;#SET (//128)
+MSG_MUI_ABOUT
+Der beste FTP Dämon für den Amiga
+;#DEF The best ftp daemon for Amiga
+;#SET (1200//128)
+MSG_MUI_MUI
+MUI
+;#DEF MUI
+;#SET (//128)
+MSG_MUI_PREFS
+Einstellungen
+;#DEF Prefs
+;#SET (//128)
+MSG_SHORT_KICKABORT
+\ebEntfernen\en entfernt die gewählten Benutzer\nund alle ihre Übertragungen\n\ebAbbrechen\en bricht die Übertragungen ab
+;#DEF \ebKick\en will disconnect the selected\nuser and any transfers they are doing\n\ebAbort\en will just cancel their transfer
+;#SET (//256)
+MSG_SHORT_MESSAGE
+Tragen Sie hier eine kurze Mitteilung ein\nund sie wird den gewählten Benutzern gesendet
+;#DEF Type a short message in here and it\nwill be sent to the selected user
+;#SET (//256)
+MSG_SHORT_OPEN
+Dies ist der allgemeine Status ihres Servers\nLeute können angeschlossen sein (\ebVerbunden\en) oder nicht (\ebGetrennt\en)
+;#DEF This is the general status of your server\nCan people connect (\ebOpen\en) or not (\ebClosed\en)
+;#SET (//256)
+MSG_UNLIMITED
+unbegrenzt
+;#DEF unlimited
+;#SET (//64)
+MSG_CONTROL_CODES
+Sie können folgende Steuerzeichen benutzen:\n$u = Aktuelle Benutzer\n$m = Maximale Benutzer\n$c = Maximale CPS\n$s = Maximale CPS/Aktuelle Benutzer
+;#DEF You can use the following control codes:\n$u = Current users\n$m = Max users\n$c = Max CPS\n$s = MaxCPS/Current users
+;#SET (//256)
+MSG_UPLOAD
+%s [%s]\n%s\n%s\n%s (%lu/%lu Bytes, %lu CPS)
+;#DEF %s [%s]\n%s\n%s\n%s (%lu/%lu bytes, %lu cps)
+;#SET (//128)
+MSG_DOWNLOAD
+%s [%s]\n%s\n%s\n%s (%lu Bytes, %lu CPS)
+;#DEF %s [%s]\n%s\n%s\n%s (%lu bytes, %lu cps)
+;#SET (//128)
+MSG_NOLOAD
+%s [%s]\n%s\n%s\n
+;#DEF %s [%s]\n%s\n%s\n
+;#SET (//128)
+MSG_LOGIN
+\ebAnmelden
+;#DEF \eblogin
+;#SET (//64)
+MSG_LOG_NONE
+Keine Notizen
+;#DEF No log
+;#SET (//64)
+MSG_LOG_KNOWN
+Bekanntes notieren
+;#DEF Log known
+;#SET (//64)
+MSG_LOG_COMMANDS
+Befehle notieren
+;#DEF Log commands
+;#SET (//64)
+MSG_LOG_ALL
+Alles notieren
+;#DEF Log all
+;#SET (//64)
+MSG_ONLINE_LIMIT
+\ec%ld/%ld Benutzer online
+;#DEF \ec%ld/%ld Users online
+;#SET (//128)
+MSG_ONLINE_NOLIMIT
+\ec%ld Benutzer online
+;#DEF \ec%ld Users online
+;#SET (//128)
+MSG_FTP_CLOSED
+FTP Getrennt
+;#DEF FTP Closed
+;#SET (//64)
+MSG_FTP_OPEN
+FTP Verbunden
+;#DEF FTP Open
+;#SET (//64)
+MSG_FTP_GUIDE
+ftpd.Guide
+;#DEF ftpd.Guide
+;#SET (//64)
+MSG_PREF_WINDOW
+RC-FTPd Einstellungen
+;#DEF RC-FTPd Preferences
+;#SET (//64)
+MSG_PREF_PORT
+Port:
+;#DEF Port:
+;#SET (//128)
+MSG_PREF_PORT_HELP
+Dies ist der Port, an dem sich die Leute anmelden müssen,\nAuswirkungen erst nach Neustart.\n\nVorgabe: 21
+;#DEF This is the port people must connect to,\ntakes effect on restart.\n\nDefault: 21
+;#SET (//256)
+MSG_PREF_LIST
+Listingmuster:
+;#DEF List pattern:
+;#SET (//256)
+MSG_PREF_LIST_HELP
+Dies ist das Muster für Dateien/Verzeichnislistings, es hat\nkeine Auswirkungen auf das Herunterladen, nur auf die Ansicht.\n\nVorgabe: \"~(.#?|#?.info)\"
+;#DEF This is the pattern used to list files/dirs,\nit does not stop download, just visibility.\n\nDefault: \"~(.#?|#?.info)\"
+;#SET (//256)
+MSG_PREF_ANON
+Anonym:
+;#DEF Anon:
+;#SET (//256)
+MSG_PREF_ANON_HELP
+Soll es gestattet sein, sich\nohne Passwort anmelden zu können?\n\nVorgabe: NEIN\nHinweis: sie müssen ein leeres Passwort auf der Benutzerseite haben.
+;#DEF Do you allow people to log on \ebwithout\en passwords?\n\nDefault: NO\nNote: they must have a blank password on the Users page.
+;#SET (//256)
+MSG_PREF_MAXUSERS
+Maximale Benutzer:
+;#DEF Max Users:
+;#SET (//256)
+MSG_PREF_MAXUSERS_HELP
+Die maximale Anzahl an erlaubten Verbindungen,\neinige Clients bauen mehr als eine Verbindung\nauf, so sollte man auch ein Timeout setzen.\n\nVorgabe: 0 (keine Begrenzung) (\ebUnregistriert 1 -3\en)
+;#DEF The maximum number of control connections,\nsome clients make more than one\nconnection, so you should also set a Timeout.\n\nDefault: 0 (no limit) (\ebUnregistered 1 - 3\en)
+;#SET (//256)
+MSG_PREF_MAXCPS
+Maximale CPS:
+;#DEF Max CPS:
+;#SET (//256)
+MSG_PREF_MAXCPS_HELP
+Die maximale Übertragungsrate für Dateien,\nnützlich bei Modembetrieb, wenn der Server\nnicht die gesamte Bandbreite verwenden soll.\n\nVorgabe: 0 (keine Begrenzung) (\ebUnregistriert 1 - 3072\en)
+;#DEF The maximum transfer speed for files,\nuseful if you are on a modem and\ndon't want the server stealing\nall your bandwidth.\n\nDefault: 0 (no limit) (\ebUnregistered 1 - 3072\en)
+;#SET (//256)
+MSG_PREF_TIMEOUT
+Timeout:
+;#DEF Timeout:
+;#SET (//256)
+MSG_PREF_TIMEOUT_HELP
+Nach dieser Zeit werden Leute, die\nnichts gemacht haben, entfernt.\n\nVorgabe: 0 (kein Timeout)
+;#DEF After this many minutes of doing nothing\npeople are kicked off.\n\nDefault: 0 (no timeout)
+;#SET (//256)
+MSG_PREF_NOOP
+Noop:
+;#DEF Noop:
+;#SET (//256)
+MSG_PREF_NOOP_HELP
+Gestattet es dem Benutzer, den Befehl\nNOOP (Keine Operation) zu verwenden, um\nein Entfernen seinerseits zu verhindern.\n\nVorgabe: AUS
+;#DEF If this is allowed then people can\nuse the NOOP command (NO OPeration) to\nprevent themselves being kicked off.\n\nDefault: OFF
+;#SET (//256)
+MSG_PREF_NOPASV
+KeinPASV:
+;#DEF NoPASV:
+;#SET (//256)
+MSG_PREF_NOPASV_HELP
+Man kann sich nur über den\nBefehl PORT verbinden.\nDies ist sicherer, und wird für\nBenutzer einer Firewall empfohlen.
+;#DEF If this is checked then people can\nonly connect via the PORT command.\nThis is more secure,\nand recommended for people behind firewalls.
+;#SET (//256)
+MSG_PREF_AUTOMESSAGE
+Automatische Benachrichtigung:
+;#DEF Auto-Message:
+;#SET (//256)
+MSG_PREF_AUTOMESSAGE_HELP
+Wenn immer jemand sein Verzeichnis ändert\nwird eine Datei namens \".message\" als\nTeil der Antwort geschrieben.\n\nVorgabe: AN (\ebNur Registrierte Version\en)
+;#DEF Whenever someone changes their directory\nthis will type a file called \".message\"\nas part of the reply they get.\n\nDefault: ON (\ebRegistered only\en)
+;#SET (//256)
+MSG_PREF_AUTOCOMMENT
+Automatischer Kommentar:
+;#DEF Auto-Comment:
+;#SET (//256)
+MSG_PREF_AUTOCOMMENT_HELP
+Wann immer jemand ihnen eine Datei sendet, wird\n\"user@ip\" in den Dateikommentar übernommen.\n\nVorgabe: AN (\ebNur Registrierte Version\en)
+;#DEF Whenever someone sends you a file this\nwill set the file comment to \"user@ip\".\n\nDefault: ON (\ebRegistered only\en)
+;#SET (//256)
+MSG_PREF_LOGFILE
+Logdatei benutzen:
+;#DEF Use-Logfile:
+;#SET (//256)
+MSG_PREF_LOGFILE_SEPERATE
+Separat:
+;#DEF Seperate:
+;#SET (//256)
+MSG_PREF_LOGFILE_HELP
+Schreibt alles mit (wie beim Schnüffeln)\nin entweder eine einzige Logdatei\noder eine Logdatei pro Benutzer.
+;#DEF Logs everything you chose (as in Snoop)\nto either a single logfile, or one\nlogfile per user.
+;#SET (//256)
+MSG_PAGE_INFO
+Info
+;#DEF Info
+;#SET (//64)
+MSG_PAGE_USERS
+Benutzer
+;#DEF Users
+;#SET (//64)
+MSG_PAGE_GROUPS
+Gruppen
+;#DEF Groups
+;#SET (//64)
+MSG_PAGE_GENERAL
+Allgemein
+;#DEF General
+;#SET (//64)
+MSG_PAGE_CLOSED
+\e3Getrennt
+;#DEF \e3Closed
+;#SET (//64)
+MSG_PAGE_GREETING
+\e3Grüße
+;#DEF \e3Greeting
+;#SET (//64)
+MSG_PAGE_WELCOME
+\e3Willkommen
+;#DEF \e3Welcome
+;#SET (//64)
+MSG_PAGE_GOODBYE
+\e3Tschüß
+;#DEF \e3Goodbye
+;#SET (//64)
+MSG_SNOOP_TITLE
+RC-FTPd Schnüffeln
+;#DEF RC-FTPd Snoop
+;#SET (//64)
+MSG_SNOOP_CLEAR
+Löschen
+;#DEF Clear
+;#SET (//64)
+MSG_USER_LIST_USERNAME
+Benutzername
+;#DEF Username
+;#SET (//64)
+MSG_USER_LIST_PASSWORD
+Passwort
+;#DEF Password
+;#SET (//64)
+MSG_USER_LIST_MAX
+Max
+;#DEF Max
+;#SET (//64)
+MSG_USER_LIST_LOG
+Notieren
+;#DEF Log
+;#SET (//64)
+MSG_USER_LIST_NONAME
+\ebnicht gesetzt
+;#DEF \ebunset
+;#SET (//64)
+MSG_USER_LIST_PASS
+(versteckt)
+;#DEF (hidden)
+;#SET (//64)
+MSG_USER_LIST_NOPASS
+\ebanonym
+;#DEF \ebanon
+;#SET (//64)
+MSG_USER_USER
+Benutzer:
+;#DEF User:
+;#SET (//64)
+MSG_USER_PASS
+Passwort:
+;#DEF Pass:
+;#SET (//64)
+MSG_USER_MAX
+Max:
+;#DEF Max:
+;#SET (//64)
+MSG_PATH_LIST_ALIAS
+Alias
+;#DEF Alias
+;#SET (//64)
+MSG_PATH_LIST_PATH
+Pfad
+;#DEF Path
+;#SET (//64)
+MSG_PATH_NOALIAS
+\ebkein
+;#DEF \ebnone
+;#SET (//64)
+MSG_PATH_NOPATH
+\ebvorgetäuscht
+;#DEF \ebfake
+;#SET (//64)
+MSG_PATH_READ
+Lesen:
+;#DEF Read:
+;#SET (//64)
+MSG_PATH_WRITE
+Schreiben:
+;#DEF Write:
+;#SET (//64)
+MSG_PATH_DELETE
+Löschen:
+;#DEF Delete:
+;#SET (//64)
+MSG_PATH_SUBDIRS
+Unterverz:
+;#DEF SubDirs:
+;#SET (//64)
+MSG_PATH_ALIAS
+Alias:
+;#DEF Alias:
+;#SET (//64)
+MSG_PATH_PATH
+Pfad:
+;#DEF Path:
+;#SET (//64)
+MSG_MENU_PROJECT
+Projekt
+;#DEF Project
+;#SET (//64)
+MSG_MENU_ENABLED
+Aktiviert
+;#DEF Enabled
+;#SET (//64)
+MSG_MENU_SETTINGS
+Einstellungen...
+;#DEF Settings...
+;#SET (//64)
+MSG_MENU_MUISETTINGS
+MUI Einstellungen...
+;#DEF MUI Settings...
+;#SET (//64)
+MSG_MENU_QUIT
+Beenden
+;#DEF Quit
+;#SET (//64)
+MSG_MUI_STATS
+Statistiken
+;#DEF Stats
+;#SET (//64)
+MSG_STATS_TITLE
+RC-FTPd Statistiken
+;#DEF RC-FTPd Stats
+;#SET (//64)
+MSG_STATS_DATA
+Übertragene Daten
+;#DEF Data Transferred
+;#SET (//64)
+MSG_STATS_DATA_BYTES
+%s Bytes
+;#DEF %s bytes
+;#SET (//64)
+MSG_STATS_FILES
+Übertragene Dateien
+;#DEF Files Transferred
+;#SET (//64)
+MSG_STATS_FILES_FILES
+%s Datei(en)
+;#DEF %s file(s)
+;#SET (//64)
+MSG_STATS_CPS
+Durchschnitt-CPS
+;#DEF Average CPS
+;#SET (//64)
+MSG_STATS_CPS_CPS
+%s CPS
+;#DEF %s cps
+;#SET (//64)
+MSG_STATS_SENT
+Gesendet:
+;#DEF Sent:
+;#SET (//64)
+MSG_STATS_RECIEVED
+Erhalten:
+;#DEF Recieved:
+;#SET (//64)
+MSG_STATS_TOTAL
+Gesamt:
+;#DEF Total:
+;#SET (//64)
+MSG_STATS_USERS
+Benutzer
+;#DEF Users
+;#SET (//64)
+MSG_STATS_USERS_ACCOUNT
+Zugriff:
+;#DEF Account:
+;#SET (//64)
+MSG_STATS_USERS_ANON
+Anonym:
+;#DEF Anon:
+;#SET (//64)
+MSG_STATS_RESET
+Statistiken zurücksetzen
+;#DEF Reset Stats
+;#SET (//64)
+MSG_PREF_ASYNC
+Asynchron
+;#DEF Async
+;#SET (//64)
+MSG_PREF_ASYNC_HELP
+Hiermit ist die Dateiübertragung schneller und benötigt\nweniger CPU-Zeit... Jedoch soll dies auf einigen Rechnern\nzu Abstürzen führen - Sie wurden gewarnt\n\nVorgabe: AUS
+;#DEF With this enabled file transfer is faster and uses less CPU...\nHowever it has been reported to crash some people's\nmachines - you have been warned\n\nDefault: OFF
+;#SET (//256)

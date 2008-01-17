@@ -1,0 +1,32 @@
+All internal data uses taglists, these are saved as -
+{
+    u_long tag-id
+    u_long tag_data
+}
+or for strings -
+{
+    u_long tag-id
+    u_char tag_string (null terminated)
+    (even with pad byte if needed)
+}
+
+general is a sinlge taglist
+
+users and groups are saved as a single layer - so they are simply an
+array of taglists
+
+paths however are saved as a tree, prior to each taglist is a u_short
+of the depth, no depth can increase by more than 1, but they can
+decrease direct to zero -
+  1
+    2
+      3
+        4
+    2
+    2
+      3
+        4
+      3
+        4
+
+save in an IFF file, with each section taking one chunk

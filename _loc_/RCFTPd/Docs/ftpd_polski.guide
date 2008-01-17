@@ -1,0 +1,644 @@
+@database ftpd_polski.guide
+@version $VER: ftpd_polski.guide 2.43 (16.04.2002) ©2000-2002 Robin Cloutman
+
+@node MAIN "FTPd_polski.guide"
+
+@{b}Przewodnik po RC-FTPd 2.x - Spis treôci@{ub}
+@{b}---------------------------------------@{ub}
+
+Witamy w @{i}rc-ftpd@{ui}, najlepszym serwerze FTP dla systemu AmigaOS.
+
+Mam nadziejë, iû dokumentacja ta pomoûe  Ci  w  poznaniu  tego  programu,
+jeôli masz jakiekolwiek problemy z jej zrozumieniem lub nie wiesz jak coô
+zrobiê w programie nie bój sië wysîaê do  mnie  e-maila,  a  ja  spróbujë
+poprawiê to w przyszîoôci.
+
+ @{" O RC-FTPd             " Link ABOU}      Do czego ten program sîuûy?
+ @{" Wymagania             " Link REQU}      Czego potrzebujesz do uruchomienia RC-FTPd?
+ @{" Uûycie                " Link USAG}      Jak uruchomiê RC-FTPd?
+ @{" MUI                   " Link  MUI}      Ten program uûywa MUI!
+
+ @{" Edycja uûytkowników   " Link USER}      Jak edytowaê uûytkowników?
+ @{" Edycja grup           " Link GROU}      Jak edytowaê grupy?
+ @{" Edycja opcji gîównych " Link GENE}      Jak edytowaê gîówne ustawienia?
+ @{" Wiadomoôci            " Link MESS}      Róûne typy wiadomoôci
+
+ @{" ARexx                 " Link AREX}      Port ARexx'a (tylko w wersji zarejestrowanej)
+
+ @{" Bîëdy                 " Link BUGS}      Znane bîëdy (równieû po stronie klientów)
+ @{" Historia              " Link ftpd.History/Main}      Co wydarzyîo sië wczeôniej
+ @{" Przyszîoôê            " Link FUTU}      Jakie zmiany planujë w przyszîoôci
+
+ @{" Podziëkowania         " Link THAN}      Kto mi pomógî?
+ @{" Kontakt               " Link CONT}      Jak skontaktowaê sië z autorem?
+ @{" Rejestracja           " Link REGI}      Jak sië zarejestrowaê?
+
+@{i}Dokumentacja ta jest nadal w trakcie tworzenia  i  jeszcze  wiele  rzeczy
+zostanie do niej dodanych...@{ui}
+
+@endnode
+@node ABOU "FTPd_polski.guide/O RC-FTPd"
+
+@{b}Do czego ten program sîuûy?@{ub}
+@{b}---------------------------@{ub}
+
+FTP jest  skrótem  od  angielskiej  nazwy  protokoîu  przesyîania  plików
+(@{i}File  Transfer Protocol@{ui}). Po prostu jest to sposób udostëpnienia  plików
+z Twojego dysku twardego innym uûytkownikom, ale  tylko  i  wyîâcznie  za
+Twojâ zgodâ. ;-)
+
+Program ten powstaî, gdyû wôród amigowego oprogramowania brak  porzâdnego
+serwera  FTP,  z  jednej  strony  dostëpne  sâ  trudne do skonfigurowania
+konwersjë serwerów FTP z systemu Unix, z drugiej zaô strony znajdujâ  sië
+nieobsîugiwane   i   w  pewien  sposób  wybrakowane  (równieû  po  prostu
+niestabilne) amigowi klienci FTP (czësto zawierajâcy sporo kodu z systemu
+Unix ;-P)
+
+Po wysîuchaniu wielu narzekaï na konkurencjë postanowiîem napisaê  wîasny
+serwer.
+
+Program jest napisany od podstaw i nie zawiera kodu  innych  programów  z
+Amigi ani z ûadnych innych platform sprzëtowych.
+@endnode
+@node REQU "FTPd_polski.guide/Wymagania"
+
+@{b}Czego potrzebujesz do uruchomienia RC-FTPd?@{ub}
+@{b}-------------------------------------------@{ub}
+
+Sprzët
+------
+
+Program powinien sië uruchomiê na kaûdym komputerze Amiga wyposaûonym w 2
+megabajty   pamiëci  RAM  (zalecana  jest  jednak  wiëksza  iloôê  wolnej
+pamiëci).
+
+Oprogramowanie
+--------------
+
+Workbench 2.1 lub nowszy
+(Appikonki wymagajâ systemu 3.5 lub nowszego)
+
+MUI 3.8 lub nowsze.
+NList.mcc
+Lamp.mcc
+Textinput.mcc
+
+Program zostaî przetestowany zarowno z  Miami  jak  i  Genesis  i  w  obu
+przypadkach  dziaîaî prawidîowo,  *powinien*  takûe  dziaîaê parwidîowo z
+kaûdym innym stosem TCP/IP.
+
+@endnode
+@node USAG "FTPd_polski.guide/Uûycie"
+
+@{b}Jak uruchomiê RC-FTPd?@{ub}
+@{b}----------------------@{ub}
+
+RC-FTPd  dziaîa  jako  samodzielny  program,  co  oznacza  iû  moûesz  go
+uruchomiê  z  poziomu  Shella/Workbencha.  Jednakûe  moûliwe  jest  takûe
+uruchomienie go z poziomu  Twojego  stosu  TCP/IP,  co  jednak  nie  jest
+zalecane,  i  nie  zamierzam  tutaj omawiaê sposobu takiego uruchamiania,
+moûesz to zrobiê ale tylko na wîasne ryzyko i jedynie wtedy gdy wiesz  co
+robisz.
+
+Aktualnie program nie obsîuguje ûadnych argumentów/parametrów, jednakûe w
+niedalekiej  przyszîoôci  zamierzam  dodaê  ich  kilka  i to nie tylko do
+wybierania róûnych preferencji...
+
+Plik  konfiguracyjny  jest  aktualnie  zapisywany  w  katalogach  ENV:  i
+ENVARC:,  ale  wczytywany  jest  jedynie  z  katalogu ENV: - zatem uûycie
+programu w stylu HappyENV moûe byê dobrym pomysîem.
+
+@endnode
+@node MUI "FTPd_polski.guide/MUI"
+
+                         Program ten korzysta z
+
+                        MUI - MagicUserInterface
+
+                 (c) Copyright 1992-97 by Stefan Stuntz
+
+MUI  jest  systemem  tworzâcym   i   obsîugujâcym   graficzny   interfejs
+uûytkownika.  Przy  pomocy  edytora  preferencji,  kaûdy  uûytkownik moûe
+dostosowaê interfejs do wîasnych potrzeb i wîasnego gustu.
+
+MUI jest rozprowadzany  jako  shareware.  W  celu  uzyskania  kompletnego
+pakietu   zawierajâcego   wiele   przykîadów  oraz  wiëcej  informacji  o
+rejestracji, odszukaj archiwum "muiXX.lha" (XX  oznacza  numer  ostatniej
+wersji) na lokalnym BBSie lub kolekcji dysków PD.
+
+          Jeôli chcesz zarejestrowaê sië bezpoôrednio, przeôlij
+
+                             DM 20.- lub US$
+                                   15.
+
+                                na adres
+
+                              Stefan Stuntz
+                        Eduard-Spranger-Strasse 7
+                              80935 München
+                                 NIEMCY
+
+   Informacje, pomoc i formularz rejestracyjny dostëpne sâ na stronie
+
+                          http://www.sasg.com/
+@endnode
+@node USER "FTPd_polski.guide/Edycja uûytkowników"
+
+@{b}Jak edytowaê uûytkowników?@{ub}
+@{b}--------------------------@{ub}
+
+Pierwszych 16 kolumn reprezentuje grupy do których majâ dostëp  okreôleni
+uûytkownicy, dwukrotne klikniëcie na kolumnach przeîâcza dostëp do nich.
+
+Dalej znajdujâ sië Uûytkownik  i  Hasîo,  które  to  sâ  uûywane  podczas
+îâczenia  sië  danego  uûytkownika.  Jeôli  pozostawisz pole hasîa puste,
+uûytkownik bëdzie traktowany jako anonimowy i nie bëdzie  musiaî  podawaê
+hasîa  aby  poîâczyê  sië  z  serwerem  (mimo  to  jednak  zostanie o nie
+poproszony).
+
+Aby usunâê uûytkownika musisz wyczyôciê pole Uûytkownik,  a  aby  ustawiê
+losowe  hasîo  dla  danego  uûytkownika - wybraê gadûet po prawej stronie
+pola hasîa.
+
+Moûesz takûe okreôliê maksymalnâ liczbë  uûytkowników  mogâcych  poîâczyê
+sië z tym kontem jednoczeônie (przyciski po prawej to ±1).
+
+W koïcu moûesz  takûe  ustaliê  poziom  raportowania  po  poîâczeniu  sië
+uûytkownika.   INFORMACJA:   poziom   raportu  jest  uûywany  zarówno  do
+wyôwietlania ôledzenia jak i raportowania do plików.
+
+@{b}Przykîad@{ub}
+@{b}--------@{ub}
+
+@{"Zrzut ekranu" LINK ftpd_polski_Users.iff/main}
+
+@{fg fill}0 1 2 3 4 5 6 7 8 9 A B C D E F Uûytkownik  Hasîo      Maks. Raport@{fg text}
+x x x x x x x x x x x x x x x x RobinC      (ukryte)     0   Bez raportowania
+x                               anonymous   @{b}anonimowy@{ub}    3   Raportuj wszystko
+
+Takie ustawienie pozwala mi (RobinC) na peîen dostëp  do  wszystkiego  co
+ustawië   na  moim  serwerze  FTP,  bez  raportowania  oraz  bez  ûadnych
+ograniczeï  co  do  liczby  poîâczeï.  Wszystkie  poczynania  anonimowych
+uûytkowników   sâ   logowane,   a  iloôê  anonimowych  uûytkowników  jest
+ograniczona do 3.
+
+INFORMACJA:  Wszyscy  anonimowi  uûytkownicy  korzystajâ  z  pojedynczych
+ograniczeï iloôci uûytkowników, jeôli jeden uûytkownik ma ograniczenie do
+3, a drugi do 2 to îâczny limit poîâczonych anonimowych uûytkowników  pod
+pierwszâ nazwâ wynosi 3, a pod drugâ 2...
+
+@endnode
+@node GROU "FTPd_polski.guide/Edycja grup"
+
+@{b}Jak edytowaê grupy?@{ub}
+@{b}-------------------@{ub}
+
+Pierwszych  16 kolumn okreôla poziom dostëpu do okreôlonych ôcieûek, oraz
+to,  czy  moûliwy  jest odczyt, zapis lub kasowanie (r dla odczytu, w dla
+zapisu,  x  dla odczytu/zapisu oraz wielkimi literami jeûeli moûliwe jest
+takûe kasowanie).
+
+Grupy  mogâ mieê róûne flagi odczytu/zapisu/kasowania/+(podkatalogów) dla
+tej  samej  ôcieûki.  +  (pogrubienie  jeôli  poîâczony z innymi flagami)
+oznacza  takûe  dostëp  do wszystkich podkatalogów tej ôcieûki, które nie
+majâ swoich wîasnych flag dostëpu.
+
+Oznaczenia -
+r = R    R = RD   @{b}r@{ub} = R+   @{b}R@{ub} = RD+
+w = W    W = WD   @{b}w@{ub} = W+   @{b}W@{ub} = WD+
+x = RW   X = RWD  @{b}x@{ub} = RW+  @{b}X@{ub} = RWD+
++ = S    D = D    @{b}D@{ub} = D+
+
+Dwie nastëpne kolumny to synonim i ôcieûka  dostëpu.  Jeôli  synonim  nie
+posiada  ôcieûki  dostëpu  zostanâ  uûyte ôcieûki znajdujâce sië pod nim.
+Oznacza to, iû nie moûesz uûywaê synonimów  dla  plików.  (Jednakûe  jest
+moûliwe ukrywanie plików).
+
+@{b}Przykîad@{ub}
+@{b}--------@{ub}
+
+@{"Zrzut ekranu" LINK ftpd_polski_Groups.iff/main}
+
+@{fg fill}0 1 2 3 4 5 6 7 8 9 A B C D E F Synonim     Ôcieûka@{fg text}
+r @{b}r r r                       @{b}X@{ub} /           Internet:HTTP
+@{b}r                             @{b}X@{ub} /-Software- Internet:HTTP/-Software-
+  @{b}r                           X@{ub} /cd0        cd0:
+                                /downloads  @{b}sfaîszowana@{ub}
+    @{b}r                         X@{ub} /muds       Unix:muds
+    @{b}r                         X@{ub} /muds/mud+  Unix:mud+
+      @{b}x                       X@{ub} /upload     Internet:HTTP/Upload
+
+Dobra, tylko root (/) ma dostëp do podkatalogów  dla  uûytkowników  *nie*
+  bëdâcych w grupie 0 - to znaczy uûytkowników nieanonimowych.
+Jedynym katalogiem do którego  majâ  dostëp  anonimowi  uûytkownicy  jest
+  "/-Software-", gdzie mogâ zobaczyê iû  ten  serwer  jest  wystarczajâco
+  dziwny...
+Mój napëd CD jest  tutaj  na  wypadek  gdybym  chciaî udostëpniê  ludziom
+  dostëp do danych nagranych na pîycie  CD.  Jeôli  nie  bëdzie  pîyty  w
+  napëdzie, nie zostanie to zgîoszone gdy ktokolwiek bëdzie próbowaî  sië
+  dostaê do tego katalogu.
+Dalej znajduje sië katalog /downloads - zazwyczaj peîen  nieposortowanych
+  danych które pobraîem z Internetu, nie chcë aby uûytkownicy przeciâûali
+  mój wolny modem ;-)
+Dwa nastëpne zwiâzane  sâ  z  mojâ  pracâ  nad  MUD-ami  -  czasami  chcë
+  udostëpniê innym uûytkownikom moje kody úródîowe. A jest  to  dla  mnie
+  najîatwiejszy sposób.
+Na koïcu  znajduje  sië  katalog  /upload  -  jest  on  przeznaczony  dla
+  wszystkich osób przesyîajâcych mi pliki, ale poniewaû nie  uûywam  tego
+  katalogu  zbyt czësto nie chcë aby ludzie przesyîali mi cokolwiek zanim
+  im na to nie pozwolë.
+
+Dla  wszystkich  tych  ôcieûek  ustawiîem  wszystkie  flagi   na   grupie
+  F - pozwalajâcâ mi na zdalny dostëp do wszystkich katalogów ;-)
+
+@{b}Waûna informacja@{ub}
+@{b}----------------@{ub}
+Wszystkie flagi dostëpu zostanâ  niedîugo  (?)  zmienione,  aby  zachowaê
+zgodnoôê  z  ostatniâ  wersjâ  protokoîu  FTP,  nie  wpîynie  to na Twoje
+aktualne ustawienia, ale w przyszîoôci pozwoli to  *znaczne*  zwiëkszenie
+moûliwoôci konfiguracyjne
+
+@endnode
+@node MESS "FTPd_polski.guide/Wiadomoôci"
+
+@{b}Róûne typy wiadomoôci?@{ub}
+@{b}----------------------@{ub}
+
+Program umoûliwia wysyîanie trzech typów wiadomoôci:
+
+1. Banery
+W  oknie  edycji  preferencji  sâ  one  wyôwietlane  przy  uûyciu  pisaka
+@{fg shine}jasnych krawëdzi (shine)@{fg text}. Mogâ one zawieraê kody kontrolne, dziëki  czemu
+uûytkownik moûe automatycznie otrzymywaê informacje na temat statusu
+serwera.
+
+@{fg shine}Wyîâczony@{fg text} - tekst który jest wysyîany gdy ktoô próbuje sië poîâczyê  lecz
+  nie moûe, zarówno gdy serwer jest przeciâûony jak równieû zostaî  przez
+  Ciebie wyîâczony.
+@{fg shine}Przywitanie@{fg text} -  tekst  który  jest  wysyîany  przy  pierwszym   poîâczeniu
+  uûytkownika  do  serwera  -  uûywanie  tego  jest  zîym  nawykiem,  ale
+  niektórzy ludzie mogâ tego chcieê.
+@{fg shine}Powitanie@{fg text} - tekst który jest wysyîany od razu po podîâczeniu sië  znanego
+  uûytkownika po podaniu wîaôciwych danych (uûytkownik/hasîo).
+@{fg shine}Poûegnanie@{fg text} - tekst  który  jest  wysyîany  po  uûyciu  przez  uûytkownika
+  polecenia QUIT... bardzo rzadko widziany ;-)
+
+2. Wiadomoôci konsoli
+Drugi typ wiadomoôci wysyîanych przez serwer na  Twoje  ûâdanie.  Aby  go
+uûyê zaznacz podîâczonego uûytkownika, wpisz coô w polu tekstowym, a przy
+nastëpnym  poleceniu  wywoîanym  przez  uûytkownika  tekst  ten  zostanie
+wysîany.  Proszë  jednak  pamiëtaê  ûe  jednak  nie  wszyscy  klienci FTP
+pozwalajâ uûytkownikowi zobaczyê te wiadomoôci.
+
+3. Pliki ".message"
+Trzeci  typ  wiadomoôci  jest   dostëpny   tylko   dla   zarejestrowanych
+uûytkowników.  Aby  z  nich  skorzystaê  moûesz  stworzyê  pliki  nazwane
+".messages" w kaûdym katalogu do którego  uûytkownik  ma  dostëp  poprzez
+polecenia  CWD/CDUP,  które bëdâ automatycznie wysyîane gdy któreô z tych
+poleceï zostanie uûyte. Zaleca sië aby  te  wiadomoôci  nie  przekraczaîy
+kilku  linii.  Wiadomoôci te sâ najczëôciej wykorzystywane do wyjaônienia
+do czego jest przeznaczony dany katalog.
+
+@{b}Zaawansowane@{ub}
+@{b}------------@{ub}
+
+Jak juû wczeôniej  wspomniaîem  nie  wszyscy  klienci  FTP  pozwalajâ  na
+odbieranie  wiadomoôci.  Jest  takûe inny sposób na ukrycie wiadomoôci (i
+wiesz, ûe Twój klient ich nie wyôwietli), który moûesz wymieniê w tekôcie
+powitania.  Zamiast  podawania  normalnego  hasîa,  powinno zostaê podane
+hasîo poprzedzone myôlnikiem "-", wiëc
+
+...
+PASS blabla
+230-To jest baner...
+230-...
+230 User logged in, proceed
+...
+
+...
+PASS -blabla
+230 User logged in, proceed
+...
+
+
+@endnode
+@node GENE "FTPd_polski.guide/Edycja opcji gîównych"
+
+@{b}Jak edytowaê gîówne ustawienia?@{ub}
+@{b}-------------------------------@{ub}
+
+Na szczëôcie wiëkszoôê opcji ma samowyjaôniajâce sië nazwy, jeôli  jednak
+nie jesteô czegoô pewien skorzystaj z "dymków" pomocy.
+
+@{"Zrzut ekranu" LINK ftpd_polski_General.iff/main}
+
+@{b}Port@{ub} okreôla numer portu na  którym  ftpd  prowadzi  nasîuch  -  21  jest
+  standardowym portem, jeôli zmienisz numer portu konieczne jest  ponowne
+  uruchomienie   serwera,   w   przeciwnym   razie   zmiany  nie  zostanâ
+  zastosowane.
+
+@{b}Wzorzec  wyôwietlania@{ub}  okreôla  nazwy  @{u}wyôwietlanych@{uu}  plików,   domyôlnie
+  wyôwietlane sâ wszystkie pliki oprócz plików, których  nazwy  zaczynajâ
+  sië od kropki o raz ikonek.
+
+@{b}Anonimowy@{ub} pozwlala uûytkownikom na îâczenie sië z serwerem bez  podawania
+  hasîa, w przeciwnym wypadku ûaden z @{"uûytkowników" Link USER} nie posiadajâcy  hasîa
+  nie bëdzie w stanie poîâczyê sië z serwerem.
+
+@{b}Maks. uûytkowników@{ub} jest maksymalnâ liczbâ uûytkowników mogâcych  poîâczyê
+  sië z serwerem za jednym razem.
+
+@{b}Maks. zn/sek@{ub} jest zaworem przesyîu, wpîywa to na  wszystko  poza  plikami
+  .message, wiëc lepiej zadbaj o to, aby pliki .message byîy krótkie.
+
+@{b}Ograniczenie czasowe@{ub} jest iloôciâ  minut  bezczynnoôci  na  serwerze,  po
+  której uûytkownik zostanie automatycznie rozîâczony.
+
+@{b}NOOP@{ub} jest poleceniem uûywanym do podtrzymywania poîâczoenia  nawet  jeôli
+  ktoô nic nie robi na serwerze - moûna wyîâczyê obsîugë tego  polecenia,
+  a  uûytkownicy  których bezczunnoôê na serwerze przekroczy ograniczenie
+  czasowe bëdâ rozîâczani.
+
+@{b}Bez PASV@{ub} - istniejâ dwa sposoby przesyîania plików, uû±tkownik îâczy  sië
+  z Tobâ, lub Ty îâczysz  sië  z  uûytkownikiem  -  wîâczenie  tej  opcji
+  @{b}wyîâcza@{ub} moûliwoôê uûytkownika do kontaktowania sië z Tobâ, co moûe  byê
+  wykorzystywane ze wzglëdów bezpieczeïstwa.
+
+@{b}Autom. wiadomoôci@{ub} pozwalajâ serwerowi na wysyîanie plików  ".message"  za
+  kaûdym razem jak uûytkownik zmieni katalog.
+
+@{b}Autom. dodawaj komentarz@{ub} pozwala serwerowi ustawiaê komentarze dla nowych
+  plików w postaci uûytkownik@adres IP osoby która dany plik podesîaîa.
+
+@{b}Uûywaj pliku raportu@{ub} zapisuje wyniki "wëszenia" (Snoop) do pliku  raportu
+  (PROGDIR:ftpd.log)
+
+@{b}Dziel plik raportu@{ub} zapisuje  oddzielnie  pliki  dla  kaûdego  uûytkownika
+  (PROGDIR:Logs/uûytkownik.log)
+
+@endnode
+@node AREX "FTPd_polski.guide/ARexx"
+
+@{b}Port ARexx'a@{ub}
+@{b}------------@{ub}
+
+Port ARexx'a jest dostëpny jedynie w zarejestrowanej wersji.
+
+Krótka informacja, istniejâ 3 typy @{i}wskaúników@{ui}:  FTP,   USER   i   ACCESS.
+Program sprawdza czy podany przez Ciebie wskaúnik jest odpowiedni, dziëki
+czemu  nie  spowodujesz  zawieszenia  komputera  ani  czegokolwiek innego
+uûywajâc zîego typu, jednak takûe nie otrzymasz ûadnej wartoôci zwrotnej.
+Uûywaj   odpowiednich  typów  wskaúników  dla  kaûdego  polecenia  a  nie
+powinieneô mieê ûadnych problemów.
+
+Wynik moûe byê ciâgiem <""> lub liczbâ <>.
+
+Polecenia ARexx'a -
+
+@{b}VERSION@{ub}
+RESULT       = <ver>.<rev>
+
+@{b}FTP QUERY ALL@{ub}
+RESULT       = [<wskaúnik> ...]
+
+@{b}FTP QUERY ALL STEM stem@{ub}
+stem.COUNT   = <îâcznie>
+stem.0       = <wskaúnik>
+...
+stem.îâcznie = <wskaúnik>
+
+@{b}FTP QUERY @{i}handle@{ui} STEM stem@{ub}
+stem.IP      = <"0.0.0.0">
+stem.ALIAS   = <"synonim">
+stem.PATH    = <"ôcieûka">
+stem.USER    = <wskaúnik uûytkownika>
+stem.ACCESS  = <wskaúnik dostëpu>
+stem.LOG     = <aktualny poziom raportu>
+stem.FILE    = <"nazwa pliku">
+stem.CPS     = <zn/sek>
+stem.SIZE    = <rozmiar tylko dla polecenia SEND>
+stem.CURRENT = <rozmiar aktualnie przesîanych danych>
+
+@{b}FTP KICK @{i}wskaúnik@{ui}@{ub}
+
+@{b}FTP ABORT @{i}wskaúnik@{ui}@{ub}
+
+@{b}FTP LOG @{i}wskaúnik@{ui} [1-4]@{ub}
+RESULT       = <poziom raportu>
+
+@{b}FTP MESSAGE @{i}wskaúnik@{ui} wiadomoôê@{ub}
+
+@{b}USER QUERY ALL@{ub}
+RESULT       = [<wskaúnik> ...]
+
+@{b}USER QUERY ALL STEM stem@{ub}
+stem.COUNT   = <îâcznie>
+stem.0       = <wskaúnik>
+...
+stem.îâcznie = <wskaúnik>
+
+@{b}USER QUERY @{i}wskaúnik@{ui} STEM stem@{ub}
+stem.NAME    = <"nazwa">
+stem.PASS    = <"hasîo">
+stem.ACCESS  = <dostëp do grup>
+stem.MAX     = <maksymalnie sesji>
+stem.LOG     = <domyôlny poziom raportu>
+
+@{b}ACCESS QUERY ALL@{ub}
+RESULT       = [<wskaúnik> ...]
+
+@{b}ACCESS QUERY ALL STEM stem@{ub}
+stem.COUNT   = <îâcznie>
+stem.0       = <wskaúnik>
+...
+stem.îâcznie = <wskaúnik>
+
+@{b}ACCESS QUERY @{i}wskaúnik@{ui} STEM stem@{ub}
+stem.ALIAS   = <"synonim">
+stem.PATH    = <"ôcieûka">
+stem.READ    = <grupy do odczytu>
+stem.WRITE   = <grupy do zapisu>
+stem.DELETE  = <grupy kasowalne>
+stem.SUBDIRS = <grupy z podkatalogami>
+
+@endnode
+@node BUGS "FTPd_polski.guide/Bîëdy"
+
+@{b}Znane bîëdy@{ub}
+@{b}-----------@{ub}
+
+Wszystkie bîëdy w programie RC-FTPd sâ usuwane w przeciâgu 24 godzin.  (O
+ile szczëôcie dopisze).
+
+
+@{b}Klienci@{ub}
+@{b}-------@{ub}
+
+Sporo innych klientów posiada bîëdy nie wymienione tutaj  poniewaû  udaîo
+mi  sië  je obejôê, a nie sâ one na tyle powaûne, aby zawracaê sobie nimi
+gîowë, lub teû dziaîajâ prawidîowo kiedy nie mogâ zrobiê nic úle.
+
+
+@{b}DopusFTP@{ub}
+
+Ten klient (mimo iû jest uûywany  przeze  nie  z  wyboru)  posiada  kilka
+drobnych   bîëdów,   przede   wszystkim  nie  moûesz  poprawnie  przerwaê
+przesyîania pliku, po prostu zamyka caîkowicie poîâczenie. Jest to trochë
+irytujâce.
+
+
+@{b}AmiFTP@{ub}
+
+Brak znanych  bîëdów.  Jedynâ  dziwnâ  rzeczâ  jest  fakt,  iû  zaraz  po
+rozpoczëciu  transferu  program  czësto wysyîa polecenia NOOP, nie jestem
+pewien czy jest to robione aby sprawdziê czy serwer  obsîuguje  polecenie
+ABOR  czy teû  nie (kaûdy serwer odpowiadajâcy natychmiast prawdopodobnie
+obsîuguje). Jeôli tak brawa dla programisty, jeôli nie to "hm...?" ;-)
+
+
+@{b}Voyager@{ub}
+
+I tutaj jest ból - Voyager nie zachowuje nawet podstawowych zasad - uûywa
+polecenia  CWD do katalogów oraz RETR do plików... Nie jest to zbyt mâdre
+gdyû *ûaden* z dokumentów RFC na to nie pozwala...
+
+
+@{b}mFTP@{ub}
+
+Ten klient nie zna polecenia CDUP, i wyglâda na to, iû  myôli,  ûe  kaûdy
+serwer  rozumie  polecenie  "CWD  .."  jako  polecenie wywoîujâce katalog
+nadrzëdny - co jednak tego nie gwarantuje, prawdë mówiâc musiaîem napisaê
+specjalnâ procedurë do tego... :-/
+
+I jeszcze drobna informacja - polecenie CDUP nie powinno byê uûywane zbyt
+czësto  z  powodu  odsyîaczy  symbolicznych  -  gdzie  jest  na  przykîad
+"/@{i}aktualny@{ui}/" = "/pub/01012000/" i  serwer  automatycznie  zmieni  ôcieûkë
+dostëpu za Ciebie,  zamiast  uûywania  przez  Ciebie  ôcieûki  absolutnej
+(takiej  jak  w  unix'ie)  katalogu  nadrzëdnego  którâ  *Ty* jako klient
+widzisz...
+
+
+@{b}Internet Explod@{bg shadow}@{fg shine}<@{fg text}@{bg back}rer@{ub}
+
+Hm... Prawdopodobnie tak wiele bîëdów iû mógîbym napisaê  10  megabajtowâ
+dokumentacjë ;-P
+
+@endnode
+@node FUTU "FTPd_polski.guide/Przyszîoôê"
+
+@{b}Jakie zmiany planujë w przyszîoôci@{ub}
+@{b}----------------------------------@{ub}
+
+ · Lista blokad (ang: banlist).
+ · Moûliwoôê przekroczenia maksymalnej wartoôci zn/sek  dla  pojedynczych
+   kont.
+ · Przepisanie wiadomoôci odpowiedzi na bardziej opisowe.
+ · Dodanie  wiëkszej  iloôci  wielolinijkowych  odpowiedzi  jak   "Full",
+   "Banned" itd.
+ · Dodanie maîych obrazków w oknie preferencji. ;-)
+ · Podzielenie  programu  na  dwa  moduîy:  program   gîówny   i   edytor
+   preferencji.
+ · Napisanie "Bitfield.mcc".
+ · Przepisanie obsîugi sieci aby zredukowaê obciâûenie  procesora  (okoîo
+   3% na mojej 060).
+ · Przeniesienie wszystkich elementów ftpd do zewnëtrznej biblioteki.
+ · Zastosowanie w odpowiednich suwakach  tekstów  "Nieograniczony"/"Brak"
+   zamiast "0".
+ · Moûliwoôê indywidualnego wîâczania/wyîâczania poleceï.
+ · Zmiana numeru portu w preferencjach od  razu  znajdzie  odniesienie  w
+   dziaîaniu programu.
+ · Zautomatyzowanie anonimowych poîâczeï.
+ · Dodanie wiëkszej iloôci moûliwych do obserwowania parametrów  w  oknie
+   gîównym,  pozwalajâc  uûytkownikowi  zadecydowaê  które  z  nich  chce
+   wyôwietlaê.
+ · Prawdopodobnie  uûywanie  oddzielnych  okien  preferencji  do   edycji
+   kaûdego uûytkownika/grupy.
+ · Powiadamianie powinno zostaê dodane wkrótce (poprzez polecenie?).
+ · Gotowy do wydrukowania plik pomocy (jako plik w formacie PostScript?).
+
+@endnode
+@node THAN "FTPd_polski.guide/Podziëkowania"
+
+@{b}Kto mi pomógî?@{ub}
+@{b}--------------@{ub}
+
+Przede wszystkim dziëkujë Stefanowi Stuntzowi za  jego  *wspaniaîe*  MUI,
+bez  którego  ten  program by nawet nie zaistniaî. Tak, taka jest prawda,
+bez porzâdnego GUI nigdy bym nie napisaî tego programu, a nie zamierzaîem
+sië  cofaê  do starego interfejsu gadtools, ani jeszcze gorszego "Artysty
+Formalnie Znanego Jako ClassAct".
+
+Oraz betatesterom i innym ludziom którzy  pomogli  mi  znaleúê  dosîownie
+tysiâce  bîëdów  do  poprawienia...  (Dziëkujë  im?  Po  tym ile pracy mi
+dodali? ;-)
+ SnorsleX
+ Purple
+ g0d00d
+ dUn3cHiLd
+ Crab
+ spr0g
+ Djole
+ Fred
+ Songonco
+
+@endnode
+@node CONT "FTPd_polski.guide/Kontakt"
+
+@{b}Jak skontaktowaê sië z autorem?@{ub}
+@{b}-------------------------------@{ub}
+
+E-mail:  Robin Cloutman <rycochet@rycochet.demon.co.uk>
+ICQ:     13463163 (Rycochet) - rzadko sprawdzany
+IRC:     RobinC na uk1.arcnet.vapor.com #AmiHelp
+Telefon: (+44) [0]1865 310106 - mój  jedyny  telefon,  przewaûnie  zajëty
+         przez Internet ;-)
+Adres:   Robin Cloutman
+         5, Meadow View
+         Water Eaton Road
+         Summertown
+         Oxford
+         ENGLAND
+         OX2 7QS
+
+
+Proszë pamiëtaê - ChaoZer teraz pomaga mi w pracach nad wersjâ 3.x -  ale
+nie  moûe  on  w ûaden sposób pomóc w jakichkolwiek sprawach zwiâzanych z
+wersjâ 2.x, wiëc proszë kontaktowaê sië ze mnâ ;-)
+
+@endnode
+@node REGI "FTPd_polski.guide/Rejestracja"
+
+@{b}Ograniczenia wersji niezarejestrowanej.@{ub}
+@{b}---------------------------------------@{ub}
+
+Czëôê z nich - wiëkszoôê jednak zostaîa usuniëta, a tak i tak do  pakietu
+jest  doîâczony  darmowy  plik-klucz  usuwajâcy  wszytskie ograniczenia z
+wersji 2.x...
+
+· Ograniczenie do 3 poîâczeï.
+· Maksymalna prëdkoôê przesyîu ograniczona do 3.000 zn/sek.
+· Wyîâczony port ARexx'a.
+· Wyîâczone automatyczne wysyîanie plików ".message".
+· Wyîâczone automatyczne dodawanie komentarzy.
+
+@{b}Jak sië zarejestrowaê?@{ub}
+@{b}----------------------@{ub}
+
+Opîata rejestracyjna wynosi  $20  (USD)  -  zostanie  ona  zwiëkszona  po
+wydaniu wersji 3.x!
+
+Aby zarejestrowaê  program  przy  uûyciu  karty  kredytowej  uûyj  strony
+Reg.net
+            https://secure.reg.net/product.asp?ID=10092
+lub jeôli wolisz inne rozwiâzania wyôlij mi czek na 20 funtów (UKP), gdyû
+nienawidzë ich realizowania ;-).
+
+Po  zarejestrowaniu  otrzymasz  plik-klucz  zawierajâcy  Twoje   imië   i
+nazwisko,  adres  e-mail  oraz  peîen adres pocztowy (podanie tych danych
+jest  warunkiem  rejestracji  programu).  Oznacza  to,  iû  na  podstawie
+pliku-klucza   moûna   wyôledziê   jego   wîaôciciela,  wiëc  lepiej  nie
+rozpowszechniaj swojego pliku-klucza, no chyba, ûe chcesz spëdziê  trochë
+czasu w jednym z pobliskich wiëzieï.
+
+@endnode
+

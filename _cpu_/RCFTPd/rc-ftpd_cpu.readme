@@ -1,0 +1,6 @@
+Short:    The best ftp server for Amiga (680x0)
+Author:   Robin Cloutman <rycochet@rycochet.demon.co.uk>
+Type:     comm/tcp
+Requires: comm/tcp/rc-ftpd.lha
+
+Extract to the same location as the main archive before running the installer.

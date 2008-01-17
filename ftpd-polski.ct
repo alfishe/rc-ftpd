@@ -1,0 +1,505 @@
+## version $VER: ftpd.catalog 2.28 (16.04.2002)
+## language polski
+## codeset 0
+;
+; *************************************************
+; Catalog description file for rc-ftpd
+; $VER: ftpd.cd 2.28 (3.11.2001) ©1999-2001 Robin Cloutman
+; *************************************************
+;
+MSG_ERROR
+Bîâd RC-FTPD
+; RC-FTPD Error
+;
+MSG_OK
+OK
+; Ok
+;
+MSG_SAVE
+Zapisz
+; Save
+;
+MSG_USE
+Uûyj
+; Use
+;
+MSG_CANCEL
+Poniechaj
+; Cancel
+;
+MSG_KICK
+Wyrzuê
+; Kick
+;
+MSG_ABORT
+Przerwij
+; Abort
+;
+MSG_ADD
+Dodaj
+; Add
+;
+MSG_REMOVE
+Usuï
+; Remove
+;
+MSG_SORT
+Uporzâdkuj
+; Sort
+;
+MSG_BAD_CONFIG
+Nieznany format pliku konfiguracyjnego
+; Unrecognised config file format
+;
+MSG_STARTUP_MUI
+Nie mogë otworzyê biblioteki muimaster.library 18+
+; Unable to open muimaster.library 18+
+;
+MSG_STARTUP_UTILITY
+Nie mogë otworzyê biblioteki utility.library 36+
+; Unable to open utility.library 36+
+;
+MSG_STARTUP_SOCKET
+Nie mogë otworzyê biblioteki bsdsocket.library 4+\n\nProszë najpierw uruchomiê stos TCP/IP...
+; Unable to open bsdsocket.library 4+\n\nPlease start your TCP/IP stack first...
+;
+MSG_STARTUP_MEMORY
+Nie mogë przydzieliê zasobów pamiëci\n\nZamknij jednâ lub wiëcej aplikacji\nlub uruchom ponownie komputer
+; Unable to create memory pool\n\nQuit one or more applications or reboot
+;
+MSG_STARTUP_APP
+Nie mogë utworzyê aplikacji\n\nPrawdopodobnie zbyt maîo pamiëci lub brak klas\n(dokîadniejsze wyjaônienia w póúniejszych wersjach)
+; Failed to create application\n\nPossibly a lack of memory or missing classes\n(more detail in later version)
+;
+MSG_SOCKET_OPEN
+Nie mogë otworzyê gniazdka\nNieznana przyczyna - prawdopodobnie gniazdko nieobsîugiwane\n\n(wyôlij mi e-mail, a poszukam bîëdu)
+; Unable to open socket\nUnknown cause - possibly unsuported socket\n\n(email me so I can trace it)
+;
+MSG_SOCKET_OPTIONS
+Nie mogë ustawiê opcji gniazdka\nNieznana przyczyna - prawdopodobnie gniazdko nieobsîugiwane
+; Unable to set socket options\nUnknown cause - possibly unsuported socket
+;
+MSG_SOCKET_BIND
+Nie mogë przydzieliê portu\nPrawdopodobnie uruchomiîeô program dwukrotnie
+; Unable to bind port\nProbably trying to start twice
+;
+MSG_SOCKET_LISTEN
+Nie mogë nasîuchiwaê portu\nNieznana przyczyna - prawdopodobnie gniazdko nieobsîugiwane
+; Unable to listen on port\nUnknown cause - possibly unsuported socket
+;
+MSG_SAVE_CONFIG
+Nie mogë zapisaê konfiguracji
+; Unable to save config
+;
+MSG_LIST_STATUS
+Status
+; Status
+;
+MSG_LIST_IP
+IP
+; IP
+;
+MSG_LIST_USER
+Uûytkownik
+; User
+;
+MSG_LIST_CMD
+Polecenie
+; CMD
+;
+MSG_LIST_ARGS
+Parametry
+; Args
+;
+MSG_LIST_ONLINE
+\ec%ld/%ld podîâczonych uûytkowników
+; \ec%ld/%ld Users online
+;
+MSG_MUI_ABOUT
+Najlepszy demon FTP dla Amigi
+; The best ftp daemon for Amiga
+;
+MSG_MUI_MUI
+MUI
+; MUI
+;
+MSG_MUI_PREFS
+Preferencje
+; Prefs
+;
+MSG_SHORT_KICKABORT
+\ebWyrzuê\en odîâczy zaznaczonego uûytkownika\ni przerwie wszystkie jego transfery\n\ebPrzerwij\en tylko przerwie jego transfery
+; \ebKick\en will disconnect the selected\nuser and any transfers they are doing\n\ebAbort\en will just cancel their transfer
+;
+MSG_SHORT_MESSAGE
+Pozwala na wpisanie krótkiej wiadomoôci\ni wyslanie jej do wybranego uûytkownika
+; Type a short message in here and it\nwill be sent to the selected user
+;
+MSG_SHORT_OPEN
+Jest to gîówny status Twojego serwera\nInformuje czy ludzie mogâ sië poîâczyê (\ebOtwarty\en) czy nie (\ebZamkniëty\en)
+; This is the general status of your server\nCan people connect (\ebOpen\en) or not (\ebClosed\en)
+;
+MSG_UNLIMITED
+nieograniczony
+; unlimited
+;
+MSG_CONTROL_CODES
+Moûesz uûyê nastëpujâcych kodów kontrolnych:\n$u = aktualnie uûytkowników\n$m = maksymalnie uûytkowników\n$c = maksymalnie zn/sek\n$s = maksymalnie zn/sek dla danego uûytkownika
+; You can use the following control codes:\n$u = Current users\n$m = Max users\n$c = Max CPS\n$s = MaxCPS/Current users
+;
+MSG_UPLOAD
+%s [%s]\n%s\n%s\n%s (%lu/%lu bajtów, %lu zn/sek)
+; %s [%s]\n%s\n%s\n%s (%lu/%lu bytes, %lu cps)
+;
+MSG_DOWNLOAD
+%s [%s]\n%s\n%s\n%s (%lu bajtów, %lu zn/sek)
+; %s [%s]\n%s\n%s\n%s (%lu bytes, %lu cps)
+;
+MSG_NOLOAD
+%s [%s]\n%s\n%s\n
+; %s [%s]\n%s\n%s\n
+;
+MSG_LOGIN
+\eblogowanie
+; \eblogin
+;
+MSG_LOG_NONE
+Bez raportowania
+; No log
+;
+MSG_LOG_KNOWN
+Raportuj znane
+; Log known
+;
+MSG_LOG_COMMANDS
+Raportuj polecenia
+; Log commands
+;
+MSG_LOG_ALL
+Raportuj wszystko
+; Log all
+;
+MSG_ONLINE_LIMIT
+\ec%ld/%ld podîâczonych uûytkowników
+; \ec%ld/%ld Users online
+;
+MSG_ONLINE_NOLIMIT
+\ec%ld podîâczonych uûytkowników
+; \ec%ld Users online
+;
+MSG_FTP_CLOSED
+Serwer FTP wyîâczony
+; FTP Closed
+;
+MSG_FTP_OPEN
+Serwer FTP wîâczony
+; FTP Open
+;
+MSG_FTP_GUIDE
+ftpd_polski.guide
+; ftpd.Guide
+;
+MSG_PREF_WINDOW
+Preferencje - RC-FTPd
+; RC-FTPd Preferences
+;
+MSG_PREF_PORT
+Port:
+; Port:
+;
+MSG_PREF_PORT_HELP
+Jest to numer portu do którego ludzie muszâ sië podîâczaê,\nzmiany sâ aktywne dopiero po ponownym uruchomieniu programu.\n\nDomyôlnie: 21
+; This is the port people must connect to,\ntakes effect on restart.\n\nDefault: 21
+;
+MSG_PREF_LIST
+Wzorzec wyôwietlania:
+; List pattern:
+;
+MSG_PREF_LIST_HELP
+Jest to domyôlny wzorzec uûywany do wyôwietlania listy plików/katalogów,\nnie przerywa pobierania, jedynie ogranicza widocznoôê plików.\n\nDomyôlnie" \"~(.#?|#?.info)\"
+; This is the pattern used to list files/dirs,\nit does not stop download, just visibility.\n\nDefault: \"~(.#?|#?.info)\"
+;
+MSG_PREF_ANON
+Anonimowy:
+; Anon:
+;
+MSG_PREF_ANON_HELP
+Czy pozwalasz uûytkownikom na logowanie sië \ebbez\en hasîa?\n\nDomyôlnie: NIE\nInformacja: uûytkownicy muszâ mieê puste pole hasîa w zakîadce Uûytkownicy.
+; Do you allow people to log on \ebwithout\en passwords?\n\nDefault: NO\nNote: they must have a blank password on the Users page.
+;
+MSG_PREF_MAXUSERS
+Maks. uûytkowników:
+; Max Users:
+;
+MSG_PREF_MAXUSERS_HELP
+Maksymalna liczba poîâczeï.\nNiektórzy klienci tworzâ wiëcej niû\njedno poîâczenie, wiëc powinieneô takûe ustawiê Ograniczenie czasowe.\n\nDomyôlnie 0 (bez ograniczenia) (\ebW wersji niezarejestrowanej 1-3\en)
+; The maximum number of control connections,\nsome clients make more than one\nconnection, so you should also set a Timeout.\n\nDefault: 0 (no limit) (\ebUnregistered 1 - 3\en)
+;
+MSG_PREF_MAXCPS
+Maks. zn/sek:
+; Max CPS:
+;
+MSG_PREF_MAXCPS_HELP
+Maksymalna prëdkosê przesyîania plików,\nuûyteczne gdy korzystasz z modemu\ni nie chcesz aby serwer zabieraî\ncaîe Twoje pasmo transmisyjne.\n\nDomyôlnie 0 (bez ograniczenia) (\ebW wersji niezarejestrowanej 1-3072\en)
+; The maximum transfer speed for files,\nuseful if you are on a modem and\ndon't want the server stealing\nall your bandwidth.\n\nDefault: 0 (no limit) (\ebUnregistered 1 - 3072\en)
+;
+MSG_PREF_TIMEOUT
+Ograniczenie czasowe:
+; Timeout:
+;
+MSG_PREF_TIMEOUT_HELP
+Po takiej iloôci minut bezczynnoôci\nuûytkownicy bëdâ wyrzucani.\n\nDomyôlnie 0 (bez ograniczenia)
+; After this many minutes of doing nothing\npeople are kicked off.\n\nDefault: 0 (no timeout)
+;
+MSG_PREF_NOOP
+NOOP:
+; Noop:
+;
+MSG_PREF_NOOP_HELP
+Jeôli ta opcja jest wîâczona uûytkownicy\nmogâ uûywaê polecenia NOOP (NO OPeration) aby\nzapobiec odîâczeniu.\n\nDomyôlnie: Wyîâczone
+; If this is allowed then people can\nuse the NOOP command (NO OPeration) to\nprevent themselves being kicked off.\n\nDefault: OFF
+;
+MSG_PREF_NOPASV
+Bez PASV:
+; NoPASV:
+;
+MSG_PREF_NOPASV_HELP
+Jeôli ta opcja jest wîâczona uûytkownicy\nmogâ lâczyê sië jedynie poprzez polecnie PORT.\nJest to bezpieczniejsze i zalecane\nuûytkownikom znajdujâcym sië za zaporami ogniowymi.
+; If this is checked then people can\nonly connect via the PORT command.\nThis is more secure,\nand recommended for people behind firewalls.
+;
+MSG_PREF_AUTOMESSAGE
+Autom. wiadomoôci:
+; Auto-Message:
+;
+MSG_PREF_AUTOMESSAGE_HELP
+Gdy uûytkownik zmieni katalog zostanie wyôwietlony\nplik \".message\"\njako czëôê odebranej przez niego odpowiedzi.\n\nDomyôlnie: Wîâczone (\ebTylko w wersji zarejestrowanej\en)
+; Whenever someone changes their directory\nthis will type a file called \".message\"\nas part of the reply they get.\n\nDefault: ON (\ebRegistered only\en)
+;
+MSG_PREF_AUTOCOMMENT
+Autom. dodawaj komentarz:
+; Auto-Comment:
+;
+MSG_PREF_AUTOCOMMENT_HELP
+Kiedy ktoô przysyîa Ci plik\nkometraz zostanie ustawiony na \"uûytkownik@ip\".\n\nDomyôlnie: Wîâczone (\evTylko w wersji zarejestrowanej\en)
+; Whenever someone sends you a file this\nwill set the file comment to \"user@ip\".\n\nDefault: ON (\ebRegistered only\en)
+;
+MSG_PREF_LOGFILE
+Uûywaj pliku raportu:
+; Use-Logfile:
+;
+MSG_PREF_LOGFILE_SEPERATE
+Dziel plik raportu:
+; Seperate:
+;
+MSG_PREF_LOGFILE_HELP
+Raportuje wszystko co wybierzesz (tak samo jak podczas ôledzenia)\ndo jednego pliku raportu\nlub pliku raportu dla kaûdego uûytkownika.
+; Logs everything you chose (as in Snoop)\nto either a single logfile, or one\nlogfile per user.
+;
+MSG_PAGE_INFO
+Informacje
+; Info
+;
+MSG_PAGE_USERS
+Uûytkownicy
+; Users
+;
+MSG_PAGE_GROUPS
+Grupy
+; Groups
+;
+MSG_PAGE_GENERAL
+Gîówne
+; General
+;
+MSG_PAGE_CLOSED
+\e3Wyîâczony
+; \e3Closed
+;
+MSG_PAGE_GREETING
+\e3Przywitanie
+; \e3Greeting
+;
+MSG_PAGE_WELCOME
+\e3Powitanie
+; \e3Welcome
+;
+MSG_PAGE_GOODBYE
+\e3Poûegnanie
+; \e3Goodbye
+;
+MSG_SNOOP_TITLE
+Ôledzenie - RC-FTPd
+; RC-FTPd Snoop
+;
+MSG_SNOOP_CLEAR
+Wyczyôê
+; Clear
+;
+MSG_USER_LIST_USERNAME
+Uûytkownik
+; Username
+;
+MSG_USER_LIST_PASSWORD
+Hasîo
+; Password
+;
+MSG_USER_LIST_MAX
+Maks.
+; Max
+;
+MSG_USER_LIST_LOG
+Raport
+; Log
+;
+MSG_USER_LIST_NONAME
+\ebnie ustawiony
+; \ebunset
+;
+MSG_USER_LIST_PASS
+(ukryte)
+; (hidden)
+;
+MSG_USER_LIST_NOPASS
+\ebanonimowy
+; \ebanon
+;
+MSG_USER_USER
+Uûytkownik:
+; User:
+;
+MSG_USER_PASS
+Hasîo:
+; Pass:
+;
+MSG_USER_MAX
+Maks.:
+; Max:
+;
+MSG_PATH_LIST_ALIAS
+Synonim
+; Alias
+;
+MSG_PATH_LIST_PATH
+Ôcieûka
+; Path
+;
+MSG_PATH_NOALIAS
+\ebbrak
+; \ebnone
+;
+MSG_PATH_NOPATH
+\ebsfaîszowana
+; \ebfake
+;
+MSG_PATH_READ
+Odczyt:
+; Read:
+;
+MSG_PATH_WRITE
+Zapis:
+; Write:
+;
+MSG_PATH_DELETE
+Kasowanie:
+; Delete:
+;
+MSG_PATH_SUBDIRS
+Podkatalogi:
+; SubDirs:
+;
+MSG_PATH_ALIAS
+Synonim:
+; Alias:
+;
+MSG_PATH_PATH
+Ôcieûka:
+; Path:
+;
+MSG_MENU_PROJECT
+Projekt
+; Project
+;
+MSG_MENU_ENABLED
+Wîâczony
+; Enabled
+;
+MSG_MENU_SETTINGS
+Ustawienia...
+; Settings...
+;
+MSG_MENU_MUISETTINGS
+Ustawienia MUI...
+; MUI Settings...
+;
+MSG_MENU_QUIT
+Skoïcz
+; Quit
+;
+MSG_MUI_STATS
+Statystyki
+; Stats
+;
+MSG_STATS_TITLE
+RC-FTPd · Statystyki
+; RC-FTPd Stats
+;
+MSG_STATS_DATA
+Przesîanych danych
+; Data Transferred
+;
+MSG_STATS_DATA_BYTES
+%s bajtów
+; %s bytes
+;
+MSG_STATS_FILES
+Przesîanych plików
+; Files Transferred
+;
+MSG_STATS_FILES_FILES
+%s plików
+; %s file(s)
+;
+MSG_STATS_CPS
+Ôrednia prëdkoôê
+; Average CPS
+;
+MSG_STATS_CPS_CPS
+%s zn/sek
+; %s cps
+;
+MSG_STATS_SENT
+Wysîanych:
+; Sent:
+;
+MSG_STATS_RECIEVED
+Odebranych:
+; Recieved:
+;
+MSG_STATS_TOTAL
+Îâcznie:
+; Total:
+;
+MSG_STATS_USERS
+Uûytkownicy
+; Users
+;
+MSG_STATS_USERS_ACCOUNT
+Kont:
+; Account:
+;
+MSG_STATS_USERS_ANON
+Anonimowi:
+; Anon:
+;
+MSG_STATS_RESET
+Wyzeruj statystyki
+; Reset Stats
+;
+MSG_PREF_ASYNC
+Przesyîanie asynchroniczne
+; Async
+;
+MSG_PREF_ASYNC_HELP
+Wîâczenie tej opcji powoduje zwiëkszenie prëdkoôci transferu i\nzmniejszenie wykorzystania procesora... Jednak kilku\nuûytkowników zgîaszaîo problemy z poprawnym\ndziaîaniem tej opcji - zostaleô ostrzeûony.\n\nDomyôlnie: Wyîâczone.
+; With this enabled file transfer is faster and uses less CPU...\nHowever it has been reported to crash some people's\nmachines - you have been warned\n\nDefault: OFF
+;
