@@ -1,0 +1,15 @@
+all: brush2c.run AppWindow.run Balancing.run BoopsiDoor.run Class1.run Class2.run Class3.run EnvBrowser.run Layout.run Menus.run MUI-Demo.run Pages.run Popup.run ShowHide.run Slidorama.run Virtual.run WbMan.run Subtask.run InputHandler.run DragnDrop.run psi.run 
+
+clean:
+	delete *.run *.bh
+
+psi.run: brush2c.run psi.c psi.h psi.lh psi_sizes.bh psi_colors.bh psi_freqs.bh psi_screenon.bh psi_screenof.bh psi_screencn.bh psi_screencf.bh
+
+.brush.bh:
+	brush2c.run $*.brush >$*.bh
+
+.mbr.bh:
+	brush2c.run $*.mbr >$*.bh
+
+.c.run:
+   sc ansi nostkchk nostkext uchar cnest ign=147 errrexx nominc streq noicon mccons math=standard objname=t:tmp.o link $*.c programname $*.run

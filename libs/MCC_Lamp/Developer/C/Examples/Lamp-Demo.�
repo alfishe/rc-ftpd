@@ -1,0 +1,55 @@
+Storm Shell Project (0007)
+Settings (Start)
+C/C++ Environment
+"Include:"
+"StormC:include/"
+Includepath (End)
+0 "" 999
+0 "objects"
+C/C++ Preprozessor
+Defines (End)
+1 1 1
+C/C++ Options
+0 1 1 0 0 0 0 0 0 0 0 1 1
+C/C++ Optimizer
+9
+C/C++ Warnings
+1 1 1 1 1 1 0 1
+Linker
+0 0 "PROGDIR:startup.o" 0 0 1 0 0 0 0
+"StormC:lib" 0 "StormC:lib/logfile" 0 0 0
+0 "_WizardSurface"
+0 0 50 0 50 0 50 0 0
+0 0 0 0 0 0 0 0
+Run
+8 "" "" "" 0
+""
+
+1 "CON://400/180/Storm Console/AUTO/WAIT/SCREEN StormScreen" "RAM:Output" "RAM:Input"
+1 0
+Settings (End)
+File
+1 "Lamp-Demo.c"
+"Lamp-Demo.c"
+Storm Shell Project (Dependencies)
+"Lamp-Demo.o" "Lamp-Demo.debug"
+Section
+1 1 100
+File
+10 "Lamp-Demo"
+Storm Shell Project (Dependencies)
+"Lamp-Demo.link"
+Section
+10 0 40
+File
+5 "Work:C/lib/storm_near.lib"
+Storm Shell Project (Dependencies)
+File
+5 "Work:C/lib/muistubs.lib"
+Storm Shell Project (Dependencies)
+File
+5 "Work:C/lib/amiga.lib"
+Storm Shell Project (Dependencies)
+Section
+5 0 -50
+Storm Shell Project (End)

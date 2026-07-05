@@ -1,0 +1,53 @@
+TMPDIR  = T:
+SRCS    = newobj.c makeobj.c request.c classnames.c allocaslreq.c aslreq.c
+SOBJS   = $(SRCS:"*.c":"$(TMPDIR)*s.o")
+SROBJS  = $(SRCS:"*.c":"$(TMPDIR)*sr.o")
+LOBJS   = $(SRCS:"*.c":"$(TMPDIR)*l.o")
+LROBJS  = $(SRCS:"*.c":"$(TMPDIR)*lr.o")
+LIBS    = muis.lib muisr.lib muil.lib muilr.lib
+FDLIB   = $(TMPDIR)muifd.lib
+FTLOPTS = //fd/muimaster_lib.fd -h /include/clib/muimaster_protos.h -o $(FDLIB) \
+          -auto muimaster.library -v -I DINCLUDE:amiga30
+CFLAGS  = -3.0 -mi -I /include
+
+all : $(LIBS)
+
+muis.lib : $(SOBJS)
+      fdtolib $(FTLOPTS) -md
+      Join %(right) $(FDLIB) to %(left)
+      -delete $(FDLIB)
+
+muisr.lib : $(SROBJS)
+      fdtolib $(FTLOPTS) -md -mRR
+      Join %(right) $(FDLIB) to %(left)
+      -delete $(FDLIB)
+
+muil.lib : $(LOBJS)
+      fdtolib $(FTLOPTS) -mD
+      Join %(right) $(FDLIB) to %(left)
+      -delete $(FDLIB)
+
+muilr.lib : $(LROBJS)
+      fdtolib $(FTLOPTS) -mD -mRR
+      Join %(right) $(FDLIB) to %(left)
+      -delete $(FDLIB)
+
+$(SOBJS) : $(SRCS)
+      dcc $(CFLAGS) -o %(left) -c %(right) -md
+
+$(SROBJS) : $(SRCS)
+      dcc $(CFLAGS) -o %(left) -c %(right) -md -mRR
+
+$(LOBJS) : $(SRCS)
+      dcc $(CFLAGS) -o %(left) -c %(right) -mD
+
+$(LROBJS) : $(SRCS)
+      dcc $(CFLAGS) -o %(left) -c %(right) -mD -mRR
+
+clean :
+      -Delete $(SOBJS) $(SROBJS) $(LOBJS) $(LROBJS) QUIET
+
+new :
+      DMake clean
+      DMake all
+

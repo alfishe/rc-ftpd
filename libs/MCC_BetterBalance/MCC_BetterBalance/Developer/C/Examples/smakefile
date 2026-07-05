@@ -1,0 +1,5 @@
+
+BetterBalance-Demo: BetterBalance-Demo.c
+    @Echo "*e[1;32mCompiling *"BetterBalance-Demo*"... *e[0m"
+    @sc BetterBalance-Demo.c NOOPTTIME OPTSIZE
+

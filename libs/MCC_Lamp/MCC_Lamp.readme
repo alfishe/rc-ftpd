@@ -1,0 +1,18 @@
+Short:    Lamp MUI custom class (Version 11.1)
+Author:   BLiZZeR@dame.de (Maik Schreiber)
+Uploader: BLiZZeR@dame.de (Maik Schreiber)
+Type:     dev/mui
+
+Lamp.mcc offers a little lamp which can be used for various purposes. It
+enhances the programmer's abilities to give more informative feedback to the
+user and thus just adds another level of communication in your programs!
+
+You can set the color and the type of the lamp at any time.
+
+Lamp.mcc has several special colors which can be configured using a MCP by
+the user.
+
+See the supplied demonstration program for more details.
+
+The demonstration program compiles fine under MaxonC++ 4.0, SAS/C 6.57 and
+StormC 1.1.

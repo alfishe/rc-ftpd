@@ -1,0 +1,49 @@
+Short:    BetterBalance MUI Custom Class
+Kurz:     BetterBalance MUI-Klasse
+Author:   bZ@iq-computing.de (Maik Schreiber)
+Uploader: bZ@iq-computing.de (Maik Schreiber)
+Type:     dev/mui
+Version:  11.2
+Requires: MUI 3.0+
+
+
+   TITLE
+        BetterBalance.mcc
+
+   VERSION
+        11.2
+
+   RELEASE DATE
+        19.06.1998
+
+   DESCRIPTION
+        BetterBalance.mcc is a subclass of Balance class which allows the
+        programmer to easily save and load all balance settings of a GUI.
+
+   SPECIAL REQUIREMENTS
+        MUI 3.0+
+
+   AVAILABILITY
+        http://www.IQ-Computing.de
+        ftp://ftp.iq-computing.de/pub/MCC_BetterBalance.lha
+        ftp://ftp.wustl.edu/pub/aminet/dev/mui/MCC_BetterBalance.lha
+
+   PRICE
+        Freeware
+        Please read the additional License.txt document for further details.
+
+   NEW FEATURES
+        - little bugfix
+
+   AUTHOR
+        Maik "bZ!" Schreiber <bZ@iq-computing.de>
+        www.IQ-Computing.de
+
+   DISTRIBUTION
+        Please read the additional License.txt document for further details.
+
+
+
+Please visit The IQ Computing Web Site at www.IQ-Computing.de
+
+Aminet downloaders: Please consider voting for this package. Thank you.

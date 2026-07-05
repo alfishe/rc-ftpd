@@ -1,0 +1,2972 @@
+;
+; Installer script for MUI custom classes
+;
+; Copyright © 1996-1997 Kai Hofmann
+; All rights reserved!
+; Released as Freeware without any explicit or implicit warranty!
+;
+; EMail: i07m@zfn.uni-bremen.de
+; WWW  : http://www.informatik.uni-bremen.de/~i07m/
+;
+; $VER: MCC-Install 43.8 (08.01.97)
+;
+; -----------------------------------------------------------------------------
+; WrapGuide is copyright © 1994-1995 Udo Schuermann
+; -----------------------------------------------------------------------------
+;
+; Archive structure:
+;
+; MCC_<name>/.Product-Info
+; MCC_<name>/MCC_<name>.readme
+; MCC_<name>/MCC_<name>.readme.info
+; MCC_<name>/MCC-Install
+; MCC_<name>/MCC-Install.info
+; MCC_<name>/Install/English.info				(optional)
+; MCC_<name>/Install/...					(optional)
+; MCC_<name>/Libs/MUI/<name>.mcc				(optional)
+; MCC_<name>/Libs/MUI/<name>.mcp				(optional)
+; MCC_<name>/Libs/MUI/<name>000.mcc				(optional)
+; MCC_<name>/Libs/MUI/<name>000.mcp				(optional)
+; MCC_<name>/Libs/MUI/<name>010.mcc				(optional)
+; MCC_<name>/Libs/MUI/<name>010.mcp				(optional)
+; MCC_<name>/Libs/MUI/<name>020.mcc				(optional)
+; MCC_<name>/Libs/MUI/<name>020.mcp				(optional)
+; MCC_<name>/Libs/MUI/<name>020f.mcc				(optional)
+; MCC_<name>/Libs/MUI/<name>020f.mcp				(optional)
+; MCC_<name>/Libs/MUI/<name>030.mcc				(optional)
+; MCC_<name>/Libs/MUI/<name>030.mcp				(optional)
+; MCC_<name>/Libs/MUI/<name>030f.mcc				(optional)
+; MCC_<name>/Libs/MUI/<name>030f.mcp				(optional)
+; MCC_<name>/Libs/MUI/<name>040.mcc				(optional)
+; MCC_<name>/Libs/MUI/<name>040.mcp				(optional)
+; MCC_<name>/Libs/MUI/<name>040f.mcc				(optional)
+; MCC_<name>/Libs/MUI/<name>040f.mcp				(optional)
+; MCC_<name>/Libs/MUI/<name>060.mcc				(optional)
+; MCC_<name>/Libs/MUI/<name>060.mcp				(optional)
+; MCC_<name>/Docs/english/<name>_mcc.guide
+; MCC_<name>/Docs/english/<name>_mcc.guide.info
+; MCC_<name>/Docs/english/<name>_mcc.doc			(optional)
+; MCC_<name>/Docs/english/<name>_mcc.doc.info			(optional)
+; MCC_<name>/Docs/......./<name>_mcc.guide			(optional)
+; MCC_<name>/Docs/......./<name>_mcc.guide.info 		(optional)
+; MCC_<name>/Docs/......./<name>_mcc.doc			(optional)
+; MCC_<name>/Docs/......./<name>_mcc.doc.info			(optional)
+; MCC_<name>/Demos/<name>-Demo					(optional)
+; MCC_<name>/Demos/<name>-Demo.info				(optional)
+; MCC_<name>/Locale/Catalogs/.../<name>_mcc.catalog		(optional)
+; MCC_<name>/Locale/Catalogs/.../<name>_mcp.catalog		(optional)
+; MCC_<name>/Developer/Autodocs/MCC_<name>.doc
+; MCC_<name>/Developer/C/Include/MUI/<name>_mcc.h
+; MCC_<name>/Developer/C/Examples/<name>-Demo.c 		(optional)
+; MCC_<name>/Developer/Amiga-E/Modules/MUI/<name>_mcc.e 	(optional)
+; MCC_<name>/Developer/Amiga-E/Examples/<name>-Demo.e		(optional)
+; MCC_<name>/Developer/Modula/txt/MCC<name>.def 		(optional)
+; MCC_<name>/Developer/Modula/txt/MCC<name>.mod 		(optional)
+; MCC_<name>/Developer/Modula/Demo/<name>Demo.mod		(optional)
+; MCC_<name>/Developer/Oberon/txt/MCC<name>.mod 		(optional)
+; MCC_<name>/Developer/Oberon/examples/<name>Demo.mod		(optional)
+; MCC_<name>/Developer/Assembler/Include/MUI/<name>_mcc.i	(optional)
+; MCC_<name>/Developer/Assembler/Examples/<name>-Demo.s 	(optional)
+; MCC_<name>/Developer/Source/MCC_<name>/...			(optional)
+; MCC_<name>/C/WarpGuide					(optional)
+;
+; -----------------------------------------------------------------------------
+; TODO:
+;
+; MCC_<name>/Images/... 					(optional)
+;
+; MUIBuilder3 support
+;
+; --- Custom initialisation ---------------------------------------------------
+
+ ; Copyright
+ (set #copyright "Copyright © 16-Mar-1997 Maik \"BLiZZeR\" Schreiber")
+
+ ; Minimum MUI version required for installation
+ (set #min_mui_version 11)
+ (set #min_mui_revision 0)
+
+ ; Bultin language
+ ; Bit	0 = English
+ ; Bit	1 = German
+ ; Bit	2 = French
+ ; Bit	3 = Spanish
+ ; Bit	4 = Portuguese
+ ; Bit	5 = Danish
+ ; Bit	6 = Italian
+ ; Bit	7 = Dutch
+ ; Bit	8 = Norwegian
+ ; Bit	9 = Swedish
+ ; Bit 10 = Polish
+ ; Bit 11 = Finnish
+ ; Bit 12 = Hungarian
+ ; Bit 13 = Greek
+ ; Bit 14 = Esperanto
+ ; Bit 15 = Turkish
+ ; Bit 16 = Latin
+ ; Bit 17 = Russian
+ ; BIT 18 = Czech
+ ; BIT 19 = Catalonian
+ (set #language_mcc %00000000000000000000) ; LANGUAGE
+ (set #language_mcp %00000000000000000000) ; LANGUAGE
+
+; --- Custom installation procedures ------------------------------------------
+
+ (procedure P_CustomExists
+  ; Params:
+  ;
+  ; Results:
+  ;
+  ; Used Vars:
+  ;
+
+ )
+
+ (procedure P_CustomInstall
+  ; Params:
+  ;
+  ; Results:
+  ;
+  ; Used Vars:
+  ;
+
+ )
+
+ (procedure P_CustomUninstall
+  ; Params:
+  ;
+  ; Results:
+  ;
+  ; Used Vars:
+  ;
+
+ )
+
+; -----------------------------------------------------------------------------
+; --- Do not change anything below this line ----------------------------------
+; -----------------------------------------------------------------------------
+
+ (set @default-dest "MUI:")
+
+ (if (= @installer-version 0)
+   (
+    ; old Installer
+    (set #prop "")
+   )
+   (
+    ; new Installer
+    (set #prop "\x1b[2p")
+   )
+ )
+
+; --- Installer script strings ------------------------------------------------
+
+ (set #i 0)
+ (while (<> @language (select #i "ÃeÓtina" "polski" "svenska" "nederlands" "greek" "français" "italiano" "dansk" "deutsch" @language)) ; LANGUAGE
+   (set #i (+ #i 1))
+ )
+ (if (= #i 9) ; LANGUAGE
+   (set #language "english")
+   (set #language @language)
+ )
+
+
+ (set #i 0)
+ (set #language_default %10000000000000000000) ; LANGUAGE
+ (while (<> #language (select #i "catalonian" "ÃeÓtina" "russian" "latina" "türkçe" "esperanto" "greek" "magyar" "suomi" "polski" "norsk" "svenska" "nederlands" "italiano" "dansk" "português" "español" "français" "deutsch" #language)) ; LANGUAGE
+   (
+    (set #language_default (shiftright #language_default 1))
+    (set #i (+ #i 1))
+   )
+ )
+ (select #i ; LANGUAGE
+   ( ; Catalonian
+    (complete 0)
+   )
+   ( ; Czech translation by Vit Sindlar <xsindl00@stud.fee.vutbr.cz>
+    (if (= @installer-version 0)
+      (
+       (set #help_askoptions "Pokud mÁte InstalÁtor do verze 42.6, mÊÚe se stÁt, Úe uvidÉte tlaÃÉtka se zatrÚenÉm bez popisu. Volba pomocÉ tÅchto tlaÃÉtek bude ignorovÁna.\n\n")
+       (set #help_askchoice "Pokud mÁte InstalÁtor do verze 42.6, mÊÚe se stÁt, Úe uvidÉte radio-tlaÃÉtka bez popisu. Volba pomocÉ tÅchto tlaÃÉtek zpÊsobÉ pÒeskok na nejbliÚÓÉ niÚÓÉ volbu.\n\n")
+      )
+    )
+    (set #unknown	    "neznÁmÙ")
+    (set #choice_english    "AngliÃtina")
+    (set #choice_german     "NÅmÃina")
+    (set #choice_french     "FrancouzÓtina")
+    (set #choice_spanish    "ópanÅlÓtina")
+    (set #choice_portuguese "PortugalÓtina")
+    (set #choice_danish     "DÁnÓtina")
+    (set #choice_italian    "ItalÓtina")
+    (set #choice_dutch	    "HolandÓtina")
+    (set #choice_norwegian  "NorÓtina")
+    (set #choice_swedish    "óv×dÓtina")
+    (set #choice_polish     "PolÓtina")
+    (set #choice_finnish    "FinÓtina")
+    (set #choice_hungarian  "MaÄarÓtina")
+    (set #choice_turkish    "TureÃtina")
+    (set #choice_greek	    "òeÃtina")
+    (set #choice_latin	    "Latina")
+    (set #choice_esperanto  "Esperanto")
+    (set #choice_russian    "RuÓtina")
+    (set #choice_czech	    "ãeÓtina")
+    (set #choice_catalonian "KatalÁnÓtina"); LANGUAGE
+
+    (set #choice_catalogs   "LokalizaÃnÉ katalogy")
+    (set #choice_docs	    "Dokumentace")
+    (set #choice_developer  "MateriÁl pro programÁtory")
+    (set #choice_source     "ZdrojovÙ kÏd")
+    (set #choice_install    "Instalovat")
+    (set #choice_update     "Obnovit instalaci")
+    (set #choice_uninstall  "Odinstalovat")
+    (set #prompt_askcpufpu	   (cat "Zvolte konfiguraci VaÓeho poÃÉtaÃe (CPU/FPU), pro kterou chcete nainstalovat " @app-name ".mcc"))
+    (set #prompt_info		   (cat "\nInstalace " @app-name " MUI custom class\n" #copyright "\n\n"))
+    (set #prompt_install_uninstall (cat #prompt_info "PÒejete si instalovat nebo odinstalovat?"))
+    (set #abort_nocpu	    (cat "Je mi lÉto, ale " @app-name ".mcc nelze nainstalovat, protoÚe typ VaÓeho CPU nenÉ podporovÁn.\n"))
+    (set #abort_nomui	    (cat @app-name " MUI custom class je moÚno pouÚÉvat pouze s Magic User Interface (MUI), bez nÅj je custom class nepouÚitelnÙ!\n\n"
+				 "InstalÁtor nenaÓel " @default-dest ". NejdÒÉve musÉte nainstalovat MUI a pak mÊÚete zkusit instalaci " @app-name ".mcc!\n"
+			    )
+    )
+    (set #abort_oldmui (cat "K instalaci " @app-name ".mcc je nutn× MUI alespoÎ verze %s.\n\n"
+			    "Bylo nalezeno MUI verze %s.\n"
+		       )
+    )
+    (set #welcome_install (cat "VÉtejte pÒi instalaci.\n"
+			       "ProsÉm zvolte si typ instalace (podle VaÓich znalostÉ Amigy)."
+			  )
+    )
+    (set #welcome_uninstall (cat "VÉtejte pÒi odinstalovÁnÉ.\n"
+				 "ProsÉm zvolte si typ odinstalovÁnÉ (podle VaÓich znalostÉ Amigy)."
+			    )
+    )
+    (set #prompt_uninstall_parts (cat "Kter× ÃÁsti si pÒejete odinstalovat?\n"
+				      @app-name ".mcp odinstaluje tak× pÒÉsluÓn× lokalizaÃnÉ katalogy.\n"
+				 )
+    )
+    (set #prompt_uninstall_all (cat "PÒejete si odinstalovat vÓechny soubory patÒÉcÉ k " @app-name ".mcc?"))
+    (set #help_uninstall_all "JestliÚe nechcete odinstalovat vÓe, budete dotÁzÁni, kter× ÃÁsti si pÒejete odinstalovat.")
+    (set #prompt_uninstall_plangs "Podporu pro kter× programovacÉ jazyky si pÒejete odinstalovat?")
+    (set #prompt_uninstall_mcp_catalogs (cat "Kter× lokalizaÃnÉ katalogy pro " @app-name ".mcp si pÒejete odinstalovat?"))
+    (set #prompt_uninstall_mcc_catalogs (cat "Kter× lokalizaÃnÉ katalogy pro " @app-name ".mcc si pÒejete odinstalovat?"))
+    (set #prompt_uninstall_agdocs "Pro kter× jazyky si pÒejete odinstalovat dokumentaci v AmigaGuide® ?")
+    (set #prompt_uninstall_docs "Kter× z dokumentÊ si pÒejete odinstalovat?")
+    (set #abort_oldversion (cat "" @app-name ".mcc verze %ld.%ld je jiÚ nainstalovÁn.\n\n"
+				"JestliÚe si pÒejete znovu nainstalovat starÓÉ verzi %ld.%ld, pak je nutno nejdÒÉve odinstalovat novÅjÓÉ verzi."
+			   )
+    )
+    (set #prompt_update (cat "Kter× ÃÁsti " @app-name ".mcc si pÒejete pÒidat?"))
+    (set #prompt_install_mcc_catalogs (cat "Kter× katalogy pro " @app-name ".mcc si pÒejete instalovat?"))
+    (set #prompt_install_mcp_catalogs (cat "Kter× katalogy pro " @app-name ".mcp si pÒejete instalovat?"))
+    (set #prompt_install_docs "Kter× z dokumentÊ si pÒejete instalovat?")
+    (set #prompt_install_agdocs "Pro kter× jazyky si pÒejete nainstalovat dokumentaci v AmigaGuide® ?")
+    (set #prompt_install_demo "PÒejete si nainstalovat dodÁvan× demo?")
+    (set #help_install_demo (cat "Demo je malÙ program, kterÙ demonstruje pouÚitÉ " @app-name "custom class."))
+    (set #prompt_install_plangs "Podporu pro kter× programovacÉ jazyky si pÒejete nainstalovat?")
+    (set #prompt_install_source "PÒejete si nainstalovat zdrojovÙ kÏd?")
+    (set #help_install_source (cat "ZdrojovÙ kÏd " @app-name " custom class je moÚno pouÚÉt jako pÒÉklad pÒi vytvÁÒenÉ svÙch vlastnÉch programÊ.\nUpozornÅnÉ - zdrojovÙ kÏd mÊÚe bÙt v jak×mkoliv jazyce!"))
+    (set #prompt_copy "PÒejete si nakopÉrovat nÁsledujÉcÉ soubor(y)?")
+    (set #prompt_makedir "NÁsledujÉcÉ adresÁÒ nebyl nalezen, je nutno jej vytvoÒit:")
+
+    (set #prompt_uninstall_asciidocs "Pro kter× jazyky si pÒejete odinstalovat dokumentaci v ASCII?")
+    (set #prompt_install_asciidocs "Pro kter× jazyky si pÒejete nainstalovat dokumentaci v ASCII?")
+    (set #exit_uninstall_finished (cat "OdinstalovÁnÉ probÅhlo ÕspÅÓnÅ!\n"
+				       '"'
+				       @app-name
+				       '"'
+				       " je odstranÅn z "
+				       '"'
+				       @default-dest
+				       '".'
+				  )
+    )
+   )
+   ( ; Russian
+    (complete 0)
+   )
+   ( ; Latina
+    (complete 0)
+   )
+   ( ; Türkçe
+    (complete 0)
+   )
+   ( ; Esperanto
+    (complete 0)
+   )
+   ( ; Greek translation by Pantelis Kopelias <leestar@acropolis.net>
+    (if (= @installer-version 0)
+      (
+       (set #help_askoptions "Må İíá Installer ğñßí ôçí İêäïóç 42.6 ìğïñåß íá óõìâåß íá äåßôå checkbox-êïõìğéÜ ÷ùñßò åôéêİôåò. Ç åğéëïãŞ ôşí êïõìğéşí áõôşí èá áãíïçèåß.\n\n")
+       (set #help_askchoice "Må İíá Installer ğñßí ôçí İêäïóç 42.6 ìğïñåß íá óõìâåß íá äåßôå radio-êïõìğéÜ ÷ùñßò åôéêİôåò. Ç åğéëïãŞ ôşí êïõìğéşí áõôşí èá İ÷åé áğïôİëåóìá ôçí åğüìåíç ÷áìçëşôåñç äéáèİóéìç åğéëïãŞ.\n\n")
+      )
+    )
+    (set #unknown	    "Üãíùóôá")
+    (set #choice_english    "ÁããëéêÜ")
+    (set #choice_german     "ÃåñìáíéêÜ")
+    (set #choice_french     "ÃáëëéêÜ")
+    (set #choice_spanish    "ÉóğáíéêÜ")
+    (set #choice_portuguese "ĞïñôïãáëéêÜ")
+    (set #choice_danish     "Äáíİæéêá")
+    (set #choice_italian    "IôáëéêÜ")
+    (set #choice_dutch	    "ÏëëáíäéêÜ")
+    (set #choice_norwegian  "ÍïñâçãéêÜ")
+    (set #choice_swedish    "ÓïõçäéêÜ")
+    (set #choice_polish     "ĞïëùíéêÜ")
+    (set #choice_finnish    "Öéëëáíäİæéêá")
+    (set #choice_hungarian  "ÏõããñéêÜ")
+    (set #choice_turkish    "ÔïõñêéêÜ")
+    (set #choice_greek	    "ÅëëçíéêÜ")
+    (set #choice_latin	    "ËáôéíéêÜ")
+    (set #choice_esperanto  "ÅóğåñÜíôï")
+    (set #choice_russian    "ÑùóóéêÜ")
+    (set #choice_czech	    "Ôóİ÷éêá")
+    (set #choice_catalonian "Êáôáëïíİæéêá"); LANGUAGE
+
+    (set #choice_catalogs   "ÊáôÜëïãïé")
+    (set #choice_docs	    "Ïäçãßåò/Åã÷åéñßäéá")
+    (set #choice_developer  "Õëéêü ãéá Developers")
+    (set #choice_source     "Ğçãáßïò Êşäéêáò")
+    (set #choice_install    "Åãêáôİóôçóå")
+    (set #choice_update     "Åíçìİñùóç")
+    (set #choice_uninstall  "Áğåãêáôİóôçóå")
+    (set #prompt_askcpufpu	   (cat "Ğáñáêáëş åğéëİîôå ôçí CPU/FPU configuration ãéá ôçí ïğïßá èİëåôå íá åãêáôáóôŞóåôå ôçí " @app-name ".mcc"))
+    (set #prompt_info		   (cat "\nÊáëùóŞëèáôå óôï " @app-name " MUI custom class\n" #copyright "\n\n"))
+    (set #prompt_install_uninstall (cat #prompt_info "Èİëåôå íá åãêáôáóôŞóåôå Ş íá áğåãêáôáóôŞóåôå ôŞí custom class?"))
+    (set #abort_nocpu (cat "Óõãíşìç, ôï script áäõíáôåß íá åãêáôáóôŞóåé ôï " @app-name ".mcc, ãéáôß ç CPU configuration óáò äİí õğïóôçñßæåôáé.\n"))
+    (set #abort_nomui (cat "Tï " @app-name " MUI custom class ìğïñåß íá ÷ñçóéìïğïéçèåß ìüíï ìå ôï Magic User Interface (MUI), ÷ùñßò áõôü ç custom class åßíáé Ü÷ñçóôç!\n\n"
+			   "Ï åãêáôáóôÜôçò äİí âñŞêå ôï " @default-dest " ãéá íá ãßíåé assigned, ãéáõôü ğáñáêáëş åãêáôáóôŞóôå ôï MUI ğñßí ğñïóğáèŞóåôå íá åãêáôáóôŞóåôå ôï " @app-name ".mcc!\n"
+		      )
+    )
+    (set #abort_oldmui (cat "Ãéá íá åãêáôáóôŞóåôå ôï " @app-name ".mcc ÷ñåéÜæåóôå ôï MUI %s ôïõëÜ÷éóôïí.\n\n"
+			    "Ï åãêáôáóôÜôçò âñŞêå üôé ôï MUI %s åßíáé åãêáôåóôçìİíï.\n"
+		       )
+    )
+    (set #welcome_install (cat "ÊáëùóŞëèáôå óôï MUI custom class ğñüãñáììá åãêáôÜóôáóçò.\n"
+			       "Ğáñáêáëş åğéëİîôå ğşò íá ğñï÷ùñŞóåé ç åãêáôÜóôáóç (âáóéæüìåíïé óôéò ãíşóåéò óáò åğÜíù óôçí Amiga)."
+			  )
+    )
+    (set #welcome_uninstall (cat "ÊáëùóŞëèáôå óôï MUI custom class ğñüãñáììá áğåãêáôÜóôáóçò.\n"
+				 "Ğáñáêáëş åğéëİîôå ğşò íá ğñï÷ùñŞóåé ç åãêáôÜóôáóç (âáóéæüìåíïé óôéò ãíşóåéò óáò åğÜíù óôçí Amiga)."
+			    )
+    )
+    (set #prompt_uninstall_parts (cat "ĞïéÜ ìİñç èİëåôå íá áöáéñİóåôå ;\n"
+				      @app-name ".mcp èá áöéñİóåé êáé ôïõò ó÷åôéêïıò catalogs åğßóçò.\n"
+				 )
+    )
+    (set #prompt_uninstall_all (cat "Èİëåôå íá áöáéñİóåôå üëá üóá ó÷åôßæïíôáé ìå ôï " @app-name ".mcc;"))
+    (set #help_uninstall_all "¶í äİí èİëåôå íá ôá áöáéñİóåôå üëá, èÜ åñùôçèåßôå ğïéÜ ìİñç èİëåôå íá áöáéñåèïıí.")
+    (set #prompt_uninstall_plangs "ĞïéÜ õğïóôŞñéîç ãéÜ ãëşóóá ğñïãñáììáôéóìïı èİëåôå íá áöáéñåèåß ;")
+    (set #prompt_uninstall_mcp_catalogs (cat "Ğïéïıò êáôáëüãïõò ãéÜ ôï " @app-name ".mcp èá èİëáôå íá áöáéñåèïıí ;"))
+    (set #prompt_uninstall_mcc_catalogs (cat "Ğïéïıò êáôáëüãïõò ãéá ôï " @app-name ".mcc èá èİëáôå íá áöáéñåèïıí ;"))
+    (set #prompt_uninstall_agdocs "Ãéá ğïéİò ãëşóóåò èá èİëáôå íá áöáéñåèïıí ïß AmigaGuide® ïäçãßåò ;")
+    (set #prompt_uninstall_docs "Ğïéïı ôığïõ ïäçãßåò èá èİëáôå íá áöáéñåèïıí ;")
+    (set #abort_oldversion (cat "Ï åãêáôáóôÜôçò âñŞêå üôé ç İêäïóç %ld.%ld ôïı " @app-name ".mcc åßíáé Şäç åãêáôåóôçìİíç.\n\n"
+				"Aí èİëåôå íá åğáíåãêáôáóôŞóåôå ôçí ğáëéşôåñç İêäïóç %ld.%ld ôüôå ğáñáêáëş áöáéñİóôå ôçí íåşôåñç İêäïóç ğñşôá."
+			   )
+    )
+    (set #prompt_update (cat "ĞïéÜ ìİñç ôïõ " @app-name ".mcc èİëåôå íá ğñïóôåèïıí óôçí åãêáôÜóôáóç ;"))
+    (set #prompt_install_mcc_catalogs (cat "Ğïéïıò êáôáëüãïõò ãéá ôï " @app-name ".mcc Èİëåôå íá åãêáôáóôáèïıí ;"))
+    (set #prompt_install_mcp_catalogs (cat "Ğïéïıò êáôáëüãïõò ãéá ôï " @app-name ".mcp Èİëåôå íá åãêáôáóôáèïıí ;"))
+    (set #prompt_install_docs "Ğïéïı ôığïõ ïäçãßåò èİëåôå íá åãêáôáóôŞóåôå ;")
+    (set #prompt_install_agdocs "Ãéá ğïéİò ãëşóóåò èİëåôå íá åãêáôáóôŞóåôå ôéò AmigaGuide® ïäçãßåò ;")
+    (set #prompt_install_demo "Èİëåôå íá åãêáôáóôŞóåôå ôï õğÜñ÷ïí demo ;")
+    (set #help_install_demo (cat "Ôï demo åßíáé İíá ìéêñü ğñüãñáììá ğïõ åğéäåéêíåßåé ôçí ÷ñŞóç ôŞò " @app-name "custom class."))
+    (set #prompt_install_plangs "ĞïéÜ õğïóôŞñéîç ãéá ãëşóóåò ğñïãñáììáôéóìïı èİëåôå íá åãêáôáóôŞóåôå ;")
+    (set #prompt_install_source "Èá èİëáôå íá åãêáôáóôŞóåôå ôïí Ğçãáßï Êşäéêá;")
+    (set #help_install_source (cat "Ï Ğçãáéüò Êşäéêáò ôïõ " @app-name " custom class ìğïñåß áí ÷ñçóéìïğïéçèåß óáí ğáñÜäåéãìá Ş ãéá ôçí äçìéïõñãßá ôçí äéêŞ óáò (bug fixed) åöáñìïãŞò.\nĞñïóİîôå - ï ğçãáßïò êşäéêáò ìğïñåß íá åßíáé óå ïğïéáäŞğïôå ãëşóóá!"))
+    (set #prompt_copy "Èİëåôå íá áíôéãñáöåß(ïıí) ôï(á) áêüëïõèï(á) áñ÷åßï(á);")
+    (set #prompt_makedir "Ç áêüëïõèç directory äİí âñİèçêå, İôóé èá ğñİğåé íá äçìéïõñãçèåß:")
+
+    (set #prompt_uninstall_asciidocs "Ãéá ğïéİò ãëşóóåò èá èİëáôå íá áöáéñİóåôå ôéò ASCII ïäçãßåò ;")
+    (set #prompt_install_asciidocs "Ãéá ğïéİò ãëşóóåò èá èİëáôå íá åãêáôáóôŞóåôå ôéò ASCII ïäçãßåò ;")
+    (set #exit_uninstall_finished (cat "Ç ÁğåãêáôÜóôáóç ôåëåßùóå ! Ôï\n"
+				       '"'
+				       @app-name
+				       '"'
+				       " áöáéñİèçêå áğü ôï "
+				       '"'
+				       @default-dest
+				       '"'
+				       " óõñôÜñé (Ş ôìŞìá äßóêïõ)."
+				  )
+    )
+   )
+   ( ; Magyar
+    (complete 0)
+   )
+   ( ; suomi
+    (complete 0)
+   )
+   ( ; Polish translation by Marcin Orîowski <carlos@inet.com.pl>
+    (if (= @installer-version 0)
+      (
+       (set #help_askoptions "W Installerze w wersji do 42.6 moûe sië zdarzyê, ûe zobaczysz gadûety zaznaczania bëdâ pozbawione etykiet. Zaznaczanie tych gadûetów bëdzie ignorowane.\n\n")
+       (set #help_askchoice "W Installerze w wersji do 42.6 moûe sië zdarzyê, ûe zobaczysz gadûety radiowe bëdâ pozbawione etykiet. Zaznaczenie takiego przycisku spowoduje wybranie nastëpnego niûej dostëpnego elementu.\n\n")
+      )
+    )
+    (set #unknown	    "nieznany")
+    (set #choice_english    "Angielski")
+    (set #choice_german     "Niemiecki")
+    (set #choice_french     "Francuski")
+    (set #choice_spanish    "Hiszpaïski")
+    (set #choice_portuguese "Portugalski")
+    (set #choice_danish     "Duïski")
+    (set #choice_italian    "Wîoski")
+    (set #choice_dutch	    "Holenderski")
+    (set #choice_norwegian  "Norweski")
+    (set #choice_swedish    "Szwedzki")
+    (set #choice_polish     "Polski")
+    (set #choice_finnish    "Fiïski")
+    (set #choice_hungarian  "Wëgierski")
+    (set #choice_turkish    "Turecki")
+    (set #choice_greek	    "Grecki")
+    (set #choice_latin	    "Îacina")
+    (set #choice_esperanto  "Esperanto")
+    (set #choice_russian    "Rosyjski")
+    (set #choice_czech	    "Czeski")
+    (set #choice_catalonian "Cataloïski"); LANGUAGE
+
+    (set #choice_catalogs   "Katalogi")
+    (set #choice_docs	    "Dokumentacja uûytkownika")
+    (set #choice_developer  "Dokumentacja dla programistów")
+    (set #choice_source     "Tekst úródîowy")
+    (set #choice_install    "Zainstaluj")
+    (set #choice_update     "Zaktualizuj")
+    (set #choice_uninstall  "Usuï")
+    (set #prompt_askcpufpu	   (cat "Wybierz konfiguracjë CPU/FPU dla której chcesz zainstalowaê " @app-name ".mcc"))
+    (set #prompt_info		   (cat "\nWitaj w programie instalacyjnym dla klasy " @app-name "\n" #copyright "\n\n"))
+
+    (set #prompt_install_uninstall (cat #prompt_info "Chcesz zainstalowaê czy usunâê zainstalowanâ juû klasë?"))
+    (set #abort_nocpu ( cat "Przykro mi, ale nie moûna zainstalowaê " @app-name ".mcc, poniewaû wybrana przez Ciebie konfiguracja CPU nie jest uwzglëdniona.\n"))
+    (set #abort_nomui (cat "Klasa " @app-name " jest uûyteczna tylko wraz z systemem Magic User Interface (MUI)!\n\n"
+			   "Installer nie znalazî przypisania " @default-dest ", zatem zainstaluj proszë MUI nim przystâpisz od instalacji " @app-name ".mcc!\n"
+		      )
+    )
+    (set #abort_oldmui (cat "Aby zainstalowaê " @app-name ".mcc musisz uûywaê MUI w wersji co najmniej %s.\n\n"
+			    "Installer wykryî zainstalowanâ wersjë %s systemu MUI.\n"
+		       )
+    )
+    (set #welcome_install (cat "Witaj w programie instalujâcym zewnëtrznâ klasë MUI.\n"
+			       "Wybierz sposób w jaki instalacja ma przebiegaê (bazujâc na poziomie swojej wiedzy o Amidze)."
+			  )
+    )
+    (set #welcome_uninstall (cat "Witaj w programie deinstalacyjnym dla zewnëtrznej klasy MUI.\n"
+				 "Wybierz sposób w jaki usuwanie ma przebiegaê (bazujâc na poziomie swojej wiedzy o Amidze)."
+			    )
+    )
+    (set #prompt_uninstall_parts (cat "Które elmenty klasy " @app-name " chcesz usunâê?\n"
+				      "Usuniëcie " @app-name ".mcp skasuje takûe odpowiednie katalogi.\n"
+				 )
+    )
+    (set #prompt_uninstall_all (cat "Na pewno chesz usunâê wszystkie elementy zwiâzane z " @app-name ".mcc?"))
+    (set #help_uninstall_all "Jeôli nie chcesz usunâê wszystkiego, bëdziesz musiaî rëcznie wybraê elementy do skasowania.")
+    (set #prompt_uninstall_plangs "Wybierz wersje jëzykowe, które chcesz zainstalowaê")
+    (set #prompt_uninstall_mcp_catalogs (cat "Które tîumaczenia preferencji " @app-name ".mcp chcesz usunâê?"))
+    (set #prompt_uninstall_mcc_catalogs (cat "Które tîumaczenia klasy " @app-name ".mcc chcesz usunâê?"))
+    (set #prompt_uninstall_agdocs "Które tîumaczenia dokumentacji w formacie AmigaGuide® chcesz usunâê?")
+    (set #prompt_uninstall_docs "Jaki typ dokumentacji chcesz usunâê?")
+    (set #abort_oldversion (cat "Installer znalazî wersjë %ld.%ld " @app-name ".mcc juû zainstalowanâ.\n\n"
+				"Jeôli chcesz zainstalowaê starszâ wersjë %ld.%ld usuï najpierw nowszâ."
+			   )
+    )
+    (set #prompt_update (cat "Które elementy klasy " @app-name ".mcc chcesz zainstalowaê dodatkowo?"))
+    (set #prompt_install_mcc_catalogs (cat "Które tîumaczenia klasy " @app-name ".mcc chcesz zainstalowaê?"))
+    (set #prompt_install_mcp_catalogs (cat "Które tîumaczenia preferencji " @app-name ".mcp chcesz zainstalowaê?"))
+    (set #prompt_install_docs "Jaki typ dokumentacji chcesz  zainstalowaê?")
+    (set #prompt_install_agdocs "Które tîumaczenia dokumentacji w formacie AmigaGuide® chcesz zainstalowaê?")
+    (set #prompt_install_demo "Czy chcesz zainstalowaê zaîâczony program demonstracyjny?")
+    (set #help_install_demo (cat "Program ten demonstruje moûliwe uûycie klasy " @app-name "."))
+    (set #prompt_install_plangs "Wybierz jëzyk programowania dla którego chcesz zainstalowaê materiaîy programisty")
+    (set #prompt_install_source "Czy chcesz zainstalowaê tekst ûródîowy?")
+    (set #help_install_source (cat "Przykîadowy tekst úródîowy wykorzystujâcy klasë " @app-name " moûe byê uûyty jako podstawa do stworzenia Twojego wîasnego programu.\nBâdú ostroûny - tekst úródîowy moûe byê napisany w dowolnym jëzyku programowania!"))
+    (set #prompt_copy "Czy chcesz skopiowaê wymienione pliki?")
+    (set #prompt_makedir "Poniûszy katalog nie zostaî znaleziony i musi zostaê utworzony:")
+
+    (set #prompt_uninstall_asciidocs "Które tîumaczenie dokumentacji w formacie ASCII chcesz usunâê?")
+    (set #prompt_install_asciidocs "Które tîumaczenie dokumentacji w formacie ASCII chcesz zainstalowaê?")
+    (set #exit_uninstall_finished (cat "Usuwanie zakoïczone!\n"
+				       '"'
+				       @app-name
+				       '"'
+				       " zostaî usuniëty z katalogu (lub partycji) "
+				       '"'
+				       @default-dest
+				       '"'
+				       "."
+				  )
+    )
+   )
+   ( ; Swedish translation by Jesper Jonsson <jojo@minsk.docs.uu.se>
+    (if (= @installer-version 0)
+      (
+       (set #help_askoptions "Om du har en tidigare version av Installeraren än 42.6 kan det hända att du ser checkbox-knappar utan tillhörande text. Att välja dessa har ingen verkan.\n\n")
+       (set #help_askchoice "Om du har en tidigare version av Installeraren än 42.6 kan det hända att du ser radioknappar utan tillhörande text. Väljer du någon av dessa så kommer det närmast undre alternativet att bli valt.\n\n")
+      )
+    )
+    (set #unknown	    "okänt")
+    (set #choice_english    "Engelska")
+    (set #choice_german     "Tyska")
+    (set #choice_french     "Franska")
+    (set #choice_spanish    "Spanska")
+    (set #choice_portuguese "Portugisiska")
+    (set #choice_danish     "Danska")
+    (set #choice_italian    "Italienska")
+    (set #choice_dutch	    "Holländska")
+    (set #choice_norwegian  "Norska")
+    (set #choice_swedish    "Svenska")
+    (set #choice_polish     "Polska")
+    (set #choice_finnish    "Finska")
+    (set #choice_hungarian  "Ungerska")
+    (set #choice_turkish    "Turkiska")
+    (set #choice_greek	    "Grekiska")
+    (set #choice_latin	    "Latin")
+    (set #choice_esperanto  "Esperanto")
+    (set #choice_russian    "Ryska")
+    (set #choice_czech	    "Tjeckiska")
+    (set #choice_catalonian "Katalanska"); LANGUAGE
+
+    (set #choice_catalogs   "Kataloger")
+    (set #choice_docs	    "Dokumentation")
+    (set #choice_developer  "Material för utvecklare")
+    (set #choice_source     "Källkod")
+    (set #choice_install    "Installera")
+    (set #choice_update     "Uppdatera")
+    (set #choice_uninstall  "Avinstallera")
+    (set #prompt_askcpufpu	   (cat "Välj den processorkonfiguration för vilken du vill installera " @app-name ".mcc"))
+    (set #prompt_info		   (cat "\nVälkommen till " @app-name " MUI-klass \n" #copyright "\n\n"))
+    (set #prompt_install_uninstall (cat #prompt_info "Vill du installera eller avinstallera klassen?"))
+    (set #abort_nocpu (cat @app-name ".mcc kunde inte installeras, eftersom din CPU-konfiguration inte stöds.\n"))
+    (set #abort_nomui (cat "Installeraren kunde inte hitta din MUI-installation. Var vänlig installera MUI innan du installerar " @app_name ".\n"))
+    (set #abort_oldmui (cat "För att installera " @app-name ".mcc måste du lägst ha version %s av MUI installerad. Du har endast version %s installerad.\n"))
+    (set #welcome_install (cat "Välkommen till installationsprogrammet för MUI-klasser.\n"
+			       "Var vänlig välj hur installationen skall fortsätta (beroende på dina kunskaper om Amigan)."))
+    (set #welcome_uninstall (cat "Välkommen till avinstallationsprogrammet för MUI-klasser.\n"
+				 "Var vänlig välj hur installationen skall fortsätta (beroende på dina kunskaper om Amigan)."))
+    (set #prompt_uninstall_parts (cat "Vilka delar vill du avinstallera?\n"
+				      "Detta kommer också att avinstallera tillhörande kataloger."))
+    (set #prompt_uninstall_all (cat "Vill du avinstallera hela " @app-name".mcc?"))
+    (set #help_uninstall_all (cat "Om du inte vill avinstallera allt, så kommer du att få välja vilka delar du vill avinstallera."))
+    (set #prompt_uninstall_plangs (cat "Vilka programmeringsspråk vill du avinstallera stödet för?"))
+    (set #prompt_uninstall_mcp_catalogs (cat "Vilka kataloger för " @app-name ".mcp vill du avinstallera?"))
+    (set #prompt_uninstall_mcc_catalogs (cat "Vilka kataloger för " @app-name ".mcc vill du avinstallera?"))
+    (set #prompt_uninstall_agdocs (cat "För vilka språk vill du avinstallera AmigaGuide®-dokumentationen?"))
+    (set #prompt_uninstall_docs (cat "Vilka typer av dokument vill du avinstallera?"))
+    (set #abort_oldversion (cat "Installeraren har upptäckt att version %ld.%ld av " @app-name ".mcc redan är installerat.\n\n"
+				"Om du vill installera den äldre versionen %ld.%ld så måste du avinstallera den nyare versionen först."))
+    (set #prompt_update (cat "Vilka delar av " @app-name ".mcc vill du addera till installationen?"))
+    (set #prompt_install_mcc_catalogs (cat "Vilka kataloger för " @app-name ".mcc vill du installera?"))
+    (set #prompt_install_mcp_catalogs (cat "Vilka kataloger för " @app-name ".mcp vill du installera?"))
+    (set #prompt_install_docs "Vilka typer av dokument vill du installera?")
+    (set #prompt_install_agdocs "För vilka språk vill du installera AmigaGuide®-dokumentationen?")
+    (set #prompt_install_demo "Vill du installera det tillhörande demoprogrammet?")
+    (set #help_install_demo (cat "Demoprogrammet är ett litet program som demonstrerar funktionerna i " @app-name "-klassen."))
+    (set #prompt_install_plangs "Vilka programmeringsspråk vill du installera stöd för?")
+    (set #prompt_install_source "Vill du installera källkoden?")
+    (set #help_install_source (cat "Källkoden till " @app-name "-klassen kan användas som ett exempel eller för att göra dina egna (bugfixade) binärer.\nVar försiktig - binärerna kan vara i vilket språk som helst!"))
+    (set #prompt_copy "Vill du kopiera följande filer?")
+    (set #prompt_makedir "Följande katalog kunde inte hittas, så den måste skapas:")
+    (set #prompt_uninstall_asciidocs "För vilka programmeringsspråk vill du avinstallera ASCII-dokumentationen?")
+    (set #prompt_install_asciidocs "För vilka programmeringsspråk vill du installera ASCII-dokumentationen?")
+    (set #exit_uninstall_finished (cat "Avinstallation färdig!\n"
+				       '"'
+				       @app-name
+				       '"'
+				       " har tagits bort från katalogen "
+				       '"'
+				       @default-dest
+				       '"'
+				       "."
+				  )
+    )
+   )
+   ( ; norsk
+    (complete 0)
+   )
+   ( ; nederlands translation by Eric Krieger <ekrieger@quasar.xs4all.nl>
+     ; updated by Jeroen Smits <vektor@pi.net>
+    (if (= @installer-version 0)
+      (
+       (set #help_askoptions "Met het programma Installer tot versie 42.6 kan het gebeuren dat u checkbox-buttons ziet zonder labels. Het selecteren van deze buttons zal worden genegeerd.\n\n")
+       (set #help_askchoice "Met het programma Installer tot versie 42.6 kan het gebeuren dat u een radio-buttons ziet zonder labels. Het selecteren van deze buttons zal resulteren in de volgende lager beschikbare selectie.\n\n")
+      )
+    )
+    (set #unknown	    "onbekend")
+    (set #choice_english    "Engels")
+    (set #choice_german     "Duits")
+    (set #choice_french     "Frans")
+    (set #choice_spanish    "Spaans")
+    (set #choice_portuguese "Portugees")
+    (set #choice_danish     "Deens")
+    (set #choice_italian    "Italiaans")
+    (set #choice_dutch	    "Nederlands")
+    (set #choice_norwegian  "Noors")
+    (set #choice_swedish    "Zweeds")
+    (set #choice_polish     "Pools")
+    (set #choice_finnish    "Fins")
+    (set #choice_hungarian  "Hongaars")
+    (set #choice_turkish    "Turks")
+    (set #choice_greek	    "Grieks")
+    (set #choice_latin	    "Latijns")
+    (set #choice_esperanto  "Esperanto")
+    (set #choice_russian    "Russisch")
+    (set #choice_czech	    "Tsjechisch")
+    (set #choice_catalonian "Catalaans"); LANGUAGE
+
+    (set #choice_catalogs   "Catalogs")
+    (set #choice_docs	    "Documentatie")
+    (set #choice_developer  "Developer materiaal")
+    (set #choice_source     "Programma code")
+    (set #choice_install    "Installeren")
+    (set #choice_update     "Update")
+    (set #choice_uninstall  "De-installeren")
+    (set #prompt_askcpufpu	   (cat "Selecteer A.U.B. de CPU/FPU configuratie voor welke u " @app-name ".mcc wenst te installeren."))
+    (set #prompt_info		   (cat "\nWelkom tot " @app-name " MUI custom class\n" #copyright "\n\n"))
+    (set #prompt_install_uninstall (cat #prompt_info "Wilt u de custom class installeren of de-installeren?"))
+    (set #abort_nocpu ( cat "Sorry, dit script is niet in staat om " @app-name ".mcc te installeren, omdat uw CPU configuratie niet ondersteund wordt.\n"))
+    (set #abort_nomui (cat "Het " @app-name " MUI custom class kan alleen gebruikt worden met Magic User Interface (MUI), zonder dit is het custom class onbruikbaar!\n\n"
+			   "De Installer heeft " @default-dest " niet als assign gevonden, installeerd u A.U.B. MUI voor opnieuw een poging tot installeren van " @app-name ".mcc te doen!\n"
+		      )
+    )
+    (set #abort_oldmui (cat "Om " @app-name ".mcc te kunnen installeren heeft u MUI %s als een minimum nodig.\n\n"
+			    "De Installer heeft gevonden dat alleen MUI %s is geinstalleerd.\n"
+		       )
+    )
+    (set #welcome_install (cat "Welkom tot de MUI custom class installatie utilitie.\n"
+			       "Geeft u A.U.B. aan hoe de installatie verder moet vervolgen (gebaseerd op uw kennis van de Amiga computer)."
+			  )
+    )
+    (set #welcome_uninstall (cat "Welkom tot de MUI custom class de-installatie (verwijder) utilitie.\n"
+				 "Geeft u A.U.B. aan hoe de de-installatie verder moet vervolgen (gebaseerd op uw kennis van de Amiga computer)."
+			    )
+    )
+    (set #prompt_uninstall_parts (cat "Welke delen wilt u de-installeren?\n"
+				      @app-name ".mcp zal ook gerelateerde Catalogs files de-installeren.\n"
+				 )
+    )
+    (set #prompt_uninstall_all (cat "Wilt u alle tot " @app-name ".mcc gerelateerde zaken de-installeren?"))
+    (set #help_uninstall_all "Wanneer u niet alles tegelijk wilt de-installeren, wordt u gevraagd welke delem u wel wilt de-installeren.")
+    (set #prompt_uninstall_plangs "Voor welke programeertalen wilt u ondersteuning de-installeren?")
+    (set #prompt_uninstall_mcp_catalogs (cat "Welke catalogs voor " @app-name ".mcp wilt u de-installeren?"))
+    (set #prompt_uninstall_mcc_catalogs (cat "Welke catalogs voor " @app-name ".mcc wilt u de-installeren?"))
+    (set #prompt_uninstall_agdocs "Voor welke talen wilt u de AmigaGuide® documentatie de-installeren?")
+    (set #prompt_uninstall_docs "Welke type document(en) wilt u de-installeren?")
+    (set #abort_oldversion (cat "De Installer heeft versie %ld.%ld van " @app-name ".mcc gevonden, welke al reeds geinstalleerd is.\n\n"
+				"Wanneer u de oudere versie %ld.%ld wilt herinstalleren, wilt u dan A.U.B. eerst de nieuwere versie de-installeren."
+			   )
+    )
+    (set #prompt_update (cat "Welke delen van " @app-name ".mcc wilt u toevoegen tot de installatie?"))
+    (set #prompt_install_mcc_catalogs (cat "Welke catalogs voor " @app-name ".mcc wilt u installeren?"))
+    (set #prompt_install_mcp_catalogs (cat "Welke catalogs voor " @app-name ".mcp wilt u installeren?"))
+    (set #prompt_install_docs "Welke type document(en) wilt u installeren?")
+    (set #prompt_install_agdocs "Voor welke talen wilt u de AmigaGuide® documentatie installeren?")
+    (set #prompt_install_demo "Wilt u de meegeleverde demo installeren?")
+    (set #help_install_demo (cat "De demo is een klein programma welke het gebruik demonstreerd van de " @app-name "custom class."))
+    (set #prompt_install_plangs "Voor welke programeertalen wilt u ondersteuning installeren?")
+    (set #prompt_install_source "Wilt u de programma code installeren?")
+    (set #help_install_source (cat "De programma code van de custom class genaamd " @app-name " kan gebruikt worden als een voorbeeld of u kunt er uw eigen (bug fixed) programma's mee maken.\nLet op - De programma code kan in elke taal zijn geschreven!"))
+    (set #prompt_copy "Wilt u de volgende file(s) kopieren?")
+    (set #prompt_makedir "De volgende directory is niet gevonden, daarom zal deze worden aangemaakt:")
+
+    (set #prompt_uninstall_asciidocs "Voor welke talen wilt u de ASCII documentatie de-installeren?")
+    (set #prompt_install_asciidocs "Voor welke talen wilt u de ASCII documentatie installeren?")
+    (set #exit_uninstall_finished (cat "De-installatie voltooid!\n"
+				       '"'
+				       @app-name
+				       '"'
+				       " is verwijderd van uw "
+				       '"'
+				       @default-dest
+				       '"'
+				       " directory (of partitie)."
+				  )
+    )
+   )
+   ( ; italiano translation by Paolo Menichetti <Paolo.Menichetti@infoservice.it>
+     ; updated by Vincenzo Gervasi <gervasi@di.unipi.it>
+    (if (= @installer-version 0)
+      (
+       (set #help_askoptions "Con una versione dell'Installer minore della 42.6 potresti vedere dei bottoni senza descrizione. Eventuali selezioni di questi bottoni saranno ignorate.\n\n")
+       (set #help_askchoice "Con una versione dell'Installer minore della 42.6 potresti vedere dei bottoni mutualmente esclusivi senza descrizione. Un click su tali bottoni corrisponde all'attivazione della successiva voce nella lista che sia selezionabile.\n\n")
+      )
+    )
+    (set #unknown	    "sconosciuto")
+    (set #choice_english    "Inglese")
+    (set #choice_german     "Tedesco")
+    (set #choice_french     "Francese")
+    (set #choice_spanish    "Spagnolo")
+    (set #choice_portuguese "Portoghese")
+    (set #choice_danish     "Danese")
+    (set #choice_italian    "Italiano")
+    (set #choice_dutch	    "Tedesco")
+    (set #choice_norwegian  "Norvegese")
+    (set #choice_swedish    "Svedese")
+    (set #choice_polish     "Polacco")
+    (set #choice_finnish    "Finlandese")
+    (set #choice_hungarian  "Ungherese")
+    (set #choice_turkish    "Turco")
+    (set #choice_greek	    "Greco")
+    (set #choice_latin	    "Latino")
+    (set #choice_esperanto  "Esperanto")
+    (set #choice_russian    "Russo")
+    (set #choice_czech	    "Ceco")
+    (set #choice_catalonian "Catalano"); LANGUAGE
+
+    (set #choice_catalogs   "Cataloghi")
+    (set #choice_docs	    "Documentazione")
+    (set #choice_developer  "Materiale per sviluppatori")
+    (set #choice_source     "Codice sorgente")
+    (set #choice_install    "Installo")
+    (set #choice_update     "Aggiornamento")
+    (set #choice_uninstall  "Disinstallazione")
+    (set #prompt_askcpufpu	   (cat "Per favore, seleziona la CPU/FPU del tuo computer; verrà così installata la classe " @app-name ".mcc ottimizzata."))
+    (set #prompt_info		   (cat "\nBenvenuto nell'installazione di " @app-name " MUI custom class\n" #copyright "\n\n"))
+    (set #prompt_install_uninstall (cat #prompt_info "Vuoi installare o disinstallare la custom class?"))
+    (set #abort_nocpu ( cat "Spiacente, l'installatore non può installare la classe " @app-name ".mcc, perché la tua CPU non è supportata.\n"))
+    (set #abort_nomui (cat "La custom class MUI " @app-name " può essere usata solo con Magic User Interface (MUI), senza la quale la custom class è inutile!\n\n"
+			   "L'installatore non ha trovato l'assegnamento " @default-dest ", dunque installa MUI prima di installare " @app-name ".mcc!\n"
+		      )
+    )
+    (set #abort_oldmui (cat "Per installare " @app-name ".mcc hai bisogno quantomeno della versione %s di MUI.\n\n"
+			    "L'installatore ha trovato installata solo la versione %s di MUI.\n"
+		       )
+    )
+    (set #welcome_install (cat "Benvenuto nella procedura di installazione delle custom classes di MUI.\n"
+			       "Indicare, per favore, come questa procedura di installazione dovrà operare (in base alla tua conoscenza del computer Amiga)."
+			  )
+    )
+    (set #welcome_uninstall (cat "Benvenuto nella procedura di disinstallazione delle custom classes di MUI.\n"
+					 "Indicare, per favore, come questa procedura di disinstallazione dovrà operare (in base alla tua conoscenza del computer Amiga)."
+			    )
+    )
+    (set #prompt_uninstall_parts (cat "Quali parti vuoi che siano disinstallate?\n"
+				      @app-name ".mcp sarà disinstallato con i relativi cataloghi.\n"
+				 )
+    )
+    (set #prompt_uninstall_all (cat "Vuoi disinstallare tutto quello che è correlato a " @app-name ".mcc?"))
+    (set #help_uninstall_all "Se non vuoi disinstallare tutto, allora ti verrà richiesto cosa disinstallare.")
+    (set #prompt_uninstall_plangs "Quali file di supporto per i linguaggi di programmazione vuoi rimuovere?")
+    (set #prompt_uninstall_mcp_catalogs (cat "Quali cataloghi di " @app-name ".mcp vuoi rimuovere?"))
+    (set #prompt_uninstall_mcc_catalogs (cat "Quali cataloghi di " @app-name ".mcc vuoi rimuovere?"))
+    (set #prompt_uninstall_agdocs "Per quali linguaggi voi rimuovere la documentazione in formato AmigaGuide®?")
+    (set #prompt_uninstall_docs "Quali tipi di documentazione vuoi rimuovere?")
+    (set #abort_oldversion (cat "L'installatore ha trovato la versione %ld.%ld di " @app-name ".mcc già installata.\n\n"
+				"Se vuoi reinstallare la vecchia versione %ld.%ld allora prima rimuovi la nuova versione."
+			   )
+    )
+    (set #prompt_update (cat "Quali parti di " @app-name ".mcc vuoi aggiungere alla installazione?"))
+    (set #prompt_install_mcc_catalogs (cat "Quali cataloghi di " @app-name ".mcc vuoi installare?"))
+    (set #prompt_install_mcp_catalogs (cat "Quali cataloghi di " @app-name ".mcp vuoi installare?"))
+    (set #prompt_install_docs "Quali tipi di documentazione vuoi installare?")
+    (set #prompt_install_agdocs "Per quali linguaggi vuoi installare la documentazione in AmigaGuide®?")
+    (set #prompt_install_demo "Vuoi installare i programmi dimostrativi forniti?")
+    (set #help_install_demo (cat "Un dimostrativo è un piccolo programma che illustra l'uso della custom class " @app-name ))
+    (set #prompt_install_plangs "Per quale linguaggio di programmazione vuoi installare i file di supporto?")
+    (set #prompt_install_source "Codice sorgente")
+    (set #help_install_source (cat "Puoi usare il codice sorgente della classe custom " @app-name " come esempio, o per creare eseguibili corretti o aggiornati.\nAttenzione - il codice sorgente potrebbe essere in qualunque linguaggio!"))
+    (set #prompt_copy "Vuoi copiare i seguenti file?")
+    (set #prompt_makedir "La seguente directory non è stata trovata, dunque verrà creata:")
+    (set #prompt_uninstall_asciidocs "Per quali linguaggi di programmazione vuoi rimuovere la documentazione in ASCII?")
+    (set #prompt_install_asciidocs "Per quali linguaggi di programmazione vuoi installare la documentazione in ASCII?")
+    (set #exit_uninstall_finished (cat "Disinstallazione completata!\n"
+				       '"'
+				       @app-name
+				       '"'
+				       " è stato rimosso dalla directory "
+				       '"'
+				       @default-dest
+				       '"'
+				  )
+    )
+   )
+   ( ; dansk translation by Ole Friis <ole_f@post3.tele.dk>
+    (if (= @installer-version 0)
+      (
+       (set #help_askoptions "Med en Installer ældre end 42.6 kan det ske at du ser hak-bokse uden navn. Der vil intet ske ved at trykke på dem.\n\n")
+       (set #help_askchoice "Med en Installer ældre end 42.6 kan det ske at du ser radioknapper uden navn. Trykker du på en, vil du i stedet vælge den nedenunder.\n\n")
+      )
+    )
+    (set #unknown	    "ukendt")
+    (set #choice_english    "Engelsk")
+    (set #choice_german     "Tysk")
+    (set #choice_french     "Fransk")
+    (set #choice_spanish    "Spansk")
+    (set #choice_portuguese "Portugisisk")
+    (set #choice_danish     "Dansk")
+    (set #choice_italian    "Italiensk")
+    (set #choice_dutch	    "Hollandsk")
+    (set #choice_norwegian  "Norsk")
+    (set #choice_swedish    "Svensk")
+    (set #choice_polish     "Polsk")
+    (set #choice_finnish    "Finsk")
+    (set #choice_hungarian  "Ungarsk")
+    (set #choice_turkish    "Tyrkisk")
+    (set #choice_greek	    "Græsk")
+    (set #choice_latin	    "Latin")
+    (set #choice_esperanto  "Esperanto")
+    (set #choice_russian    "Russisk")
+    (set #choice_czech	    "Tjekkisk")
+    (set #choice_catalonian "Katalansk"); LANGUAGE
+
+    (set #choice_catalogs   "Oversættelser")
+    (set #choice_docs	    "Dokumentation")
+    (set #choice_developer  "Udvikler-materiale")
+    (set #choice_source     "Kildekode")
+    (set #choice_install    "Installere")
+    (set #choice_update     "Opdatere")
+    (set #choice_uninstall  "Fjerne")
+    (set #prompt_askcpufpu	   (cat "Vælg venligst CPU/FPU-konfigurationen for hvilken du ønsker at installere " @app-name ".mcc"))
+    (set #prompt_info		   (cat "\nVelkommen til " @app-name " MUI custom class\n" #copyright "\n\n"))
+    (set #prompt_install_uninstall (cat #prompt_info "Ønsker du at installere eller at fjerne den pågældende custom class?"))
+    (set #abort_nocpu ( cat "Desværre, programmet kan ikke installere " @app-name ".mcc, idet din CPU-konfiguration ikke er understøttet.\n"))
+    (set #abort_nomui (cat @app-name " MUI custom class'en kan kun bruges med Magic User Interface (MUI), og uden denne er custom class'en ubrugelig!\n\n"
+			   "`Install' har ikke fundet " @default-dest " til at være assignet, så installér venligst MUI før du installerer " @app-name ".mcc!\n"
+		      )
+    )
+    (set #abort_oldmui (cat "For at installere " @app-name ".mcc behøver du MUI %s som minimum.\n\n"
+			    "`Install' har kun fundet MUI %s installeret.\n"
+		       )
+    )
+    (set #welcome_install (cat "Velkommen til MUI custom class-installationsprogrammet.\n"
+			       "Vælg venligst hvordan installationen skal forløbe (baseret på dit kendskab til Amiga-computeren)."
+			  )
+    )
+    (set #welcome_uninstall (cat "Velkommen til MUI custom class-fjerneprogrammet.\n"
+				 "Vælg venligst hvordan fjernelsen skal forløbe (baseret på dit kendskab til Amiga-computeren)."
+			    )
+    )
+    (set #prompt_uninstall_parts (cat "Hvilke dele ønsker du at fjerne?\n"
+				      @app-name ".mcp vil også fjerne de tilhørende oversættelser.\n"
+				 )
+    )
+    (set #prompt_uninstall_all (cat "Ønsker du at fjerne alt relateret til " @app-name ".mcc?"))
+    (set #help_uninstall_all "Hvis du ikke ønsker at fjerne alt, vil du blive spurgt hvilke dele der skal fjernes.")
+    (set #prompt_uninstall_plangs "Hvilke programmeringssprog ønsker du at fjerne understøttelse fra?")
+    (set #prompt_uninstall_mcp_catalogs (cat "Hvilke oversættelser af " @app-name ".mcp ønsker du at fjerne?"))
+    (set #prompt_uninstall_mcc_catalogs (cat "Hvilke oversættelser af " @app-name ".mcc ønsker du at fjerne?"))
+    (set #prompt_uninstall_agdocs "For hvilke sprog ønsker du at fjerne AmigaGuide®-dokumentation?")
+    (set #prompt_uninstall_docs "Hvilken type dokumenter ønsker du at fjerne?")
+    (set #abort_oldversion (cat "`Installer' har opdaget at version %ld.%ld af " @app-name ".mcc allerede er installeret.\n\n"
+				"Hvis du ønsker at gen-installere den gamle version %ld.%ld, så fjern venligst den nye version først."
+			   )
+    )
+    (set #prompt_update (cat "Hvilke dele af " @app-name ".mcc ønsker du at tilføje?"))
+    (set #prompt_install_mcc_catalogs (cat "Hvilke oversættelser af " @app-name ".mcc ønsker du at installere?"))
+    (set #prompt_install_mcp_catalogs (cat "Hvilke oversættelser af " @app-name ".mcp ønsker du at installere?"))
+    (set #prompt_install_docs "Hvilken type dokumenter ønsker du at installere?")
+    (set #prompt_install_agdocs "På hvilke sprog ønsker du at installere AmigaGuide®-dokumentation?")
+    (set #prompt_install_demo "Ønsker du at installere det inkluderede demonstrationsprogram?")
+    (set #help_install_demo (cat "Dette demonstrationsprogram er et lille program som demonstrerer brugen af " @app-name "custom class."))
+    (set #prompt_install_plangs "Hvilke programmeringssprog ønsker du at installere understøttelse af?")
+    (set #prompt_install_source "Ønsker du at installere kildekoden?")
+    (set #help_install_source (cat "Kildekoden til " @app-name "-customklassen kan bruges som et eksempel eller til at lave dine egne (fejlrettede) udgaver.\nVær forsigtig - kildekoden kan være i et hvilket som helst programmeringssprog!"))
+    (set #prompt_copy "Ønsker du at kopiere de(n) følgende fil(er)?")
+    (set #prompt_makedir "Følgende skuffe var ikke fundet, så den skal skabes:")
+    (set #prompt_uninstall_asciidocs "For hvilke sprog ønsker du at fjerne ASCII-dokumentation?")
+    (set #prompt_install_asciidocs "På hvilke sprog ønsker du at installere ASCII-dokumentation?")
+    (set #exit_uninstall_finished (cat "Fjernelse færdig!\n"
+				       '"'
+				       @app-name
+				       '"'
+				       " er fjernet fra din "
+				       '"'
+				       @default-dest
+				       '"'
+				       "-skuffe (eller partition)."
+				  )
+    )
+   )
+   ( ; português
+    (complete 0)
+   )
+   ( ; español
+    (complete 0)
+   )
+   ( ; français translation by Francis Labrie <fb691875@er.uqam.ca>
+    (if (= @installer-version 0)
+      (
+
+       (set #help_askoptions "Avec l'Installer à la version antérieur à 42.6 il est possible que des cases à crochets s'affichent sans étiquettes.  La sélection de ces cases vierges sera tout simplement ignorée.\n\n")
+       (set #help_askchoice "Avec l'Installer à la version antérieur à 42.6 il est possible que des boutons radios s'affichent sans étiquettes.  La sélection de ces boutons correspondra alors à une sélection du prochain bouton valide.\n\n")
+      )
+    )
+    (set #unknown	    "Inconnu")
+    (set #choice_english    "Anglais")
+    (set #choice_german     "Allemand")
+    (set #choice_french     "Français")
+    (set #choice_spanish    "Espagnol")
+    (set #choice_portuguese "Portuguais")
+    (set #choice_danish     "Danois")
+    (set #choice_italian    "Italien")
+    (set #choice_dutch	    "Hollandais")
+    (set #choice_norwegian  "Norvégien")
+    (set #choice_swedish    "Suédois")
+    (set #choice_polish     "Polonais")
+    (set #choice_finnish    "Finlandais")
+    (set #choice_hungarian  "Hongrois")
+    (set #choice_turkish    "Turc")
+    (set #choice_greek	    "Grec")
+    (set #choice_latin	    "Latin")
+    (set #choice_esperanto  "Espéranto")
+    (set #choice_russian    "Russe")
+    (set #choice_czech	    "Tchèque")
+    (set #choice_catalonian "Catalan"); LANGUAGE
+
+    (set #choice_catalogs   "Catalogues")
+    (set #choice_docs	    "Documentation")
+    (set #choice_developer  "Outils de développement")
+    (set #choice_source     "Code source")
+    (set #choice_install    "Installer")
+    (set #choice_update     "Mise à niveau")
+    (set #choice_uninstall  "Désinstaller")
+    (set #prompt_askcpufpu	   (cat "Sélectionnez la configuration de processeur pour lequel vous souhaitez installer " @app-name ".mcc"))
+    (set #prompt_info		   (cat "\nBienvenue à la classe MUI " @app-name "\n" #copyright "\n\n"))
+    (set #prompt_install_uninstall (cat #prompt_info "Souhaite-vous installer ou désinstaller cette classe?"))
+    (set #abort_nocpu ( cat "Désolé, ce script est incapable d'installer " @app-name ".mcc, parce que votre choix de configuration de processeur n'y est pas supporté.\n"))
+    (set #abort_nomui (cat "La classe MUI " @app-name " ne peut être utilisée qu'avec Magic User Interface (MUI).  En dehors ce système, cette classe demeure inutilisable!\n\n"
+			   "Le répertoire " @default-dest " est introuvable, veuillez installer MUI avant de tenter d'installer " @app-name ".mcc!\n"
+		      )
+    )
+    (set #abort_oldmui (cat "MUI %s est le minimum requis afin d'installer " @app-name ".mcc.\n\n"
+			    "Pour l'instant, seul MUI %s semble installé sur votre système.\n"
+		       )
+    )
+    (set #welcome_install (cat "Bienvenue à l'utilitaire d'installation de classe MUI.\n"
+			       "Veuillez indiquer le type d'installation souhaité\n(basé sur votre connaissance de l'ordinateur Amiga)."
+			  )
+    )
+    (set #welcome_uninstall (cat "Bienvenue à l'utilitaire de désinstallation de classe MUI.\n"
+				 "Veuillez indiquer le type de désinstallation souhaité\n(basé sur votre connaissance de l'ordinateur Amiga)."
+			    )
+    )
+    (set #prompt_uninstall_parts (cat "Quelles sections souhaitez-vous désinstaller?\n"
+				      "Notez que les catalogues relatifs à " @app-name ".mcp seront également désinstallés.\n"
+				 )
+    )
+    (set #prompt_uninstall_all (cat "Désirez-vous désinstaller tous les fichiers relatifs à " @app-name ".mcc?"))
+    (set #help_uninstall_all "Si vous ne désirez pas tout désinstaller, il vous sera alors demander de préciser quelles sections vous souhaitez enlever.")
+    (set #prompt_uninstall_plangs "Pour quels langages de programmation souhaitez-vous désinstaller les documents d'assistance technique?")
+    (set #prompt_uninstall_mcp_catalogs (cat "Lesquels de ces catalogues souhaitez-vous désinstaller pour " @app-name ".mcp?"))
+    (set #prompt_uninstall_mcc_catalogs (cat "Lesquels de ces catalogues souhaitez-vous désinstaller pour " @app-name ".mcc?"))
+    (set #prompt_uninstall_agdocs "Pour quelles langues souhaitez-vous désinstaller la documentation de format AmigaGuide®?")
+    (set #prompt_uninstall_docs "Quelles types de document souhaitez-vous désinstaller?")
+    (set #abort_oldversion (cat "La version %ld.%ld de " @app-name ".mcc semble être déjà installée.\n\n"
+				"Si vous souhaitez réinstaller l'ancienne version %ld.%ld, veuillez désinstaller d'abord la nouvelle version."
+			   )
+    )
+    (set #prompt_update (cat "Quelles sections de " @app-name ".mcc souhaitez-vous ajouter à l'installation?"))
+    (set #prompt_install_mcc_catalogs (cat "Lesquels de ces catalogues destinés à " @app-name ".mcc souhaitez-vous installer?"))
+    (set #prompt_install_mcp_catalogs (cat "Lesquels de ces catalogues destinés à " @app-name ".mcp souhaitez-vous installer?"))
+    (set #prompt_install_docs "Quels types de document souhaitez-vous installer?")
+    (set #prompt_install_agdocs "Pour quelles langues souhaitez-vous installer la documentation de format AmigaGuide®?")
+    (set #prompt_install_demo "Voulez-vous installer le programme de démonstration?")
+    (set #help_install_demo (cat "Ce programme de démonstration est un petit logiciel démontrant l'utilisation de la nouvelle classe MUI " @app-name "."))
+    (set #prompt_install_plangs "Pour quels langages de programmation souhaitez-vous installer les documents d'assistance technique?")
+    (set #prompt_install_source "Désirez-vous installer le code source ?")
+    (set #help_install_source (cat "Le code source de la classe " @app-name " peut être utilisé en exemple afin de créer vos propres classes.\nAttention - le code source peut être écrit en n'importe quel langage !"))
+    (set #prompt_copy "Souhaitez-vous copier le(s) fichier(s) suivant(s)?")
+    (set #prompt_makedir "Puisque le tiroir suivant n'a pas été trouvé, il doit donc être créé:")
+
+    (set #prompt_uninstall_asciidocs "Pour quelles langues souhaitez-vous désinstaller la documentation de format ASCII?")
+    (set #prompt_install_asciidocs "Pour quelles langues souhaitez-vous installer la documentation de format ASCII?")
+    (set #exit_uninstall_finished (cat "Désinstallation complétée !\n« "
+				       @app-name
+				       " » est retirée du répertoire (ou partition) « "
+				       @default-dest
+				       " »."
+				  )
+    )
+   )
+   ( ; deutsch
+    (if (= @installer-version 0)
+      (
+       (set #help_askoptions "Mit einem Installer der älter als Version 42.6 ist, kann es passieren, daß Checkbox-Knöpfe ohne Labels zu sehen sind. Das Setzen dieser Knöpfe wird ignoriert.\n\n")
+       (set #help_askchoice "Mit einem Installer der älter als Version 42.6 ist, kann es passieren, daß Radio-Knöpfe ohne Labels zu sehen sind. Das Setzen dieser Knöpfe entspricht der nächst kleineren Auswahl.\n\n")
+      )
+    )
+    (set #unknown	    "unbekannt")
+    (set #choice_english    "Englisch")
+    (set #choice_german     "Deutsch")
+    (set #choice_french     "Französisch")
+    (set #choice_spanish    "Spanisch")
+    (set #choice_portuguese "Portugiesisch")
+    (set #choice_danish     "Dänisch")
+    (set #choice_italian    "Italienisch")
+    (set #choice_dutch	    "Niederländisch")
+    (set #choice_norwegian  "Norwegisch")
+    (set #choice_swedish    "Schwedisch")
+    (set #choice_polish     "Polnisch")
+    (set #choice_finnish    "Finnisch")
+    (set #choice_hungarian  "Ungarisch")
+    (set #choice_turkish    "Türkisch")
+    (set #choice_greek	    "Griechisch")
+    (set #choice_latin	    "Latein")
+    (set #choice_esperanto  "Esperanto")
+    (set #choice_russian    "Russisch")
+    (set #choice_czech	    "Tschechisch")
+    (set #choice_catalonian "Katalanisch"); LANGUAGE
+
+    (set #choice_catalogs   "Kataloge")
+    (set #choice_docs	    "Dokumentation")
+    (set #choice_developer  "Entwickler-Material")
+    (set #choice_source     "Quellcode")
+    (set #choice_install    "Installieren")
+    (set #choice_update     "Updaten")
+    (set #choice_uninstall  "Deinstallieren")
+    (set #prompt_askcpufpu (cat "Bitte wählen Sie die CPU/FPU Konfiguration, für die " @app-name ".mcc installiert werden soll."))
+    (set #prompt_info (cat "\nWillkommen zur " @app-name " MUI-Klasse\n" #copyright "\n\n"))
+    (set #prompt_install_uninstall (cat #prompt_info "Wollen Sie die Klasse installieren oder deinstallieren?"))
+    (set #abort_nocpu (cat @app-name ".mcc kann leider nicht installiert werden, da Ihre CPU-Konfiguration nicht unterstützt wird.\n"))
+    (set #abort_nomui (cat "Die " @app-name " MUI-Klasse kann nur zusammen mit dem Magic User Interface (MUI) benutzt werden, ohne MUI ist die Klasse nutzlos!\n\n"
+			   "Der Installer konnte " @default-dest " nicht finden, installieren Sie bitte erst MUI, bevor Sie versuchen " @app-name ".mcc zu installieren!\n"
+		      )
+    )
+    (set #abort_oldmui (cat "Um " @app-name ".mcc zu installieren wird mindestens MUI %s benötigt.\n\n"
+			    "Der Installer konnte aber nur MUI %s finden.\n"
+		       )
+    )
+    (set #welcome_install (cat "Willkommen zum MUI-Klassen Installations-Werkzeug.\n"
+			       "Bitte geben Sie an, wie die Installation geschehen soll (basierend auf Ihrem Wissen über den Amiga Computer)."
+			  )
+    )
+    (set #welcome_uninstall (cat "Willkommen zum MUI-Klassen deinstallations Werkzeug.\n"
+				 "Bitte geben Sie an, wie die Deinstallation geschehen soll (basierend auf Ihrem Wissen über den Amiga Computer)."
+			    )
+    )
+    (set #prompt_uninstall_parts (cat "Welche Teile wollen Sie deinstallieren?\n"
+				      @app-name ".mcp deinstalliert auch die entsprechenden Kataloge.\n"
+				 )
+    )
+    (set #prompt_uninstall_all (cat "Wollen Sie alles was mit " @app-name ".mcc zu tun hat deinstallieren?"))
+    (set #help_uninstall_all "Wenn Sie nicht alles deinstallieren wollen, werden Sie gefragt welche Teile deinstalliert werden sollen.")
+    (set #prompt_uninstall_plangs "Unterstützung für welche Programmiersprache wollen Sie deinstallieren?")
+    (set #prompt_uninstall_mcp_catalogs (cat "Welche Katalog von " @app-name ".mcp wollen Sie deinstallieren?"))
+    (set #prompt_uninstall_mcc_catalogs (cat "Welche Katalog von " @app-name ".mcc wollen Sie deinstallieren?"))
+    (set #prompt_uninstall_agdocs "Für welche Sprachen wollen Sie die AmigaGuide® Dokumentation deinstallieren?")
+    (set #prompt_uninstall_docs "Welche Art von Dokumenten wollen Sie deinstallieren?")
+    (set #abort_oldversion (cat "Der Installer hat die bereits installierte Version %ld.%ld von " @app-name ".mcc gefunden.\n\n"
+				"Wenn Sie die ältere Version %ld.%ld wieder installieren wollen, deinstallieren Sie die neuere Version bitte zuerst."
+			   )
+    )
+    (set #prompt_update (cat "Welche Teile wollen Sie zur " @app-name ".mcc Installation hinzufügen?"))
+    (set #prompt_install_mcc_catalogs (cat "Welche Kataloge für " @app-name ".mcc wollen Sie installieren?"))
+    (set #prompt_install_mcp_catalogs (cat "Welche Kataloge für " @app-name ".mcp wollen Sie installieren?"))
+    (set #prompt_install_docs "Welche Art von Dokumenten wollen Sie installieren?")
+    (set #prompt_install_agdocs "Für welche Sprachen wollen Sie die AmigaGuide® Dokumentation installieren?")
+    (set #prompt_install_demo "Wollen Sie die mitgelieferte Demo installieren?")
+    (set #help_install_demo (cat "Die Demo ist ein kleines Programm, welches die Benutzung der " @app-name " Klasse zeigt."))
+    (set #prompt_install_plangs "Unterstützung für welche Programmiersprache wollen Sie installieren?")
+    (set #prompt_install_source "Wollen Sie den Quellcode installieren?")
+    (set #help_install_source (cat "Der Quellcode der " @app-name " Klasse kann als Beispiel benutzt werden, oder aber um eigene (korrigierte) Binärfiles zu erzeugen.\nSeien Sie vorsichtig - der Quellcode kann in einer beliebigen Sprache vorliegen!"))
+    (set #prompt_copy "Wollen Sie das/die folgenden Datei(en) kopieren?")
+    (set #prompt_makedir "Das folgende Verzeichnis wurde nicht gefunden, deshalb muß es erzeugt werden:")
+    (set #prompt_uninstall_asciidocs "Für welche Sprachen wollen Sie die ASCII Dokumentation deinstallieren?")
+    (set #prompt_install_asciidocs "Für welche Sprachen wollen Sie die ASCII Dokumentation installieren?")
+    (set #exit_uninstall_finished (cat "Deinstallation abgeschlossen!\n"
+				       '"'
+				       @app-name
+				       '"'
+				       " wurde aus Ihrer Schublade (oder Partition) "
+				       '"'
+				       @default-dest
+				       '"'
+				       " entfernt."
+				  )
+    )
+   )
+   ( ; english
+    (if (= @installer-version 0)
+      (
+       (set #help_askoptions "With an Installer prior to version 42.6 it can happen that you see checkbox-buttons without labels. Selecting these buttons will be ignored.\n\n")
+       (set #help_askchoice "With an Installer prior to version 42.6 it can happen that you see radio-buttons without labels. Selecting these buttons will result in the next lower available selection.\n\n")
+      )
+    )
+    (set #unknown	    "unknown")
+    (set #choice_english    "English")
+    (set #choice_german     "German")
+    (set #choice_french     "French")
+    (set #choice_spanish    "Spanish")
+    (set #choice_portuguese "Portuguese")
+    (set #choice_danish     "Danish")
+    (set #choice_italian    "Italian")
+    (set #choice_dutch	    "Dutch")
+    (set #choice_norwegian  "Norwegian")
+    (set #choice_swedish    "Swedish")
+    (set #choice_polish     "Polish")
+    (set #choice_finnish    "Finnish")
+    (set #choice_hungarian  "Hungarian")
+    (set #choice_turkish    "Turkish")
+    (set #choice_greek	    "Greek")
+    (set #choice_latin	    "Latin")
+    (set #choice_esperanto  "Esperanto")
+    (set #choice_russian    "Russian")
+    (set #choice_czech	    "Czech")
+    (set #choice_catalonian "Catalonian"); LANGUAGE
+
+    (set #choice_catalogs   "Catalogs")
+    (set #choice_docs	    "Documentation")
+    (set #choice_developer  "Developer material")
+    (set #choice_source     "Source code")
+    (set #choice_install    "Install")
+    (set #choice_update     "Update")
+    (set #choice_uninstall  "Uninstall")
+    (set #prompt_askcpufpu	   (cat "Please select the CPU/FPU configuration for which you want to install " @app-name ".mcc"))
+    (set #prompt_info		   (cat "\nWelcome to the " @app-name " MUI custom class\n" #copyright "\n\n"))
+    (set #prompt_install_uninstall (cat #prompt_info "Do you want to install or uninstall the custom class?"))
+    (set #abort_nocpu ( cat "Sorry, the script is unable to install " @app-name ".mcc, because your CPU configuration is not supported.\n"))
+    (set #abort_nomui (cat "The " @app-name " MUI custom class can only be used with the Magic User Interface (MUI), without it the custom class is useless!\n\n"
+			   "The installer has not found " @default-dest " to be assigned, so please install MUI before trying to install " @app-name ".mcc!\n"
+		      )
+    )
+    (set #abort_oldmui (cat "To install " @app-name ".mcc you need MUI %s as a minimum.\n\n"
+			    "The installer has found that only MUI %s is installed.\n"
+		       )
+    )
+    (set #welcome_install (cat "Welcome to the MUI custom class installation utility.\n"
+			       "Please indicate how the installation should proceed (based upon your knowledge of the Amiga computer)."
+			  )
+    )
+    (set #welcome_uninstall (cat "Welcome to the MUI custom class uninstallation utility.\n"
+				 "Please indicate how the uninstallation should proceed (based upon your knowledge of the Amiga computer)."
+			    )
+    )
+    (set #prompt_uninstall_parts (cat "Which parts do you want to uninstall?\n"
+				      @app-name ".mcp will uninstall relating catalogs too.\n"
+				 )
+    )
+    (set #prompt_uninstall_all (cat "Do you want to uninstall all things related with " @app-name ".mcc?"))
+    (set #help_uninstall_all "If you do not want to uninstall all, you will be asked which parts you want to uninstall.")
+    (set #prompt_uninstall_plangs "Support for which programming languages do you want to uninstall?")
+    (set #prompt_uninstall_mcp_catalogs (cat "Which catalogs for " @app-name ".mcp do you want to uninstall?"))
+    (set #prompt_uninstall_mcc_catalogs (cat "Which catalogs for " @app-name ".mcc do you want to uninstall?"))
+    (set #prompt_uninstall_agdocs "For which languages do you want to uninstall the AmigaGuide® documentation?")
+    (set #prompt_uninstall_docs "Which type of documents do you want to uninstall?")
+    (set #abort_oldversion (cat "The Installer found that version %ld.%ld of " @app-name ".mcc is already installed.\n\n"
+				"If you want to reinstall the older version %ld.%ld then please uninstall the newer version first."
+			   )
+    )
+    (set #prompt_update (cat "Which parts of " @app-name ".mcc do you want to add to the installation?"))
+    (set #prompt_install_mcc_catalogs (cat "Which catalogs for " @app-name ".mcc do you want to install?"))
+    (set #prompt_install_mcp_catalogs (cat "Which catalogs for " @app-name ".mcp do you want to install?"))
+    (set #prompt_install_docs "Which type of documents do you want to install?")
+    (set #prompt_install_agdocs "For which languages do you want to install the AmigaGuide® documentation?")
+    (set #prompt_install_demo "Do you want to install the supplied demo?")
+    (set #help_install_demo (cat "The demo is a small program that demonstrates the usage of the " @app-name "custom class."))
+    (set #prompt_install_plangs "Support for which programming languages do you want to install?")
+    (set #prompt_install_source "Do you want to install the source code?")
+    (set #help_install_source (cat "The source code of " @app-name " custom class can be used as an example or you can create your own (bug fixed) binaries.\nBe careful - the source code can be in any language!"))
+    (set #prompt_copy "Do you want to copy the following file(s)?")
+    (set #prompt_makedir "The following directory was not found, so it must be created:")
+
+    (set #prompt_uninstall_asciidocs "For which languages do you want to uninstall the ASCII documentation?")
+    (set #prompt_install_asciidocs "For which languages do you want to install the ASCII documentation?")
+    (set #exit_uninstall_finished (cat "Uninstallation complete!\n"
+				       '"'
+				       @app-name
+				       '"'
+				       " is removed from your "
+				       '"'
+				       @default-dest
+				       '"'
+				       " drawer (or partition)."
+				  )
+    )
+   )
+ )
+ (if (> @installer-version 0)
+   (
+    (set #help_askoptions "")
+    (set #help_askchoice "")
+   )
+ )
+
+; --- BitToLanguage -----------------------------------------------------------
+
+ (procedure P_BitToLanguage
+  ; Params:
+  ; #langmask
+  ;
+  ; Results:
+  ; #langmask #lang
+  ;
+  ; Used Vars:
+  ; #i #bitmask
+
+  (set #i 0)
+  (set #bitmask %111111111111111111110) ; LANGUAGE
+  (while (AND (< #i 20) (NOT (IN #langmask #i))) ; LANGUAGE
+    (
+     (set #bitmask (BITOR (shiftleft #bitmask 1) %000000000000000000001)) ; LANGUAGE
+     (set #i (+ #i 1))
+    )
+  )
+  (set #langmask (BITAND #langmask #bitmask))
+  (set #lang (select #i "english" "deutsch" "français" "español" "português" "dansk" "italiano" "nederlands" "norsk" "svenska" "polski" "suomi" "magyar" "greek" "esperanto" "türkçe" "latina" "russian" "ÃeÓtina" "catalonian" "")) ; LANGUAGE
+ )
+
+; --- Check procedure ---------------------------------------------------------
+
+ (procedure P_CheckExists
+   ; Param:
+   ; #dir
+   ;
+   ; Results:
+   ; #chk_mcc #chk_mcp #chk_demo #chk_catalogs #chk_agdocs #chk_proglang
+   ; #chk_autodoc #chk_c_h #chk_c_example #chk_asm_i #chk_asm_example #chk_e_e
+   ; #chk_e_example #chk_modula_def #chk_modula_mod #chk_modula_demo
+   ; #chk_oberon_mod #chk_oberon_example #chk_existsmask #chk_mcc_catalogs
+   ; #chk_mcp_catalogs #chk_docs #chk_progdirs #chk_asciidocs #chk_source
+   ;
+   ; Vars used:
+   ; #i #lang
+
+   ; Custom Class
+   (set #chk_mcc (exists (tackon (tackon #dir "Libs/MUI") (cat @app-name ".mcc")) (noreq)))
+   (set #chk_mcp (exists (tackon (tackon #dir "Libs/MUI") (cat @app-name ".mcp")) (noreq)))
+
+   ; Demo
+   (set #chk_demo (exists (tackon (tackon #dir "Demos") (cat @app-name "-Demo")) (noreq)))
+
+   ; Catalogs + Documentation
+   (set #chk_mcc_catalogs %00000000000000000000) ; LANGUAGE
+   (set #chk_mcp_catalogs %00000000000000000000) ; LANGUAGE
+   (set #chk_asciidocs	  %00000000000000000000) ; LANGUAGE
+   (set #chk_agdocs	  %00000000000000000000) ; LANGUAGE
+   (set #langmask	  %11111111111111111111) ; LANGUAGE
+   (while (P_BitToLanguage)
+     (
+      ; Catalogs
+      (if (exists (tackon (tackon (tackon #dir "locale/catalogs") #lang) (cat @app-name "_mcc.catalog")) (noreq))
+	(
+	 (set #chk_mcc_catalogs (BITOR #chk_mcc_catalogs %100000000000000000000)) ; LANGUAGE
+	 (set #chk_mcc_catalogs (shiftright #chk_mcc_catalogs 1))
+	)
+	(set #chk_mcc_catalogs (shiftright #chk_mcc_catalogs 1))
+      )
+      (if (exists (tackon (tackon (tackon #dir "locale/catalogs") #lang) (cat @app-name "_mcp.catalog")) (noreq))
+	(
+	 (set #chk_mcp_catalogs (BITOR #chk_mcp_catalogs %100000000000000000000)) ; LANGUAGE
+	 (set #chk_mcp_catalogs (shiftright #chk_mcp_catalogs 1))
+	)
+	(set #chk_mcp_catalogs (shiftright #chk_mcp_catalogs 1))
+      )
+
+      ; Docs/ASCII
+      (if (exists (tackon (tackon (tackon #dir "Docs") #lang) (cat @app-name "_mcc.doc")) (noreq))
+	(
+	 (set #chk_asciidocs (BITOR #chk_asciidocs %100000000000000000000)) ; LANGUAGE
+	 (set #chk_asciidocs (shiftright #chk_asciidocs 1))
+	)
+	(set #chk_asciidocs (shiftright #chk_asciidocs 1))
+      )
+
+      ; Docs/AmigaGuide
+      (if (exists (tackon (tackon (tackon #dir "Docs") #lang) (cat @app-name "_mcc.guide")) (noreq))
+	(
+	 (set #chk_agdocs (BITOR #chk_agdocs %100000000000000000000)) ; LANGUAGE
+	 (set #chk_agdocs (shiftright #chk_agdocs 1))
+	)
+	(set #chk_agdocs (shiftright #chk_agdocs 1))
+      )
+
+     )
+   )
+   (set #chk_catalogs (BITOR #chk_mcc_catalogs #chk_mcp_catalogs))
+   (set #chk_docs (BITOR (if #chk_asciidocs %01 %00)
+			 (if #chk_agdocs    %10 %00)
+		  )
+   )
+
+   ; Developer
+   (set #chk_proglang %000000)
+   (set #chk_progdirs %000000)
+   (set #chk_autodoc (exists (tackon (tackon #dir "Developer/Autodocs") (cat "MCC_" @app-name ".doc")) (noreq)))
+   ; C
+   (set #chk_progdirs (BITOR #chk_progdirs (if (exists (tackon #dir "Developer/C") (noreq)) %000001 %000000)))
+   (set #chk_c_h       (exists (tackon (tackon #dir "Developer/C/Include/MUI") (cat @app-name "_mcc.h")) (noreq)))
+   (set #chk_c_example (exists (tackon (tackon #dir "Developer/C/Examples") (cat @app-name "-Demo.c")) (noreq)))
+   (if #chk_c_h
+     (set #chk_proglang (BITOR #chk_proglang %000001))
+   )
+   ; C++
+
+   ; Assembler
+   (set #chk_progdirs (BITOR #chk_progdirs (if (exists (tackon #dir "Developer/Assembler") (noreq)) %000100 %000000)))
+   (set #chk_asm_i	 (exists (tackon (tackon #dir "Developer/Assembler/Include/MUI") (cat @app-name "_mcc.i")) (noreq)))
+   (set #chk_asm_example (exists (tackon (tackon #dir "Developer/Assembler/Examples") (cat @app-name "-Demo.s")) (noreq)))
+   (if #chk_asm_i
+     (set #chk_proglang (BITOR #chk_proglang %000100))
+   )
+   ; Amiga-E
+   (set #chk_progdirs (BITOR #chk_progdirs (if (exists (tackon #dir "Developer/Amiga-E") (noreq)) %001000 %000000)))
+   (set #chk_e_e       (exists (tackon (tackon #dir "Developer/Amiga-E/Modules/MUI") (cat @app-name "_mcc.e")) (noreq)))
+   (set #chk_e_example (exists (tackon (tackon #dir "Developer/Amiga-E/Examples") (cat @app-name "-Demo.e")) (noreq)))
+   (if #chk_e_e
+     (set #chk_proglang (BITOR #chk_proglang %001000))
+   )
+   ; Modula-II
+   (set #chk_progdirs (BITOR #chk_progdirs (if (exists (tackon #dir "Developer/Modula") (noreq)) %010000 %000000)))
+   (set #chk_modula_def  (exists (tackon (tackon #dir "Developer/Modula/txt") (cat "MCC" @app-name ".def")) (noreq)))
+   (set #chk_modula_mod  (exists (tackon (tackon #dir "Developer/Modula/txt") (cat "MCC" @app-name ".mod")) (noreq)))
+   (set #chk_modula_demo (exists (tackon (tackon #dir "Developer/Modula/Demo") (cat @app-name "Demo.mod")) (noreq)))
+   (if (AND #chk_modula_def #chk_modula_mod)
+     (set #chk_proglang (BITOR #chk_proglang %010000))
+   )
+   ; Oberon
+   (set #chk_progdirs (BITOR #chk_progdirs (if (exists (tackon #dir "Developer/Oberon") (noreq)) %100000 %000000)))
+   (set #chk_oberon_mod     (exists (tackon (tackon #dir "Developer/Oberon/txt") (cat "MCC" @app-name ".mod")) (noreq)))
+   (set #chk_oberon_example (exists (tackon (tackon #dir "Developer/Oberon/Examples") (cat @app-name "Demo.mod")) (noreq)))
+   (if #chk_oberon_mod
+     (set #chk_proglang (BITOR #chk_proglang %100000))
+   )
+   ; Source
+   (if (= (exists (tackon (tackon #dir "Developer/Source") (cat "MCC_" @app-name)) (noreq)) 2)
+     (set #chk_source 1)
+     (set #chk_source 0)
+   )
+
+   (set #chk_existsmask (BITOR
+			  (if #chk_mcp %000001 %000000)
+			  (BITOR
+			    (if #chk_catalogs %000010 %000000)
+			    (BITOR
+			      (if #chk_docs %000100 %000000)
+			      (BITOR
+				(if #chk_demo %001000 %000000)
+				(BITOR
+				  (if #chk_proglang %010000 %000000)
+				  (if #chk_source   %100000 %000000)
+				)
+			      )
+			    )
+			  )
+			)
+   )
+ )
+
+; --- GetVersion procedure ----------------------------------------------------
+
+ (procedure P_GetVersion
+  ; Param:
+  ; #file
+  ;
+  ; Results:
+  ; #ver #rev
+  ;
+  ; Vars used:
+  ; #vernum
+
+  (set #vernum (getversion (cat #file)))
+  (set #ver (/ #vernum 65536))
+  (set #rev (- #vernum (* #ver 65536)))
+ )
+
+; --- CompareVersions procedure -----------------------------------------------
+
+ (procedure P_CompareVersions
+  ; Param:
+  ; #ver #rev #ver2 #rev2
+  ;
+  ; Results:
+  ; #result
+  ; -1 : #ver.#rev < #ver2.#rev2
+  ;  0 : #ver.#rev = #ver2.#rev2
+  ;  1 : #ver.#rev > #ver2.#rev2
+  ;
+  ; Used Vars:
+
+  (if (< #ver #ver2)
+    (set #result -1)
+    (if (> #ver #ver2)
+      (set #result 1)
+      (if (< #rev #rev2)
+	(set #result -1)
+	(if (> #rev #rev2)
+	  (set #result 1)
+	  (set #result 0)
+	)
+      )
+    )
+  )
+ )
+
+; --- GetOSVersion ------------------------------------------------------------
+
+ (procedure P_GetOSVersion
+  ; Param:
+  ;
+  ; Results:
+  ; #os_ver #os_rev #os_str
+  ;
+  ; Used Vars:
+  ; #file #ver #rev #vernum #i
+
+  (set #file "libs:version.library")
+  (P_GetVersion)
+  (set #os_ver #ver)
+  (set #os_rev #rev)
+
+  (set #i 0)
+  (while (<> #os_ver (select #i 33 34 36 37 38 39 40 43 #os_ver)) ; OS
+    (set #i (+ #i 1))
+  )
+  (set #os_str (select #i "1.2" "1.3" "2.0pre" "2.0" "2.1" "3.0" "3.1" "3.2" #unknown)) ; OS
+ )
+
+; --- GetCPU ------------------------------------------------------------------
+
+ (procedure P_GetCPUFPU
+  ; Param:
+  ;
+  ; Results:
+  ; #cpu #cpu_str
+  ; -1 = unknown; 0 = 68000; 1 = 68010; 2 = 68020; 3 = 68030; 4 = 68040;
+  ;		  5 = 68060
+  ; #fpu #fpu_str
+  ; -1 = unknown; 0 = NOFPU; 1 = 68881; 2 = 68882; 3 = FPU40
+  ;
+  ; Used Vars:
+
+  (set #cpu_str (database "cpu"))
+  (set #cpu 0)
+  (while (<> #cpu_str (select #cpu "68000" "68010" "68020" "68030" "68040""68060" #cpu))
+    (set #cpu (+ #cpu 1))
+  )
+  (if (= #cpu 6)
+    (
+     (set #cpu -1)
+     (set #cpu_str #unknown)
+    )
+  )
+
+  (if @installer-version
+    (
+     (set #fpu_str (database "fpu"))
+     (set #fpu 0)
+     (while (<> #fpu_str (select #fpu "NOFPU" "68881" "68882" "FPU40" #fpu_str))
+       (set #fpu (+ #fpu 1))
+     )
+     (if (= #fpu 4)
+       (
+	(set #fpu -1)
+	(set #fpu_str #unknown)
+       )
+     )
+    )
+    (
+     (set #fpu -1)
+     (set #fpu_str #unknown)
+    )
+  )
+ )
+
+; --- GetMUIVersionStr --------------------------------------------------------
+
+ (procedure P_GetMuiVersionStr
+  ; Params:
+  ; #ver #rev
+  ;
+  ; Results:
+  ; #str
+  ;
+  ; Used Vars:
+  ; #i
+
+  (set #i 0)
+  (while (<> #ver (select #i 7 8 9 10 11 12 13 14 15 16 17 #ver)) ; MUI
+    (set #i (+ #i 1))
+  )
+  (set #str (select #i "2.0" "2.1" "2.2" "2.3" "3.0" "3.1" "3.2" "3.3" "3.4" "3.5" "3.6" #unknown)) ; MUI
+ )
+
+; --- GetMUIVersion -----------------------------------------------------------
+
+ (procedure P_GetMUIVersion
+  ; Params:
+  ;
+  ; Results:
+  ; #mui_ver #mui_rev #mui_str
+  ;
+  ; Used Vars:
+  ; #file #ver #rev #vernum #i
+
+  (if (exists "MUI:" (noreq))
+    (
+     (if @installer-version
+       (set #file "MUI:libs/muimaster.library")
+       (set #file "MUI:MUI")
+     )
+     (P_GetVersion)
+     (set #mui_ver #ver)
+     (set #mui_rev #rev)
+     (P_GetMuiVersionStr)
+     (set #mui_str #str)
+    )
+    (
+     (set #mui_ver 0)
+     (set #mui_rev 0)
+     (set #mui_str "")
+    )
+  )
+ )
+
+; --- CheckAvailableCPUs ------------------------------------------------------
+
+ (procedure P_CheckAvailableCPUs
+  ; Params:
+  ; #dir @app-name
+  ;
+  ; Results:
+  ; #mcc_cpus #mcp_cpus #mcc_fpus #mcp_fpus #mcc_cpu_counter #mcp_cpu_counter
+  ;
+  ; Used Vars:
+  ; #i #file #bitmask #filetype #f
+
+  (set #mcc_cpus %000000)
+  (set #mcp_cpus %000000)
+  (set #mcc_fpus %000000)
+  (set #mcp_fpus %000000)
+  (set #mcc_cpu_counter 0)
+  (set #mcp_cpu_counter 0)
+  (if (OR (exists (tackon #dir (cat @app-name ".mcc")) (noreq)) (exists (tackon #dir (cat @app-name "000.mcc")) (noreq)))
+    (foreach #dir (cat @app-name "(%|0(0|1|2|3|4|6)0)(%|f).mc(c|p)")
+      (
+       (set #i 0)
+       (set #file (substr @each-name (strlen @app-name)))
+       (set #filetype (substr #file (- (strlen #file) 1) 1))
+       (set #file (substr #file 0 (- (strlen #file) 1)))
+       (set #f (patmatch "#?f.mc" #file))
+       (if #f
+	 (set #file (cat (substr #file 0 (- (strlen #file) 4)) ".mc"))
+       )
+       (set #bitmask %000001)
+       (while (NOT (patmatch (select #i "(%|000).mc" "010.mc" "020.mc" "030.mc" "040.mc" "060.mc") #file))
+	 (
+	  (set #bitmask (shiftleft #bitmask 1))
+	  (set #i (+ #i 1))
+	 )
+       )
+       (if #f
+	 (if (= #filetype "c")
+	   (
+	    (set #mcc_fpus (BITOR #mcc_fpus #bitmask))
+	    (set #mcc_cpu_counter (+ #mcc_cpu_counter 1))
+	   )
+	   (
+	    (set #mcp_fpus (BITOR #mcp_fpus #bitmask))
+	    (set #mcp_cpu_counter (+ #mcp_cpu_counter 1))
+	   )
+	 )
+	 (if (= #filetype "c")
+	   (
+	    (set #mcc_cpus (BITOR #mcc_cpus #bitmask))
+	    (set #mcc_cpu_counter (+ #mcc_cpu_counter 1))
+	   )
+	   (
+	    (set #mcp_cpus (BITOR #mcp_cpus #bitmask))
+	    (set #mcp_cpu_counter (+ #mcp_cpu_counter 1))
+	   )
+	 )
+       )
+      )
+    )
+  )
+ )
+
+; --- AskLanguages ------------------------------------------------------------
+
+ (procedure P_AskLanguages
+  ; Params:
+  ; #prompt #langmask #defaultmask
+  ;
+  ; Results:
+  ; #langmask
+  ;
+  ; Used Vars:
+  ; #bitmask
+
+  (set #langmask (BITAND #langmask %11111111111111111111)) ; LANGUAGE
+  (if #langmask
+    (
+     (set #bitmask (askoptions (prompt #prompt)
+			       (help #help_askoptions @askoptions-help)
+			       (default (BITAND #defaultmask #langmask))
+			       (choices
+				 (if (IN #langmask 0)
+				   (cat #prop #choice_english)
+				   ("")
+				 )
+				 (if (IN #langmask 1)
+				   (cat #prop #choice_german)
+				   ("")
+				 )
+				 (if (IN #langmask 2)
+				   (cat #prop #choice_french)
+				   ("")
+				 )
+				 (if (IN #langmask 3)
+				   (cat #prop #choice_spanish)
+				   ("")
+				 )
+				 (if (IN #langmask 4)
+				   (cat #prop #choice_portuguese)
+				   ("")
+				 )
+				 (if (IN #langmask 5)
+				   (cat #prop #choice_danish)
+				   ("")
+				 )
+				 (if (IN #langmask 6)
+				   (cat #prop #choice_italian)
+				   ("")
+				 )
+				 (if (IN #langmask 7)
+				   (cat #prop #choice_dutch)
+				   ("")
+				 )
+				 (if (IN #langmask 8)
+				   (cat #prop #choice_norwegian)
+				   ("")
+				 )
+				 (if (IN #langmask 9)
+				   (cat #prop #choice_swedish)
+				   ("")
+				 )
+				 (if (IN #langmask 10)
+				   (cat #prop #choice_polish)
+				   ("")
+				 )
+				 (if (IN #langmask 11)
+				   (cat #prop #choice_finnish)
+				   ("")
+				 )
+				 (if (IN #langmask 12)
+				   (cat #prop #choice_hungarian)
+				   ("")
+				 )
+				 (if (IN #langmask 13)
+				   (cat #prop #choice_greek)
+				   ("")
+				 )
+				 (if (IN #langmask 14)
+				   (cat #prop #choice_esperanto)
+				   ("")
+				 )
+				 (if (IN #langmask 15)
+				   (cat #prop #choice_turkish)
+				   ("")
+				 )
+				 (if (IN #langmask 16)
+				   (cat #prop #choice_latin)
+				   ("")
+				 )
+				 (if (IN #langmask 17)
+				   (cat #prop #choice_russian)
+				   ("")
+				 )
+				 (if (IN #langmask 18)
+				   (cat #prop #choice_czech)
+				   ("")
+				 )
+				 (if (IN #langmask 19)
+				   (cat #prop #choice_catalonian)
+				   ("")
+				 )
+				 ; LANGUAGE
+			       )
+		   )
+     )
+     (set #langmask (BITAND #langmask #bitmask))
+    )
+  )
+ )
+
+; --- AskDocFormat ------------------------------------------------------------
+
+ (procedure P_AskDocFormats
+  ; Params:
+  ; #prompt #docmask #defaultmask
+  ;
+  ; Results:
+  ; #docmask
+  ;
+  ; Used Vars:
+  ; #bitmask
+
+  (set #docmask (BITAND #docmask %11))
+  (if #docmask
+    (
+     (set #bitmask (askoptions (prompt #prompt)
+			       (help #help_askoptions @askoptions-help)
+			       (default (BITAND #defaultmask #docmask))
+			       (choices
+				 (if (IN #docmask 0)
+				   (cat #prop "ASCII")
+				   ("")
+				 )
+				 (if (IN #docmask 1)
+				   (cat #prop "AmigaGuide®")
+				   ("")
+				 )
+			       )
+		   )
+     )
+     (set #docmask (BITAND #docmask #bitmask))
+    )
+  )
+ )
+
+; --- AskProgLang -------------------------------------------------------------
+
+ (procedure P_AskProgLangs
+  ; Params:
+  ; #prompt #plangmask #defaultmask
+  ;
+  ; Results:
+  ; #plangmask
+  ;
+  ; Used Vars:
+  ; #bitmask
+
+  (set #plangmask (BITAND #plangmask %111101))
+  (if #plangmask
+    (
+     (set #bitmask (askoptions (prompt #prompt)
+			       (help #help_askoptions @askoptions-help)
+			       (default (BITAND #defaultmask #plangmask))
+			       (choices
+				 (if (IN #plangmask 0)
+				   (cat #prop "C")
+				   ("")
+				 )
+				 (if (IN #plangmask 1)
+				   (cat #prop "C++")
+				   ("")
+				 )
+				 (if (IN #plangmask 2)
+				   (cat #prop "Assembler")
+				   ("")
+				 )
+				 (if (IN #plangmask 3)
+				   (cat #prop "Amiga-E")
+				   ("")
+				 )
+				 (if (IN #plangmask 4)
+				   (cat #prop "Modula-II")
+				   ("")
+				 )
+				 (if (IN #plangmask 5)
+				   (cat #prop "Oberon")
+				   ("")
+				 )
+			       )
+		   )
+     )
+     (set #plangmask (BITAND #plangmask #bitmask))
+    )
+  )
+ )
+
+; --- AskCPUFPU ---------------------------------------------------------------
+
+ (procedure P_AskCPUFPU
+  ; Params:
+  ;
+  ; Results:
+  ; #cpu #cpu_str #mcc_cpu_file_extension #mcp_cpu_file_extension #src-dir
+  ;
+  ; Used Vars:
+  ; #i #file #bitmask #filetype #f #mcc_cpus #mcp_cpus #mcc_fpus #mcp_fpus #dir
+  ; #defaultcpu #mcc_cpu_counter #mcp_cpu_counter #fpu #fpu_str #cpu2
+
+  (set #dir (tackon #src-dir "libs/mui"))
+  (P_CheckAvailableCPUs)
+  (P_GetCPUFPU)
+  (set #defaultcpu -1)
+  (while (AND (>= #cpu 0) (= #defaultcpu -1))
+    (
+     (if (AND #fpu (IN #mcc_fpus #cpu))
+       (set #defaultcpu (select #cpu -1 -1 3 5 7 -1))
+       (if (IN #mcc_cpus #cpu)
+	 (set #defaultcpu (select #cpu 0 1 2 4 6 8))
+       )
+     )
+     (set #cpu (- #cpu 1))
+    )
+  )
+  ;(if (= #defaultcpu -1)
+  ;  (abort #abort_nocpu)
+  ;)
+
+  (if (AND (> #mcc_cpu_counter 1) (= @user-level 2))
+    (
+     (set #cpu (askchoice (prompt #prompt_askcpufpu)
+			  (help #help_askchoice @askchoice-help)
+			  (default #defaultcpu)
+			  (choices
+			    (if (IN #mcc_cpus 0)
+			      (cat #prop "68000")
+			      ("")
+			    )
+			    (if (IN #mcc_cpus 1)
+			      (cat #prop "68010")
+			      ("")
+			    )
+			    (if (IN #mcc_cpus 2)
+			      (cat #prop "68020")
+			      ("")
+			    )
+			    (if (IN #mcc_fpus 2)
+			      (cat #prop "68020+fpu")
+			      ("")
+			    )
+			    (if (IN #mcc_cpus 3)
+			      (cat #prop "68030")
+			      ("")
+			    )
+			    (if (IN #mcc_fpus 3)
+			      (cat #prop "68030+fpu")
+			      ("")
+			    )
+			    (if (IN #mcc_cpus 4)
+			      (cat #prop "68040")
+			      ("")
+			    )
+			    (if (IN #mcc_fpus 4)
+			      (cat #prop "68040+fpu")
+			      ("")
+			    )
+			    (if (IN #mcc_cpus 5)
+			      (cat #prop "68060")
+			      ("")
+			    )
+			  )
+	       )
+     )
+    )
+    (set #cpu #defaultcpu)
+  )
+  (if (<> #cpu -1)
+    (
+     ; select lower cpu if not available
+     (set #cpu2 (select #cpu 0 1 2 2 3 3 4 4 5))
+     (set #fpu2 (select #cpu 0 0 0 1 0 1 0 1 0))
+     (while (NOT (OR (AND #fpu2 (AND #fpu (IN #mcc_fpus #cpu2))) (AND (NOT #fpu2) (IN #mcc_cpus #cpu2))))
+       (
+	(set #cpu (- #cpu 1))
+	(set #cpu2 (select #cpu 0 1 2 2 3 3 4 4 5))
+	(set #fpu2 (select #cpu 0 0 0 1 0 1 0 1 0))
+       )
+     )
+
+     (set #cpu_str (select #cpu "68000" "68010" "68020" "68020+fpu" "68030" "68030+fpu" "68040" "68040+fpu" "68060"))
+     (set #mcc_cpu_file_extension (select #cpu (if (exists (cat #dir "/" @app-name "000.mcc") (noreq)) ("000") ("")) "010" "020" "020f" "030" "030f" "040" "040f" "060"))
+     (set #cpu #cpu2)
+    )
+    (
+     (set #cpu2 -1)
+     (set #fpu2 0)
+     (set #cpu_str "")
+     (set #mcc_cpu_file_extension "")
+    )
+  )
+  ; set same or next lower cpu for .mcp
+  (set #defaultcpu -1)
+  (while (AND (>= #cpu2 0) (= #defaultcpu -1))
+    (
+     (if (AND #fpu (IN #mcp_fpus #cpu2))
+       (set #defaultcpu (select #cpu2 -1 -1 3 5 7 -1))
+       (if (IN #mcp_cpus #cpu2)
+	 (set #defaultcpu (select #cpu2 0 1 2 4 6 8))
+       )
+     )
+     (set #cpu2 (- #cpu2 1))
+    )
+  )
+  (if (= #defaultcpu -1)
+    (set #mcp_cpu_file_extension "")
+    (set #mcp_cpu_file_extension (select #defaultcpu (if (exists (cat #dir "/" @app-name "000.mcp") (noreq)) ("000") ("")) "010" "020" "020f" "030" "030f" "040" "040f" "060"))
+  )
+ )
+
+; --- AskParts ----------------------------------------------------------------
+
+ (procedure P_AskParts
+  ; Params:
+  ; #prompt #defaultmask #existsmask
+  ;
+  ; Results:
+  ; #parts
+  ;
+  ; Used Vars:
+
+  (set #existsmask (if (= @user-level 2)
+		     #existsmask
+		     (BITAND #existsmask %001111)
+		   )
+  )
+  (if #existsmask
+    (
+     (set #parts (askoptions (prompt #prompt)
+			     (help #help_askoptions @askoptions-help)
+			     (default (BITAND #defaultmask #existsmask))
+			     (choices
+				(if (IN #existsmask 0)
+				  (cat @app-name ".mcp")
+				  ("")
+				)
+				(if (IN #existsmask 1)
+				  (cat #prop #choice_catalogs)
+				  ("")
+				)
+				(if (IN #existsmask 2)
+				  (cat #prop #choice_docs)
+				  ("")
+				)
+				(if (IN #existsmask 3)
+				  (cat #prop @app-name "-Demo")
+				  ("")
+				)
+				(if (IN #existsmask 4)
+				  (cat #prop #choice_developer)
+				  ("")
+				)
+				(if (IN #existsmask 5)
+				  (cat #prop #choice_source)
+				  ("")
+				)
+			     )
+		 )
+     )
+     (set #parts (BITAND #parts #existsmask))
+    )
+    (set #parts 0)
+  )
+ )
+
+; --- DelEmptyDir -------------------------------------------------------------
+
+
+ (procedure P_DelEmptyDir
+  ; Params:
+  ; #dir
+  ;
+  ; Results:
+  ;
+  ; Used Vars:
+  ; #i
+
+  (set #i 0)
+  (if (exists #dir (noreq))
+    (
+     (foreach #dir "#?"
+       (set #i (+ #i 1))
+     )
+     (if (NOT #i)
+       (
+	(delete #dir (optional "force"))
+	(delete (cat #dir ".info") (optional "force"))
+       )
+     )
+    )
+  )
+ )
+
+; --- DelDirRecursiv ----------------------------------------------------------
+
+ (procedure P_DelDirRecursive
+  ; Params:
+  ; #dir
+  ;
+  ; Results:
+  ;
+  ; Used Vars:
+  ;
+
+  (foreach #dir "#?"
+    (if (< @each-type 0)
+      (delete (tackon #dir @each-name) (optional "force"))
+      (
+       (set #dir (tackon #dir @each-name))
+       (P_DelDirRecursive)
+       (set #dir (pathonly #dir))
+      )
+    )
+  )
+  (delete #dir (optional "force"))
+  (delete (cat #dir ".info") (optional "force"))
+ )
+
+; --- DeleteLanguages ---------------------------------------------------------
+
+ (procedure P_DeleteLanguages
+  ; Params:
+  ; #dir #file #langmask
+  ;
+  ; Results:
+  ;
+  ; Used Vars:
+  ; #i
+
+  (while (P_BitToLanguage)
+    (
+     (delete (tackon (tackon #dir #lang) #file) (optional "force"))
+     (delete (tackon (tackon #dir #lang) (cat #file ".info")) (optional "force"))
+     (set #i 0)
+     (foreach (tackon #dir #lang) "#?"
+       (set #i (+ #i 1))
+     )
+     (if (NOT #i)
+       (
+	(delete (tackon #dir #lang) (optional "force"))
+	(delete (tackon #dir (cat #lang ".info")) (optional "force"))
+       )
+     )
+    )
+  )
+ )
+
+; --- MkDirInfo ---------------------------------------------------------------
+
+ (procedure P_MkDirInfo
+  ; Params:
+  ; #dir #infos #dest-dir
+  ;
+  ; Results:
+  ;
+  ; Used Vars:
+
+  (if (NOT (exists (tackon #dest-dir #dir) (noreq)))
+    (if #infos
+      (makedir (tackon #dest-dir #dir) (prompt #prompt_makedir "\n\n" (tackon #dest-dir #dir)) (help @makedir-help) (infos) (confirm "expert"))
+      (makedir (tackon #dest-dir #dir) (prompt #prompt_makedir "\n\n" (tackon #dest-dir #dir)) (help @makedir-help) (confirm "expert"))
+    )
+  )
+ )
+
+; --- CpFile ------------------------------------------------------------------
+
+ (procedure P_CpFile
+  ; Params:
+  ; #dir #file #infos #dest-dir #src-dir
+  ;
+  ; Results:
+  ;
+  ; Used Vars:
+
+  (if #infos
+    (copyfiles (prompt #prompt_copy)
+	       (help @copyfiles-help)
+	       (source (tackon (tackon #src-dir #dir) #file))
+	       (dest (tackon #dest-dir #dir))
+	       (files)
+	       (infos)
+	       (optional "nofail" "force")
+	       (confirm "expert")
+    )
+    (copyfiles (prompt #prompt_copy)
+	       (help @copyfiles-help)
+	       (source (tackon (tackon #src-dir #dir) #file))
+	       (dest (tackon #dest-dir #dir))
+	       (files)
+	       (optional "nofail" "force")
+	       (confirm "expert")
+    )
+  )
+ )
+
+; --- Install -----------------------------------------------------------------
+
+ (procedure P_Install
+  ; Params:
+  ; #chk_mcp #chk_demo #chk_mcc_catalogs #chk_mcp_catalogs #chk_docs
+  ; #chk_asciidocs #chk_agdocs #chk_proglang #chk_progdirs #chk_autodoc
+  ; #old_mcp #old_demo #old_mcc_catalogs #old_mcp_catalogs #old_docs
+  ; #old_asciidocs #old_agdocs #old_proglang #old_progdirs #old_autodoc
+  ; #update #mcp_cpu_counter #chk_source #chk_existsmask #src-dir #dest-dir
+  ;
+  ; Results:
+  ;
+  ; Used Vars:
+  ; #dir #file #result #update #defaultmask
+  ; #parts #prompt #langmask #install_mcc_catalogs #install_mcp_catalogs
+  ; #docmask #install_docs #install_asciidocs #install_agdocs #install_demo
+  ; #plangmask #install_proglang #infos #existsmask
+
+  ; Update existing version or install newer one
+
+  (if (= #update 1)
+    (
+     (set #prompt #prompt_update)
+     (set #existsmask (BITAND #chk_existsmask (BITOR (BITOR (if (AND (NOT #old_demo) #chk_demo) %011110 %010110)
+							    (if (AND (NOT #old_mcp) #chk_mcp) %010111 %010110)
+						     )
+						     (if (AND (NOT #old_source) #chk_source) %110110 %010110)
+					      )
+			  )
+     )
+     (set #defaultmask %000000)
+     (P_AskParts)
+    )
+  )
+
+  ; (P_AskCPUFPU)
+  (if (OR (NOT #update) (AND #update (IN #parts 0)))
+    (P_AskCPUFPU)
+  )
+
+  ; mcc (P_AskLanguages)
+  (if (OR (NOT #update) (AND #update (IN #parts 1)))
+    (
+     (set #prompt #prompt_install_mcc_catalogs)
+     (set #langmask (if #update (BITAND #chk_mcc_catalogs (BITNOT #old_mcc_catalogs)) #chk_mcc_catalogs))
+     (set #defaultmask (if #update (BITAND #language_default (BITNOT #old_mcc_catalogs)) (BITOR #language_default #old_mcc_catalogs)))
+     (P_AskLanguages)
+     (set #install_mcc_catalogs #langmask)
+    )
+    (set #install_mcc_catalogs 0)
+  )
+
+  ; mcp (P_AskLanguages)
+  (if (OR (NOT #update) (AND #update (OR (IN #parts 1) (IN #parts 0))))
+    (
+     (set #prompt #prompt_install_mcp_catalogs)
+     (set #langmask (if #update (BITAND #chk_mcp_catalogs (BITNOT #old_mcp_catalogs)) #chk_mcp_catalogs))
+     (set #defaultmask (if #update (BITAND #language_default (BITNOT #old_mcp_catalogs)) (BITOR #language_default #old_mcp_catalogs)))
+     (P_AskLanguages)
+     (set #install_mcp_catalogs #langmask)
+    )
+    (set #install_mcp_catalogs 0)
+  )
+
+  ; (P_AskDocFormats)
+  (if (OR (NOT #update) (AND #update (IN #parts 2)))
+    (
+     (set #prompt #prompt_install_docs)
+     (set #docmask (if #update
+		     (BITOR
+		       (if (<> (BITAND #chk_asciidocs (BITNOT #old_asciidocs)) 0)
+			 %01
+			 %00
+		       )
+		       (if (<> (BITAND #chk_agdocs (BITNOT #old_agdocs)) 0)
+			 %10
+			 %00
+		       )
+		     )
+		     #chk_docs
+		   )
+     )
+     (set #defaultmask (if #update (BITAND %11 (BITNOT #old_docs)) (if (IN #docmask 1) %10 %01)))
+     (P_AskDocFormats)
+     (set #install_docs #docmask)
+    )
+    (set #install_docs 0)
+  )
+
+  ; asciidocs (P_AskLanguages)
+  (if (IN #install_docs 0)
+    (
+     (set #prompt #prompt_install_asciidocs)
+     (set #langmask (if #update (BITAND #chk_asciidocs (BITNOT #old_asciidocs)) #chk_asciidocs))
+     (set #defaultmask (BITAND (if (= (BITAND #language_default #langmask) 0) %00000000000000000001 #language_default) (if #update (BITNOT #old_asciidocs) %11111111111111111111))) ; LANGUAGE
+     (P_AskLanguages)
+     (set #install_asciidocs #langmask)
+    )
+    (set #install_asciidocs 0)
+  )
+
+  ; agdocs (P_AskLanguages)
+  (if (IN #install_docs 1)
+    (
+     (set #prompt #prompt_install_agdocs)
+     (set #langmask (if #update (BITAND #chk_agdocs (BITNOT #old_agdocs)) #chk_agdocs))
+     (set #defaultmask (BITAND (if (= (BITAND #language_default #langmask) 0) %00000000000000000001 #language_default) (if #update (BITNOT #old_agdocs) %11111111111111111111))) ; LANGUAGE
+     (P_AskLanguages)
+     (set #install_agdocs #langmask)
+    )
+    (set #install_agdocs 0)
+  )
+
+  ; demo
+  (if (AND #chk_demo (NOT #update))
+    (set #install_demo (askbool (prompt #prompt_install_demo)
+				(help #help_install_demo)
+				(default 0)
+		       )
+    )
+    (if (AND #update (IN #parts 3))
+      (set #install_demo 1)
+      (set #install_demo 0)
+    )
+  )
+
+  ; (P_AskProgLangs)
+  (if (OR (AND (NOT #update) (= @user-level 2)) (AND #update (IN #parts 4)))
+    (
+     (set #prompt #prompt_install_plangs)
+     (set #plangmask (if #update (BITAND #chk_proglang (BITNOT #old_proglang)) #chk_proglang))
+     (set #defaultmask #old_progdirs)
+     (P_AskProgLangs)
+     (set #install_proglang #plangmask)
+    )
+    (set #install_proglang 0)
+  )
+
+  ; Source
+  (if (AND #chk_source (NOT #update) (= @user-level 2) #install_proglang)
+    (set #install_source (askbool (prompt #prompt_install_source)
+				  (help #help_install_source)
+				  (default 0)
+			 )
+    )
+    (if (AND #update (IN #parts 5))
+      (set #install_source 1)
+      (set #install_source 0)
+    )
+  )
+
+  (complete 0)
+
+  ; mcc
+  (if (AND (> #mcc_cpu_counter 0) (NOT #update))
+    (copyfiles (prompt #prompt_copy "\n\n" @app-name #mcc_cpu_file_extension ".mcc")
+	       (help @copylib-help)
+	       (confirm "expert")
+	       (source (tackon (tackon #src-dir "libs/mui") (cat @app-name #mcc_cpu_file_extension ".mcc")))
+	       (dest (tackon #dest-dir "libs/mui"))
+	       (newname (cat @app-name ".mcc"))
+	       (optional "oknodelete" "force")
+    )
+  )
+  (complete 7)
+
+  ; mcp
+  (if (AND (> #mcp_cpu_counter 0) (OR (NOT #update) (AND #update (IN #parts 0))))
+    (copyfiles (prompt #prompt_copy "\n\n" @app-name #mcp_cpu_file_extension ".mcp")
+	       (help @copylib-help)
+	       (confirm "expert")
+	       (source (tackon (tackon #src-dir "libs/mui") (cat @app-name #mcp_cpu_file_extension ".mcp")))
+	       (dest (tackon #dest-dir "libs/mui"))
+	       (newname (cat @app-name ".mcp"))
+	       (optional "oknodelete" "force")
+    )
+  )
+  (complete 13)
+
+  ; mcc catalogs
+  (if #install_mcc_catalogs
+    (
+     (set #infos 1)
+     (set #dir "Locale")
+     (P_MkDirInfo)
+     (set #dir "Locale/Catalogs")
+     (P_MkDirInfo)
+     (set #infos 0)
+     (set #langmask #install_mcc_catalogs)
+     (while #langmask
+       (
+	(P_BitToLanguage)
+	(set #dir (tackon "Locale/Catalogs" #lang))
+	(P_MkDirInfo)
+	(set #file (cat @app-name "_mcc.catalog"))
+	(P_CpFile)
+       )
+     )
+    )
+  )
+  (complete 20)
+
+  ; mcp catalogs
+  (if #install_mcp_catalogs
+    (
+     (set #infos 1)
+     (set #dir "Locale")
+     (P_MkDirInfo)
+     (set #dir "Locale/Catalogs")
+     (P_MkDirInfo)
+     (set #infos 0)
+     (set #langmask #install_mcp_catalogs)
+     (while #langmask
+       (
+	(P_BitToLanguage)
+	(set #dir (cat "Locale/Catalogs/" #lang))
+	(P_MkDirInfo)
+	(set #file (cat @app-name "_mcp.catalog"))
+	(P_CpFile)
+       )
+     )
+    )
+  )
+  (complete 27)
+
+  ; asciidocs
+  (if #install_asciidocs
+    (
+     (set #infos 1)
+     (set #dir "Docs")
+     (P_MkDirInfo)
+     (set #langmask #install_asciidocs)
+     (while #langmask
+       (
+	(P_BitToLanguage)
+	(set #dir (tackon "Docs" #lang))
+	(P_MkDirInfo)
+	(set #file (cat @app-name "_mcc.doc"))
+	(P_CpFile)
+       )
+     )
+    )
+  )
+
+  ; agdocs
+  (if #install_agdocs
+    (
+     (P_GetOSVersion)
+     (set #wrapguide (exists "C/WarpGuide"))
+     (set #infos 1)
+     (set #dir "Docs")
+     (P_MkDirInfo)
+     (set #langmask #install_agdocs)
+     (while #langmask
+       (
+	(P_BitToLanguage)
+	(set #dir (tackon "Docs" #lang))
+	(P_MkDirInfo)
+	(set #file (cat @app-name "_mcc.guide"))
+	(if (AND #wrapguide (< #os_ver 39))
+	  (run ("stack 50000\nC/WrapGuide %s 65" (cat #dir "/" #file)))
+	)
+	(P_CpFile)
+       )
+     )
+    )
+  )
+  (complete 33)
+
+  ; demo
+  (if #install_demo
+    (
+     (set #infos 1)
+     (set #dir "Demos")
+     (P_MkDirInfo)
+     (set #file (cat @app-name "-Demo"))
+     (P_CpFile)
+    )
+  )
+  (complete 40)
+
+  (if #install_proglang
+    (
+     (set #infos 1)
+     (set #dir "Developer")
+     (P_MkDirInfo)
+
+     ; Autodoc
+     (if (AND #chk_autodoc (OR (NOT #update) (AND #update (NOT #old_autodoc))))
+       (
+	(set #dir "Developer/Autodocs")
+	(P_MkDirInfo)
+	(set #infos 0)
+	(set #file (cat "MCC_" @app-name ".doc"))
+	(P_CpFile)
+       )
+     )
+     (complete 57)
+
+     ; C
+     (if (IN #install_proglang 0)
+       (
+	(set #infos 1)
+	(set #dir "Developer/C")
+	(P_MkDirInfo)
+	(set #infos 0)
+	(set #dir "Developer/C/Include")
+	(P_MkDirInfo)
+	(set #dir "Developer/C/Include/MUI")
+	(P_MkDirInfo)
+	(set #file (cat @app-name "_mcc.h"))
+	(P_CpFile)
+	(if #chk_c_example
+	  (
+	   (set #dir "Developer/C/Examples")
+	   (P_MkDirInfo)
+	   (set #file (cat @app-name "-Demo.c"))
+	   (P_CpFile)
+	  )
+	)
+       )
+     )
+     (complete 53)
+
+     ; C++
+     (complete 60)
+
+     ; Asm
+     (if (IN #install_proglang 2)
+       (
+	(set #infos 1)
+	(set #dir "Developer/Assembler")
+	(P_MkDirInfo)
+	(set #infos 0)
+	(set #dir "Developer/Assembler/Include")
+	(P_MkDirInfo)
+	(set #dir "Developer/Assembler/Include/MUI")
+	(P_MkDirInfo)
+	(set #file (cat @app-name "_mcc.i"))
+	(P_CpFile)
+	(if #chk_asm_example
+	  (
+	   (set #dir "Developer/Assembler/Examples")
+	   (P_MkDirInfo)
+	   (set #file (cat @app-name "-Demo.s"))
+	   (P_CpFile)
+	  )
+	)
+       )
+     )
+     (complete 67)
+
+     ; Amiga-E
+     (if (IN #install_proglang 3)
+       (
+	(set #infos 1)
+	(set #dir "Developer/Amiga-E")
+	(P_MkDirInfo)
+	(set #infos 0)
+	(set #dir "Developer/Amiga-E/Modules")
+	(P_MkDirInfo)
+	(set #dir "Developer/Amiga-E/Modules/MUI")
+	(P_MkDirInfo)
+	(set #file (cat @app-name "_mcc.e"))
+	(P_CpFile)
+	(if #chk_e_example
+	  (
+	   (set #dir "Developer/Amiga-E/Examples")
+	   (P_MkDirInfo)
+	   (set #file (cat @app-name "-Demo.e"))
+	   (P_CpFile)
+	  )
+	)
+       )
+     )
+     (complete 73)
+
+     ; Modula-II
+     (if (IN #install_proglang 4)
+       (
+	(set #infos 1)
+	(set #dir "Developer/Modula")
+	(P_MkDirInfo)
+	(set #infos 0)
+	(set #dir "Developer/Modula/txt")
+	(P_MkDirInfo)
+	(set #file (cat "MCC" @app-name ".def"))
+	(P_CpFile)
+	(set #file (cat "MCC" @app-name ".mod"))
+	(P_CpFile)
+	(if #chk_modula_demo
+	  (
+	   (set #dir "Developer/Modula/Demo")
+	   (P_MkDirInfo)
+	   (set #file (cat @app-name "Demo.mod"))
+	   (P_CpFile)
+	  )
+	)
+       )
+     )
+     (complete 80)
+
+     ; Oberon
+     (if (IN #install_proglang 5)
+       (
+	(set #infos 1)
+	(set #dir "Developer/Oberon")
+	(P_MkDirInfo)
+	(set #infos 0)
+	(set #dir "Developer/Oberon/txt")
+	(P_MkDirInfo)
+	(set #file (cat "MCC" @app-name ".mod"))
+	(P_CpFile)
+	(if #chk_oberon_example
+	  (
+	   (set #dir "Developer/Oberon/Examples")
+	   (P_MkDirInfo)
+	   (set #file (cat @app-name "Demo.mod"))
+	   (P_CpFile)
+	  )
+	)
+       )
+     )
+     (complete 87)
+
+    )
+  )
+
+  (if #install_source
+    (
+     (set #infos 1)
+     (set #dir "Developer/Source")
+     (P_MkDirInfo)
+     (set #infos 1)
+     (set #dir (tackon #dir (cat "MCC_" @app-name)))
+     (P_MkDirInfo)
+     (copyfiles (prompt #prompt_copy)
+		(help @copyfiles-help)
+		(source (tackon #src-dir #dir))
+		(dest (tackon #dest-dir #dir))
+		(all)
+		(optional "nofail" "force")
+		(confirm "expert")
+     )
+    )
+  )
+  (complete 93)
+
+  (P_CustomInstall)
+  (complete 100)
+ )
+
+; --- Uninstall ---------------------------------------------------------------
+
+ (procedure P_Uninstall
+  ; Params:
+  ; #old_mcc_catalogs #old_docs #old_proglang #old_mcc #old_mcp
+  ; #old_catalogs #old_mcp_catalogs #old_asciidocs #old_agdocs #old_demo
+  ; #old_c_h #old_c_example #old_asm_i #old_asm_example #old_e_e #old_e_example
+  ; #old_modula_def #old_modula_mod #old_modula_demo #old_oberon_mod
+  ; #old_oberon_example #old_autodoc #old_source #old_existsmask #dest-dir
+  ;
+  ; Results:
+  ;
+  ; Used Vars:
+  ; #all #prompt #parts #defaultmask #langmask #uninstall_mcc_catalogs
+  ; #uninstall_mcp_catalogs #docmask #uninstall_asciidocs #uninstall_agdocs
+  ; #plangmask #uninstall_proglang #dir #file #existsmask
+
+  (set #existsmask #old_existsmask)
+  (set #all (askbool (prompt #prompt_uninstall_all)
+		     (help #help_uninstall_all)
+		     (default 1)
+	    )
+  )
+  (if (NOT #all)
+    (
+     (set #prompt #prompt_uninstall_parts)
+     (set #defaultmask %000000)
+     (P_AskParts)
+     (if (IN #parts 1)
+       (
+	(set #prompt #prompt_uninstall_mcc_catalogs)
+	(set #langmask #old_mcc_catalogs)
+	(set #defaultmask %00000000000000000000) ; LANGUAGE
+	(P_AskLanguages)
+	(set #uninstall_mcc_catalogs #langmask)
+	(if (NOT (IN #parts 0))
+	  (
+	   (set #prompt #prompt_uninstall_mcp_catalogs)
+	   (set #langmask #old_mcp_catalogs)
+	   (set #defaultmask %00000000000000000000) ; LANGUAGE
+	   (P_AskLanguages)
+	   (set #uninstall_mcp_catalogs #langmask)
+	  )
+	)
+       )
+     )
+     (if (IN #parts 2)
+       (
+	(set #prompt #prompt_uninstall_docs)
+	(set #docmask #old_docs)
+	(set #defaultmask %00)
+	(P_AskDocFormats)
+	(set #uninstall_asciidocs 0)
+	(set #uninstall_agdocs 0)
+
+	(if (IN #docmask 0) ; ASCII
+	  (
+	   (set #promp #prompt_uninstall_asciidocs)
+	   (set #langmask #old_asciidocs)
+	   (set #defaultmask %00000000000000000000) ; LANGUAGE
+	   (P_AskLanguages)
+	   (set #uninstall_asciidocs #langmask)
+	  )
+	)
+	(if (IN #docmask 1) ; AmigGuide
+	  (
+	   (set #promp #prompt_uninstall_agdocs)
+	   (set #langmask #old_agdocs)
+	   (set #defaultmask %00000000000000000000) ; LANGUAGE
+	   (P_AskLanguages)
+	   (set #uninstall_agdocs #langmask)
+	  )
+	)
+
+       )
+     )
+     (if (IN #parts 4)
+       (
+	(set #prompt #prompt_uninstall_plangs)
+	(set #plangmask #old_proglang)
+	(set #defaultmask %000000)
+	(P_AskProgLangs)
+	(set #uninstall_proglang #plangmask)
+       )
+     )
+    )
+  )
+  (complete 0)
+
+  ; mcc
+  (if (AND #old_mcc #all)
+    (delete (tackon (tackon #dest-dir "libs/mui") (cat @app-name ".mcc")) (optional "force"))
+  )
+  (complete 7)
+
+  ; mcp -> related catalogs
+  (if (OR #all (IN #parts 0))
+    (
+     (if #old_mcp
+       (delete (tackon (tackon #dest-dir "libs/mui/") (cat @app-name ".mcp")) (optional "force"))
+     )
+     (set #parts (BITOR #parts %00010))
+     (set #uninstall_mcp_catalogs #old_mcp_catalogs)
+    )
+  )
+  (complete 14)
+
+  ; Catalogs
+  (if (AND #old_catalogs (OR #all (IN #parts 1)))
+    (
+     (if #old_mcc_catalogs
+       (
+	(set #dir (tackon #dest-dir "Locale/Catalogs"))
+	(set #file (cat @app-name "_mcc.catalog"))
+	(set #langmask (if #all #old_mcc_catalogs #uninstall_mcc_catalogs))
+	(P_DeleteLanguages)
+       )
+     )
+     (if #old_mcp_catalogs
+       (
+	(set #dir (tackon #dest-dir "Locale/Catalogs"))
+	(set #file (cat @app-name "_mcp.catalog"))
+	(set #langmask #uninstall_mcp_catalogs)
+	(P_DeleteLanguages)
+       )
+     )
+    )
+  )
+  (complete 21)
+
+  ; Docs
+  (if (OR #all (IN #parts 2))
+    (
+     ; ASCII
+     (if #old_asciidocs
+       (
+	(set #dir (tackon #dest-dir "Docs"))
+	(set #file (cat @app-name "_mcc.doc"))
+	(set #langmask (if #all #old_asciidocs #uninstall_asciidocs))
+	(P_DeleteLanguages)
+       )
+     )
+
+     ; AmigaGuide
+     (if #old_agdocs
+       (
+	(set #dir (tackon #dest-dir "Docs"))
+	(set #file (cat @app-name "_mcc.guide"))
+	(set #langmask (if #all #old_agdocs #uninstall_agdocs))
+	(P_DeleteLanguages)
+       )
+     )
+
+    )
+  )
+  (complete 29)
+
+  ; Demo
+  (if (AND #old_demo (OR #all (IN #parts 3)))
+    (
+     (set #dir (tackon #dest-dir "Demos"))
+     (delete (tackon #dir (cat @app-name "-Demo")) (optional "force"))
+     (delete (tackon #dir (cat @app-name "-Demo.info")) (optional "force"))
+     (P_DelEmptyDir)
+    )
+  )
+  (complete 36)
+
+  ; Developer
+  (if (AND #old_proglang (OR #all (IN #parts 4)))
+    (
+
+     ; C
+     (if (OR #all (IN #uninstall_proglang 0))
+       (
+	(if #old_c_h
+	  (
+	   (set #dir (tackon #dest-dir "Developer/C/Include/MUI"))
+	   (delete (tackon #dir (cat @app-name "_mcc.h")) (optional "force"))
+	   (P_DelEmptyDir)
+	   (set #dir (pathonly #dir))
+	   (P_DelEmptyDir)
+	  )
+	)
+	(if #old_c_example
+	  (
+	   (set #dir (tackon #dest-dir "Developer/C/Examples"))
+	   (delete (tackon #dir (cat @app-name "-Demo.c")) (optional "force"))
+	   (P_DelEmptyDir)
+	  )
+	)
+	(set #dir (tackon #dest-dir "Developer/C"))
+	(P_DelEmptyDir)
+       )
+     )
+     (complete 43)
+
+     ; C++
+;     (if (OR #all (IN #uninstall_proglang 1))
+;     )
+     (complete 50)
+
+     ; Asm
+     (if (OR #all (IN #uninstall_proglang 2))
+       (
+	(if #old_asm_i
+	  (
+	   (set #dir (tackon #dest-dir "Developer/Assembler/Include/MUI"))
+	   (delete (tackon #dir (cat @app-name "_mcc.i")) (optional "force"))
+	   (P_DelEmptyDir)
+	   (set #dir (pathonly #dir))
+	   (P_DelEmptyDir)
+	  )
+	)
+	(if #old_asm_example
+	  (
+	   (set #dir (tackon #dest-dir "Developer/Assembler/Examples"))
+	   (delete (tackon #dir (cat @app-name "-Demo.s")) (optional "force"))
+	   (P_DelEmptyDir)
+	  )
+	)
+	(set #dir (tackon #dest-dir "Developer/Assembler"))
+	(P_DelEmptyDir)
+       )
+     )
+     (complete 57)
+
+     ; Amiga-E
+     (if (OR #all (IN #uninstall_proglang 3))
+       (
+	(if #old_e_e
+	  (
+	   (set #dir (tackon #dest-dir "Developer/Amiga-E/Modules/MUI"))
+	   (delete (tackon #dir (cat @app-name "_mcc.e")) (optional "force"))
+	   (P_DelEmptyDir)
+	   (set #dir (pathonly #dir))
+	   (P_DelEmptyDir)
+	  )
+	)
+	(if #old_e_example
+	  (
+	   (set #dir (tackon #dest-dir "Developer/Amiga-E/Examples"))
+	   (delete (tackon #dir (cat @app-name "-Demo.e")) (optional "force"))
+	   (P_DelEmptyDir)
+	  )
+	)
+	(set #dir (tackon #dest-dir "Developer/Amiga-E"))
+	(P_DelEmptyDir)
+       )
+     )
+     (complete 64)
+
+     ; Modula-II
+     (if (OR #all (IN #uninstall_proglang 4))
+       (
+	(set #dir (tackon #dest-dir "Developer/Modula/txt"))
+	(if #old_modula_def
+	  (delete (tackon #dir (cat "MCC" @app-name ".def")) (optional "force"))
+	)
+	(if #old_modula_mod
+	  (delete (tackon #dir (cat "MCC" @app-name ".mod")) (optional "force"))
+	)
+	(if (OR #old_modula_def #old_modula_mod)
+	  (
+	   (P_DelEmptyDir)
+	  )
+	)
+	(if #old_modula_demo
+	  (
+	   (set #dir (tackon #dest-dir "Developer/Modula/Demo"))
+	   (delete (tackon #dir (cat @app-name "Demo.mod")) (optional "force"))
+	   (P_DelEmptyDir)
+	  )
+	)
+	(set #dir (tackon #dest-dir "Developer/Modula"))
+	(P_DelEmptyDir)
+       )
+     )
+     (complete 71)
+
+     ; Oberon
+     (if (OR #all (IN #uninstall_proglang 5))
+       (
+	(if #old_oberon_mod
+	  (
+	   (set #dir (tackon #dest-dir "Developer/Oberon/txt"))
+	   (delete (tackon #dir (cat "MCC" @app-name ".mod")) (optional "force"))
+	   (P_DelEmptyDir)
+	  )
+	)
+	(if #old_oberon_example
+	  (
+	   (set #dir (tackon #dest-dir "Developer/Oberon/Examples"))
+	   (delete (tackon #dir (cat @app-name "Demo.mod")) (optional "force"))
+	   (P_DelEmptyDir)
+	  )
+	)
+	(set #dir (tackon #dest-dir "Developer/Oberon"))
+	(P_DelEmptyDir)
+       )
+     )
+     (complete 79)
+
+     ; Autodocs
+     (if (AND #old_autodoc (OR #all (NOT (BITXOR #uninstall_proglang #old_proglang))))
+       (
+	(set #dir (tackon #dest-dir "Developer/Autodocs"))
+	(delete (tackon #dir (cat "MCC_" @app-name ".doc")) (optional "force"))
+	(P_DelEmptyDir)
+       )
+     )
+
+     (set #dir (tackon #dest-dir "Developer"))
+     (P_DelEmptyDir)
+    )
+  )
+  (complete 86)
+
+  (if (AND #old_source (OR #all (IN #parts 5)))
+    (
+     (set #dir (tackon (tackon #dest-dir "Developer/Source") (cat "MCC_" @app-name)))
+     (P_DelDirRecursive)
+     (set #dir (pathonly #dir))
+     (P_DelEmptyDir)
+    )
+  )
+  (complete 93)
+
+  (P_CustomUninstall)
+  (complete 100)
+ )
+
+; -----------------------------------------------------------------------------
+
+ ; Check MUI
+ (P_GetMUIVersion)
+ (if (= #mui_ver 0)
+   (abort #abort_nomui)
+ )
+ (set #ver2 #min_mui_version)
+ (set #rev2 0)
+ (P_CompareVersions)
+ (if (= #result -1)
+   (
+    (set #ver #min_mui_version)
+    (set #rev #min_mui_revision)
+    (P_GetMUIVersionStr)
+    (abort (#abort_oldmui #str #mui_str))
+   )
+ )
+
+ ; Check if there is an already installed version?
+ (if (= (fileonly (pathonly @icon)) "Install")
+   (set #src-dir "/")
+   (set #src-dir "")
+ )
+ (set #dest-dir @default-dest)
+ (set #dir #dest-dir)
+ (P_CheckExists)
+ (P_CustomExists)
+ (set #old_mcc #chk_mcc)
+ (set #old_mcp #chk_mcp)
+ (set #old_demo #chk_demo)
+ (set #old_catalogs #chk_catalogs)
+ (set #old_mcc_catalogs #chk_mcc_catalogs)
+ (set #old_mcp_catalogs #chk_mcp_catalogs)
+ (set #old_docs #chk_docs)
+ (set #old_asciidocs #chk_asciidocs)
+ (set #old_agdocs #chk_agdocs)
+ (set #old_proglang #chk_proglang)
+ (set #old_progdirs #chk_progdirs)
+ (set #old_autodoc #chk_autodoc)
+ (set #old_c_h #chk_c_h)
+ (set #old_c_example #chk_c_example)
+ (set #old_asm_i #chk_asm_i)
+ (set #old_asm_example #chk_asm_example)
+ (set #old_e_e #chk_e_e)
+ (set #old_e_example #chk_e_example)
+ (set #old_modula_def #chk_modula_def)
+ (set #old_modula_mod #chk_modula_mod)
+ (set #old_modula_demo #chk_modula_demo)
+ (set #old_oberon_mod #chk_oberon_mod)
+ (set #old_oberon_example #chk_oberon_example)
+ (set #old_source #chk_source)
+ (set #old_existsmask #chk_existsmask)
+
+ (set #dir #src-dir)
+ (P_CheckExists)
+
+ ; Check old version
+ (set #file (tackon (tackon #dest-dir "libs/mui") (cat @app-name ".mcc")))
+ (P_GetVersion)
+ (set #ver2 #ver)
+ (set #rev2 #rev)
+
+ ; Check archiv
+ (set #file (tackon (tackon #src-dir "libs/mui") (cat @app-name ".mcc")))
+ (P_GetVersion)
+
+ (P_CompareVersions)
+ (if (= #result -1)
+   (abort (#abort_oldversion #ver2 #rev2 #ver #rev))
+   (if (= #result 0)
+     (if (= #ver 0)
+       (set #update 0)
+       (set #update 1)
+     )
+     (set #update 0)
+   )
+ )
+
+; Install over old/Update existing
+ (select (if (OR #old_mcc #old_autodoc)
+	   (askchoice (prompt #prompt_install_uninstall)
+		      (help #help_askchoice @askchoice-help)
+		      (default 0)
+		      (choices
+			(cat #prop
+			     (if (= #update 0)
+			       (
+				#choice_install
+			       )
+			       (
+				#choice_update
+			       )
+			     )
+			)
+			#choice_uninstall
+		      )
+	   )
+	   (
+	    (message #prompt_info)
+	    0
+	   )
+	 )
+   ( ; Install
+    (welcome #welcome_install)
+    (P_Install)
+   )
+   ( ; Uninstall
+    (welcome #welcome_uninstall)
+    (P_Uninstall)
+    (exit #exit_uninstall_finished (quiet))
+   )
+ )

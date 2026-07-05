@@ -1,0 +1,123 @@
+
+
+                        [1;4mIQ Computing Product License[0m
+
+
+ §1. This product license applies to the product called  "BetterBalance.mcc",
+     a  package  for  the  Amiga®  computer,  published  by  Maik  Schreiber/
+     [1mIQ Computing [0munder the concepts of [1mFreeware[0m, release 1.0 or  later.  The
+     terms  "BetterBalance.mcc",  "program", "package" and "archive" refer to
+     this product. The licensee is addressed as "you".
+
+     This license does not apply to third party supplied software, for  which
+     you can find their copyright notices below this license (if any).
+
+ §2. By copying, re-distributing and/or using this package you indicate  your
+     agreement  to  this  license to do so, and all its terms and conditions.
+     Violation of any of the topics below will automatically  terminate  your
+     rights to use or otherwise handle (eg. distribute) this package.
+
+ §3. [32m[Start of copyright notice to include into other software packages][0m
+
+     All programs,  manuals,  disks  and  all  other  files  of  the  product
+     "BetterBalance.mcc" are Copyright © by Maik Schreiber/[1mIQ Computing[0m.
+
+     Please visit [1mThe IQ Computing Web Site [0mat [1mwww.IQ-Computing.de[0m
+
+     [32m[End of copyright notice to include into other software packages][0m
+
+ §4. There is no warranty  for  the  program,  to  the  extent  permitted  by
+     applicable  law.  Except  when otherwise stated in writing the copyright
+     holder(s) and/or other parties  provide  the  program  "as  is"  without
+     warranty  of  any  kind, either expressed or implied, including, but not
+     limited to, the implied warranties of merchantability and fitness for  a
+     particular purpose. The entire risk as to the quality and performance of
+     the program is with you. Should the program prove defective, you  assume
+     the cost of all neccessary servicing, repair and/or correction.
+
+ §5. In no event unless required by applicable law or agreed  to  in  writing
+     will  any  copyright holder or any other party who may re-distribute the
+     program as permitted below be liable to you for damages,  including  any
+     general, special, incidental and/or consequential damages arising out of
+     the use and/or inability to use the program (including, but not  limited
+     to,  loss  of  data  and/or data being rendered inaccurate and/or losses
+     sustained by you and/or third parties and/or a failure of the program to
+     operate  with  any  other program), even if such copyright holder and/or
+     other party has been advised of the possibility of such damages.
+
+ §6. The author(s) has/have no obligation to  provide  maintenance,  support,
+     updates, enhancements and/or modifications of the program.
+
+ §7. All trademarked names used in this package are used for the purposes  of
+     identification  and  for  the  benefit  of  the  trademark  holders.  No
+     infringement of  trademarks  is  intended.  The  trademarks  remain  the
+     properties of the trademark holders.
+
+ §8. This  package  may  be  freely  re-distributed,  but  only  in   totally
+     unmodified  form:  No  files  must  be  added,  deleted,  renamed and/or
+     otherwise modified. Compression with common archivers like LZX,  LhA  or
+     (PK)Zip  is  allowed.  You  are  only allowed to re-distribute the whole
+     original archive, not any single file  must  be  distributed  separately
+     (except  stated  below under condition 9). This condition applies to all
+     forms  of  re-distribution:  floppy  disks,  CD-ROMs,  BBSs,  electronic
+     networks, FTP sites and/or any other means.
+
+ §9. Programmers and creators of freely distributable software (this includes
+     public  domain,  freeware, giftware and all other software that does not
+     cost more than DM 20, US$ 11, GB£ 7 or  an  equal  value  in  any  other
+     currency) are allowed to include single files of this package into their
+     own distributions. They are only allowed to do so if they  include  this
+     complete product license into their package(s).
+
+     Any other conditions (except the conditions that are  excluded  by  this
+     condition)  stated within this license do still apply to programmers and
+     creators of freely distributable software.
+
+§10. Permission to include certain parts  of  this  package  into  commercial
+     distributions  (this includes all kinds of distributions except the ones
+     stated above under condition 9) is only  given  by  an  extra  available
+     commercial  license.  Contact  the  author directly for this license; it
+     will be individually handed out for your needs.
+
+§11. No part of this package, neither in whole nor in part, may  be  used  on
+     any machine which is used
+
+     a) for research, development, construction, testing and/or production of
+        weapons  or  other  military  applications.  This  also  includes any
+        machine which is used in the education for any of the above mentioned
+        purposes.
+
+     b) by people who accept,  support  and/or  use  violence  against  other
+        people.
+
+§12. You are not allowed to draw commercial  profit  out  of  re-distributing
+     this  package. You may only charge a nominal fee to recover distribution
+     costs.
+
+§13. Each time you re-distribute this package,  the  recipient  automatically
+     receives   a  product  license  from  the  original  licensor  to  copy,
+     re-distribute and/or use this package. You must not impose  any  further
+     restrictions on the recipient's exercise of the rights granted herein.
+
+§14. You agree to cease distributing this package if requested to  do  so  by
+     the author.
+
+§15. You agree to cease the distribution of packages which  include  original
+     or derived parts of this package if requested to do so by the author. In
+     that case, you must completely remove these  parts  from  that  software
+     package in order to be allowed to continue distributing it.
+
+
+
+[4mCopyrights of other software that is not covered by the above license:[0m
+
+
+
+
+
+[1;4mIQ Computing:[0m
+Concepts, policies: Oliver Hauth & Maik Schreiber
+IQ Computing Logo : Maik Schreiber
+Product licenses  : Maik Schreiber
+
+$VER: IQComputingFW.license 1.4 (22.4.98) © by Maik "bZ!" Schreiber

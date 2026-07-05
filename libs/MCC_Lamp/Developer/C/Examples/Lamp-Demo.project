@@ -1,0 +1,44 @@
+;MaxonCPP-Project
+
+<Project-Options>
+-dir "cs:MCC_Lamp/Demo/" -args "" -stack 16 -pri 0
+<End>
+
+
+<Linker-Options>
+-gD -gl -gh50 -w1024 
+-j "lib:" -j "MDev:amiga/mcpp-libs/" 
+<End>
+
+<C-Options>
+-waCEFNMOpRTV -pc -g00 -g80 -gO -gb0 -gM -bs0 -a0 -t -px -b0 -mX 
+-i "Include:" 
+-i "MDev:amiga/c-inc/" 
+<End>
+
+<ASM-Options>
+-c cWSElMo0F -0xff 
+<End>
+
+
+<CSources>
+"Lamp-Demo.c" "Lamp-Demo.o"
+	<Dependencies>
+		"Lamp-Demo.c"
+	<End>
+<End>
+
+<Executable>
+<closed>
+"Lamp-Demo"
+	<Options>
+		-autowrite
+	<End>
+<End>
+
+<LinkLibs>
+<closed>
+"lib:muistubs.lib"
+"lib:amiga.lib"
+<End>
+

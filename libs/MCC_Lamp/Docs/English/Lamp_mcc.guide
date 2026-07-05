@@ -1,0 +1,205 @@
+@database Lamp_mcc.guide
+
+@node "Main" "Lamp.mcc 11.1"
+
+    @{b}@{u}Lamp.mcc 11.1 - Copyright © 17-Mar-1997 by Maik "BLiZZeR" Schreiber@{uu} @{ub}
+
+Lamp.mcc offers a little lamp which can be used for various purposes. It
+enhances the programmer's abilities to give more informative feedback to the
+user and thus just adds another level of communication in your programs!
+
+You can set the color and the type of the lamp at any time.
+
+Lamp.mcc has several special colors which can be configured using a MCP by
+the user.
+
+See the supplied demonstration program for more details.
+
+The demonstration program compiles fine under MaxonC++ 4.0, SAS/C 6.57 and
+StormC 1.1.
+
+                             @{" Requirements     " link "Requirements"}
+
+                             @{" Distribution     " link "Distribution"}
+                             @{" Disclaimer       " link "Disclaimer"}
+                             @{" Copyright        " link "Copyright"}
+
+                             @{" History          " link "History" 9999}
+
+                             @{" Author           " link "Author"}
+                             @{" Acknowledgements " link "Acknowledgements"}
+
+@endnode
+
+@node "Requirements" "Requirements"
+
+  @{b}@{u}Requirements@{uu} @{ub}
+
+Lamp.mcc requires at least version 3.0 of MUI (V11).
+It is recommended that you always use the latest version of MUI.
+
+@endnode
+
+@node "Distribution" "Distribution"
+
+  @{b}@{u}Distribution@{uu} @{ub}
+
+Permission is hereby granted, without written agreement and without license,
+to make verbatim copies of this package, as long as all according files are
+kept together and unmodified.
+
+Programmers who want to include Lamp.mcc/Lamp.mcp into their package are
+hereby allowed to do so, without written agreement and without license,
+provided that the @{"copyright notice" link "Copyright"} appears in all copies of that software.
+
+Note: You shouldn't include any files of this archive into your program's
+      distribution, but instead let the user get the newest version from the
+      distribution sites himself.
+
+@endnode
+@node "Disclaimer" "Disclaimer"
+
+  @{b}@{u}Disclaimer@{uu} @{ub}
+
+There is no warranty for the program, to the extent permitted by applicable
+law. Except when otherwise stated in writing the @{"copyright holder" link "Copyright"} and/or
+other parties provide the program "as is" without warranty of any kind,
+either expressed or implied, including, but not limited to, the implied
+warranties of merchantability and fitness for a particular purpose. The
+entire risk as to the quality and performance of the program is with you.
+Should the program prove defective, you assume the cost of all neccessary
+servicing, repair or correction.
+
+In no event unless required by applicable law or agreed to in writing will
+any copyright holder, or any other party who may redistribute the program as
+permitted above, be liable to you for damages, including any general,
+special, incidental or consequential damages arising out of the use or in-
+ability to use the program (including, but not limited to, loss of data or
+data being rendered inaccurate or losses sustained by you or third parties
+or a failure of the program to operate with any other programs), even if
+such copyright holder or other party has been advised of the possibility of
+such damages.
+
+The @{"author" link "Author"} has no obligation to provide maintenance, support, updates, en-
+hancements or modifications of the program.
+
+All trademarked names used herein are used for the purposes of identifi-
+cation and for the benefit of the trademark holders. No infringement of
+trademarks is intended. Trademarks remain the properties of the trademark
+holders.
+
+@endnode
+@node "Copyright" "Copyright"
+
+  @{b}@{u}Copyright@{uu} @{ub}
+
+@{fg highlight}[Start of copyright notice]@{fg text}
+
+Lamp.mcc/Lamp.mcp and all according files are Copyright © 1997 by Maik
+Schreiber/@{b}IQ Computing@{ub}.
+Updates are always available at http://home.pages.de/~bZ/projekte/mcc_lamp/
+
+@{fg highlight}[End of copyright notice]@{fg text}
+
+
+Permission for commercial use (this includes both commercial software and
+shareware) is only given by an extra available commercial license. Contact
+@{"me" link "Author"} directly for this license; it will be individually handed out for your
+needs.
+
+Permission is hereby granted, without written agreement and without license,
+to use this software and its documentation for any non-commercial purpose
+(this includes giftware also), provided that the above copyright notice
+appears in all copies of that software.
+
+@endnode
+
+@node "History" "History"
+
+  @{b}@{u}History@{uu} @{ub}
+
+11.0, 03-Feb-1997:
+  - first version of Lamp.mcc
+
+11.1, 17-Mar-1997:
+  - added special color values:
+      MUIV_Lamp_Color_Off           - lamp is switched off
+      MUIV_Lamp_Color_Ok            - no problems, success
+      MUIV_Lamp_Color_Warning       - a warning only
+      MUIV_Lamp_Color_Error         - something wrong
+      MUIV_Lamp_Color_FatalError    - complete or severe failure
+      MUIV_Lamp_Color_Processing    - any program work in progress
+      MUIV_Lamp_Color_LookingUp     - looking up a server
+      MUIV_Lamp_Color_Connecting    - connecting to a server
+      MUIV_Lamp_Color_SendingData   - sending any serial line data
+      MUIV_Lamp_Color_ReceivingData - receiving any serial line data
+      MUIV_Lamp_Color_LoadingData   - loading any data into memory
+      MUIV_Lamp_Color_SavingData    - saving any data onto (hard)disk
+  - added MCP to allow user to define the special color values
+
+@endnode
+
+@node "Author" "Author"
+
+  @{b}@{u}Autor@{uu} @{ub}
+
+@{b}SnailMail: @{ub}Maik Schreiber
+           Korallusstraﬂe 3b
+           21109 Hamburg
+           FR Germany
+
+@{b}EMail    : @{ub}BLiZZeR@dame.de
+
+@{b}Phone    : @{ub}+49-(0)40-75493866 (3:00pm - 10:00pm CET)
+
+@{b}Homepage : @{ub}http://home.pages.de/~bZ/projekte/mcc_lamp/
+
+@{b}Account  : @{ub}Account: 214 09 11  (Maik Schreiber)
+           BLZ    : 130 700 00 (Deutsche Bank)
+
+@{b}PGP key  : @{ub}
+
+Type Bits/KeyID    Date       User ID
+pub  2048/B71E1741 1996/06/17 Maik Schreiber <BLiZZeR@dame.de>
+sig!      B71E1741 1997/02/02  Maik Schreiber <BLiZZeR@dame.de>
+
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+Version: 2.6.3i
+Comment: visit http://home.pages.de/~bZ
+
+mQEcAzHEzN0AAAEIAKnuD3NFfjxxHljAMbl0L+XLArFNfBrdfxCXHBxwAD6EvvvW
+FndA3APtT5lzUBRtTjSqwzSelPwWntyUt+oaM198IMSNQkQrjNA2P4YrICo47Dh/
+EkMvMGU6G4Z2V+/Z7JyFPwPix/6V7MQNHYLk6ugdO0woFBF1iR40yMlJK9eSNzu3
+ujJWPZYjjVae9ljjbEba1EeUgYLVRXB1Lk8m5kL4YQfvj4u7itFh06OKVCTCiAMw
+gyqUu1l9VcXpi/fJ+xlTg63o+aNPVe88JEwAm5pndR1ocKVr7XAwKSAG/ceUCjBA
+YJFWbduM305DPp0wuLFo9oy4kOeFkcXL47ceF0EAgIAAAAAAAAAAAAAAAAAAAAO0
+IE1haWsgU2NocmVpYmVyIDxCTGlaWmVSQGRhbWUuZGU+iQEVAwUQMvQGUJHFy+O3
+HhdBAQFV7QgAnYCFNPIK4/fMPB6IfiNmLQIXwVacGfaZY3N5BrOGoxwd+k5me/gk
+hrcktFPOedFJdeFySSp5SBRHmVCWEshFBFIEdSAV79xCBX+NaM4FFfiMqTfyHVIt
+INWcgjN0fhdvD3R1UO0kF/SjY3IfwM8shuvOoXTzFlRHKT4E3HkE7rvT1IsWhvtg
+gmh9IIu59QoKzA0wGqenqb6ma6yDUYCWPM+t8o5XXaYArJu4g4vcqAnTC1jUUwhr
+UCNiHQj2WGR6L3NiG2IyOiTOL8HBnI/J+a3xr2A/PuIQ+tItcz9StgyzzStv5xaa
+to+iwIHPRG/HcptrFmANmvh7JjXacflGfQ==
+=8KFp
+-----END PGP PUBLIC KEY BLOCK-----
+
+@endnode
+@node "Acknowledgements" "Acknowledgements"
+
+  @{b}@{u}Acknowledgements@{uu} @{ub}
+
+@{b}Matthias "Quape" Kaulartz @{ub}
+
+@{b}Kai "PowerStat" Hofmann @{ub}
+  for MCCLib.c and MCC-Install
+
+@{b}Linus Brimstedt @{ub}
+@{b}Troels Walsted Hansen @{ub}
+@{b}Christian Stieber @{ub}
+@{b}John Tyler @{ub}
+  for making various suggestions during development
+
+@{b}All who I did forget... :) @{ub}
+
+@endnode
+

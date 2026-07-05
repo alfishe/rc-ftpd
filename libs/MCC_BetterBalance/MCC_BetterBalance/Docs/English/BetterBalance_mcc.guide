@@ -1,0 +1,191 @@
+@database BetterBalance_mcc.guide
+@smartwrap
+@$VER: BetterBalance_mcc.guide 1.2 (19.6.98) © by Maik "bZ!" Schreiber
+
+@node "Main" "BetterBalance.mcc 11.2"
+@{jcenter}@{par}
+@{b}@{u}BetterBalance.mcc 11.2 - Copyright © 19-Jun-1998 by Maik "bZ!" Schreiber@{uu}@{ub}@{par}
+
+@{jleft}BetterBalance.mcc is a subclass of Balance class which allows the programmer
+to easily save and load all balance settings of a GUI.@{par}
+
+See the supplied demonstration program for more details.@{par}
+
+
+@{jcenter}Please visit @{b}The IQ Computing Web Site @{ub}at @{b}www.IQ-Computing.de@{ub}@{par}
+
+
+@{" License          " link "License.txt/Main"}@{par}
+
+@{" Requirements     " link "Requirements"}@{par}
+
+@{" History          " link "History" 9999}@{par}
+
+@{" Author           " link "Author"}@{par}
+@{" Acknowledgements " link "Acknowledgements"}@{par}
+
+
+Note: This document makes heavy use of OS 3.1 @{amigaguide} commands.@{par}
+
+@endnode
+
+@node "Requirements" "Requirements"
+@{par}
+  @{b}@{u}Requirements@{uu}@{ub}@{par}
+
+BetterBalance.mcc requires at least version 3.0 of MUI (V11).@{par}
+It is recommended that you always use the latest version of MUI.@{par}
+
+@endnode
+
+@node "History" "History"
+@{par}
+  @{b}@{u}History@{uu}@{ub}@{par}
+
+11.0, 07-Apr-1998:@{par}
+@{lindent 4}  - first version of BetterBalance.mcc@{lindent 0}@{par}
+
+11.1, 08-Jun-1998:@{par}
+@{lindent 4}  - if an object has a MUIA_HorizWeight and/or MUIA_VertWeight of 0, its
+horizontal and/or vertical weights will not be loaded upon
+MUIM_Application_Load@{lindent 0}@{par}
+@{lindent 4}  - made some small internal improvements@{lindent 0}@{par}
+
+11.2, 19-Jun-1998:@{par}
+@{lindent 4}  - little bugfix@{lindent 0}@{par}
+
+@endnode
+
+@node "Author" "Author"
+@{par}
+  @{b}@{u}Author@{uu}@{ub}@{par}
+
+@{lindent 11}@{b}SnailMail: @{ub}Maik Schreiber@{par}
+Thielenstraﬂe 9@{par}
+21109 Hamburg@{par}
+Germany@{lindent 0}@{par}
+
+@{code}@{b}EMail    : @{ub}bZ@iq-computing.de@{body}@{par}
+
+@{lindent 11}@{b}Phone    : @{ub}+49 (0)40 75 49 31 24 (4:00pm - 9:00pm MET/MEST)@{lindent 0}@{par}
+
+@{code}@{b}Web site : @{ub}www.IQ-Computing.de@{body}@{par}
+
+@{lindent 11}@{b}Account  : @{ub}Account: 66 09 440  (Maik Schreiber)@{par}
+BLZ    : 200 700 00 (Deutsche Bank)@{lindent 0}@{par}
+
+@{b}PGP key  : @{ub}@{par}
+
+@{code}Type Bits/KeyID    Date       User ID
+pub  2048/B71E1741 1996/06/17 Maik Schreiber <bZ@iq-computing.de>
+sig       B71E1741             Maik Schreiber <bZ@iq-computing.de>
+                              Maik Schreiber <bZ@dame.de>
+sig       B71E1741             Maik Schreiber <bZ@iq-computing.de>
+                              Maik Schreiber <blizzer@gmx.net>
+sig       B71E1741             Maik Schreiber <bZ@iq-computing.de>
+                              Maik Schreiber <http://www.IQ-Computing.de>
+sig       B71E1741             Maik Schreiber <bZ@iq-computing.de>
+                              Maik Schreiber <BLiZZeR@dame.de>
+sig       7DE5E039             Oliver Hauth <phomexa@vnet.e.ruhr.de>
+sig       34D74DC1             Peter Simons <simons@petium.rhein.de>
+sig       5C77B04D             Johnny Tevessen <j.tevessen@line.org>
+sig       84539E45             Oliver Hauth <phomexa@forall.dame.de>
+sig       B71E1741             Maik Schreiber <bZ@iq-computing.de>
+                              Maik Schreiber <http://home.pages.de/~bZ>
+sig       34D74DC1             Peter Simons <simons@petium.rhein.de>
+sig       5C77B04D             Johnny Tevessen <j.tevessen@line.org>
+sig       B71E1741             Maik Schreiber <bZ@iq-computing.de>
+
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+Version: 2.6.3ia
+Comment: visited www.IQ-Computing.de yet?
+
+mQEcAzHEzN0AAAEIAKnuD3NFfjxxHljAMbl0L+XLArFNfBrdfxCXHBxwAD6EvvvW
+FndA3APtT5lzUBRtTjSqwzSelPwWntyUt+oaM198IMSNQkQrjNA2P4YrICo47Dh/
+EkMvMGU6G4Z2V+/Z7JyFPwPix/6V7MQNHYLk6ugdO0woFBF1iR40yMlJK9eSNzu3
+ujJWPZYjjVae9ljjbEba1EeUgYLVRXB1Lk8m5kL4YQfvj4u7itFh06OKVCTCiAMw
+gyqUu1l9VcXpi/fJ+xlTg63o+aNPVe88JEwAm5pndR1ocKVr7XAwKSAG/ceUCjBA
+YJFWbduM305DPp0wuLFo9oy4kOeFkcXL47ceF0EAgIAAAAAAAAAAAAAAAAAAAAO0
+I01haWsgU2NocmVpYmVyIDxiWkBpcS1jb21wdXRpbmcuZGU+iQEVAwUQNV8dcpHF
+y+O3HhdBAQFbSgf/cf2fZi/KE748BS9XwqozjyoSOyqeQDaKMzcR7ojG8hx3DwDn
+NZfZXf+qtaswTznGGUW6YCDz8OorSQ2+hTW3ZNt61uBQqz/h6ly0CTJC7WOoGYNt
+7RucuDtoK+hDZnwhZZcm/r4sE3sCSdRyR+VQE2mPqEfJW86OSWYGB1DGTTKGCLDd
+t/M9J1Y0V1M9ooYyyUNgExeAt0mmpV6jeTz+nsi/LJlz+Tm4M67756oeQE/PFKAd
+lxcpn3sjf6mbNNzPYppypKe6HYjF3KKY+x6n2V2VPoOBgqTFDBZ2fBHjVMyp2+0D
+f19e+f2GJ6xNtuWSSkNKjM+Aj0NAmpKgipiBcbQbTWFpayBTY2hyZWliZXIgPGJa
+QGRhbWUuZGU+iQEVAwUQNRMwy5HFy+O3HhdBAQEXHgf/YfaicaEU3o+xqyhjsTK5
+TdbYmtTWswhgU3aHA58D7/Y6yT90A9iAz4hOEWKPKShjiG5oCrwXeuj083KKcqRq
+/KqEUg5vEPfLDhr/iXzrR8+8aEuZLAvHJ6szR47eeF8XxdWOjKARBEkrY7oIdJGb
+AqftXpuz6PIKt7e45ICT5vUs9wWQdYHCGeAKIs+rqOWaK1708ah8QywWpR4UpTiY
+VW2VHfxpCms3EU69g74VcPqNht32hQ4me4doFVlhgV8ySI+Lu2oSlRl13ZhoeBPt
+iHwPgZ2xbRUyQIvCjC6VVja7LtO3A6WSejWRjy6Bj+u0ufqb/jYc9BAnHMol5jE3
+brQgTWFpayBTY2hyZWliZXIgPGJsaXp6ZXJAZ214Lm5ldD6JARUDBRA1Xx0wkcXL
+47ceF0EBAfA6CACH6iSY2GidqIj5OcgHwSpJPGaUoyosmyP9Bw0fPiiwiFApBPNd
+uiH1mN1bac631F4lfd9aHGij9CjFTLk+NfyEkH4meQrrkg3b4V4XHv37DV+CrpPE
+MYV/ou9SKIarklv/8UGErX0tkJ7jvS/Vd3TEs1y4iOUAp7lTfGQqNOs2lji2RDEV
+AgzxH9/dwDp26IpFNwxsJt6Sj4ixLllk6r0FIFRclPcf6BKyyHcpNF7Ob7yzxF+O
+xdoC03x5Lk7XRpkHXcviO6xeDf4x2LdkJ23+A6AanLy8iy2uuj6dlzzyf9oH68qf
+jpvZ70zxifV7cQOmwp9FdKrhJPZGdUlGIr9etCtNYWlrIFNjaHJlaWJlciA8aHR0
+cDovL3d3dy5JUS1Db21wdXRpbmcuZGU+iQEVAwUQNV8c6ZHFy+O3HhdBAQEpAgf/
+cajA967vFx8/KL9mNPhdL022QaRp2TkfsrLrgrUNC/PzYIgyujRM1xMaFrbseX51
+LSvJNLTYQdX6x409FgHxM/KrqcPNOp6pzXhx2GAp7lnxbRbdT9udM5TO6H8Wy4li
+azj/lCjNY0cY3dI9WFH8R+Xot0RCLBZWxghgsJCC1tgHtgJivilHOLqC910NPyXS
+iRI//YQpmqO8h1fYVqNv4tsZMaFZq1fVKMpgniH8tRPquFQwytdr79iu5mO+Vffl
+gP1dWqcXdhPecF8pttx7DXrb83NqFa0zJYMR+lJ5K0G4mX/S9VvCBQLy2BwViuCJ
+umHuyahk+XNQGC88zCNjqrQgTWFpayBTY2hyZWliZXIgPEJMaVpaZVJAZGFtZS5k
+ZT6JARUDBRAz+g4ILAbnCX3l4DkBATkfB/0RURzVriamVtOpqqFfle4p+bhE76H8
+bOJSHyrXd8aMJMC/Wmil1DFBM1+quGs2hKerf8SDuhVbq81kE0c5wF9V0C5BOYzv
+DncD8CThpOtU/l4JXa1y4CDKKlragY/5PoIYk3izuJrZS3sN2Wa+yRdNCCWS5RkX
++1A/RXFoTXWU6uCltIJ3ThTft8DkMpnrYZxAnCTSD5uITAbszf87C+nEMghoioJC
+RnMqAWb0rmMwvOO/IBIAK41OTO01sAf8Spp5WTfE9+htScPOD3Vs3nMaLGqb15eA
+4y2omsqBHyktG/2IAECAl06vdGCpeO2EaYBJKiY9Mewv3nPMoj0TKmA9iQCVAwUQ
+M93C8Q9HL1s0103BAQFwGwQArqaJxOWpXRO7XxoaK6C5b5kkgz+FycFiJBqFnr9t
+kOsyfcOaI8AJBCoUi6BqG+v8gJ+EsMb+SwUosFZVnfikiJ7MAW/7aE6xqNgddZ8f
+A+8VC3y541UEsyqZfiYAe2IJAO8EzfMhN7H8P3zNOA05WTG7KMW1Qd3o0bFtiBjG
+QDKJAJUDBRAz1dsjN4eBK1x3sE0BAakWA/4l69SKfx99KF9+TD7kHdQyd93HPRBE
+3nze5r4OikFutVeHO/LdSv/tJTDPpEltg5NJB5gTQBT7w+HI3N3uPBjNvK5JTpgQ
++7zCH3EduKPcnzzOlIU3tABLhtMB0BHV3LW0cmY6BR6FGCvMKIr5iZ4PDpwb5leb
+Dq9x8NVn4FIdmokAlQMFEDN/oQCTXNU1hFOeRQEBb3MD+QFN/y91pmN7/7kXzNu5
+kEnyOe/Jki6pwdsP4FXCdk9bLUl0JGQ9zJD7/xh6KMrCFMpo7TYN5OTbkg2j0Zh2
+6vUN0UzGfonEN8emTyMay0QR5DKeuVrQzr5LP0K+HiE1e0b4VrOA+DOTt5UOxwzb
+F7RE/a9ey43nJWe1/FjivW9TiQEVAwUQMvQGUJHFy+O3HhdBAQFV7QgAnYCFNPIK
+4/fMPB6IfiNmLQIXwVacGfaZY3N5BrOGoxwd+k5me/gkhrcktFPOedFJdeFySSp5
+SBRHmVCWEshFBFIEdSAV79xCBX+NaM4FFfiMqTfyHVItINWcgjN0fhdvD3R1UO0k
+F/SjY3IfwM8shuvOoXTzFlRHKT4E3HkE7rvT1IsWhvtggmh9IIu59QoKzA0wGqen
+qb6ma6yDUYCWPM+t8o5XXaYArJu4g4vcqAnTC1jUUwhrUCNiHQj2WGR6L3NiG2Iy
+OiTOL8HBnI/J+a3xr2A/PuIQ+tItcz9StgyzzStv5xaato+iwIHPRG/HcptrFmAN
+mvh7JjXacflGfbQpTWFpayBTY2hyZWliZXIgPGh0dHA6Ly9ob21lLnBhZ2VzLmRl
+L35iWj6JAJUDBRAz3cOJD0cvWzTXTcEBAXp0A/9v9ut78HJ+mvhqVGINIfwaoOdk
+uukigq4GyvQI/nmKfPTMdNsTAnDHjNtdz6NTsF80041uoLnuelCPhPS53eASvjQ7
+LQgZnvENzKjhnycSuxDiW3dXCj0AA+VxnBCMsY+0s5/wE1pUneoYH61ZW9c6kz9z
+2CAOtjg9gIdzoYkhV4kAlQMFEDPV20Q3h4ErXHewTQEBjxwD/1tbXbXUlTgnlo4O
+SIHSKLP4C3TRd+dbWA3ay2x9IfkPTfLsgAzwNpjuFvc6RE38pyPzeyaV3xS3lIAa
+pfxJPRWecsNIgLhy1vrXm+jbnFmuH2n8n/3reFbXxa9xmsimhL0hWB88kNeJyXif
+retMsZejEIfdnE1E/2kOIe7fW2ESiQEVAwUQM7ECspHFy+O3HhdBAQH56Af+NvZC
+QBOQSNrPQlUKOT43ohL8KtkI35vGVwkPaW7CbhoYG15wUPVtK0OtZLyDbnq0ZSSR
+euBt2IucX/qX/b3lupySXjGusYhmWQBkhKMJBPzsboCJxRXAsFKh/Hsag8bbtxWW
+MXLxAp6odDqigOvIPw+c6oWTf4s6mbqHnckWdRPTJXX+Z1xWt+XPQeRlQDDSZUiQ
+uF2s1fPcYFCcK8tajzs3snsgf1U51WK/Fnhyz+t2KAAnJprTp0EOtA6ymWl8oK5s
+qAyTtUKMSa+IVjZzTTyO0WF0+gKuWUZV96o8df6CxwpUqHgm0K/tSUpg1k6bNkR7
+BTEtAeq3Xv0KA5pV3A==
+=eOG5
+-----END PGP PUBLIC KEY BLOCK-----@{body}@{par}
+
+@endnode
+@node "Acknowledgements" "Acknowledgements"
+@{par}
+  @{b}@{u}Acknowledgements@{uu}@{ub}@{par}
+
+I would like to thank the following people:@{par}
+
+@{b}Matthias "Quape" Kaulartz@{ub}@{par}
+
+@{b}Oliver "Phomex A" Hauth@{ub}@{par}
+
+@{b}Kai "PowerStat" Hofmann@{ub}@{par}
+  @{lindent 2}for MCC-Install@{lindent 0}@{par}
+
+@{b}All who I did forget... :)@{ub}@{par}
+
+@endnode
+

@@ -1,0 +1,10 @@
+MUI was developed using C and thats why C is probably the best choice
+when programming MUI applications.
+
+This drawer contains some include files and examples as well as a stub
+library for MUI's tag item functions when using DICE.
+
+MUI should work with SAS-C 6.2 or higher and DICE without
+problems, other compilers might need slight modifications.
+
+Much success, Stefan.

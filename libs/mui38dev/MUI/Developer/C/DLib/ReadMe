@@ -1,0 +1,9 @@
+MUI & DICE
+----------
+
+Since DICE does not support #pragma tagcall statements yet,
+you will have to link one of the *.lib files to make
+your program work. DMakeFile can be used to recreate
+these *.lib files.
+
+Thanks to Stefan Becker & Klaus Melchior for DICE support code.

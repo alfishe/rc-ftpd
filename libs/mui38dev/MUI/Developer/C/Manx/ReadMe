@@ -1,0 +1,14 @@
+This directory contains
+
+ lib/mui.lib				- linker library
+ include/pragmas/muimaster_lib.h	- pragmas in MANX style
+
+for use with MANX Aztec C 5.2 and MUI V 1.0.
+
+Redistribution ist granted in the original MUI archive.
+
+Files created by Oliver Graf - T.O.M. Software Wuppertal
+		 Gewerbeschulstr. 75
+		 42289 Wuppertal
+		 FRG
+		 oliver_graf@aworld.aworld.de

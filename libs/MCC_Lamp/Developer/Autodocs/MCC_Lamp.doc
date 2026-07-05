@@ -1,0 +1,288 @@
+TABLE OF CONTENTS
+
+Lamp.mcc/Lamp.mcc
+Lamp.mcc/MUIA_Lamp_Blue
+Lamp.mcc/MUIA_Lamp_Color
+Lamp.mcc/MUIA_Lamp_ColorType
+Lamp.mcc/MUIA_Lamp_Green
+Lamp.mcc/MUIA_Lamp_PenSpec
+Lamp.mcc/MUIA_Lamp_Red
+Lamp.mcc/MUIA_Lamp_Type
+Lamp.mcc/MUIM_Lamp_SetRGB
+Lamp.mcc/Lamp.mcc                                           Lamp.mcc/Lamp.mcc
+
+Lamp.mcc offers a little lamp which can be used for various purposes. It
+enhances the programmer's abilities to give more informative feedback to the
+user and thus just adds another level of communication in your programs!
+
+You can set the color and the type of the lamp at any time.
+
+Lamp.mcc has several special colors which can be configured using a MCP by
+the user.
+
+See the supplied demonstration program for more details.
+
+The demonstration program compiles fine under MaxonC++ 4.0, SAS/C 6.57 and
+StormC 1.1.
+
+
+Some notes about colors:
+
+The color of the lamp can be of one of three different types:
+
+- a user defined special color, such as "sending data" indicators
+- a "normal" color consisting of red/green/blue color values
+- a PenSpec definition
+
+If you want to get() the color values from a lamp, it is always required to
+determine which color type the desired lamp has. To determine the color type
+of a lamp, you must use MUIA_Lamp_ColorType.
+
+Example: If the lamp has a color type of "user defined color", you cannot
+get() the red/green/blue values, since this is a user definition and should
+not be known to the programmer.
+
+Here is some example code of how you could do it:
+
+  ULONG type;
+
+  get(lamp, MUIA_Lamp_ColorType, &type);
+  switch (type)
+  {
+    case MUIV_Lamp_ColorType_UserDefined:
+      /*
+      ** user defined color values specific code
+      ** (you could get() MUIA_Lamp_Color here)
+      */
+    case MUIV_Lamp_ColorType_Color:
+      /*
+      ** normal color specific code
+      ** (you could get() MUIA_Lamp_Red, MUIA_Lamp_Green, MUIA_Lamp_Blue and
+      ** MUIA_Lamp_Color here)
+      */
+    case MUIV_Lamp_ColorType_PenSpec:
+      /*
+      ** PenSpec definition specific code
+      ** (you could get() MUIA_Lamp_PenSpec here)
+      */
+  }
+Lamp.mcc/MUIA_Lamp_Blue                               Lamp.mcc/MUIA_Lamp_Blue
+
+   NAME
+       MUIA_Lamp_Blue -- [ISG], ULONG
+
+   FUNCTION
+       Set or get a lamp's blue color value.
+
+       Values range from 0 (no blue) to 0xffffffff (full blue).
+
+   NOTES
+       You may only get() MUIA_Lamp_Blue if MUIA_Lamp_ColorType is set
+       to MUIV_Lamp_ColorType_Color! If not, the return value will be
+       undefined.
+
+       Setting this attribute will always set MUIA_Lamp_ColorType to
+       MUIV_Lamp_ColorType_Color.
+
+   SEE ALSO
+       MUIA_Lamp_Red, MUIA_Lamp_Green, MUIA_Lamp_Color, MUIA_Lamp_PenSpec,
+       MUIA_Lamp_ColorType,
+       MUIM_Lamp_SetRGB
+Lamp.mcc/MUIA_Lamp_Color                             Lamp.mcc/MUIA_Lamp_Color
+
+   NAME
+       MUIA_Lamp_Color -- [ISG], ULONG *
+
+   FUNCTION
+       Set or get the red/green/blue color values all at once. You pass
+       in or receive a pointer to an array of three ULONG containing the
+       32-bit red, green and blue values.
+
+       You can also set one of the special input values to get a special
+       lamp color.
+
+       The default value is MUIV_Lamp_Color_Off.
+
+   SPECIAL INPUTS
+       MUIV_Lamp_Color_Off           - lamp is switched off
+       MUIV_Lamp_Color_Ok            - no problems, success
+       MUIV_Lamp_Color_Warning       - a warning only
+       MUIV_Lamp_Color_Error         - something wrong
+       MUIV_Lamp_Color_FatalError    - complete or severe failure
+       MUIV_Lamp_Color_Processing    - any program work in progress
+       MUIV_Lamp_Color_LookingUp     - looking up a server
+       MUIV_Lamp_Color_Connecting    - connecting to a server
+       MUIV_Lamp_Color_SendingData   - sending any serial line data
+       MUIV_Lamp_Color_ReceivingData - receiving any serial line data
+       MUIV_Lamp_Color_LoadingData   - loading any data into memory
+       MUIV_Lamp_Color_SavingData    - saving any data onto (hard)disk
+
+   NOTES
+       The input is buffered, you may destroy your private array after
+       set()ting the color.
+
+       You may not modify the returned array, it is read-only!
+
+       Be prepared to get one of the special input values.
+
+       You may only get() MUIA_Lamp_Color if MUIA_Lamp_ColorType is set
+       to MUIV_Lamp_ColorType_Color or MUIV_Lamp_ColorType_UserDefined!
+       If not, the return value will be undefined.
+
+       Setting this attribute to a pointer to an array of three ULONG will
+       set MUIA_Lamp_ColorType to MUIV_Lamp_ColorType_Color.
+
+       Setting this attribute to one of the special input values will set
+       MUIA_Lamp_ColorType to MUIV_Lamp_ColorType_UserDefined.
+
+   EXAMPLE
+       /* set color to yellow */
+       ULONG yellow[3] =
+       {
+         0xffffffff,
+         0xffffffff,
+         0
+       };
+       set(lamp, MUIA_Lamp_Color, &yellow);
+
+       /* set color to user defined "warning" color */
+       set(lamp, MUIA_Lamp_Color, MUIV_Lamp_Color_Warning);
+
+       /* get lamp color */
+       ULONG *color;
+       get(lamp, MUIA_Lamp_Color, &color);
+       printf("red  : 0x%08lx\n"
+              "green: 0x%08lx\n"
+              "blue : 0x%08lx\n",
+              color[0], color[1], color[2]);
+
+   SEE ALSO
+       MUIA_Lamp_Red, MUIA_Lamp_Green, MUIA_Lamp_Blue, MUIA_Lamp_PenSpec,
+       MUIA_Lamp_ColorType,
+       MUIM_Lamp_SetRGB
+Lamp.mcc/MUIA_Lamp_ColorType                     Lamp.mcc/MUIA_Lamp_ColorType
+
+   NAME
+       MUIA_Lamp_ColorType -- [..G], ULONG
+
+   FUNCTION
+       Get the color type of a lamp.
+
+   RESULT
+       MUIV_Lamp_ColorType_UserDefined - user defined color (preferences)
+       MUIV_Lamp_ColorType_Color       - normal color with RGB values
+       MUIV_Lamp_ColorType_PenSpec     - a PenSpec definition
+Lamp.mcc/MUIA_Lamp_Green                             Lamp.mcc/MUIA_Lamp_Green
+
+   NAME
+       MUIA_Lamp_Green -- [ISG], ULONG
+
+   FUNCTION
+       Set or get a lamp's green color value.
+
+       Values range from 0 (no green) to 0xffffffff (full green).
+
+   NOTES
+       You may only get() MUIA_Lamp_Green if MUIA_Lamp_ColorType is set
+       to MUIV_Lamp_ColorType_Color! If not, the return value will be
+       undefined.
+
+       Setting this attribute will always set MUIA_Lamp_ColorType to
+       MUIV_Lamp_ColorType_Color.
+
+   SEE ALSO
+       MUIA_Lamp_Red, MUIA_Lamp_Blue, MUIA_Lamp_Color, MUIA_Lamp_PenSpec,
+       MUIA_Lamp_ColorType,
+       MUIM_Lamp_SetRGB
+Lamp.mcc/MUIA_Lamp_PenSpec                         Lamp.mcc/MUIA_Lamp_PenSpec
+
+   NAME
+       MUIA_Lamp_PenSpec -- [ISG], struct MUI_PenSpec *
+
+   FUNCTION
+       Set or get a lamp's PenSpec definition.
+
+   NOTES
+       The input is buffered, you may destroy your private array after
+       set()ting the PenSpec definition.
+
+       You may not modify the returned array, it is read-only!
+
+       You may only get() MUIA_Lamp_PenSpec if MUIA_Lamp_ColorType is set
+       to MUIV_Lamp_ColorType_PenSpec! If not, the return value will be
+       undefined.
+
+       Setting this attribute will always set MUIA_Lamp_ColorType to
+       MUIV_Lamp_ColorType_PenSpec.
+
+   SEE ALSO
+       MUIA_Lamp_Color, MUIA_Lamp_Red, MUIA_Lamp_Green, MUIA_Lamp_Blue,
+       MUIA_Lamp_ColorType,
+       MUIM_Lamp_SetRGB
+Lamp.mcc/MUIA_Lamp_Red                                 Lamp.mcc/MUIA_Lamp_Red
+
+   NAME
+       MUIA_Lamp_Red -- [ISG], ULONG
+
+   FUNCTION
+       Set or get a lamp's red color value.
+
+       Values range from 0 (no red) to 0xffffffff (full red).
+
+   NOTES
+       You may only get() MUIA_Lamp_Red if MUIA_Lamp_ColorType is set
+       to MUIV_Lamp_ColorType_Color! If not, the return value will be
+       undefined.
+
+       Setting this attribute will always set MUIA_Lamp_ColorType to
+       MUIV_Lamp_ColorType_Color.
+
+   SEE ALSO
+       MUIA_Lamp_Green, MUIA_Lamp_Blue, MUIA_Lamp_Color, MUIA_Lamp_PenSpec,
+       MUIA_Lamp_ColorType,
+       MUIM_Lamp_SetRGB
+Lamp.mcc/MUIA_Lamp_Type                               Lamp.mcc/MUIA_Lamp_Type
+
+   NAME
+       MUIA_Lamp_Type -- [ISG], ULONG
+
+   FUNCTION
+       Set or get a lamp's type.
+
+       The default value is MUIV_Lamp_Type_Medium.
+
+   SPECIAL INPUTS
+       MUIV_Lamp_Type_Tiny   - 5x5 pixels circular lamp
+       MUIV_Lamp_Type_Small  - 6x6 pixels circular lamp
+       MUIV_Lamp_Type_Medium - 7x7 pixels circular lamp
+       MUIV_Lamp_Type_Big    - 8x8 pixels circular lamp
+       MUIV_Lamp_Type_Huge   - 9x9 pixels circular lamp
+
+   NOTES
+       At the moment, you are only allowed to pass in one of the special
+       input values! No other inputs are allowed!
+
+       It is guaranteed to get one of the special inputs.
+Lamp.mcc/MUIM_Lamp_SetRGB                           Lamp.mcc/MUIM_Lamp_SetRGB
+
+   NAME
+       MUIM_Lamp_SetRGB
+
+   SYNOPSIS
+       DoMethod(lamp, MUIM_Lamp_SetRGB, ULONG red, ULONG green, ULONG blue);
+
+   FUNCTION
+       Set the red/green/blue color values all at once. You pass in three
+       ULONG containing the 32-bit red, green and blue values.
+
+   NOTES
+       Using this method will always set MUIA_Lamp_ColorType to
+       MUIV_Lamp_ColorType_Color.
+
+   EXAMPLE
+       /* set color to yellow */
+       DoMethod(lamp, MUIM_Lamp_SetRGB, 0xffffffff, 0xffffffff, 0);
+
+   SEE ALSO
+       MUIA_Lamp_Red, MUIA_Lamp_Green, MUIA_Lamp_Blue, MUIA_Lamp_Color
+
