@@ -1,5 +1,5 @@
 /*****************************************************************************************************
- * rc-ftpd ©2000 Robin Cloutman <rycochet2@yahoo.com>                                                *
+ * rc-ftpd Â©2000 Robin Cloutman <rycochet2@yahoo.com>                                                *
  * --------------------------------------------------                                                *
  * MUI ftp daemon, may be split into ftpd.library, ftpd, ftpserv and ftpgui later.                   *
  *****************************************************************************************************/
@@ -38,8 +38,6 @@ Object	*PREFS_Save;
 Object	*PREFS_Use;
 Object	*PREFS_Cancel;
 
-char	unreg[]	= "\ecUnregistered version\n\nPlease show your support by registering.";
-char	reg[]		= "\el\ebRegistered to:\en %s\n\ebSerial:\en [%08.lx]";
 char	*pages[9];
 
 Object *InfoGroup( void )
@@ -47,15 +45,14 @@ Object *InfoGroup( void )
 	Object *new;
 	char	buffer[BUFSIZE];
 
-	if ( !registered )strcpy( buffer, unreg );
-	else sprintf( buffer, reg, registered, serial );
+	strcpy( buffer, "\ecOpen Source Version\n\nReleased under GPL license." );
 	new = VGroup,
 		InnerSpacing(4,4),
 		ReadListFrame,
 		Child, TextObject,
 			TextFrame,
 			MUIA_Background, MUII_TextBack,
-			MUIA_Text_Contents, "\ecRC-FTPd\nCopyright ©2000-2002 Robin Cloutman <rc-ftpd@rycochet.demon.co.uk>",
+			MUIA_Text_Contents, "\ecRC-FTPd\nCopyright Â©2000-2002 Robin Cloutman <rc-ftpd@rycochet.demon.co.uk>",
 		End,
 		Child, HVSpace,
 		Child, HGroup,

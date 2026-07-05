@@ -1,5 +1,5 @@
 /*****************************************************************************************************
- * rc-ftpd �2000 Robin Cloutman <rycochet2@yahoo.com>                                                *
+ * rc-ftpd ©2000 Robin Cloutman <rycochet2@yahoo.com>                                                *
  * --------------------------------------------------                                                *
  * MUI ftp daemon, may be split into ftpd.library, ftpd, ftpserv and ftpgui later.                   *
  *****************************************************************************************************/
@@ -673,7 +673,7 @@ Printf( "Unable to open taglist.library\n" );
 	APP_Main = ApplicationObject,
 		MUIA_Application_Title,			"RC-FTPd",
 		MUIA_Application_Version,		version,
-		MUIA_Application_Copyright,	"�2000 Robin Cloutman",
+		MUIA_Application_Copyright,	"©2000 Robin Cloutman",
 		MUIA_Application_Author,		"Robin Cloutman",
 		MUIA_Application_Description,	GetString(MSG_MUI_ABOUT),
 		MUIA_Application_Base,			"RC-FTPD",

@@ -1,5 +1,5 @@
 /*****************************************************************************************************
- * rc-ftpd �2000 Robin Cloutman <rycochet2@yahoo.com>                                                *
+ * rc-ftpd ©2000 Robin Cloutman <rycochet2@yahoo.com>                                                *
  * --------------------------------------------------                                                *
  * MUI ftp daemon, may be split into ftpd.library, ftpd, ftpserv and ftpgui later.                   *
  *****************************************************************************************************/
@@ -55,8 +55,8 @@ unsigned long __stack	= 32768;		// Minumum stack to use this program...
 
 const char	version[]	= SVER;
 const char	shortversion[]	= SHORTVERS;
-const char	banner[]		= "\ec(\ei" VERS "\en) Unregistered, please register";
-const char	banner2[]	= "\ec(\ei" VERS "\en) Registered";
+const char	banner[]		= "\ec(\ei" VERS "\en) Open Source";
+const char	banner2[]	= "\ec(\ei" VERS "\en) Open Source";
 const char	windowname[]= WINDOWNAME;
 char	lsfile[]				= "ftpd-%08.lx-tmp";
 char	*configname			= "ftpd.config";
@@ -80,8 +80,8 @@ struct ftpd_stat stats[3];
 long stats_page = 0;
 
 long	control	= -1;
-char *registered;
-long	serial;
+char *registered = "Open Source";
+long	serial = 1;
 
 // Initialised in ftpd.config
 long	port								= 21;
@@ -1377,16 +1377,11 @@ PRINTF( "exit -> write_to_data()\n" );
 	return;
 }
 
-#define	KEYSIZE	(1<<10)
-#define	OR1a		3337
-#define	OR1b		8652
-#define	OFFSET1a	(726^OR1a)
-#define	OFFSET1b	(385^OR1b)
-
 int main(void)
 {
 	struct ftpdata *ftp, *ftp_next;
 	int ret = RETURN_OK;
+	ULONG signals, x;
 
 	SysBase = (*((struct Library **)4));
 	if ( ( LocaleBase = OpenLibrary( "locale.library", 38 ) ) != NULL )
@@ -1397,64 +1392,7 @@ int main(void)
 	if ( !init_ftpd() )ret = RETURN_ERROR;
 	else
 	{
-		char	keyname[] = { 'f'^85, 't'^85, 'p'^85, 'd'^85, '.'^85, 'k'^85, 'e'^85, 'y'^85, '\0' };
-		char	keyloc1[] = { 'S'^47, ':'^47, '\0' };
-		char	keyloc2[] = { 'K'^93, 'E'^93, 'Y'^93, 'F'^93, 'I'^93, 'L'^93, 'E'^93, 'S'^93, '\0' };
-		char filename[512];
-		ULONG signals, x;
-		BPTR	keyfile = 0;
-		int	i = 0;
-
-		for ( i = 0 ; keyname[i] ; keyname[i++] ^= 85 );
-		for ( i = 0 ; keyloc1[i] ; keyloc1[i++] ^= 47 );
-		for ( i = 0 ; keyloc2[i] ; keyloc2[i++] ^= 93 );
-		strcpy( filename, keyloc1 );
-		registered = NULL;
-		keyfile = Open( keyname, MODE_OLDFILE );
-		if ( !keyfile && ( !AddPart( filename, keyname, 512 ) || !( keyfile = Open( filename, MODE_OLDFILE ) ) ) )
-		{
-			if ( GetVar( keyloc2, filename, 512, 0 ) != -1 && AddPart( filename, keyname, 512 ) )
-				keyfile = Open( filename, MODE_OLDFILE );
-		}
-		if ( keyfile )
-		{
-			char	*n, *m;
-			long	myid = 0;
-			char	key[KEYSIZE+1], o1, o2, crc = 0, c;
-			int	p1 = OFFSET1a, p2 = OFFSET1b;
-			BOOL	ok = TRUE;
-
-			if ( Read( keyfile, key, KEYSIZE ) < KEYSIZE )ok = FALSE;
-			else if ( ( ok = !strncmp(key,keyname,4) ) )ok = key[4]=='\1';
-			p1 ^= OR1a;
-			p2 ^= OR1b;
-			for ( n = filename, m = (char*)&myid, i = 0 ; ok ; i++ )
-			{
-				o1 = key[p1];
-				o2 = key[p2];
-				p1 = (p1+o1)&(KEYSIZE-1);
-				p2 = (p2+o2)&(KEYSIZE-1);
-				c = o1^o2;
-
-					  if ( i==0 )m[0] = c;
-				else if ( i==1 )m[1] = c;
-				else if ( i==2 )m[2] = c;
-				else if ( i==3 )m[3] = c;
-				else if ( i>=4 && i%4==0 )
-				{
-					if ( c!=crc )ok = FALSE;
-				}
-				else if ( !( *n++ = c ) )break;
-				crc ^= c;
-			}
-			if ( ok )
-			{
-				serial = myid;
-				registered = strdup( filename );
-				set( APP_Main, MUIA_Application_Commands, mui_commands );
-			}
-			Close( keyfile );
-		}
+		set( APP_Main, MUIA_Application_Commands, mui_commands );
 		set( PREFS_List, MUIA_List_Active, 0 );
 		set( WIN_Main, MUIA_Window_Open, TRUE );
 //		set( WIN_Stats, MUIA_Window_Open, stats_open );
@@ -1477,10 +1415,10 @@ int main(void)
 				maxdesc = control;
 			}
 
-			if ( maxcps || !registered )
+			if ( maxcps )
 			{
 				for ( my_cps = 0, ftp = ftp_list ; ftp ; ftp = ftp->next )if ( (ftp->file || ftp->file2) && !IS_SET(ftp->flags,FLAG_SPEEDY) )my_cps++;
-				if ( my_cps )my_cps = (registered?maxcps:3072>maxcps?3072:maxcps) / my_cps;
+				if ( my_cps )my_cps = maxcps / my_cps;
 			}
 			else my_cps = 0;
 			for ( ftp = ftp_list ; ftp ; ftp = ftp->next )
