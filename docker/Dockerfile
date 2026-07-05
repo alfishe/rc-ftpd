@@ -18,3 +18,4 @@ WORKDIR /src
 
 # Default: build release
 CMD ["make", "release"]
+# Build trigger
