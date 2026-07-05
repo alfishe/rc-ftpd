@@ -9,16 +9,14 @@ jobs:
   release:
     runs-on: ubuntu-latest
     container:
-      image: amigadev/m68k-amigaos-gcc:latest
+      image: ghcr.io/${{ github.repository }}-builder:latest
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Install dependencies
-        run: |
-          apt-get update --allow-insecure-repositories || true
-          apt-get install -y --allow-unauthenticated make
 
       - name: Build release
         run: make release
