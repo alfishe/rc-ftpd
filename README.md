@@ -2,6 +2,8 @@
 
 A full-featured FTP server for AmigaOS with MUI graphical interface.
 
+**[Download latest release](https://github.com/alfishe/rc-ftpd/releases/latest)**
+
 ## Features
 
 - Complete FTP server implementation (RFC 959 compliant)
