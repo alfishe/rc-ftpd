@@ -1,0 +1,33 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    container:
+      image: amigadev/m68k-amigaos-gcc:latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          apt-get update
+          apt-get install -y make
+
+      - name: Build release
+        run: make release
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            release/rc-ftpd.lha
+            release/rc-ftpd.readme
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
