@@ -185,7 +185,7 @@ static unsigned long __saveds USER_List_Func( char **array __asm__("a2"), struct
 			*array++ = buf;
 		}
 		else *array++ = "-";
-		*array++ = log[user->loglevel];
+		*array++ = ftpd_log[user->loglevel];
 	}
 	return(0);
 }
@@ -378,7 +378,7 @@ Object *UserGroup( void )
 			Child, USER_Log = CycleObject,
 				MUIA_Weight, 0,
 				MUIA_Font, MUIV_Font_Button,
-				MUIA_Cycle_Entries, log,
+				MUIA_Cycle_Entries, ftpd_log,
 				MUIA_Disabled, TRUE,
 			End,
 		End,

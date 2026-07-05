@@ -15,7 +15,13 @@ COMPAT_INC = libs/compat
 
 INCLUDES = -I$(COMPAT_INC) -I$(MUI_INC) -I$(NLIST_INC) -I$(TEXTINPUT_INC) -I$(LAMP_INC) -I$(BBALANCE_INC)
 
-CFLAGS = -Wall -noixemul -Os -fomit-frame-pointer $(INCLUDES)
+# Suppress legacy code warnings that would require major refactoring
+# Suppress legacy code warnings that would require major refactoring
+NOWARN = -Wno-pointer-sign -Wno-attributes -Wno-int-conversion -Wno-missing-braces \
+         -Wno-incompatible-pointer-types -Wno-unused-but-set-variable \
+         -Wno-format -Wno-uninitialized
+
+CFLAGS = -Wall $(NOWARN) -noixemul -Os -fomit-frame-pointer $(INCLUDES)
 LFLAGS = -s $(CFLAGS)
 
 SRCDIR = src

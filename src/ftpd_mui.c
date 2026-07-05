@@ -92,7 +92,7 @@ Object	*STATS_User_Total;
 Object	*STATS_Reset;
 
 char	*groups[]		= { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F" };
-char	*log[5];
+char	*ftpd_log[5];
 char	*closedopen[3];
 char	*page[4];
 
@@ -661,10 +661,10 @@ Printf( "Unable to open taglist.library\n" );
 		WorkbenchBase = OpenLibrary( "workbench.library", 36 );
 		iconport = CreateMsgPort();
 	}
-	log[0]			= GetString(MSG_LOG_NONE);
-	log[1]			= GetString(MSG_LOG_KNOWN);
-	log[2]			= GetString(MSG_LOG_COMMANDS);
-	log[3]			= GetString(MSG_LOG_ALL);
+	ftpd_log[0]			= GetString(MSG_LOG_NONE);
+	ftpd_log[1]			= GetString(MSG_LOG_KNOWN);
+	ftpd_log[2]			= GetString(MSG_LOG_COMMANDS);
+	ftpd_log[3]			= GetString(MSG_LOG_ALL);
 	closedopen[0]	= GetString(MSG_FTP_CLOSED);
 	closedopen[1]	= GetString(MSG_FTP_OPEN);
 	page[0]			= "Page: 1";
@@ -769,7 +769,7 @@ Printf( "Unable to open taglist.library\n" );
 							End,
 							Child, MAIN_Log = CycleObject,
 								MUIA_Font, MUIV_Font_Button,
-								MUIA_Cycle_Entries, log,
+								MUIA_Cycle_Entries, ftpd_log,
 							End,
 						End,
 						Child, MAIN_Message = StringObject,

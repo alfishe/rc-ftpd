@@ -67,7 +67,7 @@ stem:		stem.name = <user name>
 			stem.pass = <user pass>
 			stem.groups = <user groups>
 			stem.max = <max login>
-			stem.log = [0-4]
+			stem.ftpd_log = [0-4]
 
 
 

@@ -114,7 +114,7 @@ struct ftpdata		*ftp_list		= NULL;
 
 unsigned long	my_cps = 0;
 
-struct command commands[] =	// commands.log is set by prefs, default is NULL
+struct command commands[] =	// commands.ftpd_log is set by prefs, default is NULL
 {
 	{ "USER",	"<username>",								cmd_user,	NEED_LOGIN|NEED_ARGS					},
 	{ "PASS",	"<password>",								cmd_pass,	NEED_LOGIN|NEED_ARGS					},
@@ -966,7 +966,7 @@ void free_ftp( struct ftpdata *ftp )
 }
 
 char *logfilepath = "PROGDIR:logs";
-char *onelogpath = "PROGDIR:ftpd.log";
+char *onelogpath = "PROGDIR:ftpd.ftpd_log";
 
 void LogToFile( struct ftpdata *ftp, char *arg1, char *arg2 )
 {
@@ -980,7 +980,7 @@ void LogToFile( struct ftpdata *ftp, char *arg1, char *arg2 )
 
 		if ( !( lock = Lock( logfilepath, ACCESS_READ ) ) )lock = CreateDir( logfilepath );
 		UnLock( lock );
-		sprintf( filename, "%s/%s.log", logfilepath, ftp->user->user );
+		sprintf( filename, "%s/%s.ftpd_log", logfilepath, ftp->user->user );
 	}
 	else strcpy(filename, onelogpath );
 	if ( ( file = Open(filename,MODE_READWRITE) ) )

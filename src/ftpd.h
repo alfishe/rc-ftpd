@@ -80,7 +80,7 @@ struct groupdata
 
 	unsigned long		id;
 	unsigned short		flags;
-	unsigned char		log;
+	unsigned char		ftpd_log;
 	unsigned char		sessions;
 	unsigned long		maxcps;
 
@@ -101,7 +101,7 @@ struct newuserdata
 
 	unsigned long		id;
 	unsigned short		flags;
-	unsigned char		log;
+	unsigned char		ftpd_log;
 	unsigned char		sessions;
 	unsigned long		maxcps;
 
@@ -135,7 +135,7 @@ struct user
 
 	struct DateStamp	idle;
 	unsigned short		flags;
-	unsigned char		log;
+	unsigned char		ftpd_log;
 	unsigned char		sessions;
 	unsigned long		maxcps;
 
@@ -288,7 +288,7 @@ struct command
 	char	*help;
 	BOOL	(*command)(struct ftpdata *ftp);
 	unsigned char	flags;
-	unsigned char	log;
+	unsigned char	ftpd_log;
 };
 
 #define	NEED_LOGIN	(1<<0)	// Can be used before they're logged in
@@ -300,8 +300,8 @@ struct command
 #define	NEED_UNIMP	(1<<6)	// This command is unimplemented
 #define	NEED_XFER	(1<<7)	// This command may be used during file transfer
 #define	LOG_ON		(1<<1)	// Log after succesful...
-#define	LOG_ALWAYS	(1<<2)	// Always log after, not just succesful...
-#define	LOG_BEFORE	(1<<3)	// Always log before...
+#define	LOG_ALWAYS	(1<<2)	// Always ftpd_log after, not just succesful...
+#define	LOG_BEFORE	(1<<3)	// Always ftpd_log before...
 
 BOOL cmd_abor(struct ftpdata *ftp);
 BOOL cmd_acct(struct ftpdata *ftp);
@@ -421,7 +421,7 @@ extern struct MsgPort	*iconport;
 
 extern long	control;
 
-extern char		*log[];
+extern char		*ftpd_log[];
 extern char		*groups[];
 extern char		*configname;
 
@@ -491,7 +491,7 @@ extern const char	version[];
 extern const char	shortversion[];
 extern const char	banner[];
 extern char			lsfile[];
-extern char			*log[];
+extern char			*ftpd_log[];
 extern long	port;
 extern long	connections;
 extern long	opencount;

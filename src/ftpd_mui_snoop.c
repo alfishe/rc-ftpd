@@ -110,7 +110,7 @@ void start_log( struct ftpdata *ftp )
 				End,
 				Child, ftp->Log = CycleObject,
 					MUIA_Font, MUIV_Font_Button,
-					MUIA_Cycle_Entries, log,
+					MUIA_Cycle_Entries, ftpd_log,
 				End,
 			End,
 			Child, msg = StringObject,
