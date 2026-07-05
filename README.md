@@ -18,12 +18,82 @@ A full-featured FTP server for AmigaOS with MUI graphical interface.
 
 ## Supported FTP Commands
 
-```
-USER  PASS  ACCT  REIN  QUIT  PORT  PASV  TYPE  STRU  MODE
-RETR  STOR  APPE  ALLO  REST  RNFR  RNTO  ABOR  DELE  CWD
-LIST  NLST  SITE  STAT  HELP  NOOP  CDUP  MDTM  MKD   PWD
-RMD   SYST  XCUP  XCWD  XMKD  XPWD  XRMD
-```
+Fully RFC 959 compliant with common extensions.
+
+### Access Control
+
+| Command | Description |
+|---------|-------------|
+| USER | Specify username for authentication |
+| PASS | Specify password for authentication |
+| ACCT | Specify account (accepted but not used) |
+| REIN | Reinitialize connection |
+| QUIT | Logout and close connection |
+
+### Transfer Parameters
+
+| Command | Description |
+|---------|-------------|
+| PORT | Specify data port for active mode |
+| PASV | Enter passive mode |
+| TYPE | Set transfer type (ASCII/Binary) |
+| STRU | Set file structure (File only) |
+| MODE | Set transfer mode (Stream only) |
+
+### File Operations
+
+| Command | Description |
+|---------|-------------|
+| RETR | Download (retrieve) a file |
+| STOR | Upload (store) a file |
+| APPE | Append data to existing file |
+| ALLO | Allocate storage space |
+| REST | Set restart point for resume |
+| RNFR | Rename from (source path) |
+| RNTO | Rename to (destination path) |
+| ABOR | Abort current transfer |
+| DELE | Delete a file |
+
+### Directory Operations
+
+| Command | Description |
+|---------|-------------|
+| CWD | Change working directory |
+| CDUP | Change to parent directory |
+| MKD | Create (make) directory |
+| RMD | Remove directory |
+| PWD | Print working directory |
+| LIST | List directory contents (detailed) |
+| NLST | List directory names only |
+
+### Information
+
+| Command | Description |
+|---------|-------------|
+| SYST | Return system type (AmigaOS) |
+| STAT | Return server status |
+| HELP | Show help for commands |
+| SITE | Site-specific commands |
+| NOOP | No operation (keep-alive) |
+| FEAT | List supported features |
+| CLNT | Identify client software |
+
+### Extensions (RFC 3659)
+
+| Command | Description |
+|---------|-------------|
+| MDTM | Get file modification time |
+| SIZE | Get file size |
+
+### X-Commands (Obsolete Aliases)
+
+| Command | Alias For |
+|---------|-----------|
+| XCUP | CDUP |
+| XCWD | CWD |
+| XMKD | MKD |
+| XPWD | PWD |
+| XRMD | RMD |
 
 ## Requirements
 
