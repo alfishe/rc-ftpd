@@ -1,21 +1,22 @@
-# rc-ftpd build environment
-# Based on bebbo's amiga-gcc toolchain
+# Minimal rc-ftpd build environment
+# Multi-stage build to extract only the toolchain (~460MB vs 7.4GB)
 
-FROM amigadev/m68k-amigaos-gcc:latest
+FROM amigadev/m68k-amigaos-gcc:latest AS toolchain
 
-LABEL maintainer="rc-ftpd"
-LABEL description="Build environment for rc-ftpd Amiga FTP server"
+FROM debian:bookworm-slim
 
-# Fix GPG keys and install make
-RUN apt-get update --allow-insecure-repositories || true && \
-    apt-get install -y --allow-unauthenticated make || \
-    (apt-get install -y gnupg && \
-     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 6ED0E7B82643E131 78DBA3BC47EF2265 F8D2585B8783D481 && \
-     apt-get update && apt-get install -y make) && \
-    rm -rf /var/lib/apt/lists/*
+# Copy the toolchain and lha
+COPY --from=toolchain /opt/amiga /opt/amiga
+COPY --from=toolchain /usr/local/bin/lha /usr/local/bin/lha
+
+# Install minimal build dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    make \
+    libmpc3 \
+    && rm -rf /var/lib/apt/lists/*
+
+ENV PATH="/opt/amiga/bin:${PATH}"
 
 WORKDIR /src
 
-# Default: build release
 CMD ["make", "release"]
-# Build trigger

@@ -8,12 +8,13 @@ VERSION = 2.60
 MUI_INC = libs/mui38dev/MUI/Developer/C/Include
 NLIST_INC = libs/MCC_NList/Developer/C/include
 TEXTINPUT_INC = libs/MCC_Textinput/Developer/C/Include
+TEXTINPUT_MUI_INC = libs/MCC_Textinput/Developer/C/Include/MUI
 LAMP_INC = libs/MCC_Lamp/Developer/C/Include
 BBALANCE_INC = libs/MCC_BetterBalance/MCC_BetterBalance/Developer/C/Include
 
 COMPAT_INC = libs/compat
 
-INCLUDES = -I$(COMPAT_INC) -I$(MUI_INC) -I$(NLIST_INC) -I$(TEXTINPUT_INC) -I$(LAMP_INC) -I$(BBALANCE_INC)
+INCLUDES = -I$(COMPAT_INC) -I$(MUI_INC) -I$(NLIST_INC) -I$(TEXTINPUT_INC) -I$(TEXTINPUT_MUI_INC) -I$(LAMP_INC) -I$(BBALANCE_INC)
 
 # Suppress legacy code warnings that would require major refactoring
 # Suppress legacy code warnings that would require major refactoring
