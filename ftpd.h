@@ -20,6 +20,17 @@
 #define	CATCOMP_NUMBERS
 #include	"ftpd_cat.h"
 
+/* MUI_Command structure - defined here to avoid including full mui.h */
+#ifndef LIBRARIES_MUI_H
+struct MUI_Command
+{
+	char        *mc_Name;
+	char        *mc_Template;
+	long         mc_Parameters;
+	struct Hook *mc_Hook;
+};
+#endif
+
 #define	BUFSIZE	2048
 #define	ASYNCBUF	8192
 
@@ -519,7 +530,7 @@ unsigned long timer	( struct ftpdata *ftp );
 void	 output			( struct ftpdata *ftp, char *txt, long reply );
 void	 sendfile		( struct ftpdata *ftp, char *filename );
 void	 memclr			( void *memory, int size );
-void __stdargs sprintf( char *to, char *fmt, ... );
+/* sprintf is already declared in stdio.h */
 struct userdata *get_user( long id );
 struct accessdata *get_access( long id );
 void	 add_path		( char *to, char *add );

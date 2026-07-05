@@ -9,7 +9,8 @@ asyncio/ReadCharAsync
 asyncio/SeekAsync
 asyncio/WriteAsync
 asyncio/WriteCharAsync
-asyncio/--background--                                 asyncio/--background--
+ 
+asyncio/--background--                                 asyncio/--background--
 
 This documentation and source code was written by Martin Taillefer.
 
@@ -78,7 +79,8 @@ The set of functions presented below offers high-performance IO using the
 technique described above. The interface is very similar to standard AmigaDOS
 files. These routines enable full asynchronous read/write of any file.
 
-asyncio/--history--                                       asyncio/--history--
+ 
+asyncio/--history--                                       asyncio/--history--
 
 23-Mar-94
 ---------
@@ -112,7 +114,8 @@ files. These routines enable full asynchronous read/write of any file.
     to bring up a "Disk is full" requester, and the user freed some room on
     the disk and selected "Retry".
 
-asyncio/CloseAsync                                         asyncio/CloseAsync
+ 
+asyncio/CloseAsync                                         asyncio/CloseAsync
 
    NAME
 	CloseAsync -- close an async file.
@@ -139,7 +142,8 @@ files. These routines enable full asynchronous read/write of any file.
    SEE ALSO
 	OpenAsync(), dos.library/Close()
 
-asyncio/OpenAsync                                           asyncio/OpenAsync
+ 
+asyncio/OpenAsync                                           asyncio/OpenAsync
 
    NAME
 	OpenAsync -- open a file for asynchronous IO.
@@ -186,7 +190,8 @@ files. These routines enable full asynchronous read/write of any file.
     SEE ALSO
 	CloseAsync(), dos.library/Open()
 
-asyncio/ReadAsync                                           asyncio/ReadAsync
+ 
+asyncio/ReadAsync                                           asyncio/ReadAsync
 
    NAME
 	ReadAsync -- read bytes from an async file.
@@ -222,7 +227,8 @@ files. These routines enable full asynchronous read/write of any file.
 	OpenAsync(), CloseAsync(), ReadCharAsync(), WriteAsync(),
 	dos.library/Read()
 
-asyncio/ReadCharAsync                                   asyncio/ReadCharAsync
+ 
+asyncio/ReadCharAsync                                   asyncio/ReadCharAsync
 
    NAME
 	ReadCharAsync -- read a single byte from an async file.
@@ -250,7 +256,8 @@ files. These routines enable full asynchronous read/write of any file.
 	OpenAsync(), CloseAsync(), ReadAsync(), WriteCharAsync()
 	dos.library/Read()
 
-asyncio/SeekAsync                                           asyncio/SeekAsync
+ 
+asyncio/SeekAsync                                           asyncio/SeekAsync
 
    NAME
 	SeekAsync -- set the current position for reading or writing within
@@ -290,7 +297,8 @@ files. These routines enable full asynchronous read/write of any file.
 	OpenAsync(), CloseAsync(), ReadAsync(), WriteAsync(),
 	dos.library/Seek()
 
-asyncio/WriteAsync                                         asyncio/WriteAsync
+ 
+asyncio/WriteAsync                                         asyncio/WriteAsync
 
    NAME
 	WriteAsync -- write data to an async file.
@@ -322,7 +330,8 @@ files. These routines enable full asynchronous read/write of any file.
 	OpenAsync(), CloseAsync(), ReadAsync(), WriteCharAsync(),
 	dos.library/Write()
 
-asyncio/WriteCharAsync                                 asyncio/WriteCharAsync
+ 
+asyncio/WriteCharAsync                                 asyncio/WriteCharAsync
 
    NAME
 	WriteCharAsync -- write a single byte to an async file.

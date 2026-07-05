@@ -1,5 +1,5 @@
 /*****************************************************************************************************
- * rc-ftpd ©2000 Robin Cloutman <rycochet2@yahoo.com>                                                *
+ * rc-ftpd ï¿½2000 Robin Cloutman <rycochet2@yahoo.com>                                                *
  * --------------------------------------------------                                                *
  * MUI ftp daemon, may be split into ftpd.library, ftpd, ftpserv and ftpgui later.                   *
  *****************************************************************************************************/
@@ -51,7 +51,7 @@
 
 unsigned long __stack	= 32768;		// Minumum stack to use this program...
 
-#define WINDOWNAME "RC-FTPd "##SHORTVERS
+#define WINDOWNAME "RC-FTPd " SHORTVERS
 
 const char	version[]	= SVER;
 const char	shortversion[]	= SHORTVERS;
@@ -182,6 +182,8 @@ void memclr( void *memory, int size )
 	while( size )mem[--size] = 0;
 }
 
+/* These functions are provided by libnix, no need to redefine */
+#ifdef __SASC
 UWORD fmtfunc[] = { 0x16c0, 0x4e75 };
 void __stdargs sprintf( char *to, char *fmt, ... )
 {
@@ -207,6 +209,7 @@ char *strncpy( char *a, const char *b, size_t count )
 	*a = '\0';
 	return(a);
 }
+#endif
 
 char *strcat( char *a, const char *b )
 {

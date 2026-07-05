@@ -1,0 +1,35 @@
+CC = m68k-amigaos-gcc
+CFLAGS = -Wall -noixemul -Os -fomit-frame-pointer
+LFLAGS = -s $(CFLAGS)
+O_FILES = ftpd_cat.o ftpd.o ftpd_cmds.o ftpd_mui.o \
+          ftpd_mui_user.o ftpd_mui_path.o ftpd_mui_prefs.o \
+          ftpd_mui_general.o ftpd_mui_snoop.o ftpd_mui_closed.o \
+          ftpd_mui_greeting.o ftpd_mui_welcome.o ftpd_mui_goodbye.o \
+          ftpd_mui_arexx.o asyncio.o
+
+ftpd: $(O_FILES)
+	$(CC) $(LFLAGS) -o $@ $(O_FILES) -lamiga -lmui -lgcc
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+ftpd.o: ftpd.c rc-ftpd_rev.h ftpd.h
+ftpd_cmds.o: ftpd_cmds.c ftpd.h
+ftpd_mui.o: ftpd_mui.c ftpd.h
+ftpd_mui_prefs.o: ftpd_mui_prefs.c ftpd.h
+ftpd_mui_user.o: ftpd_mui_user.c ftpd.h
+ftpd_mui_path.o: ftpd_mui_path.c ftpd.h
+ftpd_mui_general.o: ftpd_mui_general.c ftpd.h
+ftpd_mui_snoop.o: ftpd_mui_snoop.c ftpd.h
+ftpd_mui_closed.o: ftpd_mui_closed.c ftpd.h
+ftpd_mui_greeting.o: ftpd_mui_greeting.c ftpd.h
+ftpd_mui_welcome.o: ftpd_mui_welcome.c ftpd.h
+ftpd_mui_goodbye.o: ftpd_mui_goodbye.c ftpd.h
+ftpd_mui_arexx.o: ftpd_mui_arexx.c ftpd.h
+ftpd_cat.o: ftpd_cat.c ftpd_cat.h
+asyncio.o: asyncio.c asyncio.h
+
+clean:
+	rm -f ftpd *.o
+
+.PHONY: clean

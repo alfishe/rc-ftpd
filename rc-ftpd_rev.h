@@ -30,8 +30,8 @@
 #define	CheckCPU	(-1)
 #endif
 
-#define	VERS			"rc-ftpd"##CPUSTR##" 2.60"
+#define	VERS			"rc-ftpd" CPUSTR " 2.60"
 #define	SHORTVERS	"2.60"
-#define	VSTRING		VERS" (16.07.02)\r\n"
-#define	VERSTAG		"\0$VER: "##VERS##" ("##DATE##")"
-#define	SVER			"$VER: "##VERS##" ("##DATE##") ©2000-2002 Robin Cloutman"
+#define	VSTRING		VERS " (16.07.02)\r\n"
+#define	VERSTAG		"\0$VER: " VERS " (" DATE ")"
+#define	SVER			"$VER: " VERS " (" DATE ") (C)2000-2002 Robin Cloutman"
