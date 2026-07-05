@@ -16,7 +16,7 @@
 #include <libraries/asl.h>
 #include <libraries/mui.h>
 #include	<mui/MUIundoc.h>
-#include	<mui/Textinput_mcc.h>
+#include	<mui/textinput_mcc.h>
 
 #include	<clib/alib_protos.h>
 #include	<clib/muimaster_protos.h>
