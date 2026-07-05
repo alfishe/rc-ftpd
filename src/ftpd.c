@@ -1,5 +1,5 @@
 /*****************************************************************************************************
- * rc-ftpd �2000 Robin Cloutman <rycochet2@yahoo.com>                                                *
+ * rc-ftpd ©2000 Robin Cloutman <rycochet2@yahoo.com>                                                *
  * --------------------------------------------------                                                *
  * MUI ftp daemon, may be split into ftpd.library, ftpd, ftpserv and ftpgui later.                   *
  *****************************************************************************************************/

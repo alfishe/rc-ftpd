@@ -1,5 +1,5 @@
 /*****************************************************************************************************
- * rc-ftpd �2000 Robin Cloutman <rycochet2@yahoo.com>                                                *
+ * rc-ftpd ©2000 Robin Cloutman <rycochet2@yahoo.com>                                                *
  * --------------------------------------------------                                                *
  * MUI ftp daemon, may be split into ftpd.library, ftpd, ftpserv and ftpgui later.                   *
  *****************************************************************************************************/
@@ -52,7 +52,7 @@ Object *InfoGroup( void )
 		Child, TextObject,
 			TextFrame,
 			MUIA_Background, MUII_TextBack,
-			MUIA_Text_Contents, "\ecRC-FTPd\nCopyright �2000-2002 Robin Cloutman <rc-ftpd@rycochet.demon.co.uk>",
+			MUIA_Text_Contents, "\ecRC-FTPd\nCopyright ©2000-2002 Robin Cloutman <rc-ftpd@rycochet.demon.co.uk>",
 		End,
 		Child, HVSpace,
 		Child, HGroup,
