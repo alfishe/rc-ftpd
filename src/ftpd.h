@@ -335,6 +335,9 @@ BOOL cmd_stru(struct ftpdata *ftp);
 BOOL cmd_syst(struct ftpdata *ftp);
 BOOL cmd_type(struct ftpdata *ftp);
 BOOL cmd_user(struct ftpdata *ftp);
+BOOL cmd_rein(struct ftpdata *ftp);
+BOOL cmd_stat(struct ftpdata *ftp);
+BOOL cmd_site(struct ftpdata *ftp);
 
 /*
  * Standard replies.

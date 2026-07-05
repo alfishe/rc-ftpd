@@ -1,5 +1,5 @@
 /*****************************************************************************************************
- * rc-ftpd ©2000 Robin Cloutman <rycochet2@yahoo.com>                                                *
+ * rc-ftpd ï¿½2000 Robin Cloutman <rycochet2@yahoo.com>                                                *
  * --------------------------------------------------                                                *
  * MUI ftp daemon, may be split into ftpd.library, ftpd, ftpserv and ftpgui later.                   *
  *****************************************************************************************************/
@@ -1078,4 +1078,41 @@ BOOL cmd_rnto(struct ftpdata *ftp)
 	}
 	output( ftp, REPLY_250, 250 );
 	return TRUE;
+}
+
+BOOL cmd_rein(struct ftpdata *ftp)
+{
+	ftp->user = NULL;
+	ftp->path[0] = '\0';
+	ftp->cd[0] = '\0';
+	ftp->filename[0] = '\0';
+	ftp->flags = 0;
+	output( ftp, REPLY_220, 220 );
+	return FALSE;
+}
+
+BOOL cmd_stat(struct ftpdata *ftp)
+{
+	if ( *ftp->args )
+	{
+		output( ftp, REPLY_502, 502 );
+		return FALSE;
+	}
+	sprintf( ftp->buffer, "FTP server status:\n"
+		" Connected to %s\n"
+		" Logged in as %s\n"
+		" TYPE: %s\n"
+		" No data connection",
+		ftp->ip,
+		ftp->user ? ftp->user->user : "(not logged in)",
+		IS_SET(ftp->flags, FLAG_BINARY) ? "BINARY" : "ASCII"
+	);
+	output( ftp, ftp->buffer, 211 );
+	return FALSE;
+}
+
+BOOL cmd_site(struct ftpdata *ftp)
+{
+	output( ftp, "SITE commands not supported.", 502 );
+	return FALSE;
 }
